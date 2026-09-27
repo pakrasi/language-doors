@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doors and Glue</title>
+<meta name="description" content="A reusable framework for learning any language: verb doors, turns, glue, slots, functions. Compare five languages side by side, drill the doors, practise scenarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='3' fill='%231f6f8b'/%3E%3Crect x='11' y='10' width='10' height='18' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#" id="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Doors and Glue</span>
+    </a>
+    <nav class="views" aria-label="Sections">
+      <a href="#" data-view="reference">Reference</a>
+      <a href="#" data-view="drill">Drill</a>
+      <a href="#" data-view="practice">Practice</a>
+      <a href="#" data-view="framework">Framework</a>
+    </nav>
+    <div class="top-tools">
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
+      <button id="settings-btn" class="icon-btn" type="button" aria-label="Settings" title="Settings">⚙</button>
+    </div>
+  </div>
+  <div class="pickers">
+    <div class="pickers-inner">
+      <div class="lang-picker" id="lang-picker" aria-label="Languages (toggle)"></div>
+      <div class="level-picker" id="level-picker" role="tablist" aria-label="Level"></div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="main">
+  <div id="view" class="view" aria-live="polite"></div>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <span>Doors and Glue. One framework, many languages. Content is AI-drafted from the framework and corrected as it is used: a form that looks wrong is a bug in the data file.</span>
+    <a href="https://github.com/pakrasi/language-doors">Source</a>
+  </div>
+</footer>
+
+<div id="settings" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <h2 id="settings-title">Settings</h2>
+    <p class="muted">Everything here stays in this browser only.</p>
+    <label class="field">
+      <span>Anthropic API key for "Check with Claude" in Practice (optional)</span>
+      <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-...">
+    </label>
+    <p class="muted small">Stored in localStorage and sent only to api.anthropic.com from this page. Without it, Practice still works with the built-in checker.</p>
+    <div class="row">
+      <button id="settings-save" class="btn primary" type="button">Save</button>
+      <button id="settings-clear" class="btn" type="button">Reset drill and practice progress</button>
+      <button id="settings-close" class="btn" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
