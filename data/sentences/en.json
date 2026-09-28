@@ -1,0 +1,749 @@
+{
+ "roles": {
+  "subj": "subject",
+  "subj2": "subject (clause 2)",
+  "door": "door",
+  "door2": "door (clause 2)",
+  "verb": "verb in the slot",
+  "verb2": "verb (clause 2)",
+  "obj": "object / destination",
+  "obj2": "object (clause 2)",
+  "adv": "time or place",
+  "dur": "duration",
+  "aux": "tense carrier",
+  "neg": "negation",
+  "q": "question marker",
+  "glue": "glue",
+  "x": "added by this language"
+ },
+ "meanings": [
+  {
+   "id": "want",
+   "title": "I want to learn Khasi.",
+   "function": "F-WANT",
+   "recipe": [
+    "D-WANT"
+   ],
+   "variants": [
+    {
+     "id": "now",
+     "label": "now",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "want",
+       "door"
+      ],
+      [
+       "to learn",
+       "verb"
+      ],
+      [
+       "Khasi.",
+       "obj"
+      ]
+     ],
+     "hint": "Present. The door WANT with a verb slot."
+    },
+    {
+     "id": "past",
+     "label": "yesterday",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "wanted",
+       "door|aux"
+      ],
+      [
+       "to learn",
+       "verb"
+      ],
+      [
+       "Khasi.",
+       "obj"
+      ]
+     ],
+     "hint": "Past. Where does the tense go: on the door, on an auxiliary, on a particle?"
+    },
+    {
+     "id": "neg",
+     "label": "not",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "don't",
+       "neg|aux"
+      ],
+      [
+       "want",
+       "door"
+      ],
+      [
+       "to learn",
+       "verb"
+      ],
+      [
+       "Khasi.",
+       "obj"
+      ]
+     ],
+     "hint": "Negative. Where does the negation word sit relative to the door?"
+    },
+    {
+     "id": "q",
+     "label": "you?",
+     "tokens": [
+      [
+       "Do",
+       "q|aux"
+      ],
+      [
+       "you",
+       "subj"
+      ],
+      [
+       "want",
+       "door"
+      ],
+      [
+       "to learn",
+       "verb"
+      ],
+      [
+       "Khasi?",
+       "obj"
+      ]
+     ],
+     "hint": "Yes/no question to a friend (informal you). Particle, inversion, or intonation only?"
+    }
+   ]
+  },
+  {
+   "id": "decline",
+   "title": "I can't come because I have to work.",
+   "function": "F-ACCEPT-DECLINE",
+   "recipe": [
+    "D-CAN",
+    "G-BECAUSE",
+    "D-HAVE-TO"
+   ],
+   "variants": [
+    {
+     "id": "now",
+     "label": "now",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "can't",
+       "door|neg"
+      ],
+      [
+       "come",
+       "verb"
+      ],
+      [
+       "because",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "have to",
+       "door2"
+      ],
+      [
+       "work.",
+       "verb2"
+      ]
+     ],
+     "hint": "Two doors joined by BECAUSE. Watch what the glue does to the second clause."
+    },
+    {
+     "id": "past",
+     "label": "yesterday",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "couldn't",
+       "door|neg|aux"
+      ],
+      [
+       "come",
+       "verb"
+      ],
+      [
+       "because",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "had to",
+       "door2|aux"
+      ],
+      [
+       "work.",
+       "verb2"
+      ]
+     ],
+     "hint": "Past of both doors."
+    },
+    {
+     "id": "fut",
+     "label": "tomorrow",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "won't be able to",
+       "door|neg|aux"
+      ],
+      [
+       "come",
+       "verb"
+      ],
+      [
+       "because",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "will have to",
+       "door2|aux"
+      ],
+      [
+       "work.",
+       "verb2"
+      ]
+     ],
+     "hint": "Future of both doors. CAN needs a substitute in English; does it in your language?"
+    },
+    {
+     "id": "although",
+     "label": "although",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "can",
+       "door"
+      ],
+      [
+       "come",
+       "verb"
+      ],
+      [
+       "although",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "have to",
+       "door2"
+      ],
+      [
+       "work.",
+       "verb2"
+      ]
+     ],
+     "hint": "Glue swapped to ALTHOUGH, first door now positive."
+    }
+   ]
+  },
+  {
+   "id": "like",
+   "title": "I like coffee.",
+   "function": "F-LIKE",
+   "recipe": [
+    "D-LIKE"
+   ],
+   "variants": [
+    {
+     "id": "now",
+     "label": "now",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "like",
+       "door"
+      ],
+      [
+       "coffee.",
+       "obj"
+      ]
+     ],
+     "hint": "In several languages the liked thing is the grammatical subject and the liker is marked dative."
+    },
+    {
+     "id": "neg",
+     "label": "not",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "don't",
+       "neg|aux"
+      ],
+      [
+       "like",
+       "door"
+      ],
+      [
+       "coffee.",
+       "obj"
+      ]
+     ],
+     "hint": "Negative."
+    },
+    {
+     "id": "she",
+     "label": "she",
+     "tokens": [
+      [
+       "She",
+       "subj"
+      ],
+      [
+       "likes",
+       "door"
+      ],
+      [
+       "coffee.",
+       "obj"
+      ]
+     ],
+     "hint": "Third person: watch agreement, gender markers, and what changes on the door."
+    },
+    {
+     "id": "q",
+     "label": "you?",
+     "tokens": [
+      [
+       "Do",
+       "q|aux"
+      ],
+      [
+       "you",
+       "subj"
+      ],
+      [
+       "like",
+       "door"
+      ],
+      [
+       "coffee?",
+       "obj"
+      ]
+     ],
+     "hint": "Question to a friend (informal you)."
+    }
+   ]
+  },
+  {
+   "id": "go",
+   "title": "I go to the market.",
+   "function": "F-DESCRIBE-PAST",
+   "recipe": [
+    "D-GOING-TO",
+    "T-PRES",
+    "T-PAST",
+    "T-FUT"
+   ],
+   "variants": [
+    {
+     "id": "habit",
+     "label": "every day",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "go",
+       "verb"
+      ],
+      [
+       "to the market",
+       "obj"
+      ],
+      [
+       "every day.",
+       "adv"
+      ]
+     ],
+     "hint": "Habitual present."
+    },
+    {
+     "id": "prog",
+     "label": "right now",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "am",
+       "aux"
+      ],
+      [
+       "going",
+       "verb"
+      ],
+      [
+       "to the market",
+       "obj"
+      ],
+      [
+       "now.",
+       "adv"
+      ]
+     ],
+     "hint": "Progressive: an auxiliary, a particle, or nothing at all?"
+    },
+    {
+     "id": "past",
+     "label": "yesterday",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "went",
+       "verb|aux"
+      ],
+      [
+       "to the market",
+       "obj"
+      ],
+      [
+       "yesterday.",
+       "adv"
+      ]
+     ],
+     "hint": "Simple past of GO."
+    },
+    {
+     "id": "fut",
+     "label": "tomorrow",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "will",
+       "aux"
+      ],
+      [
+       "go",
+       "verb"
+      ],
+      [
+       "to the market",
+       "obj"
+      ],
+      [
+       "tomorrow.",
+       "adv"
+      ]
+     ],
+     "hint": "Future: a future form, or present plus a time word?"
+    },
+    {
+     "id": "neg",
+     "label": "not",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "am",
+       "aux"
+      ],
+      [
+       "not",
+       "neg"
+      ],
+      [
+       "going",
+       "verb"
+      ],
+      [
+       "to the market.",
+       "obj"
+      ]
+     ],
+     "hint": "Negative progressive."
+    }
+   ]
+  },
+  {
+   "id": "live",
+   "title": "I have been living here for two years.",
+   "function": "F-INTRO",
+   "recipe": [
+    "D-HAVE-BEEN-ING",
+    "G-FOR-SINCE"
+   ],
+   "variants": [
+    {
+     "id": "now",
+     "label": "still here",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "have been",
+       "aux"
+      ],
+      [
+       "living",
+       "verb"
+      ],
+      [
+       "here",
+       "adv"
+      ],
+      [
+       "for two years.",
+       "dur"
+      ]
+     ],
+     "hint": "Started in the past, still true. English uses the perfect continuous; most languages use the present plus a duration word."
+    },
+    {
+     "id": "past",
+     "label": "finished",
+     "tokens": [
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "lived",
+       "verb|aux"
+      ],
+      [
+       "there",
+       "adv"
+      ],
+      [
+       "for two years.",
+       "dur"
+      ]
+     ],
+     "hint": "Finished period in the past."
+    },
+    {
+     "id": "fut",
+     "label": "next year",
+     "tokens": [
+      [
+       "Next year",
+       "adv"
+      ],
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "will have lived",
+       "verb|aux"
+      ],
+      [
+       "here",
+       "adv"
+      ],
+      [
+       "for three years.",
+       "dur"
+      ]
+     ],
+     "hint": "Future perfect, or whatever the language uses instead."
+    },
+    {
+     "id": "q",
+     "label": "how long?",
+     "tokens": [
+      [
+       "How long",
+       "q"
+      ],
+      [
+       "have",
+       "aux"
+      ],
+      [
+       "you",
+       "subj"
+      ],
+      [
+       "been living",
+       "verb|aux"
+      ],
+      [
+       "here?",
+       "adv"
+      ]
+     ],
+     "hint": "Question with a wh-word (informal you)."
+    }
+   ]
+  },
+  {
+   "id": "if",
+   "title": "If I had time, I would travel.",
+   "function": "F-REGRET",
+   "recipe": [
+    "G-IF",
+    "D-IF-I-WERE",
+    "D-IF-HAD-KNOWN"
+   ],
+   "variants": [
+    {
+     "id": "real",
+     "label": "real",
+     "tokens": [
+      [
+       "If",
+       "glue"
+      ],
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "have",
+       "verb"
+      ],
+      [
+       "time,",
+       "obj"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "will",
+       "aux"
+      ],
+      [
+       "travel.",
+       "verb2"
+      ]
+     ],
+     "hint": "First conditional: possible."
+    },
+    {
+     "id": "unreal",
+     "label": "unreal",
+     "tokens": [
+      [
+       "If",
+       "glue"
+      ],
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "had",
+       "verb|aux"
+      ],
+      [
+       "time,",
+       "obj"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "would",
+       "aux"
+      ],
+      [
+       "travel.",
+       "verb2"
+      ]
+     ],
+     "hint": "Second conditional: hypothetical now."
+    },
+    {
+     "id": "past",
+     "label": "too late",
+     "tokens": [
+      [
+       "If",
+       "glue"
+      ],
+      [
+       "I",
+       "subj"
+      ],
+      [
+       "had had",
+       "verb|aux"
+      ],
+      [
+       "time,",
+       "obj"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "would have",
+       "aux"
+      ],
+      [
+       "travelled.",
+       "verb2"
+      ]
+     ],
+     "hint": "Third conditional: hypothetical past, regret."
+    }
+   ]
+  }
+ ]
+}

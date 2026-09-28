@@ -1,0 +1,621 @@
+{
+ "lang": "german",
+ "variants": {
+  "want.now": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "will",
+     "door"
+    ],
+    [
+     "Khasi",
+     "obj"
+    ],
+    [
+     "lernen.",
+     "verb"
+    ]
+   ],
+   "why": "will sits in second position and lernen goes to the end: the door and its verb form a bracket around the object."
+  },
+  "want.past": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "wollte",
+     "door|aux"
+    ],
+    [
+     "Khasi",
+     "obj"
+    ],
+    [
+     "lernen.",
+     "verb"
+    ]
+   ],
+   "why": "Tense goes on the door itself: wollte is Präteritum, which is what speakers use for modals even though other verbs take Perfekt."
+  },
+  "want.neg": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "will",
+     "door"
+    ],
+    [
+     "Khasi",
+     "obj"
+    ],
+    [
+     "nicht",
+     "neg"
+    ],
+    [
+     "lernen.",
+     "verb"
+    ]
+   ],
+   "why": "No do-support: nicht slips inside the bracket, after the object and just before the infinitive at the end."
+  },
+  "want.q": {
+   "tokens": [
+    [
+     "Willst",
+     "door|q"
+    ],
+    [
+     "du",
+     "subj"
+    ],
+    [
+     "Khasi",
+     "obj"
+    ],
+    [
+     "lernen?",
+     "verb"
+    ]
+   ],
+   "why": "Inversion only: the door moves to first position and becomes the question marker; no particle, no do."
+  },
+  "decline.now": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "kann",
+     "door"
+    ],
+    [
+     "nicht",
+     "neg"
+    ],
+    [
+     "kommen,",
+     "verb"
+    ],
+    [
+     "weil",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "arbeiten",
+     "verb2"
+    ],
+    [
+     "muss.",
+     "door2"
+    ]
+   ],
+   "why": "weil sends the conjugated verb (muss) to the end of its clause, so the second door comes after its own verb."
+  },
+  "decline.past": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "konnte",
+     "door|aux"
+    ],
+    [
+     "nicht",
+     "neg"
+    ],
+    [
+     "kommen,",
+     "verb"
+    ],
+    [
+     "weil",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "arbeiten",
+     "verb2"
+    ],
+    [
+     "musste.",
+     "door2|aux"
+    ]
+   ],
+   "why": "Both doors take Präteritum (konnte, musste), the spoken past for modals; musste still lands at the end of the weil clause."
+  },
+  "decline.fut": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "kann",
+     "door"
+    ],
+    [
+     "morgen",
+     "adv|aux"
+    ],
+    [
+     "nicht",
+     "neg"
+    ],
+    [
+     "kommen,",
+     "verb"
+    ],
+    [
+     "weil",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "arbeiten",
+     "verb2"
+    ],
+    [
+     "muss.",
+     "door2"
+    ]
+   ],
+   "why": "No substitute needed: können has a future, but speakers just keep the present and let morgen carry the tense. werde ... kommen können is possible but stiff."
+  },
+  "decline.although": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "kann",
+     "door"
+    ],
+    [
+     "kommen,",
+     "verb"
+    ],
+    [
+     "obwohl",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "arbeiten",
+     "verb2"
+    ],
+    [
+     "muss.",
+     "door2"
+    ]
+   ],
+   "why": "obwohl is subordinating like weil, so the shape is identical: muss goes to the end of clause two."
+  },
+  "like.now": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "mag",
+     "door"
+    ],
+    [
+     "Kaffee.",
+     "obj"
+    ]
+   ],
+   "why": "Straight subject-verb-object, the liker is nominative. Ich trinke gern Kaffee is the other common way to say it."
+  },
+  "like.neg": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "mag",
+     "door"
+    ],
+    [
+     "keinen",
+     "neg"
+    ],
+    [
+     "Kaffee.",
+     "obj"
+    ]
+   ],
+   "why": "Negation fuses with the article: keinen (kein + accusative masculine) replaces nicht before an indefinite noun."
+  },
+  "like.she": {
+   "tokens": [
+    [
+     "Sie",
+     "subj"
+    ],
+    [
+     "mag",
+     "door"
+    ],
+    [
+     "Kaffee.",
+     "obj"
+    ]
+   ],
+   "why": "mag is the same for ich and sie: mögen is a modal-type verb with no -t in third person singular."
+  },
+  "like.q": {
+   "tokens": [
+    [
+     "Magst",
+     "door|q"
+    ],
+    [
+     "du",
+     "subj"
+    ],
+    [
+     "Kaffee?",
+     "obj"
+    ]
+   ],
+   "why": "Verb to first position marks the question; magst carries the du ending -st. No do, no particle."
+  },
+  "go.habit": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "gehe",
+     "verb"
+    ],
+    [
+     "jeden Tag",
+     "adv"
+    ],
+    [
+     "auf den Markt.",
+     "obj"
+    ]
+   ],
+   "why": "Time before place in the middle field: jeden Tag comes before auf den Markt. Accusative den because it is movement."
+  },
+  "go.prog": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "gehe",
+     "verb"
+    ],
+    [
+     "gerade",
+     "adv|aux"
+    ],
+    [
+     "auf den Markt.",
+     "obj"
+    ]
+   ],
+   "why": "No progressive: the same gehe as the habit sentence, with gerade doing the job of both am and now."
+  },
+  "go.past": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "bin",
+     "aux"
+    ],
+    [
+     "gestern",
+     "adv"
+    ],
+    [
+     "auf den Markt",
+     "obj"
+    ],
+    [
+     "gegangen.",
+     "verb"
+    ]
+   ],
+   "why": "Spoken past is the Perfekt: bin in second position, participle gegangen at the very end, everything else in between."
+  },
+  "go.fut": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "werde",
+     "aux"
+    ],
+    [
+     "morgen",
+     "adv"
+    ],
+    [
+     "auf den Markt",
+     "obj"
+    ],
+    [
+     "gehen.",
+     "verb"
+    ]
+   ],
+   "why": "werde plus infinitive at the end, same bracket as the Perfekt. In speech Ich gehe morgen auf den Markt is more common."
+  },
+  "go.neg": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "gehe",
+     "verb"
+    ],
+    [
+     "nicht",
+     "neg"
+    ],
+    [
+     "auf den Markt.",
+     "obj"
+    ]
+   ],
+   "why": "No aux to hang the negation on: nicht comes after the verb and before the place phrase it negates."
+  },
+  "live.now": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "wohne",
+     "verb"
+    ],
+    [
+     "seit zwei Jahren",
+     "dur|aux"
+    ],
+    [
+     "hier.",
+     "adv"
+    ]
+   ],
+   "why": "Plain present wohne; the 'have been' meaning lives in seit (dative: Jahren). Time before place again."
+  },
+  "live.past": {
+   "tokens": [
+    [
+     "Ich",
+     "subj"
+    ],
+    [
+     "habe",
+     "aux"
+    ],
+    [
+     "zwei Jahre",
+     "dur"
+    ],
+    [
+     "dort",
+     "adv"
+    ],
+    [
+     "gewohnt.",
+     "verb"
+    ]
+   ],
+   "why": "Finished period: Perfekt bracket habe ... gewohnt, and the duration is bare accusative zwei Jahre, no seit."
+  },
+  "live.fut": {
+   "tokens": [
+    [
+     "Nächstes Jahr",
+     "adv"
+    ],
+    [
+     "wohne",
+     "verb"
+    ],
+    [
+     "ich",
+     "subj"
+    ],
+    [
+     "schon drei Jahre",
+     "dur|aux"
+    ],
+    [
+     "hier.",
+     "adv"
+    ]
+   ],
+   "why": "Present plus schon instead of Futur II; nächstes Jahr in first position pushes ich behind the verb (verb-second)."
+  },
+  "live.q": {
+   "tokens": [
+    [
+     "Wie lange",
+     "q"
+    ],
+    [
+     "wohnst",
+     "verb|aux"
+    ],
+    [
+     "du",
+     "subj"
+    ],
+    [
+     "schon",
+     "aux"
+    ],
+    [
+     "hier?",
+     "adv"
+    ]
+   ],
+   "why": "Question word first, verb second, du third. schon is what turns present wohnst into 'have you been living'."
+  },
+  "if.real": {
+   "tokens": [
+    [
+     "Wenn",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj"
+    ],
+    [
+     "Zeit",
+     "obj"
+    ],
+    [
+     "habe,",
+     "verb"
+    ],
+    [
+     "verreise",
+     "verb2|aux"
+    ],
+    [
+     "ich.",
+     "subj2"
+    ]
+   ],
+   "why": "wenn sends habe to the end of its clause; that clause counts as position one, so verreise comes next and ich follows it. Present, no werde."
+  },
+  "if.unreal": {
+   "tokens": [
+    [
+     "Wenn",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj"
+    ],
+    [
+     "Zeit",
+     "obj"
+    ],
+    [
+     "hätte,",
+     "verb|aux"
+    ],
+    [
+     "würde",
+     "aux"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "verreisen.",
+     "verb2"
+    ]
+   ],
+   "why": "Konjunktiv II: hätte at the end of the wenn clause, würde in the main clause with verreisen pushed to the end."
+  },
+  "if.past": {
+   "tokens": [
+    [
+     "Wenn",
+     "glue"
+    ],
+    [
+     "ich",
+     "subj"
+    ],
+    [
+     "Zeit",
+     "obj"
+    ],
+    [
+     "gehabt",
+     "verb"
+    ],
+    [
+     "hätte,",
+     "aux"
+    ],
+    [
+     "wäre",
+     "aux"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "verreist.",
+     "verb2"
+    ]
+   ],
+   "why": "Past Konjunktiv II: gehabt hätte stacks at the end of the wenn clause; verreisen takes sein, so it is wäre ... verreist, not hätte."
+  }
+ }
+}

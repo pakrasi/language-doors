@@ -11,6 +11,10 @@ A reusable framework for learning any language, as a static site.
 
 Nine languages (German, French, Spanish, Italian, Portuguese, Hindi, Bengali, Khasi, Arabic), five levels (A1 to C1), three views (Reference, Practice, Glossary).
 
+## Prism
+
+`explore.html` is the interactive companion: one meaning refracted into five languages, a machine that turns it (time, negation, question, glue) with animated token motion and hover-alignment, ribbons showing word-order crossings, and a dial for the GO door across nine tense cells. Its data is `data/sentences/en.json` (the role-tagged English spec, built by `scripts/build_sentences_en.py`) plus one `data/sentences/<lang>.json` per language, validated by `scripts/validate_sentences.py`.
+
 ## Layout
 
 ```

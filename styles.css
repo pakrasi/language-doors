@@ -77,6 +77,7 @@ textarea[data-script="devanagari"]{font-family:"Noto Sans Devanagari","IBM Plex 
 .views a{text-decoration:none;color:var(--ink-2);padding:6px 12px;border-radius:999px;font-weight:500;font-size:14px}
 .views a:hover{background:var(--surface-2)}
 .views a.active{background:var(--ink);color:var(--bg)}
+.views a.ext{color:var(--door);font-weight:600}
 .top-tools{margin-left:auto;display:flex;gap:6px}
 .icon-btn{width:34px;height:34px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:15px}
 .icon-btn:hover{background:var(--surface-2)}
