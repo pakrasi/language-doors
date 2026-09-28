@@ -116,7 +116,7 @@
     }
     const vp = $('#level-picker'); vp.innerHTML = '';
     for (const lv of [...FW.levels, 'all']) vp.append(h('button', { type: 'button', role: 'tab', class: (lv === state.level ? 'active ' : '') + (lv === 'all' ? 'all' : ''), onclick: () => go({ level: lv, scenario: null }) }, lv === 'all' ? 'All' : lv));
-    document.querySelectorAll('.views a').forEach(a => { a.classList.toggle('active', a.dataset.view === state.view); a.onclick = e => { e.preventDefault(); go({ view: a.dataset.view }); }; });
+    document.querySelectorAll('.views a[data-view]').forEach(a => { a.classList.toggle('active', a.dataset.view === state.view); a.onclick = e => { e.preventDefault(); go({ view: a.dataset.view }); }; });
     $('#brand').onclick = e => { e.preventDefault(); go({ view: 'reference' }); };
   }
 
