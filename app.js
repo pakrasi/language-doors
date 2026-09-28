@@ -205,7 +205,7 @@
     if (!CHUNK_EN) { try { CHUNK_EN = await getJSON('data/chunks/en.json'); CHUNK_EN.forEach((c, i) => { c._i = i; }); } catch { CHUNK_EN = []; } }
     await Promise.all(langs.map(async l => { if (l in CHUNK) return; try { CHUNK[l] = (await getJSON(`data/chunks/${l}.json`)).chunks; } catch { CHUNK[l] = null; } }));
   }
-  const chunkLevelOK = c => !['B1', 'B2'].includes(state.level) || c.cefr_level === state.level;
+  const chunkLevelOK = c => state.level === 'all' || c.cefr_level === state.level;
   function chunkLine(lang, r, open) {
     const m = meta(lang);
     return h('div', { class: 'ck-line' },
@@ -221,10 +221,9 @@
     let query = '';
     let expandAll = !!prefs.chunkExpand;
     view.append(h('header', { class: 'section' },
-      h('div', { class: 'eyebrow' }, 'Chunk bank · ' + (['B1', 'B2'].includes(state.level) ? state.level : 'B1 and B2')),
-      h('h1', {}, '1,200 chunks'),
+      h('div', { class: 'eyebrow' }, 'Chunk bank · ' + (state.level === 'all' ? 'all levels' : state.level)),
+      h('h1', {}, 'Chunk bank'),
       h('p', { class: 'lede' }, 'The phrases fluent speakers reach for without thinking: frames, collocations, gambits, formulas and connectors. English on top, each of your languages underneath. Tap a chunk for its example sentence and notes.')));
-    if (!['B1', 'B2', 'all'].includes(state.level)) view.append(h('p', { class: 'muted small' }, `The chunk bank is B1 and B2, so ${state.level} shows all of it. Pick B1 or B2 above to narrow it.`));
     const catChips = h('div', { class: 'subtabs' }, [['all', 'All']].concat(CHUNK_CATS).map(([k, l]) => h('button', { type: 'button', class: 'chip' + (k === cat ? ' active dark' : ''), onclick: () => { prefs.chunkCat = k; save(PREF_KEY, prefs); render(); } }, l)));
     const search = h('input', { type: 'search', placeholder: 'Search English, target, or function…', 'aria-label': 'Search chunks', id: 'chunk-search' });
     const expBtn = h('button', { type: 'button', class: 'chip' + (expandAll ? ' active dark' : ''), onclick: () => { expandAll = !expandAll; prefs.chunkExpand = expandAll; save(PREF_KEY, prefs); expBtn.classList.toggle('active', expandAll); expBtn.classList.toggle('dark', expandAll); draw(); } }, 'Show examples');
@@ -246,7 +245,11 @@
     }
     function paint() {
       list.innerHTML = '';
-      if (!rows.length) { list.append(h('div', { class: 'empty' }, 'Nothing matches.')); more.hidden = true; return; }
+      if (!rows.length) {
+        const lv = (CHUNK_EN || []).length && !query && !(CHUNK_EN || []).some(c => c.cefr_level === state.level);
+        list.append(lv ? h('div', { class: 'empty' }, `The chunk bank has no ${state.level} chunks yet; it covers B1 and B2. `, h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B1' }) }, 'Show B1'), ' ', h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B2' }) }, 'Show B2')) : h('div', { class: 'empty' }, 'Nothing matches.'));
+        more.hidden = true; return;
+      }
       for (const c of rows.slice(0, shown)) {
         let open = expandAll;
         const entry = h('article', { class: 'ck', tabindex: 0 });
