@@ -223,7 +223,7 @@
   "t": "[noun] আমাদের বাড়িতে [noun] হচ্ছে",
   "tr": "[noun] aamaader baarite [noun] hochchhe",
   "ex": "শনিবার আমাদের বাড়িতে বারবিকিউ হচ্ছে, চলে এসো!",
-  "extr": "shonibaar aamaader baarite baarbikiu hochchhe, chole esho!",
+  "extr": "shonibaar aamaader baarite baarbikiu hochchhe, chole eso!",
   "n": "Events 'happen' (hochchhe) at your place; the first slot is the day."
  },
  {
@@ -505,7 +505,7 @@
   "t": "আর একটা কথা",
   "tr": "aar ektaa kothaa",
   "ex": "ও হ্যাঁ, আর একটা কথা: আইডি কার্ডটা নিয়ে এসো।",
-  "extr": "o hyaan, aar ektaa kothaa: aaidi kaardtaa niye esho."
+  "extr": "o hyaan, aar ektaa kothaa: aaidi kaardtaa niye eso."
  },
  {
   "id": "ENG_CHUNK_0670",
