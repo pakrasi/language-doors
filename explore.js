@@ -59,9 +59,12 @@
 
   // hover alignment across all rows in a container
   function wireHover(container, onRoles) {
-    container.addEventListener('mouseover', e => { const t = e.target.closest('.tile'); if (!t) return; light(container, t.dataset.roles.split('|')); onRoles?.(t.dataset.roles.split('|')); });
-    container.addEventListener('mouseleave', () => { light(container, null); onRoles?.(null); });
-    container.addEventListener('focusin', e => { const t = e.target.closest('.tile'); if (t) light(container, t.dataset.roles.split('|')); });
+    const enter = t => { container.querySelectorAll('.tile.hovered').forEach(x => x.classList.remove('hovered')); t.classList.add('hovered'); const roles = t.dataset.roles.split('|'); light(container, roles); onRoles?.(roles); };
+    const leave = () => { container.querySelectorAll('.tile.hovered').forEach(x => x.classList.remove('hovered')); light(container, null); onRoles?.(null); };
+    container.addEventListener('mouseover', e => { const t = e.target.closest('.tile'); if (t) enter(t); });
+    container.addEventListener('mouseleave', leave);
+    container.addEventListener('focusin', e => { const t = e.target.closest('.tile'); if (t) enter(t); });
+    container.addEventListener('focusout', e => { if (!container.contains(e.relatedTarget)) leave(); });
   }
   function light(container, roles) {
     container.querySelectorAll('.row, .river-body').forEach(r => r.classList.toggle('dimming', !!roles));
@@ -119,7 +122,7 @@
     const rows = h('div', { class: 'rows' });
     for (const lang of ['en', ...LANGS]) { const r = row(lang, { why: lang !== 'en' }); rowsByLang[lang] = r; rows.append(r); }
     machineStage.append(rows);
-    wireHover(machineStage);
+    wireHover(machineStage, roles => { const cap = $('#hover-cap'); cap.innerHTML = ''; if (roles) cap.append('lit: ', h('b', {}, roleLabel(roles))); else cap.textContent = 'hover a word'; });
     const mc = $('#meaning-chips'); mc.replaceChildren(...EN.meanings.map(m => h('button', { type: 'button', class: 'chip' + (m.id === state.meaning ? ' active' : ''), onclick: () => { state.meaning = m.id; state.variant = m.variants[0].id; updateMachine(); } }, m.title)));
     $('#legend').replaceChildren(...[['door', 'door'], ['glue', 'glue'], ['aux', 'tense carrier'], ['neg', 'negation'], ['q', 'question'], ['x', 'added by the language']].map(([r, l]) => h('span', {}, h('i', { style: `background:${ROLE_COLOR[r]}` }), l)));
     updateMachine(false);

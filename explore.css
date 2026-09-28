@@ -59,7 +59,11 @@ h2.title{font-size:clamp(32px,4.4vw,54px)}
 .tile.r-x{background:var(--x-soft);border-color:transparent;outline:1px dashed var(--x);outline-offset:-1px;color:var(--ink-2)}
 .row.dimming .tile{opacity:.28}
 .row.dimming .tile.lit{opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 6px 24px rgba(0,0,0,.4);transform:translateY(-2px)}
-.tile.lit .role{opacity:1}
+.tile.hovered .role{opacity:1}
+.tile .role{max-width:min(60vw,360px);white-space:normal;line-height:1.1}
+.row-tiles{overflow:visible}
+.hover-cap{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);min-height:1.4em;margin:0}
+.hover-cap b{color:var(--aux);font-weight:500}
 .tile.en{font-size:22px}
 
 /* rows */
