@@ -8,10 +8,8 @@
     lexicon: 'per language', sound: 'per language',
   };
   const LAYER_TABS = ['door', 'glue', 'chunk', 'function', 'turn', 'slot', 'lexicon', 'sound'];
-  const DRILL_LAYERS = ['door', 'glue', 'chunk'];
-  const BOX_DAYS = [0, 1, 3, 7, 14, 30, 60];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const PREF_KEY = 'doors.prefs.v2';
-  const DRILL_KEY = 'doors.drill.v1';
   const PROGRESS_KEY = 'doors.progress.v1';
   const KEY_KEY = 'doors.apikey';
 
@@ -38,7 +36,6 @@
   let FW = null;
   const LANG = {};                 // id -> language json | null (missing)
   let prefs = load(PREF_KEY, {});
-  let drill = load(DRILL_KEY, {}); // `${lang}|${itemId}` -> {box, due, seen, right, wrong}
   let progress = load(PROGRESS_KEY, {});
   let state = { view: 'reference', level: 'A1', langs: [], layer: 'door', scenario: null, plang: null };
 
@@ -61,7 +58,7 @@
     try { v ? localStorage.setItem(KEY_KEY, v) : localStorage.removeItem(KEY_KEY); } catch {}
     settings.hidden = true; render();
   });
-  $('#settings-clear').addEventListener('click', () => { drill = {}; progress = {}; save(DRILL_KEY, drill); save(PROGRESS_KEY, progress); settings.hidden = true; render(); });
+  $('#settings-clear').addEventListener('click', () => { srs = {}; progress = {}; save(SRS_KEY, srs); save(PROGRESS_KEY, progress); settings.hidden = true; render(); });
 
   // ---------- routing: #view/level/lang,lang/extra ----------
   const VIEWS = ['reference', 'drill', 'practice', 'framework'];
@@ -142,6 +139,8 @@
   // ---------- render ----------
   async function render() {
     if (!FW) return;
+    if (window.__cleanup) { window.__cleanup(); window.__cleanup = null; }
+    document.body.classList.remove('focus');
     renderPickers();
     const view = $('#view');
     view.innerHTML = '';
@@ -196,146 +195,230 @@
     draw();
   }
 
-  // ===== Drill: two-step multiple choice with spaced repetition =====
-  function drillKey(lang, id) { return `${lang}|${id}`; }
-  function drillState(lang, id) { return drill[drillKey(lang, id)] || { box: 0, due: 0, seen: 0, right: 0, wrong: 0 }; }
-  function recordDrill(lang, id, correct) {
-    const s = drillState(lang, id);
-    s.seen++; correct ? s.right++ : s.wrong++;
-    s.box = correct ? Math.min(s.box + 1, BOX_DAYS.length - 1) : 0;
-    s.due = dayNow() + BOX_DAYS[s.box];
-    drill[drillKey(lang, id)] = s; save(DRILL_KEY, drill);
+  // ===== Drill: keyboard-paced production practice with spaced repetition =====
+  const SRS_KEY = 'doors.srs.v1';
+  let srs = load(SRS_KEY, {});            // `${lang}|${cardId}` -> {ease, ivl, due, reps, lapses, last, hist}
+  let SENT_EN = null; const SENT = {};     // sentence bank
+  const VOICE_LANG = { german: 'de-DE', french: 'fr-FR', hindi: 'hi-IN', swissgerman: 'de-CH', khasi: null };
+  const BANK_LEVEL = { want: 'A1', like: 'A1', go: 'A1', decline: 'A2', live: 'B1', if: 'B1' };
+  const app = (el, ...k) => el.append(...k.flat(Infinity).filter(x => x != null && x !== false));
+  const rep = (el, ...k) => el.replaceChildren(...k.flat(Infinity).filter(x => x != null && x !== false));
+  const GRADES = [[1, 'Again', 'r1'], [2, 'Hard', 'r2'], [3, 'Good', 'r3'], [4, 'Easy', 'r4']];
+
+  async function ensureSentences(langs) {
+    if (!SENT_EN) { try { SENT_EN = await getJSON('data/sentences/en.json'); } catch { SENT_EN = { meanings: [] }; } }
+    await Promise.all(langs.map(async l => { if (l in SENT) return; try { SENT[l] = await getJSON(`data/sentences/${l}.json`); } catch { SENT[l] = null; } }));
   }
-  function scenarioFor(id) { return FW.scenarios.filter(s => s.recipe.includes(id)); }
-  function promptFor(m, langs) {
-    // Prefer a scenario whose recipe uses this item; otherwise the example gloss from the first language that has one.
-    const scs = scenarioFor(m.id).filter(s => state.level === 'all' || s.level === m.level || true);
-    if (scs.length) { const s = scs[Math.floor(Math.random() * scs.length)]; return { kind: 'scenario', text: s.situation + ' ' + s.task, sub: 'Which ' + (m.layer === 'door' ? 'door' : m.layer) + ' does this need?' }; }
-    for (const l of langs) { const it = item(l, m.id); if (it?.example?.gloss) return { kind: 'say', text: '“' + it.example.gloss + '”', sub: 'You want to say this. Which ' + (m.layer === 'door' ? 'door' : m.layer) + ' opens it?' }; }
-    return { kind: 'say', text: m.en, sub: 'Which one is this?' };
+  const srsKey = (lang, id) => `${lang}|${id}`;
+  const srsGet = (lang, id) => srs[srsKey(lang, id)] || { ease: 2.5, ivl: 0, due: 0, reps: 0, lapses: 0, last: 0, hist: '' };
+  function srsGrade(lang, id, g) {
+    const s = srsGet(lang, id); const today = dayNow();
+    if (g === 1) { s.ivl = 0; s.lapses++; s.ease = Math.max(1.3, s.ease - 0.2); }
+    else if (s.reps === 0 || s.ivl === 0) { s.ivl = g === 2 ? 1 : g === 3 ? 1 : 3; }
+    else { const f = g === 2 ? 1.2 : g === 3 ? s.ease : s.ease * 1.3; s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * f)); }
+    if (g === 2) s.ease = Math.max(1.3, s.ease - 0.15); if (g === 4) s.ease += 0.15;
+    s.reps++; s.last = today; s.due = today + s.ivl; s.hist = (s.hist + g).slice(-12);
+    srs[srsKey(lang, id)] = s; save(SRS_KEY, srs);
+  }
+  function srsUndo(lang, id, prev) { if (prev) srs[srsKey(lang, id)] = prev; else delete srs[srsKey(lang, id)]; save(SRS_KEY, srs); }
+
+  // Build the card pool: one card = one meaning with an answer per language that has it.
+  function buildCards(langs, types) {
+    const M = master(); const cards = [];
+    const lvOK = lv => state.level === 'all' || lv === state.level;
+    if (types.includes('chunk')) for (const m of FW.items) {
+      if (!['door', 'glue', 'chunk'].includes(m.layer) || !lvOK(m.level)) continue;
+      const per = {}; for (const l of langs) { const it = item(l, m.id); if (it?.target) per[l] = { target: it.target, translit: it.translit, note: it.note, hint: null }; }
+      if (Object.keys(per).length) cards.push({ id: 'I:' + m.id, type: 'chunk', level: m.level, en: m.en, sub: layerName(m.layer) + ' · ' + m.id, prio: (langs.some(l => item(l, m.id)?.star) ? 0 : 1), per });
+    }
+    if (types.includes('sentence')) {
+      for (const m of FW.items) {
+        if (!['door', 'glue', 'chunk'].includes(m.layer) || !lvOK(m.level)) continue;
+        const per = {}; for (const l of langs) { const it = item(l, m.id); if (it?.example?.target && it.example.gloss) per[l] = { target: it.example.target, translit: it.example.translit, note: it.note, hint: it.target, gloss: it.example.gloss }; }
+        // use the first language's gloss as the prompt; glosses differ slightly per language, so prefer the most common one
+        const glosses = Object.values(per).map(p => p.gloss); if (!glosses.length) continue;
+        const en = glosses.sort((a, b) => glosses.filter(x => x === b).length - glosses.filter(x => x === a).length)[0];
+        for (const l of Object.keys(per)) if (per[l].gloss !== en) per[l].altGloss = per[l].gloss;
+        cards.push({ id: 'X:' + m.id, type: 'sentence', level: m.level, en, sub: 'uses ' + m.id, prio: 1, per });
+      }
+      if (SENT_EN) for (const mn of SENT_EN.meanings) for (const v of mn.variants) {
+        if (!lvOK(BANK_LEVEL[mn.id] || 'A2')) continue;
+        const per = {}; for (const l of langs) { const s = SENT[l]?.variants?.[`${mn.id}.${v.id}`]; if (s) per[l] = { target: s.tokens.map(t => t[0]).join(' '), translit: s.tokens.some(t => t[2]) ? s.tokens.map(t => t[2] || '').join(' ') : '', note: s.why, hint: null, blocks: s.tokens }; }
+        if (Object.keys(per).length) cards.push({ id: 'S:' + mn.id + '.' + v.id, type: 'sentence', level: BANK_LEVEL[mn.id] || 'A2', en: v.tokens.map(t => t[0]).join(' '), sub: mn.recipe.join(' · ') + ' · ' + v.label, prio: 0, per, enBlocks: v.tokens });
+      }
+    }
+    if (types.includes('scenario')) for (const sc of FW.scenarios) {
+      if (!lvOK(sc.level)) continue;
+      const per = {}; for (const l of langs) { const d = LANG[l]?._sc?.[sc.id]; if (d?.model?.target) per[l] = { target: d.model.target, translit: d.model.translit, note: d.tip, hint: sc.recipe.map(id => item(l, id)?.target).filter(Boolean).join('  ·  '), blocks: (d.breakdown || []).map(b => [b.text, b.layer === 'door' ? 'door' : b.layer === 'glue' ? 'glue' : b.layer === 'chunk' ? 'chunk' : b.layer === 'turn' ? 'aux' : 'x']), alt: d.alt, gloss: d.model.gloss }; }
+      if (Object.keys(per).length) cards.push({ id: 'C:' + sc.id, type: 'scenario', level: sc.level, en: sc.task, sub: sc.situation, prio: 0, per });
+    }
+    return cards;
+  }
+
+  function speak(lang, text) {
+    const code = VOICE_LANG[lang]; if (!code || !('speechSynthesis' in window)) return false;
+    const voices = speechSynthesis.getVoices(); const v = voices.find(x => x.lang.replace('_', '-') === code) || voices.find(x => x.lang.startsWith(code.slice(0, 2)));
+    if (!v) return false;
+    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/\s*\/\s*.*$/, '')); u.voice = v; u.lang = v.lang; u.rate = 0.9; speechSynthesis.speak(u); return true;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+
+  const ROLE_CLS = { door: 'door', door2: 'door', glue: 'glue', aux: 'turn', neg: 'slot', q: 'function', x: 'filler', chunk: 'chunk' };
+  function blockRow(lang, blocks) {
+    return h('div', { class: 'blocks' }, blocks.map(b => { const roles = String(b[1]).split('|'); const cls = ROLE_CLS[roles.find(r => ROLE_CLS[r])] || 'filler'; return h('div', { class: `blk l-${cls}` }, h('div', { class: 'w' }, lang === 'en' ? b[0] : T(lang, b[0])), b[2] ? h('div', { class: 'lb' }, b[2]) : null); }));
   }
 
   function viewDrill(view) {
     const langs = state.langs.filter(l => LANG[l]);
-    const layers = prefs.drillLayers?.length ? prefs.drillLayers.filter(l => DRILL_LAYERS.includes(l)) : ['door'];
-    const size = prefs.drillSize || 10;
+    const types = prefs.drillTypes?.length ? prefs.drillTypes : ['chunk', 'sentence'];
+    const size = prefs.drillSize || 25;
+    const order = prefs.drillOrder || 'grouped';
+    const autoplay = prefs.drillAudio !== false;
     view.append(h('header', { class: 'section' },
       h('div', { class: 'eyebrow' }, 'Drill · ' + (state.level === 'all' ? 'all levels' : state.level) + ' · ' + langs.map(l => meta(l).name).join(', ')),
-      h('h1', {}, 'Pick the door'),
-      h('p', { class: 'lede' }, 'A situation, then the right door in English, then that door\'s form in each of your languages. Cards you miss come back sooner.')));
+      h('h1', {}, 'Say it.'),
+      h('p', { class: 'lede' }, 'Read the meaning, say it out loud in the language shown, then press Space to check. Grade yourself honestly; the schedule does the rest.')));
     if (!langs.length) { view.append(h('div', { class: 'empty' }, 'None of the selected languages has a content file yet.')); return; }
+    const stage = h('div', { class: 'drill-stage' }); view.append(stage);
+    window.__cleanup = () => stage._cleanup?.();
+    stage.append(h('div', { class: 'loading' }, 'Loading…'));
+    ensureSentences(langs).then(() => setup());
 
-    // pool
-    const pool = FW.items.filter(m => layers.includes(m.layer) && (state.level === 'all' || m.level === state.level) && langs.some(l => item(l, m.id)));
-    const today = dayNow();
-    const due = pool.filter(m => langs.some(l => { const s = drillState(l, m.id); return s.seen && s.due <= today; }));
-    const fresh = pool.filter(m => langs.every(l => !drillState(l, m.id).seen));
-    const mastered = pool.filter(m => langs.every(l => drillState(l, m.id).box >= 3)).length;
-
-    // setup panel
-    const setup = h('div', { class: 'panel setup' });
-    const layerChips = DRILL_LAYERS.map(l => h('button', { type: 'button', class: 'chip l-' + l + (layers.includes(l) ? ' active' : ''), onclick: e => { const set = new Set(layers); set.has(l) ? set.delete(l) : set.add(l); if (!set.size) set.add('door'); prefs.drillLayers = [...set]; save(PREF_KEY, prefs); render(); } }, layerName(l)));
-    const sizeSel = h('select', { id: 'drill-size', onchange: e => { prefs.drillSize = +e.target.value; save(PREF_KEY, prefs); } }, [5, 10, 15, 20].map(n => h('option', { value: n, selected: n === size }, n + ' cards')));
-    setup.append(
-      h('div', { class: 'setup-row' }, h('span', { class: 'eyebrow' }, 'What to drill'), layerChips),
-      h('div', { class: 'setup-row' }, h('span', { class: 'eyebrow' }, 'Session'), sizeSel),
-      h('div', { class: 'stats' },
-        h('div', { class: 'stat' }, h('b', {}, pool.length), h('span', {}, 'in pool')),
-        h('div', { class: 'stat' }, h('b', {}, due.length), h('span', {}, 'due today')),
-        h('div', { class: 'stat' }, h('b', {}, fresh.length), h('span', {}, 'never seen')),
-        h('div', { class: 'stat' }, h('b', {}, mastered), h('span', {}, 'mastered'))),
-      h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn primary', id: 'drill-start', onclick: start }, due.length ? `Start: ${Math.min(size, due.length)} due` + (due.length < size ? ` + ${Math.min(size - due.length, fresh.length)} new` : '') : `Start: ${Math.min(size, pool.length)} cards`)));
-    const perLang = h('div', { class: 'perlang' }, langs.map(l => {
-      const seen = pool.filter(m => drillState(l, m.id).seen).length;
-      const ok = pool.filter(m => drillState(l, m.id).box >= 3).length;
-      return h('div', { class: 'pl' }, h('b', {}, meta(l).name), h('div', { class: 'bar' }, h('i', { style: `width:${pool.length ? 100 * ok / pool.length : 0}%` }), h('i', { class: 'seen', style: `width:${pool.length ? 100 * seen / pool.length : 0}%` })), h('span', { class: 'small muted' }, `${ok} solid · ${seen} seen · ${pool.length} total`));
-    }));
-    const stage = h('div', { class: 'stage' });
-    view.append(h('div', { class: 'drill-layout' }, h('div', {}, setup, perLang), stage));
-    stage.append(h('div', { class: 'card-intro' }, h('h3', {}, 'How a card works'),
-      h('ol', {}, h('li', {}, 'Read the situation. Pick the door in English (4 options).'), h('li', {}, 'For each language, pick that door\'s form (4 options). Wrong answers show the right one with its example.'), h('li', {}, 'Each language keeps its own score for each door. Right answers push it out 1, 3, 7, 14, 30 days; a wrong answer brings it back tomorrow.'))));
-
-    if (location.search.includes('autostart')) setTimeout(start, 0);
-    function start() {
-      let cards = shuffle(due).slice(0, size);
-      if (cards.length < size) cards = cards.concat(shuffle(fresh).slice(0, size - cards.length));
-      if (cards.length < size) cards = cards.concat(shuffle(pool.filter(m => !cards.includes(m))).slice(0, size - cards.length));
-      if (!cards.length) return;
-      const results = [];
-      let idx = 0;
-      next();
-      function next() {
-        if (idx >= cards.length) return summary();
-        showCard(cards[idx], idx, cards.length, r => { results.push(r); idx++; next(); });
-      }
-      function summary() {
-        stage.innerHTML = '';
-        const byLang = langs.map(l => ({ l, ok: results.filter(r => r.byLang[l] === true).length, n: results.filter(r => l in r.byLang).length }));
-        stage.append(h('div', { class: 'card summary' },
-          h('div', { class: 'eyebrow' }, 'Session done'),
-          h('h2', {}, `${results.filter(r => r.step1).length} of ${results.length} doors recognised`),
-          h('div', { class: 'sum-grid' }, byLang.map(x => h('div', { class: 'stat' }, h('b', {}, `${x.ok}/${x.n}`), h('span', {}, meta(x.l).name)))),
-          h('div', { class: 'sum-list' }, results.map(r => h('div', { class: 'sum-row' }, tag(r.m.layer, r.m.id), h('span', {}, r.m.en), h('span', { class: 'muted small' }, langs.map(l => (r.byLang[l] === true ? '✓' : r.byLang[l] === false ? '✗' : '·') + ' ' + meta(l).name.slice(0, 2)).join('  '))))),
-          h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn primary', onclick: () => render() }, 'Back to setup'))));
-      }
+    function setup() {
+      stage.innerHTML = '';
+      const cards = buildCards(langs, types);
+      const today = dayNow();
+      const prompts = cards.flatMap(c => Object.keys(c.per).map(l => ({ c, l, s: srsGet(l, c.id) })));
+      const due = prompts.filter(p => p.s.reps && p.s.due <= today), fresh = prompts.filter(p => !p.s.reps);
+      const streak = computeStreak();
+      const panel = h('div', { class: 'panel setup' });
+      const typeChips = [['chunk', 'Door chunks'], ['sentence', 'Sentences'], ['scenario', 'Scenarios']].map(([t, l]) => h('button', { type: 'button', class: 'chip' + (types.includes(t) ? ' active dark' : ''), onclick: () => { const s = new Set(types); s.has(t) ? s.delete(t) : s.add(t); if (!s.size) s.add('sentence'); prefs.drillTypes = [...s]; save(PREF_KEY, prefs); render(); } }, l));
+      const sizeSel = h('select', { onchange: e => { prefs.drillSize = +e.target.value; save(PREF_KEY, prefs); } }, [10, 25, 50, 100].map(n => h('option', { value: n, selected: n === size }, n + ' prompts')));
+      const orderSel = h('select', { onchange: e => { prefs.drillOrder = e.target.value; save(PREF_KEY, prefs); } }, [['grouped', 'Same meaning across languages'], ['mixed', 'Shuffled']].map(([v, l]) => h('option', { value: v, selected: v === order }, l)));
+      const audioChk = h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: autoplay, onchange: e => { prefs.drillAudio = e.target.checked; save(PREF_KEY, prefs); } }), ' Play the answer aloud where a voice exists');
+      panel.append(
+        h('div', { class: 'setup-row' }, h('span', { class: 'eyebrow' }, 'Cards'), ...typeChips),
+        h('div', { class: 'setup-row' }, h('span', { class: 'eyebrow' }, 'Session'), sizeSel, orderSel),
+        audioChk,
+        h('div', { class: 'stats' },
+          h('div', { class: 'stat' }, h('b', {}, due.length), h('span', {}, 'due today')),
+          h('div', { class: 'stat' }, h('b', {}, fresh.length), h('span', {}, 'new')),
+          h('div', { class: 'stat' }, h('b', {}, cards.length), h('span', {}, 'meanings in pool')),
+          h('div', { class: 'stat' }, h('b', {}, streak), h('span', {}, 'day streak'))),
+        h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn primary big', id: 'drill-start', onclick: () => start(cards) }, due.length ? `Start · ${Math.min(size, due.length)} due` + (due.length < size && fresh.length ? ` + ${Math.min(size - due.length, fresh.length)} new` : '') : `Start · ${Math.min(size, prompts.length)} prompts`), h('span', { class: 'muted small hint-space' }, 'or press Space')));
+      const perLang = h('div', { class: 'perlang' }, langs.map(l => {
+        const mine = prompts.filter(p => p.l === l); const seen = mine.filter(p => p.s.reps).length; const solid = mine.filter(p => p.s.ivl >= 7).length; const dueL = mine.filter(p => p.s.reps && p.s.due <= today).length;
+        return h('div', { class: 'pl' }, h('b', {}, meta(l).name), h('div', { class: 'bar' }, h('i', { style: `width:${mine.length ? 100 * solid / mine.length : 0}%` }), h('i', { class: 'seen', style: `width:${mine.length ? 100 * seen / mine.length : 0}%` })), h('span', { class: 'small muted' }, `${dueL} due · ${solid} solid · ${seen} seen · ${mine.length} total`));
+      }));
+      const keys = h('div', { class: 'keys-help' }, h('div', { class: 'eyebrow' }, 'Keys'),
+        ...[['Space', 'show answer, then Good + next'], ['1 2 3 4', 'Again · Hard · Good · Easy'], ['H', 'hint: the door chunk'], ['P', 'hear it'], ['U', 'undo last grade'], ['Esc', 'end session']].map(([k, d]) => h('div', { class: 'key-row' }, h('kbd', {}, k), h('span', {}, d))));
+      stage.append(h('div', { class: 'drill-layout' }, h('div', {}, panel, perLang), h('div', { class: 'panel' }, keys, h('p', { class: 'small muted' }, 'On a phone, tap the card to reveal and tap a grade. A prompt is one meaning in one language. Same meaning across languages means you say it in each of your languages back to back, which makes the differences between them stick.'))));
+      const onKey = e => { if (e.code === 'Space' && !e.target.matches('input,select,textarea,button')) { e.preventDefault(); document.removeEventListener('keydown', onKey); start(cards); } };
+      document.addEventListener('keydown', onKey);
+      stage._cleanup = () => document.removeEventListener('keydown', onKey);
+      if (location.search.includes('autostart')) setTimeout(() => start(cards), 0);
     }
 
-    function showCard(m, i, n, done) {
-      stage.innerHTML = '';
-      const result = { m, step1: null, byLang: {} };
-      const card = h('div', { class: 'card drill-card l-' + m.layer });
-      const prog = h('div', { class: 'card-prog' }, h('span', { class: 'mono' }, `${i + 1} / ${n}`), lvl(m.level), tag(m.layer, layerName(m.layer)));
-      card.append(prog);
-      const p = promptFor(m, langs);
-      card.append(h('div', { class: 'prompt' }, h('div', { class: 'prompt-text' }, p.text), h('div', { class: 'prompt-sub' }, p.sub)));
-      // step 1: english options
-      const sameLevel = FW.items.filter(x => x.layer === m.layer && x.id !== m.id);
-      const near = shuffle(sameLevel.filter(x => x.level === m.level)).concat(shuffle(sameLevel.filter(x => x.level !== m.level)));
-      const opts1 = shuffle([m, ...near.slice(0, 3)]);
-      const step1 = h('div', { class: 'step' }, h('div', { class: 'eyebrow' }, 'Step 1 · in English'));
-      const btns1 = h('div', { class: 'opts' });
-      for (const o of opts1) {
-        const b = h('button', { type: 'button', class: 'opt', onclick: () => {
-          if (result.step1 !== null) return;
-          result.step1 = o.id === m.id;
-          btns1.querySelectorAll('.opt').forEach(x => { x.disabled = true; x.classList.toggle('right', x.dataset.id === m.id); x.classList.toggle('wrong', x === b && o.id !== m.id); });
-          step2();
-        }, dataset: { id: o.id } }, o.en);
-        btns1.append(b);
-      }
-      step1.append(btns1);
-      card.append(step1);
-      stage.append(card);
+    function computeStreak() {
+      const days = new Set(Object.values(srs).map(s => s.last).filter(Boolean)); let d = dayNow(); if (!days.has(d)) d--; let n = 0; while (days.has(d)) { n++; d--; } return n;
+    }
 
-      function step2() {
-        const langsWith = langs.filter(l => item(l, m.id));
-        let remaining = langsWith.length;
-        for (const l of langsWith) {
-          const it = item(l, m.id);
-          const others = shuffle(FW.items.filter(x => x.layer === m.layer && x.id !== m.id && item(l, x.id)?.target && item(l, x.id).target !== it.target));
-          const opts = shuffle([it, ...others.slice(0, 3).map(x => item(l, x.id))]);
-          const block = h('div', { class: 'step lang-step' }, h('div', { class: 'eyebrow' }, 'Step 2 · ' + meta(l).name));
-          const btns = h('div', { class: 'opts' });
-          const fb = h('div', { class: 'fb', hidden: true });
-          for (const o of opts) {
-            btns.append(h('button', { type: 'button', class: 'opt', onclick: e => {
-              if (l in result.byLang) return;
-              const ok = o === it; result.byLang[l] = ok; recordDrill(l, m.id, ok);
-              btns.querySelectorAll('.opt').forEach(x => { x.disabled = true; });
-              e.currentTarget.classList.add(ok ? 'right' : 'wrong');
-              if (!ok) [...btns.children].find(x => x._it === it)?.classList.add('right');
-              fb.hidden = false;
-              fb.append(h('div', { class: 'fb-head' }, ok ? 'Right.' : 'Not quite.'), it.example?.target ? h('div', { class: 'det-ex' }, T(l, it.example.target), it.example.translit ? h('div', { class: 'tr' }, it.example.translit) : null, h('div', { class: 'gl' }, it.example.gloss)) : null, it.note ? h('div', { class: 'det-note' }, it.note) : null);
-              if (--remaining === 0) card.append(h('div', { class: 'row end' }, h('button', { type: 'button', class: 'btn primary', onclick: () => done(result) }, i + 1 < n ? 'Next card →' : 'Finish')));
-            } }, T(l, o.target), o.translit ? h('span', { class: 'tr' }, o.translit) : null));
-            btns.lastChild._it = o;
-          }
-          block.append(btns, fb);
-          card.append(block);
-        }
-        if (!langsWith.length) card.append(h('div', { class: 'row end' }, h('button', { type: 'button', class: 'btn primary', onclick: () => done(result) }, 'Next →')));
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    function start(cards) {
+      stage._cleanup?.();
+      const today = dayNow();
+      const byCard = c => Object.keys(c.per).filter(l => langs.includes(l));
+      // choose cards: due first (any language due), then new by priority
+      const dueCards = cards.filter(c => byCard(c).some(l => { const s = srsGet(l, c.id); return s.reps && s.due <= today; }));
+      const newCards = cards.filter(c => byCard(c).every(l => !srsGet(l, c.id).reps)).sort((a, b) => a.prio - b.prio || FW.levels.indexOf(a.level) - FW.levels.indexOf(b.level));
+      const rest = cards.filter(c => !dueCards.includes(c) && !newCards.includes(c));
+      let queue = [];
+      const push = list => { for (const c of shuffle(list)) { if (queue.length >= size) break; for (const l of byCard(c)) { const s = srsGet(l, c.id); const isDue = s.reps && s.due <= today; if (list === dueCards && !isDue && s.reps) continue; queue.push({ c, l }); } } };
+      push(dueCards); if (queue.length < size) push(newCards); if (queue.length < size) push(rest);
+      queue = queue.slice(0, size);
+      if (order === 'mixed') queue = shuffle(queue);
+      if (!queue.length) { stage.replaceChildren(h('div', { class: 'empty' }, 'Nothing to drill with these settings.')); return; }
+      const total = queue.length; const done = []; let i = 0; let revealed = false; let hinted = false; let lastUndo = null;
+      const session = h('div', { class: 'session' }); stage.replaceChildren(session); document.body.classList.add('focus');
+      const escBtn = h('button', { type: 'button', class: 'btn small-btn', onclick: end }, 'End · Esc');
+      const bar = h('div', { class: 'sess-bar' }, h('div', { class: 'sess-prog' }, h('i')), h('span', { class: 'mono sess-n' }), escBtn);
+      const cardEl = h('div', { class: 'card sess-card', onclick: e => { if (!revealed && !e.target.closest('button')) reveal(); } });
+      const foot = h('div', { class: 'sess-foot' });
+      session.append(bar, cardEl, foot);
+
+      function show() {
+        if (i >= queue.length) return summary();
+        revealed = false; hinted = false;
+        const { c, l } = queue[i]; const a = c.per[l]; const m = meta(l);
+        bar.querySelector('.sess-prog i').style.width = (100 * i / total) + '%'; bar.querySelector('.sess-n').textContent = `${i + 1} / ${total}`;
+        cardEl.innerHTML = ''; cardEl.className = 'card sess-card';
+        app(cardEl, 
+          h('div', { class: 'sess-lang' }, h('span', { class: 'say' }, 'Say it in'), h('b', { class: 'lang-name' }, m.name), h('span', { class: 'lvl' }, c.level), h('span', { class: 'lvl' }, c.type)),
+          c.type === 'scenario' ? h('div', { class: 'sess-sub' }, c.sub) : null,
+          h('div', { class: 'sess-prompt' }, c.enBlocks ? blockRow('en', c.enBlocks) : c.en),
+          c.type !== 'scenario' ? h('div', { class: 'sess-sub mono' }, c.sub) : null,
+          h('div', { class: 'sess-hint', hidden: true }),
+          h('div', { class: 'sess-answer', hidden: true }));
+        rep(foot, h('button', { type: 'button', class: 'btn primary big', onclick: reveal }, 'Show answer', h('kbd', {}, 'Space')), a.hint ? h('button', { type: 'button', class: 'btn', onclick: hint }, 'Hint', h('kbd', {}, 'H')) : null);
+        if (!reduce) cardEl.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
+        if (i === 0 && location.search.includes('reveal')) setTimeout(reveal, 0);
       }
+      function hint() { if (revealed || hinted) return; hinted = true; const { c, l } = queue[i]; const a = c.per[l]; const el = cardEl.querySelector('.sess-hint'); el.hidden = false; el.replaceChildren(h('span', { class: 'eyebrow' }, 'hint '), T(l, a.hint)); }
+      function reveal() {
+        if (revealed) return; revealed = true;
+        const { c, l } = queue[i]; const a = c.per[l];
+        const el = cardEl.querySelector('.sess-answer'); el.hidden = false; el.innerHTML = '';
+        app(el, h('div', { class: 'ans-main' }, T(l, a.target)), a.translit ? h('div', { class: 'tr big-tr' }, a.translit) : null);
+        if (a.blocks) app(el, blockRow(l, a.blocks));
+        if (a.altGloss) app(el, h('div', { class: 'gl' }, 'literally: ' + a.altGloss));
+        if (a.alt) app(el, h('div', { class: 'small' }, h('span', { class: 'muted' }, 'Also natural: '), T(l, a.alt)));
+        if (a.note) app(el, h('div', { class: 'ans-note' }, a.note));
+        const canSpeak = !!VOICE_LANG[l];
+        rep(foot, 
+          h('div', { class: 'grades' }, GRADES.map(([g, label, cls]) => h('button', { type: 'button', class: 'btn grade ' + cls, onclick: () => grade(g) }, label, h('kbd', {}, g === 3 ? 'Space' : String(g))))),
+          h('div', { class: 'row' }, canSpeak ? h('button', { type: 'button', class: 'btn', onclick: () => speak(l, a.target) }, 'Hear it', h('kbd', {}, 'P')) : h('span', { class: 'muted small' }, 'no voice for ' + meta(l).name + ' on this device'), lastUndo ? h('button', { type: 'button', class: 'btn', onclick: undo }, 'Undo', h('kbd', {}, 'U')) : null));
+        cardEl.classList.add('revealed');
+        if (autoplay && canSpeak) speak(l, a.target);
+        if (!reduce) el.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 300, easing: 'ease-out' });
+      }
+      function grade(g) {
+        if (!revealed) return;
+        const { c, l } = queue[i]; const prev = srs[srsKey(l, c.id)] ? { ...srs[srsKey(l, c.id)] } : null;
+        srsGrade(l, c.id, g); lastUndo = { i, l, id: c.id, prev };
+        done.push({ c, l, g });
+        if (g === 1 && !queue[i].requeued) queue.push({ c, l, requeued: true });
+        i++; show();
+      }
+      function undo() { if (!lastUndo) return; srsUndo(lastUndo.l, lastUndo.id, lastUndo.prev); done.pop(); if (queue[queue.length - 1]?.requeued && queue[queue.length - 1].c.id === lastUndo.id) queue.pop(); i = lastUndo.i; lastUndo = null; show(); }
+      function onKey(e) {
+        if (e.target.matches('input,select,textarea')) return;
+        if (e.code === 'Space') { e.preventDefault(); revealed ? grade(3) : reveal(); }
+        else if (['1', '2', '3', '4'].includes(e.key) && revealed) grade(+e.key);
+        else if (e.key === 'h' || e.key === 'H') hint();
+        else if (e.key === 'p' || e.key === 'P') { const { c, l } = queue[i] || {}; if (c && revealed) speak(l, c.per[l].target); }
+        else if (e.key === 'u' || e.key === 'U') undo();
+        else if (e.key === 'Escape') end();
+      }
+      document.addEventListener('keydown', onKey);
+      stage._cleanup = () => document.removeEventListener('keydown', onKey);
+      function end() { stage._cleanup?.(); window.speechSynthesis?.cancel(); summary(); }
+      function summary() {
+        stage._cleanup?.(); document.body.classList.remove('focus');
+        bar.querySelector('.sess-prog i').style.width = '100%';
+        const byLang = langs.map(l => { const mine = done.filter(d => d.l === l); return { l, n: mine.length, good: mine.filter(d => d.g >= 3).length, again: mine.filter(d => d.g === 1).length }; }).filter(x => x.n);
+        const hard = done.filter(d => d.g <= 2);
+        const seenIds = new Set(); const hardRows = hard.filter(d => { const k = d.l + d.c.id; if (seenIds.has(k)) return false; seenIds.add(k); return true; });
+        const dueTomorrow = Object.values(srs).filter(s => s.due === dayNow() + 1).length;
+        cardEl.innerHTML = ''; cardEl.className = 'card sess-card summary';
+        app(cardEl, 
+          h('div', { class: 'eyebrow' }, 'Session done'),
+          h('h2', {}, done.length ? `${done.filter(d => d.g >= 3).length} of ${done.length} said well` : 'Nothing graded'),
+          h('div', { class: 'sum-grid' }, byLang.map(x => h('div', { class: 'stat' }, h('b', {}, `${x.good}/${x.n}`), h('span', {}, meta(x.l).name + (x.again ? ` · ${x.again} again` : ''))))),
+          hardRows.length ? h('div', { class: 'section' }, h('div', { class: 'eyebrow' }, 'Worth another look'), h('div', { class: 'sum-list' }, hardRows.map(d => h('div', { class: 'sum-row three' }, h('span', { class: 'lvl' }, meta(d.l).name), h('span', {}, d.c.en), T(d.l, d.c.per[d.l].target))))) : h('p', { class: 'muted' }, 'Nothing marked Again or Hard. Consider a harder level or scenarios.'),
+          h('p', { class: 'small muted' }, `${dueTomorrow} prompt${dueTomorrow === 1 ? '' : 's'} come back tomorrow.`));
+        rep(foot, h('button', { type: 'button', class: 'btn primary big', onclick: () => render() }, 'Back to setup', h('kbd', {}, 'Space')));
+        const k = e => { if (e.code === 'Space') { e.preventDefault(); document.removeEventListener('keydown', k); render(); } }; document.addEventListener('keydown', k); stage._cleanup = () => document.removeEventListener('keydown', k);
+      }
+      show();
     }
   }
 

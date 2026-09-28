@@ -44,6 +44,10 @@ python3 -m http.server 8430
 
 then open http://localhost:8430/.
 
+## Drill
+
+Production practice, keyboard-paced: a meaning in English, say it out loud in the language shown, Space to reveal, Space again to grade Good and move on (1 to 4 for Again / Hard / Good / Easy, H for a hint, P to hear it, U to undo, Esc to end). One meaning is cycled through all selected languages in order. Cards come from door chunks, example sentences plus the Prism sentence bank, and scenarios. Scheduling is SM-2 style per language per card, stored in localStorage under `doors.srs.v1`. On phones, tap the card to reveal and tap a grade.
+
 ## Practice checker
 
 The Practice page has a built-in checker (key-word match against the model answer) and an optional "Check with Claude" button. The latter needs an Anthropic API key entered in Settings; it is stored in the browser's localStorage and sent only to api.anthropic.com.
