@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate chunk translations.
   python3 scripts/validate_chunks.py <lang> [batchNN]   -> checks data/chunks/parts/<lang>/batchNN.json (or all present parts)
-  python3 scripts/validate_chunks.py <lang> --assemble  -> requires all 12 parts, writes data/chunks/<lang>.json"""
+  python3 scripts/validate_chunks.py <lang> --assemble  -> requires every source batch, writes data/chunks/<lang>.json"""
 import json, sys, pathlib, re
 root = pathlib.Path(__file__).resolve().parent.parent
 lang = sys.argv[1]; arg = sys.argv[2] if len(sys.argv) > 2 else None
@@ -28,7 +28,7 @@ def check(bn):
     extra = set(by) - {s['id'] for s in src}
     if extra: errs.append(f'{bn}: unknown ids {sorted(extra)[:5]}')
     return errs
-batches = [f'batch{i:02d}' for i in range(1, 13)]
+batches = sorted(p.stem for p in (root / 'data/chunks/src').glob('batch*.json'))
 if arg == '--assemble':
     errs = [e for b in batches for e in check(b)]
     if errs: print(f'{len(errs)} problem(s):'); [print(' -', e) for e in errs[:40]]; sys.exit(1)

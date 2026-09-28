@@ -205,7 +205,8 @@
     if (!CHUNK_EN) { try { CHUNK_EN = await getJSON('data/chunks/en.json'); CHUNK_EN.forEach((c, i) => { c._i = i; }); } catch { CHUNK_EN = []; } }
     await Promise.all(langs.map(async l => { if (l in CHUNK) return; try { CHUNK[l] = (await getJSON(`data/chunks/${l}.json`)).chunks; } catch { CHUNK[l] = null; } }));
   }
-  const chunkLevelOK = c => state.level === 'all' || c.cefr_level === state.level;
+  const chunkLevel = c => c.level || c.cefr_level;
+  const chunkLevelOK = c => state.level === 'all' || chunkLevel(c) === state.level;
   function chunkLine(lang, r, open) {
     const m = meta(lang);
     return h('div', { class: 'ck-line' },
@@ -246,8 +247,8 @@
     function paint() {
       list.innerHTML = '';
       if (!rows.length) {
-        const lv = (CHUNK_EN || []).length && !query && !(CHUNK_EN || []).some(c => c.cefr_level === state.level);
-        list.append(lv ? h('div', { class: 'empty' }, `The chunk bank has no ${state.level} chunks yet; it covers B1 and B2. `, h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B1' }) }, 'Show B1'), ' ', h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B2' }) }, 'Show B2')) : h('div', { class: 'empty' }, 'Nothing matches.'));
+        const lv = (CHUNK_EN || []).length && !query && !(CHUNK_EN || []).some(c => chunkLevel(c) === state.level);
+        list.append(lv ? h('div', { class: 'empty' }, `The chunk bank has no ${state.level} chunks. `, h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B1' }) }, 'Show B1'), ' ', h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B2' }) }, 'Show B2')) : h('div', { class: 'empty' }, 'Nothing matches.'));
         more.hidden = true; return;
       }
       for (const c of rows.slice(0, shown)) {
@@ -257,7 +258,7 @@
           entry.replaceChildren(...[
             h('div', { class: 'ck-head' },
               h('div', { class: 'ck-en' }, c.chunk),
-              h('div', { class: 'ck-meta' }, h('span', { class: 'lvl' }, c.cefr_level), h('span', { class: 'ck-cat' }, (CHUNK_CATS.find(x => x[0] === c.category) || [, c.category])[1]), h('span', {}, c.pragmatic_function), c.register !== 'neutral' ? h('span', { class: 'ck-reg' }, c.register) : null)),
+              h('div', { class: 'ck-meta' }, h('span', { class: 'lvl', title: c.level && c.level !== c.cefr_level ? `Re-levelled from ${c.cefr_level}: ${c.level_reason || ''}` : '' }, chunkLevel(c)), h('span', { class: 'ck-cat' }, (CHUNK_CATS.find(x => x[0] === c.category) || [, c.category])[1]), h('span', {}, c.pragmatic_function), c.register !== 'neutral' ? h('span', { class: 'ck-reg' }, c.register) : null)),
             open ? h('div', { class: 'ck-enex' }, c.natural_example) : null,
             h('div', { class: 'ck-lines' }, langs.map(l => chunkLine(l, CHUNK[l]?.[c.id], open)))].filter(Boolean));
           entry.classList.toggle('open', open);
@@ -327,7 +328,7 @@
     if (types.includes('bank') && CHUNK_EN) for (const k of CHUNK_EN) {
       if (!chunkLevelOK(k)) continue;
       const per = {}; for (const l of langs) { const r = CHUNK[l]?.[k.id]; if (r) per[l] = { target: r.ex, translit: r.extr, note: r.n, hint: r.t, chunk: r.t, chunkTr: r.tr }; }
-      if (Object.keys(per).length) cards.push({ id: 'K:' + k.id, type: 'chunk bank', level: k.cefr_level, en: k.natural_example, sub: k.chunk + '  ·  ' + k.pragmatic_function + (k.register !== 'neutral' ? '  ·  ' + k.register : ''), prio: 0.5 + k._i / 10000, per });
+      if (Object.keys(per).length) cards.push({ id: 'K:' + k.id, type: 'chunk bank', level: chunkLevel(k), en: k.natural_example, sub: k.chunk + '  ·  ' + k.pragmatic_function + (k.register !== 'neutral' ? '  ·  ' + k.register : ''), prio: 0.5 + k._i / 10000, per });
     }
     if (types.includes('scenario')) for (const sc of FW.scenarios) {
       if (!lvOK(sc.level)) continue;
