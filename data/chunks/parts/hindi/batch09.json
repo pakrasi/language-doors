@@ -341,8 +341,8 @@
  },
  {
   "id": "ENG_CHUNK_0846",
-  "t": "दिल की बात कह देना / मन हल्का करना",
-  "tr": "dil kii baat kah denaa / man halkaa karnaa",
+  "t": "[noun] कहकर मन हल्का करना / दिल की बात कह देना",
+  "tr": "[noun] kahkar man halkaa karnaa / dil kii baat kah denaa",
   "ex": "मुझे अपने दिल की एक बात कहनी है।",
   "extr": "mujhe apne dil kii ek baat kahnii hai.",
   "n": "मन हल्का करना = to lighten the mind, the relief part."
@@ -399,7 +399,7 @@
   "t": "[person] का साथ देना",
   "tr": "[person] kaa saath denaa",
   "ex": "अगर बॉस पूछे तो मेरा साथ दोगे?",
-  "extr": "agar bauss puuchhe to meraa saath doge?"
+  "extr": "agar baus puuchhe to meraa saath doge?"
  },
  {
   "id": "ENG_CHUNK_0854",
@@ -433,8 +433,8 @@
  },
  {
   "id": "ENG_CHUNK_0858",
-  "t": "बीच का रास्ता निकालना",
-  "tr": "biich kaa raastaa nikaalnaa",
+  "t": "[person] के साथ बीच का रास्ता निकालना",
+  "tr": "[person] ke saath biich kaa raastaa nikaalnaa",
   "ex": "मैं पूरी क़ीमत नहीं दे सकता, कुछ बीच का रास्ता निकालिए ना?",
   "extr": "main puurii qiimat nahiin de saktaa, kuchh biich kaa raastaa nikaalie naa?"
  },
@@ -609,7 +609,7 @@
   "t": "और क्या! / मुझसे क्या कहते हो",
   "tr": "aur kyaa! / mujhse kyaa kahte ho",
   "ex": "सोमवार सबसे बुरा दिन होता है। — और क्या!",
-  "extr": "somvaar sabse buraa din hotaa है. — aur kyaa!"
+  "extr": "somvaar sabse buraa din hotaa hai. — aur kyaa!"
  },
  {
   "id": "ENG_CHUNK_0883",

@@ -244,9 +244,9 @@
 },
 {
 "id": "ENG_CHUNK_1043",
-"t": "[Person] vertrauen / im Zweifel für [Person]",
-"ex": "Er ist normalerweise pünktlich, also lassen wir mal im Zweifel für ihn gelten.",
-"n": "Im Zweifel für den Angeklagten is the legal source. Simpler: Geben wir ihm eine Chance."
+"t": "[Person] einen Vertrauensvorschuss geben / im Zweifel für [Person] entscheiden",
+"ex": "Er ist normalerweise pünktlich, also geben wir ihm erst mal einen Vertrauensvorschuss.",
+"n": "also in position 1 triggers inversion: also geben wir. Simpler: Geben wir ihm eine Chance."
 },
 {
 "id": "ENG_CHUNK_1044",
