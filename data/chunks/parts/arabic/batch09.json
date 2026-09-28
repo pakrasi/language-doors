@@ -185,10 +185,10 @@
  },
  {
   "id": "ENG_CHUNK_0824",
-  "t": "من الأفضل أن [verb] ما دام... / فلنـ[verb] إذن",
-  "tr": "fa-l-[verb] idhan / min al-afdal an [verb]",
-  "ex": "الباص لن يأتي. فلنمشِ إذن.",
-  "extr": "al-baas lan ya2tii. fa-l-namshi idhan.",
+  "t": "لم يبقَ إلا أن [verb] / فلـ[verb] إذن",
+  "tr": "lam yabqa illaa an [verb] / fa-l-[verb] idhan",
+  "ex": "الباص لن يأتي. لم يبقَ إلا أن نمشي.",
+  "extr": "al-baas lan ya2tii. lam yabqa illaa an namshii.",
   "n": "Levantine: خلص، خلّينا نمشي (khalas, khalliina nimshi)."
  },
  {
@@ -245,7 +245,7 @@
   "tr": "laa tut3ib nafsak bi-[verb]",
   "ex": "لا تتعب نفسك بالاتصال به. هو لا يرد أبدًا.",
   "extr": "laa tut3ib nafsak bil-ittisaal bih. huwa laa yarudd abadan.",
-  "n": "Levantine: لا تغلّب حالك تدقّله، ما بيرد (la tghallib 7aalak tde22-lo, ma biruddd)."
+  "n": "Levantine: لا تغلّب حالك تدقّله، ما بيرد (la tghallib 7aalak tde22-lo, ma byrudd)."
  },
  {
   "id": "ENG_CHUNK_0832",
@@ -321,11 +321,11 @@
  },
  {
   "id": "ENG_CHUNK_0841",
-  "t": "انهار / فزع",
-  "tr": "inhaara / fazi3a",
+  "t": "فزع / فقد صوابه",
+  "tr": "fazi3a / faqada sawaabahu",
   "ex": "لا تفزع، لكنني خدشت سيارتك.",
   "extr": "laa tafza3, laakinnanii khadashtu sayyaaratak.",
-  "n": "Levantine: لا تعصّب / لا تنقهر، بس ... (la t3asseb, bass ...); للذعر: لا تنخضّ (la tinkhadd)."
+  "n": "Levantine: لا تنخضّ، بس خدشت سيارتك (la tinkhadd, bass khadasht sayyaartak)."
  },
  {
   "id": "ENG_CHUNK_0842",
@@ -381,7 +381,7 @@
   "tr": "kaanat ladayhi mashaa3ir mukhtalita tijaaha [noun]",
   "ex": "لديّ مشاعر مختلطة تجاه العودة إلى بلدي.",
   "extr": "ladayya mashaa3ir mukhtalita tijaaha al-3awda ilaa baladii.",
-  "n": "Levantine: مش عارف، إجري والّا إيدي (mish 3aaref, ijri walla iidi)? no: say متردّد (mitradded)."
+  "n": "Levantine: قلبي مقسوم (2albi ma2suum) / مش عارف إذا مبسوط أو لا (mish 3aaref iza mabsuut aw la2)."
  },
  {
   "id": "ENG_CHUNK_0849",
@@ -489,8 +489,8 @@
  },
  {
   "id": "ENG_CHUNK_0862",
-  "t": "طلع على [person] / شابه [person]",
-  "tr": "shaabaha [person] / tala3a 3alaa [person]",
+  "t": "شابه [person] / طلع لـ[person]",
+  "tr": "shaabaha [person] / tali3a li-[person]",
   "ex": "هي تشبه أباها كثيرًا. نفس الضحكة.",
   "extr": "hiya tushbih abaahaa kathiiran. nafs ad-da7ka.",
   "n": "Levantine: طالعة لأبوها (taal3a la-abuuha)."
@@ -665,8 +665,8 @@
  },
  {
   "id": "ENG_CHUNK_0884",
-  "t": "جبنا سيرة القط جا ينط",
-  "tr": "jibnaa siirat al-qitt jaa yinutt",
+  "t": "كنا نتحدث عنه للتو / جبنا سيرة القط جا ينط",
+  "tr": "kunnaa nata7addath 3anhu lit-tawwi / jibnaa siirat al-qitt jaa yinutt",
   "ex": "جبنا سيرة القط جا ينط، ها هي قادمة.",
   "extr": "jibnaa siirat al-qitt jaa yinutt, haa hiya qaadima.",
   "n": "A colloquial proverb (Egyptian/Levantine); MSA has no idiom. Lit. we mentioned the cat and it jumped in."
@@ -689,8 +689,8 @@
  },
  {
   "id": "ENG_CHUNK_0887",
-  "t": "اللهم احفظنا / إن شاء الله تدوم",
-  "tr": "allaahumma i7faznaa / in shaa2a allaah taduum",
+  "t": "الله يحفظ / ما شاء الله",
+  "tr": "allaah ya7faz / maa shaa2a allaah",
   "ex": "لم أمرض طوال السنة، الله يحفظ.",
   "extr": "lam amrad tiwaal as-sana, allaah ya7faz.",
   "n": "Same superstition: add الله يحفظ or ما شاء الله (maa shaa2a allaah) after good news."
@@ -705,11 +705,11 @@
  },
  {
   "id": "ENG_CHUNK_0889",
-  "t": "أنا موافق على هذا! / بصحّة هذا",
-  "tr": "ana muwaafiq 3alaa haadha! / bi-sa77at haadha",
-  "ex": "نخب عطلة طويلة! أنا موافق على هذا!",
-  "extr": "nakhb 3utla tawiila! ana muwaafiq 3alaa haadha!",
-  "n": "Levantine: صحتين! / إي والله! (ee wallah!) for hearty agreement."
+  "t": "أنا معك في هذا! / يا ريت!",
+  "tr": "ana ma3ak fii haadha! / yaa reit!",
+  "ex": "نخب عطلة طويلة! أنا معك في هذا!",
+  "extr": "nakhb 3utla tawiila! ana ma3ak fii haadha!",
+  "n": "Levantine: إي والله! (ee wallah!) / يا ريت! (ya reit!)"
  },
  {
   "id": "ENG_CHUNK_0890",
