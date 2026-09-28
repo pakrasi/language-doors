@@ -349,3 +349,5 @@ textarea[data-script="arabic"]{font-family:"Noto Naskh Arabic",serif;direction:r
 .ck-n{font-size:13px;color:var(--ink-2)}
 .ans-chunk{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;padding:8px 10px;border-radius:var(--radius);background:var(--door-soft);font-size:17px}
 @media (max-width:600px){.ck-line{grid-template-columns:1fr;gap:2px}.ck-en{font-size:16px}}
+
+.ck-t .t[data-script="arabic"],.ans-main .t[data-script="arabic"]{display:block;text-align:left}
