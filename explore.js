@@ -241,7 +241,7 @@
   (async () => {
     try {
       [FW, EN] = await Promise.all([getJSON('data/framework.json'), getJSON('data/sentences/en.json')]);
-      LANGS = FW.languages.map(l => l.id);
+      LANGS = FW.languages.filter(l => l.full !== false).map(l => l.id);
       await Promise.all(LANGS.map(async l => {
         try { SENT[l] = await getJSON(`data/sentences/${l}.json`); } catch { SENT[l] = null; }
         try { DATA[l] = await getJSON(`data/${l}.json`); } catch { DATA[l] = null; }

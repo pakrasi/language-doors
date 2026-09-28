@@ -61,7 +61,7 @@
   $('#settings-clear').addEventListener('click', () => { srs = {}; progress = {}; save(SRS_KEY, srs); save(PROGRESS_KEY, progress); settings.hidden = true; render(); });
 
   // ---------- routing: #view/level/lang,lang/extra ----------
-  const VIEWS = ['reference', 'drill', 'practice', 'framework'];
+  const VIEWS = ['reference', 'chunks', 'drill', 'practice', 'framework'];
   function parseHash() {
     const p = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     const next = { ...state };
@@ -73,7 +73,7 @@
   }
   function go(patch = {}) {
     state = { ...state, ...patch };
-    if (!state.langs.length) state.langs = FW.languages.map(l => l.id);
+    if (!state.langs.length) state.langs = FW.languages.filter(l => l.full).map(l => l.id);
     const parts = [state.view, state.level, state.langs.join(',')];
     if (state.view === 'reference') parts.push(state.layer);
     if (state.view === 'practice' && state.scenario) parts.push(state.scenario);
@@ -105,7 +105,7 @@
     const lp = $('#lang-picker'); lp.innerHTML = '';
     for (const l of FW.languages) {
       const on = state.langs.includes(l.id);
-      lp.append(h('button', { type: 'button', class: on ? 'active' : '', 'aria-pressed': on ? 'true' : 'false', onclick: () => {
+      lp.append(h('button', { type: 'button', title: l.full ? '' : 'Chunk bank only (no door framework yet)', class: (on ? 'active' : '') + (l.full ? '' : ' partial'), 'aria-pressed': on ? 'true' : 'false', onclick: () => {
         let langs = on ? state.langs.filter(x => x !== l.id) : FW.languages.map(x => x.id).filter(x => state.langs.includes(x) || x === l.id);
         if (!langs.length) langs = [l.id];
         go({ langs, scenario: null });
@@ -147,11 +147,13 @@
     view.append(h('div', { class: 'loading' }, 'Loading…'));
     await ensureLangs(state.langs);
     view.innerHTML = '';
-    ({ reference: viewReference, drill: viewDrill, practice: viewPractice, framework: viewFramework })[state.view](view);
+    ({ reference: viewReference, chunks: viewChunks, drill: viewDrill, practice: viewPractice, framework: viewFramework })[state.view](view);
   }
 
   // ===== Reference: compare across languages =====
   function viewReference(view) {
+    const RL = state.langs.filter(l => meta(l).full);
+    const partial = state.langs.filter(l => !meta(l).full);
     let query = '';
     let starOnly = !!prefs.starOnly;
     view.append(h('header', { class: 'section' },
@@ -165,25 +167,26 @@
     view.append(tabs, h('div', { class: 'toolbar' }, search, starChip));
     const wrap = h('div', { class: 'scroll-x' });
     view.append(wrap);
-    const missing = state.langs.filter(l => !LANG[l]);
+    if (partial.length) view.append(h('p', { class: 'muted small' }, partial.map(l => meta(l).name).join(', ') + ' have the chunk bank only so far; see the Chunks tab.'));
+    const missing = RL.filter(l => !LANG[l]);
     if (missing.length) view.append(h('p', { class: 'muted small' }, 'No content file yet for: ' + missing.map(l => meta(l).name).join(', ') + '.'));
 
     function draw() {
       let rows = levelItems(state.layer);
-      if (starOnly) rows = rows.filter(m => state.langs.some(l => item(l, m.id)?.star));
-      if (query) rows = rows.filter(m => [m.id, m.en, ...state.langs.flatMap(l => { const it = item(l, m.id); return it ? [it.target, it.translit, it.gloss, it.example?.target, it.example?.gloss] : []; })].join(' ').toLowerCase().includes(query));
+      if (starOnly) rows = rows.filter(m => RL.some(l => item(l, m.id)?.star));
+      if (query) rows = rows.filter(m => [m.id, m.en, ...RL.flatMap(l => { const it = item(l, m.id); return it ? [it.target, it.translit, it.gloss, it.example?.target, it.example?.gloss] : []; })].join(' ').toLowerCase().includes(query));
       wrap.innerHTML = '';
       if (!rows.length) { wrap.append(h('div', { class: 'empty' }, 'Nothing here.')); return; }
-      const cols = state.langs.length;
+      const cols = RL.length;
       const table = h('table', { class: 'cmp l-' + state.layer, style: `--cols:${cols}` });
-      table.append(h('thead', {}, h('tr', {}, h('th', { class: 'en-h' }, 'English'), state.langs.map(l => h('th', {}, meta(l).name)))));
+      table.append(h('thead', {}, h('tr', {}, h('th', { class: 'en-h' }, 'English'), RL.map(l => h('th', {}, meta(l).name)))));
       const tbody = h('tbody');
       for (const m of rows) {
-        const starred = state.langs.some(l => item(l, m.id)?.star);
+        const starred = RL.some(l => item(l, m.id)?.star);
         const tr = h('tr', { class: 'crow', tabindex: 0, role: 'button', 'aria-expanded': 'false' },
           h('td', { class: 'en' }, h('div', { class: 'en-main' }, starred ? h('span', { class: 'star' }, '★ ') : null, m.en), h('div', { class: 'en-sub' }, tag(m.layer, m.id), state.level === 'all' ? lvl(m.level) : null, m.slot && m.slot !== '-' ? h('span', { class: 'slot' }, 'slot ' + m.slot) : null)),
-          state.langs.map(l => h('td', { class: 'cell' }, target(l, item(l, m.id)))));
-        const dtr = h('tr', { class: 'drow', hidden: true }, h('td', { colspan: cols + 1 }, h('div', { class: 'dets', style: `--cols:${cols}` }, m.note ? h('div', { class: 'det det-en' }, h('div', { class: 'det-lang' }, 'Framework'), h('div', { class: 'small' }, m.note)) : null, state.langs.map(l => detail(l, item(l, m.id))))));
+          RL.map(l => h('td', { class: 'cell' }, target(l, item(l, m.id)))));
+        const dtr = h('tr', { class: 'drow', hidden: true }, h('td', { colspan: cols + 1 }, h('div', { class: 'dets', style: `--cols:${cols}` }, m.note ? h('div', { class: 'det det-en' }, h('div', { class: 'det-lang' }, 'Framework'), h('div', { class: 'small' }, m.note)) : null, RL.map(l => detail(l, item(l, m.id))))));
         const toggle = () => { const open = dtr.hidden; dtr.hidden = !open; tr.classList.toggle('open', open); tr.setAttribute('aria-expanded', open ? 'true' : 'false'); };
         tr.addEventListener('click', toggle);
         tr.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
@@ -195,11 +198,82 @@
     draw();
   }
 
+  // ===== Chunk bank: data + static list =====
+  let CHUNK_EN = null; const CHUNK = {};
+  const CHUNK_CATS = [['sentence_frame', 'Frames'], ['collocation', 'Collocations'], ['gambit_filler', 'Gambits and fillers'], ['fixed_formula', 'Fixed formulas'], ['discourse_connector', 'Connectors']];
+  async function ensureChunks(langs) {
+    if (!CHUNK_EN) { try { CHUNK_EN = await getJSON('data/chunks/en.json'); CHUNK_EN.forEach((c, i) => { c._i = i; }); } catch { CHUNK_EN = []; } }
+    await Promise.all(langs.map(async l => { if (l in CHUNK) return; try { CHUNK[l] = (await getJSON(`data/chunks/${l}.json`)).chunks; } catch { CHUNK[l] = null; } }));
+  }
+  const chunkLevelOK = c => !['B1', 'B2'].includes(state.level) || c.cefr_level === state.level;
+  function chunkLine(lang, r, open) {
+    const m = meta(lang);
+    return h('div', { class: 'ck-line' },
+      h('div', { class: 'ck-lang' }, m.name),
+      h('div', { class: 'ck-t' },
+        r ? [T(lang, r.t), r.tr ? h('div', { class: 'tr' }, r.tr) : null] : h('span', { class: 'missing' }, 'not translated yet'),
+        r && open ? h('div', { class: 'ck-ex' }, T(lang, r.ex), r.extr ? h('div', { class: 'tr' }, r.extr) : null) : null,
+        r && open && r.n ? h('div', { class: 'ck-n' }, r.n) : null));
+  }
+  function viewChunks(view) {
+    const langs = state.langs;
+    const cat = prefs.chunkCat || 'all';
+    let query = '';
+    let expandAll = !!prefs.chunkExpand;
+    view.append(h('header', { class: 'section' },
+      h('div', { class: 'eyebrow' }, 'Chunk bank · ' + (['B1', 'B2'].includes(state.level) ? state.level : 'B1 and B2')),
+      h('h1', {}, '1,200 chunks'),
+      h('p', { class: 'lede' }, 'The phrases fluent speakers reach for without thinking: frames, collocations, gambits, formulas and connectors. English on top, each of your languages underneath. Tap a chunk for its example sentence and notes.')));
+    if (!['B1', 'B2', 'all'].includes(state.level)) view.append(h('p', { class: 'muted small' }, `The chunk bank is B1 and B2, so ${state.level} shows all of it. Pick B1 or B2 above to narrow it.`));
+    const catChips = h('div', { class: 'subtabs' }, [['all', 'All']].concat(CHUNK_CATS).map(([k, l]) => h('button', { type: 'button', class: 'chip' + (k === cat ? ' active dark' : ''), onclick: () => { prefs.chunkCat = k; save(PREF_KEY, prefs); render(); } }, l)));
+    const search = h('input', { type: 'search', placeholder: 'Search English, target, or function…', 'aria-label': 'Search chunks', id: 'chunk-search' });
+    const expBtn = h('button', { type: 'button', class: 'chip' + (expandAll ? ' active dark' : ''), onclick: () => { expandAll = !expandAll; prefs.chunkExpand = expandAll; save(PREF_KEY, prefs); expBtn.classList.toggle('active', expandAll); expBtn.classList.toggle('dark', expandAll); draw(); } }, 'Show examples');
+    const count = h('span', { class: 'muted small' });
+    view.append(catChips, h('div', { class: 'toolbar' }, search, expBtn), count);
+    const list = h('div', { class: 'ck-list' }); view.append(list);
+    const more = h('button', { type: 'button', class: 'btn', onclick: () => { shown += 60; paint(); } }, 'Show more');
+    view.append(more);
+    let rows = [], shown = 60;
+    search.addEventListener('input', () => { query = search.value.trim().toLowerCase(); draw(); });
+    list.append(h('div', { class: 'loading' }, 'Loading chunks…'));
+    ensureChunks(langs).then(draw);
+    function draw() {
+      rows = (CHUNK_EN || []).filter(c => chunkLevelOK(c) && (cat === 'all' || c.category === cat));
+      if (query) rows = rows.filter(c => [c.chunk, c.pragmatic_function, c.natural_example, c.id, ...langs.flatMap(l => { const r = CHUNK[l]?.[c.id]; return r ? [r.t, r.tr, r.ex] : []; })].join(' ').toLowerCase().includes(query));
+      const missing = langs.filter(l => !CHUNK[l]);
+      count.textContent = `${rows.length} chunk${rows.length === 1 ? '' : 's'}` + (missing.length ? ` · not yet translated: ${missing.map(l => meta(l).name).join(', ')}` : '');
+      shown = 60; paint();
+    }
+    function paint() {
+      list.innerHTML = '';
+      if (!rows.length) { list.append(h('div', { class: 'empty' }, 'Nothing matches.')); more.hidden = true; return; }
+      for (const c of rows.slice(0, shown)) {
+        let open = expandAll;
+        const entry = h('article', { class: 'ck', tabindex: 0 });
+        const fill = () => {
+          entry.replaceChildren(...[
+            h('div', { class: 'ck-head' },
+              h('div', { class: 'ck-en' }, c.chunk),
+              h('div', { class: 'ck-meta' }, h('span', { class: 'lvl' }, c.cefr_level), h('span', { class: 'ck-cat' }, (CHUNK_CATS.find(x => x[0] === c.category) || [, c.category])[1]), h('span', {}, c.pragmatic_function), c.register !== 'neutral' ? h('span', { class: 'ck-reg' }, c.register) : null)),
+            open ? h('div', { class: 'ck-enex' }, c.natural_example) : null,
+            h('div', { class: 'ck-lines' }, langs.map(l => chunkLine(l, CHUNK[l]?.[c.id], open)))].filter(Boolean));
+          entry.classList.toggle('open', open);
+        };
+        const toggle = () => { open = !open; fill(); };
+        entry.addEventListener('click', e => { if (!window.getSelection()?.toString()) toggle(); });
+        entry.addEventListener('keydown', e => { if (e.key === 'Enter') toggle(); });
+        fill(); list.append(entry);
+      }
+      more.hidden = shown >= rows.length;
+      more.textContent = `Show more (${rows.length - shown} left)`;
+    }
+  }
+
   // ===== Drill: keyboard-paced production practice with spaced repetition =====
   const SRS_KEY = 'doors.srs.v1';
   let srs = load(SRS_KEY, {});            // `${lang}|${cardId}` -> {ease, ivl, due, reps, lapses, last, hist}
   let SENT_EN = null; const SENT = {};     // sentence bank
-  const VOICE_LANG = { german: 'de-DE', french: 'fr-FR', hindi: 'hi-IN', swissgerman: 'de-CH', khasi: null };
+  const VOICE_LANG = { german: 'de-DE', french: 'fr-FR', hindi: 'hi-IN', swissgerman: 'de-CH', khasi: null, bengali: 'bn-IN', spanish: 'es-MX', italian: 'it-IT', portuguese: 'pt-BR', arabic: 'ar-SA' };
   const BANK_LEVEL = { want: 'A1', like: 'A1', go: 'A1', decline: 'A2', live: 'B1', if: 'B1' };
   const app = (el, ...k) => el.append(...k.flat(Infinity).filter(x => x != null && x !== false));
   const rep = (el, ...k) => el.replaceChildren(...k.flat(Infinity).filter(x => x != null && x !== false));
@@ -247,6 +321,11 @@
         if (Object.keys(per).length) cards.push({ id: 'S:' + mn.id + '.' + v.id, type: 'sentence', level: BANK_LEVEL[mn.id] || 'A2', en: v.tokens.map(t => t[0]).join(' '), sub: mn.recipe.join(' · ') + ' · ' + v.label, prio: 0, per, enBlocks: v.tokens });
       }
     }
+    if (types.includes('bank') && CHUNK_EN) for (const k of CHUNK_EN) {
+      if (!chunkLevelOK(k)) continue;
+      const per = {}; for (const l of langs) { const r = CHUNK[l]?.[k.id]; if (r) per[l] = { target: r.ex, translit: r.extr, note: r.n, hint: r.t, chunk: r.t, chunkTr: r.tr }; }
+      if (Object.keys(per).length) cards.push({ id: 'K:' + k.id, type: 'chunk bank', level: k.cefr_level, en: k.natural_example, sub: k.chunk + '  ·  ' + k.pragmatic_function + (k.register !== 'neutral' ? '  ·  ' + k.register : ''), prio: 0.5 + k._i / 10000, per });
+    }
     if (types.includes('scenario')) for (const sc of FW.scenarios) {
       if (!lvOK(sc.level)) continue;
       const per = {}; for (const l of langs) { const d = LANG[l]?._sc?.[sc.id]; if (d?.model?.target) per[l] = { target: d.model.target, translit: d.model.translit, note: d.tip, hint: sc.recipe.map(id => item(l, id)?.target).filter(Boolean).join('  ·  '), blocks: (d.breakdown || []).map(b => [b.text, b.layer === 'door' ? 'door' : b.layer === 'glue' ? 'glue' : b.layer === 'chunk' ? 'chunk' : b.layer === 'turn' ? 'aux' : 'x']), alt: d.alt, gloss: d.model.gloss }; }
@@ -269,8 +348,8 @@
   }
 
   function viewDrill(view) {
-    const langs = state.langs.filter(l => LANG[l]);
-    const types = prefs.drillTypes?.length ? prefs.drillTypes : ['chunk', 'sentence'];
+    let langs = state.langs.slice();
+    const types = prefs.drillTypes?.length ? prefs.drillTypes : ['bank', 'sentence'];
     const size = prefs.drillSize || 25;
     const order = prefs.drillOrder || 'grouped';
     const autoplay = prefs.drillAudio !== false;
@@ -278,11 +357,10 @@
       h('div', { class: 'eyebrow' }, 'Drill · ' + (state.level === 'all' ? 'all levels' : state.level) + ' · ' + langs.map(l => meta(l).name).join(', ')),
       h('h1', {}, 'Say it.'),
       h('p', { class: 'lede' }, 'Read the meaning, say it out loud in the language shown, then press Space to check. Grade yourself honestly; the schedule does the rest.')));
-    if (!langs.length) { view.append(h('div', { class: 'empty' }, 'None of the selected languages has a content file yet.')); return; }
     const stage = h('div', { class: 'drill-stage' }); view.append(stage);
     window.__cleanup = () => stage._cleanup?.();
     stage.append(h('div', { class: 'loading' }, 'Loading…'));
-    ensureSentences(langs).then(() => setup());
+    Promise.all([ensureSentences(langs), ensureChunks(langs)]).then(() => { langs = langs.filter(l => LANG[l] || CHUNK[l]); if (!langs.length) { stage.replaceChildren(h('div', { class: 'empty' }, 'None of the selected languages has content yet.')); return; } setup(); });
 
     function setup() {
       stage.innerHTML = '';
@@ -292,7 +370,7 @@
       const due = prompts.filter(p => p.s.reps && p.s.due <= today), fresh = prompts.filter(p => !p.s.reps);
       const streak = computeStreak();
       const panel = h('div', { class: 'panel setup' });
-      const typeChips = [['chunk', 'Door chunks'], ['sentence', 'Sentences'], ['scenario', 'Scenarios']].map(([t, l]) => h('button', { type: 'button', class: 'chip' + (types.includes(t) ? ' active dark' : ''), onclick: () => { const s = new Set(types); s.has(t) ? s.delete(t) : s.add(t); if (!s.size) s.add('sentence'); prefs.drillTypes = [...s]; save(PREF_KEY, prefs); render(); } }, l));
+      const typeChips = [['bank', 'Chunk bank'], ['chunk', 'Door chunks'], ['sentence', 'Sentences'], ['scenario', 'Scenarios']].map(([t, l]) => h('button', { type: 'button', class: 'chip' + (types.includes(t) ? ' active dark' : ''), onclick: () => { const s = new Set(types); s.has(t) ? s.delete(t) : s.add(t); if (!s.size) s.add('sentence'); prefs.drillTypes = [...s]; save(PREF_KEY, prefs); render(); } }, l));
       const sizeSel = h('select', { onchange: e => { prefs.drillSize = +e.target.value; save(PREF_KEY, prefs); } }, [10, 25, 50, 100].map(n => h('option', { value: n, selected: n === size }, n + ' prompts')));
       const orderSel = h('select', { onchange: e => { prefs.drillOrder = e.target.value; save(PREF_KEY, prefs); } }, [['grouped', 'Same meaning across languages'], ['mixed', 'Shuffled']].map(([v, l]) => h('option', { value: v, selected: v === order }, l)));
       const audioChk = h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: autoplay, onchange: e => { prefs.drillAudio = e.target.checked; save(PREF_KEY, prefs); } }), ' Play the answer aloud where a voice exists');
@@ -332,8 +410,8 @@
       const newCards = cards.filter(c => byCard(c).every(l => !srsGet(l, c.id).reps)).sort((a, b) => a.prio - b.prio || FW.levels.indexOf(a.level) - FW.levels.indexOf(b.level));
       const rest = cards.filter(c => !dueCards.includes(c) && !newCards.includes(c));
       let queue = [];
-      const push = list => { for (const c of shuffle(list)) { if (queue.length >= size) break; for (const l of byCard(c)) { const s = srsGet(l, c.id); const isDue = s.reps && s.due <= today; if (list === dueCards && !isDue && s.reps) continue; queue.push({ c, l }); } } };
-      push(dueCards); if (queue.length < size) push(newCards); if (queue.length < size) push(rest);
+      const push = (list, sh = true) => { for (const c of (sh ? shuffle(list) : list)) { if (queue.length >= size) break; for (const l of byCard(c)) { const s = srsGet(l, c.id); const isDue = s.reps && s.due <= today; if (list === dueCards && !isDue && s.reps) continue; queue.push({ c, l }); } } };
+      push(dueCards); if (queue.length < size) push(newCards, false); if (queue.length < size) push(rest);
       queue = queue.slice(0, size);
       if (order === 'mixed') queue = shuffle(queue);
       if (!queue.length) { stage.replaceChildren(h('div', { class: 'empty' }, 'Nothing to drill with these settings.')); return; }
@@ -368,6 +446,7 @@
         const { c, l } = queue[i]; const a = c.per[l];
         const el = cardEl.querySelector('.sess-answer'); el.hidden = false; el.innerHTML = '';
         app(el, h('div', { class: 'ans-main' }, T(l, a.target)), a.translit ? h('div', { class: 'tr big-tr' }, a.translit) : null);
+        if (a.chunk) app(el, h('div', { class: 'ans-chunk' }, h('span', { class: 'eyebrow' }, 'chunk'), T(l, a.chunk), a.chunkTr ? h('span', { class: 'tr' }, a.chunkTr) : null));
         if (a.blocks) app(el, blockRow(l, a.blocks));
         if (a.altGloss) app(el, h('div', { class: 'gl' }, 'literally: ' + a.altGloss));
         if (a.alt) app(el, h('div', { class: 'small' }, h('span', { class: 'muted' }, 'Also natural: '), T(l, a.alt)));

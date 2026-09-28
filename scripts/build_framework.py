@@ -401,11 +401,16 @@ for sid, lvl, sit, task, fn, recipe, turn in SC:
     scen.append({"id": sid, "level": lvl, "situation": sit, "task": task, "function": fn, "recipe": recipe, "turn": turn})
 
 LANGS = [
-    {"id": "khasi", "name": "Khasi", "native": "Ka Ktien Khasi", "script": "latin", "rtl": False, "translit": False, "variety": "Standard Khasi (Sohra/Cherrapunji dialect as used in writing and Shillong), Latin script"},
-    {"id": "german", "name": "German", "native": "Deutsch", "script": "latin", "rtl": False, "translit": False, "variety": "Standard German (Germany), du and Sie both shown"},
-    {"id": "hindi", "name": "Hindi", "native": "हिन्दी", "script": "devanagari", "rtl": False, "translit": True, "variety": "Standard spoken Hindi (Hindustani register used in daily speech), Devanagari with simple roman transliteration"},
-    {"id": "french", "name": "French", "native": "Français", "script": "latin", "rtl": False, "translit": False, "variety": "Standard French (France), tu and vous both shown"},
-    {"id": "swissgerman", "name": "Swiss German", "native": "Schwiizerdütsch", "script": "latin", "rtl": False, "translit": False, "variety": "Zürich German (Züritüütsch) in the common informal spelling used in messages; Bernese and Basel differences noted only where large"},
+    {"id": "khasi", "name": "Khasi", "native": "Ka Ktien Khasi", "script": "latin", "rtl": False, "translit": False, "full": True, "variety": "Standard Khasi (Sohra/Cherrapunji dialect as used in writing and Shillong), Latin script"},
+    {"id": "german", "name": "German", "native": "Deutsch", "script": "latin", "rtl": False, "translit": False, "full": True, "variety": "Standard German (Germany), du and Sie both shown"},
+    {"id": "hindi", "name": "Hindi", "native": "हिन्दी", "script": "devanagari", "rtl": False, "translit": True, "full": True, "variety": "Standard spoken Hindi (Hindustani register used in daily speech), Devanagari with simple roman transliteration"},
+    {"id": "french", "name": "French", "native": "Français", "script": "latin", "rtl": False, "translit": False, "full": True, "variety": "Standard French (France), tu and vous both shown"},
+    {"id": "swissgerman", "name": "Swiss German", "native": "Schwiizerdütsch", "script": "latin", "rtl": False, "translit": False, "full": True, "variety": "Zürich German (Züritüütsch) in the common informal spelling used in messages; Bernese and Basel differences noted only where large"},
+    {"id": "bengali", "name": "Bengali", "native": "বাংলা", "script": "bengali", "rtl": False, "translit": True, "full": False, "variety": "Colloquial Kolkata Bengali (cholito bhasha), Bengali script with transliteration"},
+    {"id": "spanish", "name": "Spanish", "native": "Español", "script": "latin", "rtl": False, "translit": False, "full": False, "variety": "Neutral Latin American Spanish, tú and usted"},
+    {"id": "italian", "name": "Italian", "native": "Italiano", "script": "latin", "rtl": False, "translit": False, "full": False, "variety": "Standard spoken Italian, tu and Lei"},
+    {"id": "portuguese", "name": "Portuguese", "native": "Português", "script": "latin", "rtl": False, "translit": False, "full": False, "variety": "Brazilian Portuguese, você"},
+    {"id": "arabic", "name": "Arabic", "native": "العربية", "script": "arabic", "rtl": True, "translit": True, "full": False, "variety": "Modern Standard Arabic, Levantine spoken forms noted"},
 ]
 
 out = {
