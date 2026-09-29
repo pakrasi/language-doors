@@ -2,73 +2,59 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+/* Apply the saved theme before first paint. */
+(function () { try { var p = JSON.parse(localStorage.getItem('doors.prefs.v2')) || {}; document.documentElement.dataset.theme = p.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
+/* The old Framework page is now "How it works" on the homepage. */
+if (/^#\/?(framework|how)\b/.test(location.hash)) location.replace('index.html#how');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Doors and Glue</title>
-<meta name="description" content="A reusable framework for learning any language: verb doors, turns, glue, slots, functions. Compare five languages side by side, drill the doors, practise scenarios.">
+<meta name="description" content="Compare phrases across German, Hindi, Khasi, French and Swiss German, and drill them daily.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
-<link rel="stylesheet" href="app.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='3' fill='%231f6f8b'/%3E%3Crect x='11' y='10' width='10' height='18' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
+<link rel="stylesheet" href="tokens.css?v=20260929">
+<link rel="stylesheet" href="app.css?v=20260929">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' rx='3' fill='%231f6f8b'/%3E%3Crect x='9' y='8' width='8' height='14' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
 </head>
-<body>
+<body class="app">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="top-inner">
-    <a class="brand" href="#" id="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
+<header class="site-bar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Doors and Glue, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="var(--door)"/><rect x="9" y="8" width="8" height="14" rx="1" fill="var(--surface)"/></svg>
       <span class="brand-name">Doors and Glue</span>
     </a>
     <nav class="views" aria-label="Sections">
-      <a href="#" data-view="reference">Reference</a>
-      <a href="#" data-view="chunks">Chunks</a>
-      <a href="#" data-view="drill">Drill</a>
-      <a href="#" data-view="practice">Practice</a>
-      <a href="#" data-view="framework">Framework</a>
-      <a href="index.html" class="ext">Prism ↗</a>
+      <a href="app.html#drill" data-view="drill">Drill</a>
+      <a href="app.html#lookup" data-view="lookup">Look up</a>
+      <a href="app.html#write" data-view="write">Write</a>
+      <a href="index.html#how" data-view="how">How it works</a>
     </nav>
-    <div class="top-tools">
-      <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
-      <button id="settings-btn" class="icon-btn" type="button" aria-label="Settings" title="Settings">⚙</button>
-    </div>
-  </div>
-  <div class="pickers">
-    <div class="pickers-inner">
-      <div class="lang-picker" id="lang-picker" aria-label="Languages (toggle)"></div>
-      <div class="level-picker" id="level-picker" role="tablist" aria-label="Level"></div>
+    <div class="bar-pick" id="bar-pick"></div>
+    <div class="bar-tools">
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="Dark mode" aria-pressed="false"></button>
+      <button id="settings-btn" class="icon-btn" type="button" aria-label="Settings" aria-haspopup="dialog"></button>
     </div>
   </div>
 </header>
+<div class="pick-row" id="pick-row"></div>
 
 <main id="main" class="main">
-  <div id="view" class="view" aria-live="polite"></div>
+  <div id="banner"></div>
+  <div id="view" class="view"></div>
 </main>
 
 <footer class="foot">
   <div class="foot-inner">
-    <span>Doors and Glue. One framework, many languages. Content is AI-drafted from the framework and corrected as it is used: a form that looks wrong is a bug in the data file.</span>
+    <span>Drafted with AI and corrected as I use it. If a form looks wrong, fix it in data/‹language›.json.</span>
     <a href="https://github.com/pakrasi/language-doors">Source</a>
   </div>
 </footer>
 
-<div id="settings" class="modal" hidden>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
-    <h2 id="settings-title">Settings</h2>
-    <p class="muted">Everything here stays in this browser only.</p>
-    <label class="field">
-      <span>Anthropic API key for "Check with Claude" in Practice (optional)</span>
-      <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-...">
-    </label>
-    <p class="muted small">Stored in localStorage and sent only to api.anthropic.com from this page. Without it, Practice still works with the built-in checker.</p>
-    <div class="row">
-      <button id="settings-save" class="btn primary" type="button">Save</button>
-      <button id="settings-clear" class="btn" type="button">Reset drill and practice progress</button>
-      <button id="settings-close" class="btn" type="button">Close</button>
-    </div>
-  </div>
-</div>
-
-<script src="app.js"></script>
+<script src="site.js?v=20260929"></script>
+<script src="app.js?v=20260929"></script>
 </body>
 </html>
