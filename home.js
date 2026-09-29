@@ -23,14 +23,18 @@
   const tokensFor = (lang, mid, vid) => lang === 'en' ? variantOf(mid, vid)?.tokens.map(t => [t[0], t[1]]) : SENT[lang]?.variants?.[`${mid}.${vid}`]?.tokens;
   const whyFor = (lang, mid, vid) => SENT[lang]?.variants?.[`${mid}.${vid}`]?.why || '';
 
-  DG.initBar(location.hash === '#how' ? 'how' : null);
+  DG.initBar(null);
 
   // ---------- scroll line ----------
   const line = $('#scroll-line i');
-  const onScroll = () => { const max = document.documentElement.scrollHeight - innerHeight; line.style.width = (max > 0 ? 100 * scrollY / max : 0) + '%'; };
-  addEventListener('scroll', onScroll, { passive: true });
   const howEl = $('#how');
-  new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting || e.boundingClientRect.top < 0) DG.initBar(e.boundingClientRect.top < innerHeight * .5 ? 'how' : null); }, { threshold: [0, .5] }).observe(howEl);
+  let inHow = null;
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight; line.style.width = (max > 0 ? 100 * scrollY / max : 0) + '%';
+    const now = !howEl.hidden && howEl.getBoundingClientRect().top < innerHeight * .4;
+    if (now !== inHow) { inHow = now; DG.initBar(now ? 'how' : null); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
 
   // ---------- tiles and rows ----------
   function tile(lang, tok, key = '') {
@@ -272,7 +276,7 @@
     }
     let cross = 0; for (let a = 0; a < links.length; a++) for (let b = a + 1; b < links.length; b++) { const A = links[a], B = links[b]; if ((A.i - B.i) * (A.j - B.j) < 0) cross++; }
     const added = bots.filter(b => b.dataset.roles.split('|').includes('x')).length;
-    count.replaceChildren(...[h('span', { class: 'num' }, cross), h('span', { class: 'lab' }, cross === 1 ? 'line crosses' : 'lines cross'), added ? h('span', {}, `· ${added} extra word${added === 1 ? '' : 's'}`) : null].filter(Boolean));
+    count.replaceChildren(...[h('span', { class: 'num' }, cross), h('span', { class: 'lab' }, cross === 1 ? 'crossing' : 'crossings'), added ? h('span', {}, `· ${added} extra word${added === 1 ? '' : 's'}`) : null].filter(Boolean));
   }
 
   // ---------- 4: tenses ----------

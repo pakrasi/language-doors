@@ -41,8 +41,9 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(var(--bar-h) + 12px)}
 .row-cap{grid-column:1/-1;font-size:12px;color:var(--ink-2);min-height:0}
 .row-cap:empty{display:none}
 .lang-row .tile{cursor:pointer;transition:opacity .2s,box-shadow .2s,transform .2s;will-change:transform}
-.tile .role{position:absolute;top:-17px;left:0;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-2);opacity:0;transition:opacity .2s;white-space:nowrap;pointer-events:none}
-.tile.hovered .role{opacity:1}
+.tile .role{position:absolute;top:-17px;left:0;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap;pointer-events:none;display:none}
+.tile.hovered .role{display:block}
+@media (max-width:900px){.tile.hovered .role{display:none}}
 .dimming .tile{opacity:.3}
 .dimming .tile.lit{opacity:1;box-shadow:0 0 0 1px var(--line),0 6px 20px rgba(0,0,0,.18);transform:translateY(-2px)}
 .tile.en{font-size:19px}
@@ -90,7 +91,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(var(--bar-h) + 12px)}
 .hover-cap b{color:var(--ink);font-weight:600}
 .machine .tile{font-size:18px;padding:5px 9px 4px}
 @media (max-width:900px){
-  .m-grid{display:flex;flex-direction:column;gap:14px}
+  .m-grid{display:flex;flex-direction:column;gap:14px;align-items:stretch}
   .act-side{display:contents}
   .m-head .prose{margin-bottom:0}
   .m-ctl{position:sticky;top:var(--bar-h);z-index:5;background:var(--bg);margin:0 -16px;padding:8px 16px 10px;border-bottom:1px solid var(--line)}
@@ -191,7 +192,7 @@ mark,.tp-sent mark,.tp-head mark{background:var(--turn-soft);color:var(--ink);bo
 .tp-fb{font-size:14px;font-weight:600}
 .tp-fb.ok{color:var(--ok)} .tp-fb.no{color:var(--bad)}
 @media (max-width:900px){
-  .tp{display:flex;flex-direction:column;gap:12px}
+  .tp{display:flex;flex-direction:column;gap:12px;align-items:stretch}
   .tp-side{position:static;display:contents}
   .tp-sticky{position:sticky;top:var(--bar-h);z-index:6;background:var(--bg);margin:0 -16px;padding:8px 16px 8px;border-bottom:1px solid var(--line);width:auto}
   .tp-now{display:block;font-size:17px;font-weight:600;padding-top:6px}
@@ -235,3 +236,4 @@ mark,.tp-sent mark,.tp-head mark{background:var(--turn-soft);color:var(--ink);bo
 @media (max-width:760px){.next-cards{grid-template-columns:1fr}}
 
 .load-err{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tp-fb:focus{outline:none}

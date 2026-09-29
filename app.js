@@ -132,7 +132,7 @@
           levels.map(lv => h('button', { type: 'button', 'aria-pressed': lv === state.level ? 'true' : 'false', onclick: () => go({ level: lv, scenario: null }) }, lv === 'all' ? 'All' : lv))));
       }
     }
-    target.append(...kids);
+    app(target, ...kids);
   }
   narrow.addEventListener?.('change', () => { renderPickers(); if (state.view === 'lookup') render({ keepScroll: true }); });
 
@@ -200,14 +200,14 @@
   function viewLookup(view, langs) {
     const full = langs.filter(l => meta(l).full), partial = langs.filter(l => !meta(l).full);
     const searching = () => lookQuery.length >= 2;
-    view.append(header('Look up · ' + levelLabel(), 'Look up', 'Each row is one phrase in your languages. Tap a row for an example and a note. ★ = learn these first.'));
+    app(view, header('Look up · ' + levelLabel(), 'Look up', 'Each row is one phrase in your languages. Tap a row for an example and a note. ★ = learn these first.'));
     const search = h('input', { type: 'search', id: 'look-search', placeholder: 'Search in English or your languages', 'aria-label': 'Search everything in Look up', value: lookQuery, autocomplete: 'off' });
     const count = h('span', { class: 'search-count', 'aria-live': 'polite' });
-    view.append(h('div', { class: 'search-wrap' }, search, count, h('kbd', { class: 'keys-only search-kbd', title: 'Press / to search' }, '/')));
+    app(view, h('div', { class: 'search-wrap' }, search, count, h('kbd', { class: 'keys-only search-kbd', title: 'Press / to search' }, '/')));
     const tabs = h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'Sections' });
     const notice = h('div');
     const body = h('div', { class: 'look-body', role: 'tabpanel' });
-    view.append(tabs, notice, body);
+    app(view, tabs, notice, body);
     let t;
     search.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { const was = searching(); lookQuery = search.value.trim(); if (!was) searchTab = 'all'; draw(); }, 120); });
     search.addEventListener('keydown', e => { if (e.key === 'Escape' && search.value) { search.value = ''; lookQuery = ''; draw(); } });
@@ -240,7 +240,7 @@
     }
     function drawNotice() {
       notice.replaceChildren(); notice.hidden = true;
-      if (partial.length && state.tab !== 'phrases') (notice.hidden = false, notice.append(h('div', { class: 'notice' }, `${names(partial)} ${partial.length === 1 ? 'only has' : 'only have'} phrases so far.`, h('button', { type: 'button', class: 'linkish', onclick: () => go({ tab: 'phrases' }, { keepScroll: true }) }, 'Show phrases'))));
+      if (partial.length && state.tab !== 'phrases') (notice.hidden = false, app(notice, h('div', { class: 'notice' }, `${names(partial)} ${partial.length === 1 ? 'only has' : 'only have'} phrases so far.`, h('button', { type: 'button', class: 'linkish', onclick: () => go({ tab: 'phrases' }, { keepScroll: true }) }, 'Show phrases'))));
     }
     async function draw() {
       drawNotice();
@@ -276,22 +276,22 @@
     function drawItems(el, tab, limit = 0) {
       let starOnly = !!prefs.starOnly;
       const top = h('div', { class: 'toolbar' });
-      if (tab === 'grammar' && !searching()) top.append(h('div', { class: 'chips', role: 'group', 'aria-label': 'Grammar topic' }, GRAMMAR.map(([id, label]) => h('button', { type: 'button', class: 'chip', 'aria-pressed': id === state.gl ? 'true' : 'false', onclick: () => go({ gl: id }, { keepScroll: true, quiet: true }) }, label))));
+      if (tab === 'grammar' && !searching()) app(top, h('div', { class: 'chips', role: 'group', 'aria-label': 'Grammar topic' }, GRAMMAR.map(([id, label]) => h('button', { type: 'button', class: 'chip', 'aria-pressed': id === state.gl ? 'true' : 'false', onclick: () => go({ gl: id }, { keepScroll: true, quiet: true }) }, label))));
       const starChip = h('button', { type: 'button', class: 'chip', 'aria-pressed': starOnly ? 'true' : 'false', onclick: () => { starOnly = !starOnly; prefs.starOnly = starOnly; DG.savePrefs(); starChip.setAttribute('aria-pressed', starOnly ? 'true' : 'false'); paint(); } }, '★ Learn first');
-      top.append(starChip);
+      app(top, starChip);
       const wrap = h('div', { class: 'items' });
       el.replaceChildren(...(limit ? [wrap] : [top, wrap])); if (limit) starOnly = false;
-      if (!full.length) { wrap.append(h('div', { class: 'empty' }, `${names(partial)} ${partial.length === 1 ? 'only has' : 'only have'} phrases so far. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ tab: 'phrases' }) }, 'Show phrases'))); return; }
+      if (!full.length) { app(wrap, h('div', { class: 'empty' }, `${names(partial)} ${partial.length === 1 ? 'only has' : 'only have'} phrases so far. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ tab: 'phrases' }) }, 'Show phrases'))); return; }
       function paint() {
         let rows = itemsFor(tab); if (limit) rows = rows.slice(0, limit);
         if (starOnly) rows = rows.filter(m => full.some(l => item(l, m.id)?.star));
         wrap.replaceChildren();
         if (!rows.length) {
-          wrap.append(searching() ? h('div', { class: 'empty' }, `Nothing matches "${lookQuery}" here.`) : h('div', { class: 'empty' }, `Nothing at ${state.level} in this tab. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ level: 'all' }, { keepScroll: true }) }, 'Show all levels')));
+          app(wrap, searching() ? h('div', { class: 'empty' }, `Nothing matches "${lookQuery}" here.`) : h('div', { class: 'empty' }, `Nothing at ${state.level} in this tab. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ level: 'all' }, { keepScroll: true }) }, 'Show all levels')));
           return;
         }
-        if (narrow.matches) wrap.append(h('div', { class: 'ck-list' }, rows.map(m => itemCard(m))));
-        else wrap.append(itemTable(rows));
+        if (narrow.matches) app(wrap, h('div', { class: 'ck-list' }, rows.map(m => itemCard(m))));
+        else app(wrap, itemTable(rows));
       }
       function toggleDetails(m, open) {
         return h('div', { class: 'dets', style: `--cols:${Math.min(full.length, 3)}` },
@@ -301,7 +301,7 @@
       }
       function itemTable(rows) {
         const table = h('table', { class: 'cmp', style: `--cols:${full.length}` });
-        table.append(h('thead', {}, h('tr', {}, h('th', { class: 'en-h', scope: 'col' }, 'English'), full.map(l => h('th', { scope: 'col' }, meta(l).name)))));
+        app(table, h('thead', {}, h('tr', {}, h('th', { class: 'en-h', scope: 'col' }, 'English'), full.map(l => h('th', { scope: 'col' }, meta(l).name)))));
         const tbody = h('tbody');
         for (const m of rows) {
           const starred = full.some(l => item(l, m.id)?.star);
@@ -313,9 +313,9 @@
           const toggle = () => { const open = dtr.hidden; dtr.hidden = !open; tr.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); };
           tr.addEventListener('click', e => { if (!window.getSelection()?.toString() && !e.target.closest('.det-actions')) { if (e.target !== btn) btn.focus(); toggle(); } });
           btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
-          tbody.append(tr, dtr);
+          app(tbody, tr, dtr);
         }
-        table.append(tbody);
+        app(table, tbody);
         return table;
       }
       function itemCard(m) {
@@ -363,11 +363,11 @@
         list.replaceChildren();
         if (!rows.length) {
           const none = !searching() && (CHUNK_EN || []).length && !(CHUNK_EN || []).some(c => chunkLevel(c) === state.level);
-          list.append(none ? h('div', { class: 'empty' }, `No ${state.level} phrases yet. Try: `, h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B1' }, { keepScroll: true }) }, 'B1'), ' ', h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B2' }, { keepScroll: true }) }, 'B2'))
+          app(list, none ? h('div', { class: 'empty' }, `No ${state.level} phrases yet. Try: `, h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B1' }, { keepScroll: true }) }, 'B1'), ' ', h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'B2' }, { keepScroll: true }) }, 'B2'))
             : h('div', { class: 'empty' }, searching() ? `No phrases match "${lookQuery}".` : 'No phrases here.'));
           more.hidden = true; return;
         }
-        for (const c of rows.slice(0, shown)) list.append(phraseCard(c, expandAll));
+        for (const c of rows.slice(0, shown)) app(list, phraseCard(c, expandAll));
         more.hidden = !!limit || shown >= rows.length;
         more.textContent = `Show ${Math.min(60, rows.length - shown)} more (${fmt(rows.length - shown)} left)`;
       }
@@ -428,14 +428,14 @@
       const T3 = ['past', 'present', 'future'], A3 = ['simple', 'progressive', 'perfect'];
       const grid = h('div', { class: 'go-grid' }, h('div'), T3.map(t => h('div', { class: 'go-h' }, t === 'present' ? 'Now' : t[0].toUpperCase() + t.slice(1))));
       for (const a of A3) {
-        grid.append(h('div', { class: 'go-rh' }, a));
+        app(grid, h('div', { class: 'go-rh' }, a));
         for (const t of T3) {
           const c = L.cells[`${t}.${a}`]; const k = `${t}.${a}`;
           const w = c.form.split(/\s+/); const mask = w.map(() => false);
           if (k !== 'present.simple') for (const m of c.marker) { const mw = m.split(/\s+/); for (let i = 0; i + mw.length <= w.length; i++) if (mw.every((x, j) => w[i + j] === x)) { for (let j = 0; j < mw.length; j++) mask[i + j] = true; break; } }
           const sent = h('div', { class: 't go-f', lang, dataset: { script: meta(lang).script } });
-          w.forEach((x, i) => { sent.append(mask[i] ? h('mark', {}, x) : x); if (i < w.length - 1) sent.append(' '); });
-          grid.append(h('div', { class: 'go-cell' }, sent, c.translit ? h('div', { class: 'tr' }, c.translit) : null, h('div', { class: 'gl' }, TURNS.english[k].form),
+          w.forEach((x, i) => { app(sent, mask[i] ? h('mark', {}, x) : x); if (i < w.length - 1) app(sent, ' '); });
+          app(grid, h('div', { class: 'go-cell' }, sent, c.translit ? h('div', { class: 'tr' }, c.translit) : null, h('div', { class: 'gl' }, TURNS.english[k].form),
             c.status !== 'form' ? h('span', { class: 'badge' + (c.status === 'none' ? ' none' : '') }, c.status === 'none' ? 'no such form' : 'workaround') : null));
         }
       }
@@ -524,10 +524,10 @@
     const autoplay = prefs.drillAudio !== false;
     const sub = state.sub; state.sub = null;
     if (sub) history.replaceState(null, '', '#drill');
-    view.append(header('Drill · ' + names(langs0), 'Drill', 'Say the English sentence out loud in the language shown, then check the answer and mark how it went. Misses come back sooner.'));
-    const stage = h('div', { class: 'drill-stage' }); view.append(stage);
+    app(view, header('Drill · ' + names(langs0), 'Drill', 'Say the English sentence out loud in the language shown, then check the answer and mark how it went. Misses come back sooner.'));
+    const stage = h('div', { class: 'drill-stage' }); app(view, stage);
     window.__cleanup = () => stage._cleanup?.();
-    stage.append(skeleton());
+    app(stage, skeleton());
     let langs = langs0;
     Promise.all([ensureSentences(langs0), ensureChunks(langs0)]).then(() => {
       langs = langs0.filter(l => LANG[l] || CHUNK[l]);
@@ -586,27 +586,27 @@
       const startLabel = nDue && nNew ? `Start: ${plural(nDue, 'review')} + ${nNew} new` : nDue ? `Start: ${plural(nDue, 'review')}` : `Start: ${nNew} new`;
       const panel = h('div', { class: 'setup' });
       const startBtn = h('button', { type: 'button', class: 'btn primary big', id: 'drill-start', disabled: !p.queue.length, onclick: () => start(p) }, p.queue.length ? startLabel : 'Nothing to start');
-      panel.append(h('div', { class: 'start-row' }, startBtn,
+      app(panel, h('div', { class: 'start-row' }, startBtn,
         h('span', { class: 'muted small' }, p.queue.length ? (p.queue.length >= size ? `${size} cards is your session length; change it in Options.` : `${plural(p.queue.length, 'card')}.`) : '')));
       if (!p.queue.length) {
         const why = h('div', { class: 'notice' });
         if (!p.due.length && p.newAvail === 0) {
-          why.append(`No cards at ${levelLabel()} for ${names(p.L)} with these card types.`,
+          app(why, `No cards at ${levelLabel()} for ${names(p.L)} with these card types.`,
             state.level !== 'all' ? h('button', { type: 'button', class: 'btn small-btn', onclick: () => go({ level: 'all' }) }, 'Use all levels') : null);
         } else {
-          why.append(`Nothing due, and today's new cards are used up (${DG.newPerDay()} per language).`,
+          app(why, `Nothing due, and today's new cards are used up (${DG.newPerDay()} per language).`,
             h('button', { type: 'button', class: 'btn small-btn', onclick: () => start(plan({ extra: 10 })) }, '10 more new cards'));
         }
-        panel.append(why);
+        app(panel, why);
       }
-      panel.append(h('p', { class: 'stats-line' },
+      app(panel, h('p', { class: 'stats-line' },
         h('span', {}, h('b', {}, fmt(p.due.length)), ' due today'), h('span', {}, h('b', {}, fmt(p.fresh.length)), ' new today'),
         h('span', {}, h('b', {}, fmt(known)), ' known'), h('span', {}, h('b', {}, streak), streak === 1 ? ' day in a row' : ' days in a row')));
-      if (p.outside.length) panel.append(h('p', { class: 'small muted' }, `Includes ${plural(p.outside.length, 'review')} from ${p.outsideLevels.join(', ')} or other card types, so nothing due gets skipped.`));
+      if (p.outside.length) app(panel, h('p', { class: 'small muted' }, `Includes ${plural(p.outside.length, 'review')} from ${p.outsideLevels.join(', ')} or other card types, so nothing due gets skipped.`));
       const queued = (prefs.queueNext || []).length;
-      if (queued) panel.append(h('p', { class: 'small muted' }, `${plural(queued, 'card')} you picked in Look up come first. `, h('button', { type: 'button', class: 'linkish', onclick: () => { prefs.queueNext = []; DG.savePrefs(); setup(); } }, 'Clear')));
+      if (queued) app(panel, h('p', { class: 'small muted' }, `${plural(queued, 'card')} you picked in Look up come first. `, h('button', { type: 'button', class: 'linkish', onclick: () => { prefs.queueNext = []; DG.savePrefs(); setup(); } }, 'Clear')));
       const noVoice = p.L.filter(l => !voiceFor(l));
-      if (autoplay && noVoice.length && 'speechSynthesis' in window && speechSynthesis.getVoices().length) panel.append(h('p', { class: 'small muted' }, `No voice on this device for: ${names(noVoice)}.`));
+      if (autoplay && noVoice.length && 'speechSynthesis' in window && speechSynthesis.getVoices().length) app(panel, h('p', { class: 'small muted' }, `No voice on this device for: ${names(noVoice)}.`));
       const perLang = h('div', { class: 'perlang' }, p.L.map(l => {
         const dueL = p.due.filter(d => d.l === l).length;
         const knownL = Object.entries(srs).filter(([k, s]) => k.startsWith(l + '|') && s.ivl >= 7).length;
@@ -646,7 +646,7 @@
       const bar = h('div', { class: 'sess-bar' }, h('div', { class: 'sess-prog', 'aria-hidden': 'true' }, h('i')), h('span', { class: 'mono sess-n' }), undoBtn, h('button', { type: 'button', class: 'btn small-btn', onclick: end }, 'End', h('kbd', {}, 'Esc')));
       const cardEl = h('div', { class: 'card sess-card', onclick: e => { if (!revealed && !e.target.closest('button')) reveal(); } });
       const foot = h('div', { class: 'sess-foot' });
-      session.append(bar, cardEl, foot);
+      app(session, bar, cardEl, foot);
 
       function show() {
         if (i >= queue.length) return summary();
@@ -754,7 +754,7 @@
     const langs = allLangs.filter(l => LANG[l]);
     const partial = allLangs.filter(l => !meta(l).full);
     if (!langs.length) {
-      view.append(header('Write', 'Write'), h('div', { class: 'empty' }, 'Writing tasks exist for Khasi, German, Hindi, French and Swiss German. ',
+      app(view, header('Write', 'Write'), h('div', { class: 'empty' }, 'Writing tasks exist for Khasi, German, Hindi, French and Swiss German. ',
         h('button', { type: 'button', class: 'btn small-btn', onclick: () => { DG.setLangs(['german', ...DG.langs().filter(l => l !== 'german')]); render(); } }, 'Add German')));
       return;
     }
@@ -762,18 +762,18 @@
     state.plang = plang;
     const L = LANG[plang]; const m = meta(plang); const M = master();
     const scenarios = FW.scenarios.filter(s => levelOK(s.level));
-    if (!scenarios.length) { view.append(header('Write · ' + levelLabel(), 'Write it in ' + m.name), h('div', { class: 'empty' }, `No writing tasks at ${state.level}. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ level: 'all' }) }, 'Show all levels'))); return; }
+    if (!scenarios.length) { app(view, header('Write · ' + levelLabel(), 'Write it in ' + m.name), h('div', { class: 'empty' }, `No writing tasks at ${state.level}. `, h('button', { type: 'button', class: 'linkish', onclick: () => go({ level: 'all' }) }, 'Show all levels'))); return; }
     const prog = progress[plang] = progress[plang] || {};
     let current = scenarios.find(s => s.id === state.scenario) || scenarios.find(s => !prog[s.id]) || scenarios[0];
     state.scenario = current.id;
     if (location.hash !== hashFor(state)) history.replaceState(null, '', hashFor(state));
 
-    view.append(header('Write · ' + levelLabel(), 'Write it in ' + m.name),
+    app(view, header('Write · ' + levelLabel(), 'Write it in ' + m.name),
       langs.length > 1 ? h('div', { class: 'chips', role: 'group', 'aria-label': 'Language' }, langs.map(l => h('button', { type: 'button', class: 'chip', 'aria-pressed': l === plang ? 'true' : 'false', onclick: () => { state.plang = l; render({ keepScroll: true, quiet: true }); } }, meta(l).name))) : null,
       partial.length ? h('div', { class: 'notice' }, `${names(partial)} ${partial.length === 1 ? 'only has' : 'only have'} phrases so far.`, h('a', { href: 'app.html#lookup/phrases' }, 'Show phrases')) : null);
     const main = h('div', { class: 'scenario' });
     const side = h('aside', { class: 'side' });
-    view.append(h('div', { class: 'practice' }, main, side));
+    app(view, h('div', { class: 'practice' }, main, side));
 
     function drawSide() {
       const done = scenarios.filter(s => prog[s.id]).length;
@@ -786,21 +786,21 @@
     function drawMain() {
       const sc = current; const data = L._sc[sc.id];
       rep(main, h('div', { class: 'sc-head' }, lvl(sc.level), h('span', { class: 'muted small' }, M[sc.function]?.en)));
-      const body = h('div', { class: 'sc-body' }); main.append(body);
-      body.append(h('div', { class: 'situation' }, sc.situation), h('div', { class: 'task' }, sc.task));
+      const body = h('div', { class: 'sc-body' }); app(main, body);
+      app(body, h('div', { class: 'situation' }, sc.situation), h('div', { class: 'task' }, sc.task));
       const hintRow = h('div', { class: 'hint-row' });
-      for (const id of [...sc.recipe, sc.turn]) { const mm = M[id]; if (!mm) continue; const it = item(plang, id); hintRow.append(h('div', { class: `hint l-${mm.layer}` }, h('span', { class: 'id' }, shortEn(id)), it ? T(plang, it.target) : h('span', { class: 't' }, mm.en))); }
+      for (const id of [...sc.recipe, sc.turn]) { const mm = M[id]; if (!mm) continue; const it = item(plang, id); app(hintRow, h('div', { class: `hint l-${mm.layer}` }, h('span', { class: 'id' }, shortEn(id)), it ? T(plang, it.target) : h('span', { class: 't' }, mm.en))); }
       let open = !!prefs.hintsOpen; hintRow.hidden = !open;
       const hintBtn = h('button', { type: 'button', class: 'btn small-btn', 'aria-expanded': open ? 'true' : 'false', onclick: () => { open = !open; prefs.hintsOpen = open; DG.savePrefs(); hintRow.hidden = !open; hintBtn.textContent = open ? 'Hide building blocks' : 'Show building blocks'; hintBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); } }, open ? 'Hide building blocks' : 'Show building blocks');
-      body.append(h('div', { class: 'row' }, hintBtn, h('span', { class: 'muted small' }, 'The phrases the model answer uses.')), hintRow);
+      app(body, h('div', { class: 'row' }, hintBtn, h('span', { class: 'muted small' }, 'The phrases the model answer uses.')), hintRow);
       const ta = h('textarea', { id: 'attempt', placeholder: `Your answer in ${m.name}`, 'aria-label': `Your answer in ${m.name}`, lang: plang, dataset: { script: m.script } });
       if (prog[sc.id]?.attempt) ta.value = prog[sc.id].attempt;
       let hasKey = false; try { hasKey = !!localStorage.getItem(KEYS.apikey); } catch {}
       const aiBtn = hasKey ? h('button', { type: 'button', class: 'btn', onclick: aiCheck }, 'Check with Claude') : null;
       const nextBtn = h('button', { type: 'button', class: 'btn', onclick: () => { const i = scenarios.indexOf(current); current = scenarios[(i + 1) % scenarios.length]; go({ scenario: current.id }, { keepScroll: true, quiet: true }); } }, 'Next task');
-      body.append(ta, h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn primary', onclick: check }, 'Check'), h('button', { type: 'button', class: 'btn', onclick: () => reveal() }, 'Show model answer'), aiBtn, h('span', { style: 'flex:1' }), nextBtn));
-      if (!hasKey) body.append(h('p', { class: 'small' }, h('button', { type: 'button', class: 'linkish', onclick: DG.openSettings }, 'Add an API key to check with Claude')));
-      const result = h('div', { class: 'result' }); body.append(result);
+      app(body, ta, h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn primary', onclick: check }, 'Check'), h('button', { type: 'button', class: 'btn', onclick: () => reveal() }, 'Show model answer'), aiBtn, h('span', { style: 'flex:1' }), nextBtn));
+      if (!hasKey) app(body, h('p', { class: 'small' }, h('button', { type: 'button', class: 'linkish', onclick: DG.openSettings }, 'Add an API key to check with Claude')));
+      const result = h('div', { class: 'result' }); app(body, result);
       if (prog[sc.id]) reveal(false);
 
       const norm = s => (s || '').normalize('NFC').toLowerCase().replace(/[.,!?;:"'’“”()\-]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -815,7 +815,7 @@
         if (!data) { rep(result, h('div', { class: 'empty' }, 'No model answer for this task yet.')); return; }
         rep(result, ...(keep ? [...result.children].filter(el => !el.classList.contains('model')) : []));
         const blocks = h('div', { class: 'tiles-row' }, (data.breakdown || []).map(b => h('span', { class: `tile ${{ door: 'r-door', glue: 'r-glue', turn: 'r-turn' }[b.layer] || ''}`, lang: plang, dataset: { script: m.script } }, b.text, h('span', { class: 'lb' }, b.label || (b.id ? shortEn(b.id) : '') || ''))));
-        result.append(h('div', { class: 'model' }, h('div', { class: 'eyebrow' }, 'Model answer'), blocks,
+        app(result, h('div', { class: 'model' }, h('div', { class: 'eyebrow' }, 'Model answer'), blocks,
           data.model.translit ? h('div', { class: 'tr' }, data.model.translit) : null, h('div', { class: 'gl' }, data.model.gloss),
           data.alt ? h('div', { class: 'small' }, h('span', { class: 'muted' }, 'Also natural: '), T(plang, data.alt)) : null,
           data.tip ? h('div', { class: 'small' }, h('b', {}, 'Common mistake: '), data.tip) : null,
