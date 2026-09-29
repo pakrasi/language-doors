@@ -439,7 +439,7 @@
             c.status !== 'form' ? h('span', { class: 'badge' + (c.status === 'none' ? ' none' : '') }, c.status === 'none' ? 'no such form' : 'workaround') : null));
         }
       }
-      return h('section', { class: 'section' }, h('h3', {}, '"Go" in nine tenses'), h('p', { class: 'small muted' }, 'Highlighted words carry the tense. ', h('a', { href: 'index.html#time' }, 'Compare all five languages')), h('div', { class: 'go-scroll' }, grid));
+      return h('section', { class: 'section' }, h('h3', {}, '"Go" in nine tenses'), h('p', { class: 'small muted' }, 'Highlighted words carry the tense. ', h('a', { href: 'index.html#time' }, 'Compare all ten languages')), h('div', { class: 'go-scroll' }, grid));
     }
     draw();
   }

@@ -87,6 +87,9 @@ button,select,input,textarea{font:inherit;color:inherit}
 .tile.r-slot{background:var(--slot-soft);border-bottom-color:var(--slot)}
 .tile.r-x{background:transparent;border-bottom-color:transparent;outline:1px dashed var(--neutral);outline-offset:-1px;color:var(--ink-2)}
 .tile[data-script="devanagari"]{font-family:"Noto Sans Devanagari",var(--sans)}
+.tile[data-script="bengali"]{font-family:"Noto Sans Bengali",var(--sans)}
+.tile[data-script="arabic"]{font-family:"Noto Naskh Arabic",var(--sans);line-height:1.2}
+.tile .role{direction:ltr}
 .tile .lb{font-family:var(--mono);font-size:10.5px;font-weight:400;color:var(--ink-3)}
 .tiles-row{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end}
 .tiles-row.sm .tile{font-size:14px;padding:3px 7px 2px;border-bottom-width:2px}

@@ -9,11 +9,11 @@ Igloo is a static site for learning languages with one reusable framework: the s
 - **Functions**: what you are doing with the sentence (decline, suggest, complain). Functions pick recipes; recipes name doors and glue by ID.
 - **Chunks**: fixed phrases with no slot.
 
-Ten languages: five full (Khasi, German, Hindi, French, Swiss German) and five with phrases only for now (Bengali, Spanish, Italian, Portuguese, Arabic). Five levels, A1 to C1.
+Ten languages. The homepage shows all ten; in the app, Look up grammar and Write cover five (Khasi, German, Hindi, French, Swiss German) and the other five (Bengali, Spanish, Italian, Portuguese, Arabic) have phrases only for now. Five levels, A1 to C1.
 
 ## Pages
 
-- `index.html` (homepage): a Today panel for returning visitors (reviews due per language, new cards left, one-tap Start), one sentence in five languages, and How it works: change the sentence, word order compared with English, "go" in nine tenses, the parts, and links into the app.
+- `index.html` (homepage): a Today panel for returning visitors (reviews due per language, new cards left, one-tap Start), one sentence in all ten languages, and How it works: change the sentence, word order compared with English, "go" in nine tenses, the parts, and links into the app.
 - `app.html`: Drill, Look up (Phrases, Verb frames, Linking words, Grammar, Notes, with one search across all of them) and Write. Hashes: `#drill`, `#drill/start`, `#lookup/<tab>`, `#write/<SC-id>`.
 
 Old links still work: the homepage forwards app-style hashes (`index.html#drill/B1/german`, `#reference/...`, `#chunks/...`, `#practice/...`) to `app.html`, which maps the old view names; `#framework` goes to How it works; `explore.html` redirects to the homepage.
@@ -26,11 +26,11 @@ app.html, app.css, app.js          Drill, Look up, Write
 tokens.css, site.js                shared: colour tokens, controls, site bar, settings, languages sheet
 data/framework.json                language-neutral master: layers, levels, item IDs, 30 scenarios
 data/<lang>.json                   one file per language, same IDs
-data/turns.json                    "go" in nine tenses for the five full languages (built, see below)
+data/turns.json                    "go" in nine tenses for all ten languages (built, see below)
 data/sentences/                    sentence bank for the homepage and Drill (en.json built by a script)
 data/chunks/                       the phrase bank (1,450 phrases)
 scripts/build_framework.py         regenerates framework.json from the tuples inside it
-scripts/build_turns.py             builds data/turns.json from each turnGrid plus authored status/marker/alt
+scripts/build_turns.py             builds data/turns.json from each turnGrid plus authored status/marker/alt, and from data/turns_src/
 scripts/build_sentences_en.py      builds data/sentences/en.json (English tokens, roles, hints)
 scripts/validate.py                checks a language file against the master
 scripts/validate_sentences.py      checks a data/sentences/<lang>.json file
@@ -49,7 +49,7 @@ python3 scripts/validate.py data/<lang>.json
 
 To add a door, glue, chunk or scenario, add it in `scripts/build_framework.py`, rebuild, and add the matching entry to every language file (the validator will list what is missing).
 
-If you change a language's `turnGrid`, rerun `python3 scripts/build_turns.py`. It copies gloss and note, and checks that every authored marker is still a run of whole words in its form.
+If you change a language's `turnGrid` or a file in `data/turns_src/`, rerun `python3 scripts/build_turns.py`. It copies gloss and note, and checks that every authored marker is still a run of whole words in its form.
 
 ## Local preview
 

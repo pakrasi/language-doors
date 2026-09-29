@@ -2,7 +2,7 @@
    data loading and the review counters the Today panel and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20260929b';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20260929c';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen',
@@ -158,15 +158,18 @@
             h('button', { type: 'button', 'aria-label': `Move ${m.name} down`, disabled: i === mine.length - 1, dataset: { mv: id + '1' }, onclick: () => move(1) }, '↓')) : h('span'));
       };
       const others = FW.languages.filter(l => !mine.includes(l.id));
+      // the homepage shows every language fully; only the app's Look up grammar tabs and Write are phrases-only for some
+      const flat = document.body.classList.contains('home');
+      const addable = others.filter(l => flat || l.full), partialOnly = flat ? [] : others.filter(l => !l.full);
       sheet.replaceChildren(h('div', { class: 'dlg-body' },
         h('div', { class: 'dlg-head' }, h('h2', { id: 'lang-sheet-title', style: 'font-size:20px' }, 'My languages'),
           h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Close', html: ICON.close, onclick: () => sheet.close() })),
         h('p', { class: 'small muted' }, 'The first language gets new cards first and leads each round in Drill.'),
         h('div', { class: 'lang-list' }, mine.map((id, i) => item(id, true, i))),
-        others.filter(l => l.full).length ? h('div', { class: 'sheet-group' }, 'Add') : null,
-        h('div', { class: 'lang-list' }, others.filter(l => l.full).map(l => item(l.id, false, -1))),
-        others.filter(l => !l.full).length ? h('div', { class: 'sheet-group' }, 'Phrases only for now') : null,
-        h('div', { class: 'lang-list' }, others.filter(l => !l.full).map(l => item(l.id, false, -1))),
+        addable.length ? h('div', { class: 'sheet-group' }, 'Add') : null,
+        h('div', { class: 'lang-list' }, addable.map(l => item(l.id, false, -1))),
+        partialOnly.length ? h('div', { class: 'sheet-group' }, 'Phrases only for now') : null,
+        h('div', { class: 'lang-list' }, partialOnly.map(l => item(l.id, false, -1))),
         h('div', { class: 'dlg-row' }, h('button', { type: 'button', class: 'btn primary', onclick: () => sheet.close() }, 'Done'))));
     };
     draw();

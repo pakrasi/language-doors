@@ -1,4 +1,4 @@
-/* Doors and Glue homepage: Today panel, one sentence in five languages, change it, word order, tenses, the parts.
+/* Igloo homepage: Today panel, one sentence in ten languages, change it, word order, tenses, the parts.
    Reads data/framework.json, data/sentences/*.json and data/turns.json. No build step. */
 (() => {
   'use strict';
@@ -16,6 +16,7 @@
   let FW, EN, TURNS, LANGS = [], SENT = {};
   const state = { meaning: 'decline', variant: 'now', cell: 'present.simple', test: false, touched: false, answers: {} };
   const meta = id => FW.languages.find(l => l.id === id);
+  const dirOf = lang => (lang !== 'en' && meta(lang)?.rtl ? 'rtl' : null);
   const roleClass = roles => { for (const r of ROLE_PRI) if (roles.includes(r)) return ROLE_CLASS[r]; return ''; };
   const roleColor = role => ROLE_COLOR[role] || 'var(--neutral)';
   const roleLabel = roles => roles.map(r => EN.roles[r] || r).join(' + ');
@@ -39,7 +40,7 @@
   // ---------- tiles and rows ----------
   function tile(lang, tok, key = '') {
     const [text, rolesStr] = tok; const roles = rolesStr.split('|');
-    return h('span', { class: 'tile ' + roleClass(roles) + (lang === 'en' ? ' en' : ''), tabindex: 0, dataset: { roles: rolesStr, key, script: lang === 'en' ? 'latin' : meta(lang).script }, lang: lang === 'en' ? 'en' : lang },
+    return h('span', { class: 'tile ' + roleClass(roles) + (lang === 'en' ? ' en' : ''), tabindex: 0, dataset: { roles: rolesStr, key, script: lang === 'en' ? 'latin' : meta(lang).script }, lang: lang === 'en' ? 'en' : lang, dir: lang === 'en' ? 'ltr' : dirOf(lang) },
       h('span', { class: 'role' }, roleLabel(roles)), text);
   }
   function keyed(tokens) { const seen = {}; return tokens.map(t => { const k = t[1]; seen[k] = (seen[k] || 0) + 1; return { tok: t, key: `${k}#${seen[k]}` }; }); }
@@ -61,8 +62,8 @@
   function langRow(lang, opts = {}) {
     const m = lang === 'en' ? { name: 'English', native: '' } : meta(lang);
     return h('div', { class: 'lang-row' + (lang === 'en' ? ' en' : ''), dataset: { lang } },
-      h('div', { class: 'row-name' }, h('b', {}, m.name), m.native && m.native !== m.name ? h('span', {}, m.native) : null),
-      h('div', { class: 'row-tiles' }),
+      h('div', { class: 'row-name' }, h('b', {}, m.name), m.native && m.native !== m.name ? h('span', { lang, dir: m.rtl ? 'rtl' : null, dataset: { script: m.script } }, m.native) : null),
+      h('div', { class: 'row-tiles', dir: dirOf(lang) }),
       h('div', { class: 'row-tr', hidden: true }),
       opts.why ? h('div', { class: 'row-why' }) : null,
       opts.cap ? h('div', { class: 'row-cap', 'aria-live': 'polite' }) : null);
@@ -130,23 +131,20 @@
   }
   function renderFirstRun() {
     const box = $('#first-run');
-    const full = FW.languages.filter(l => l.full).map(l => l.id);
-    let chosen = DG.hasChosenLangs() ? DG.langs().filter(l => full.includes(l)) : DG.DEFAULT_LANGS.filter(l => full.includes(l));
+    const all = FW.languages.map(l => l.id);
+    let chosen = DG.hasChosenLangs() ? DG.langs().filter(l => all.includes(l)) : DG.DEFAULT_LANGS.slice();
     const draw = () => {
-      const togs = full.slice().sort((a, b) => (chosen.includes(a) ? chosen.indexOf(a) : 99) - (chosen.includes(b) ? chosen.indexOf(b) : 99))
+      const togs = all.slice().sort((a, b) => (chosen.includes(a) ? chosen.indexOf(a) : 99) - (chosen.includes(b) ? chosen.indexOf(b) : 99))
         .map(id => h('button', { type: 'button', class: 'tog', 'aria-pressed': chosen.includes(id) ? 'true' : 'false', onclick: () => {
           chosen = chosen.includes(id) ? chosen.filter(x => x !== id) : [...chosen, id];
           draw(); box.querySelector(`[data-id="${id}"]`)?.focus();
         }, dataset: { id } }, meta(id).name));
-      const partial = FW.languages.filter(l => !l.full).map(l => l.name);
       box.replaceChildren(h('div', { class: 'first-inner' },
         h('h2', { id: 'first-title' }, 'Which languages are you learning?'),
         h('p', { class: 'small muted' }, 'Tap to add or remove. The first one gets new cards first; you can reorder them later in Settings.'),
         h('div', { class: 'tog-row' }, togs),
-        h('p', { class: 'small muted' }, `Phrases only for now: ${partial.join(', ')}.`),
         h('div', {}, h('button', { type: 'button', class: 'btn primary big', disabled: !chosen.length, onclick: () => {
-          const extra = DG.hasChosenLangs() ? DG.langs().filter(l => !full.includes(l)) : [];
-          DG.setLangs([...chosen, ...extra]); location.href = 'app.html#drill/try';
+          DG.setLangs(chosen); location.href = 'app.html#drill/try';
         } }, 'Try 10 prompts'))));
     };
     draw();
@@ -238,14 +236,19 @@
     const out = [];
     for (const lang of LANGS) {
       const toks = tokensFor(lang, state.meaning, state.variant); if (!toks) continue;
-      const top = h('div', { class: 'tiles top' }, en.map(t => tile('en', t)));
-      const bot = h('div', { class: 'tiles bot' }, toks.map(t => tile(lang, t)));
+      const rtl = dirOf(lang) === 'rtl';
+      const bot = h('div', { class: 'tiles bot', dir: dirOf(lang) }, toks.map(t => tile(lang, t)));
+      const botName = rtl ? `${meta(lang).name}, read right to left` : meta(lang).name;
+      // for a right-to-left language the English row is laid out right to left too (wide screens only),
+      // so the lines compare reading order the same way as for the other languages
+      const top = h('div', { class: 'tiles top', dir: rtl && !vert ? 'rtl' : null }, en.map(t => tile('en', t)));
+      const topName = rtl && !vert ? `English, laid out right to left to line up with ${meta(lang).name}` : 'English';
       const svg = svgEl('svg'); svg.setAttribute('aria-hidden', 'true');
       const body = vert
-        ? h('div', { class: 'river-body' }, svg, h('div', { class: 'lbl top-l' }, 'English'), h('div', { class: 'lbl bot-l' }, meta(lang).name), top, bot)
-        : h('div', { class: 'river-body' }, svg, h('div', { class: 'lbl' }, 'English'), top, bot, h('div', { class: 'lbl below' }, meta(lang).name));
+        ? h('div', { class: 'river-body' }, svg, h('div', { class: 'lbl top-l' }, topName), h('div', { class: 'lbl bot-l' }, botName), top, bot)
+        : h('div', { class: 'river-body' }, svg, h('div', { class: 'lbl' }, topName), top, bot, h('div', { class: 'lbl below' }, botName));
       const count = h('span', { class: 'river-count' });
-      const p = h('div', { class: 'river' + (vert ? ' vert' : '') }, h('div', { class: 'river-head' }, h('b', {}, meta(lang).name), count), body);
+      const p = h('div', { class: 'river' + (vert ? ' vert' : ''), dataset: { lang } }, h('div', { class: 'river-head' }, h('b', {}, meta(lang).name), count), body);
       out.push(p); riverPanels.push({ svg, top, bot, count, body, vert });
     }
     riverStage.replaceChildren(...out);
@@ -297,6 +300,14 @@
     }
     return out;
   }
+  // under each cell: how many of the shown languages have a real form, as a count and a small bar
+  function realCount(k) {
+    const ls = LANGS.filter(l => TURNS.languages[l]);
+    const n = ls.filter(l => TURNS.languages[l].cells[k]?.status === 'form').length;
+    return h('span', { class: 'tp-count', 'aria-hidden': 'true', title: `${n} of ${ls.length} languages have a real form` },
+      h('span', { class: 'tp-bar' }, h('i', { style: `width:${ls.length ? 100 * n / ls.length : 0}%` })),
+      h('span', { class: 'n' }, `${n}/${ls.length}`));
+  }
   function buildTenses() {
     const grid = $('#tp-grid'); grid.setAttribute('role', 'group');
     const kids = [h('div', { class: 'tp-ch first' })];
@@ -306,9 +317,9 @@
       kids.push(h('div', { class: 'tp-rh', 'aria-hidden': 'true' }, h('span', { class: 'l' }, a), h('span', { class: 's' }, { simple: 'S', progressive: 'P', perfect: 'Pf' }[a])));
       for (const t of TIMES) {
         const k = `${t}.${a}`; const en = TURNS.english[k];
-        kids.push(h('button', { type: 'button', class: 'tp-cell', 'aria-pressed': 'false', tabindex: -1, dataset: { cell: k }, 'aria-label': `${CELL_NAME(k)}: ${en.form}`, onclick: () => { state.touched = true; selectCell(k); } },
+        kids.push(h('button', { type: 'button', class: 'tp-cell', 'aria-pressed': 'false', tabindex: -1, dataset: { cell: k }, 'aria-label': `${CELL_NAME(k)}: ${en.form}. ${LANGS.filter(l => TURNS.languages[l]?.cells[k]?.status === 'form').length} of ${LANGS.filter(l => TURNS.languages[l]).length} languages have a real form`, onclick: () => { state.touched = true; selectCell(k); } },
           h('span', { class: 'c' }, h('span', { class: 'long' }, en.form), h('span', { class: 'short' }, en.short)),
-          h('span', { class: 'tp-dots', 'aria-hidden': 'true' }, LANGS.map(l => h('i', { class: 'dot' + (TURNS.languages[l]?.cells[k]?.status === 'form' ? ' on' : '') })))));
+          realCount(k)));
       }
     }
     grid.replaceChildren(...kids);
@@ -351,7 +362,7 @@
     const showMarks = !quiz;
     const before = {};
     if (animate && !reduce) r.querySelectorAll('.tp-sent .tp-w').forEach(el => { before[el.dataset.k] = el.getBoundingClientRect(); });
-    const sent = h('div', { class: 'tp-sent', lang, dataset: { script: m.script } });
+    const sent = h('div', { class: 'tp-sent', lang, dir: m.rtl ? 'rtl' : null, dataset: { script: m.script } });
     if (quiz) {
       const { w, mask } = markMask(c.form, c.marker);
       w.forEach((x, i) => { sent.append(h('button', { type: 'button', class: 'tp-w', onclick: () => { state.answers[lang] = { i, ok: mask[i] }; drawTenseRow(r, false); r.querySelector('.tp-fb')?.focus(); } }, x)); if (i < w.length - 1) sent.append(' '); });
@@ -362,7 +373,7 @@
     const more = c.note && c.note.length > 70 ? h('button', { type: 'button', class: 'linkish tp-more', 'aria-expanded': 'false', onclick: e => { const o = note.classList.toggle('open'); e.currentTarget.textContent = o ? 'less' : 'more'; e.currentTarget.setAttribute('aria-expanded', o ? 'true' : 'false'); } }, 'more') : null;
     const altLabel = c.altLabel || 'also';
     r.replaceChildren(
-      h('div', { class: 'tp-lang' }, h('b', {}, m.name), m.native !== m.name ? h('span', {}, m.native) : null),
+      h('div', { class: 'tp-lang' }, h('b', {}, m.name), m.native !== m.name ? h('span', { lang, dir: m.rtl ? 'rtl' : null, dataset: { script: m.script } }, m.native) : null),
       h('div', { class: 'tp-body' },
         quiz ? h('p', { class: 'tp-q' }, 'Which word carries the tense? Tap it.') : null,
         sent,
@@ -372,7 +383,7 @@
         !quiz ? h('div', { class: 'tp-meta' },
           c.status === 'periphrasis' ? h('span', { class: 'badge' }, 'workaround') : c.status === 'none' ? h('span', { class: 'badge none' }, 'no such form') : null,
           others.length ? h('span', { class: 'tp-same' }, `Same form as ${others.join(' and ')}.`) : null) : null,
-        !quiz && c.note ? note : null, !quiz ? more : null));
+        !quiz && c.note ? h('div', { class: 'tp-noteline' }, note, more) : null));
     if (animate && !reduce) {
       r.querySelectorAll('.tp-sent .tp-w').forEach(el => {
         const f = before[el.dataset.k]; const l = el.getBoundingClientRect();
@@ -391,9 +402,9 @@
 
   // ---------- boot ----------
   function orderLangs() {
-    const full = FW.languages.filter(l => l.full !== false).map(l => l.id);
-    const mine = DG.langs().filter(l => full.includes(l));
-    return [...mine, ...full.filter(l => !mine.includes(l))];
+    const all = FW.languages.map(l => l.id);
+    const mine = DG.langs().filter(l => all.includes(l));
+    return [...mine, ...all.filter(l => !mine.includes(l))];
   }
   async function boot() {
     try {
