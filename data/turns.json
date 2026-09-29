@@ -287,7 +287,8 @@
      "altTranslit": "main gaii",
      "markerTr": [
       "gayaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "past.progressive": {
      "form": "मैं जा रहा था",
@@ -303,7 +304,8 @@
      "altTranslit": "main jaa rahii thii",
      "markerTr": [
       "rahaa thaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "past.perfect": {
      "form": "मैं गया था",
@@ -319,7 +321,8 @@
      "altTranslit": "main gaii thii",
      "markerTr": [
       "gayaa thaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "present.simple": {
      "form": "मैं जाता हूँ",
@@ -331,7 +334,8 @@
      "alt": "मैं जाती हूँ",
      "translit": "main jaataa huun",
      "altTranslit": "main jaatii huun",
-     "markerTr": []
+     "markerTr": [],
+     "altLabel": "said by a woman"
     },
     "present.progressive": {
      "form": "मैं जा रहा हूँ",
@@ -347,7 +351,8 @@
      "altTranslit": "main jaa rahii huun",
      "markerTr": [
       "rahaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "present.perfect": {
      "form": "मैं गया हूँ",
@@ -363,7 +368,8 @@
      "altTranslit": "main gaii huun",
      "markerTr": [
       "gayaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "future.simple": {
      "form": "मैं जाऊँगा",
@@ -379,7 +385,8 @@
      "altTranslit": "main jaauungii",
      "markerTr": [
       "jaauungaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "future.progressive": {
      "form": "मैं जा रहा हूँगा",
@@ -395,7 +402,8 @@
      "altTranslit": "main jaa rahii huungii",
      "markerTr": [
       "rahaa huungaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     },
     "future.perfect": {
      "form": "मैं गया हूँगा",
@@ -411,7 +419,8 @@
      "altTranslit": "main gaii huungii",
      "markerTr": [
       "gayaa huungaa"
-     ]
+     ],
+     "altLabel": "said by a woman"
     }
    }
   },

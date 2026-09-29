@@ -6,7 +6,7 @@ full data/<lang>.json files. gloss and note are copied from each language's turn
 fields below are authored here:
 
   form    the main form (the text before " / " in turnGrid, written out in full)
-  alt     another common way to say it, or the feminine form for Hindi (shown as "also: ...")
+  alt     another common way to say it, or the feminine form for Hindi (altLabel "said by a woman")
   status  "form"        the language has a real tense or construction for this cell
           "periphrasis" no dedicated form; speakers use a workaround (an adverb, a rephrase)
           "none"        the notes say the form does not exist or is not used
@@ -132,6 +132,8 @@ def main():
                 if alt: cell["alt"] = alt
                 if len(row) > 4:
                     cell["translit"], cell["altTranslit"], cell["markerTr"] = row[4], row[5], row[6]
+                if lang == "hindi" and alt:
+                    cell["altLabel"] = "said by a woman"
                     ok &= check_markers(row[4], row[6], f"{lang} {k} translit")
                 cells[k] = cell
         out["languages"][lang] = {"name": L.get("name", lang), "native": L.get("native", ""), "cells": cells}

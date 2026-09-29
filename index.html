@@ -10,97 +10,167 @@
   if (m[1] === 'framework' || m[1] === 'how') { history.replaceState(null, '', '#how'); return; }
   location.replace('app.html' + location.hash);
 })();
+/* Apply the saved theme before first paint. */
+(function () { try { var p = JSON.parse(localStorage.getItem('doors.prefs.v2')) || {}; document.documentElement.dataset.theme = p.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Prism · Doors and Glue</title>
-<meta name="description" content="One meaning, five shapes. An interactive look at how Khasi, German, Hindi, French and Swiss German carry the same sentence.">
+<title>Doors and Glue</title>
+<meta name="description" content="See the same sentence in Khasi, German, Hindi, French and Swiss German, and how each one builds it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&display=swap">
-<link rel="stylesheet" href="home.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='3' fill='%231f6f8b'/%3E%3Crect x='11' y='10' width='10' height='18' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
+<link rel="stylesheet" href="tokens.css?v=20260929">
+<link rel="stylesheet" href="home.css?v=20260929">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' rx='3' fill='%231f6f8b'/%3E%3Crect x='9' y='8' width='8' height='14' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
 </head>
-<body>
-<nav class="bar">
-  <a class="back" href="app.html">← Doors and Glue</a>
-  <div class="bar-acts">
-    <a href="#prism">Prism</a><a href="#machine">Machine</a><a href="#rivers">Rivers</a><a href="#time">Time</a><a href="#coda">Coda</a>
-  </div>
-</nav>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ACT I -->
-<section class="act prism" id="prism">
-  <div class="act-inner">
-    <p class="kicker">I · Prism</p>
-    <h1 class="title">One meaning.<br><em>Five shapes.</em></h1>
-    <p class="prose">A sentence is not its words. It is a recipe: a function, a door, a turn of the dial, some glue. Pass the same recipe through five languages and the light bends differently each time.</p>
-    <div class="prism-stage" id="prism-stage" aria-live="polite"></div>
-    <div class="prism-foot">
-      <button class="ghost" id="prism-replay" type="button">Replay</button>
-      <span class="hint">scroll ↓</span>
+<header class="site-bar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Doors and Glue, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="var(--door)"/><rect x="9" y="8" width="8" height="14" rx="1" fill="var(--surface)"/></svg>
+      <span class="brand-name">Doors and Glue</span>
+    </a>
+    <nav class="views" aria-label="Sections">
+      <a href="app.html#drill" data-view="drill">Drill</a>
+      <a href="app.html#lookup" data-view="lookup">Look up</a>
+      <a href="app.html#write" data-view="write">Write</a>
+      <a href="index.html#how" data-view="how">How it works</a>
+    </nav>
+    <div class="bar-pick" id="bar-pick"></div>
+    <div class="bar-tools">
+      <button id="theme-btn" class="icon-btn" type="button" aria-label="Dark mode" aria-pressed="false"></button>
+      <button id="settings-btn" class="icon-btn" type="button" aria-label="Settings" aria-haspopup="dialog"></button>
     </div>
   </div>
-</section>
+  <div class="scroll-line" id="scroll-line" aria-hidden="true"><i></i></div>
+</header>
 
-<!-- ACT II -->
-<section class="act machine" id="machine">
-  <div class="act-inner two-col">
-    <aside class="side">
-      <p class="kicker">II · The machine</p>
-      <h2 class="title">Turn it.</h2>
-      <p class="prose">Pick a meaning. Then move it in time, negate it, ask it, or swap the glue. Every language re-forms at once. Watch which pieces travel and which stay put: that motion <em>is</em> the grammar.</p>
-      <div class="ctl">
-        <div class="ctl-label">Meaning</div>
-        <div class="chips" id="meaning-chips"></div>
-        <div class="ctl-label">Variant</div>
-        <div class="chips" id="variant-chips"></div>
-        <p class="ctl-hint" id="variant-hint"></p>
-        <div class="ctl-label">Recipe</div>
-        <div class="recipe" id="recipe"></div>
+<main id="main">
+  <!-- Returning visitors: today's reviews first -->
+  <section class="today" id="today" hidden aria-labelledby="today-title"></section>
+
+  <!-- 1 -->
+  <section class="act act-one" id="one" aria-labelledby="one-title">
+    <div class="act-inner">
+      <p class="eyebrow">1 · One sentence</p>
+      <h1 class="display" id="one-title">"I can't come because I have to work" in five languages</h1>
+      <p class="prose">The colours mark what each word does: blue for the verb frames (can, have to), green for the linking word (because). Look at where each language puts them. German sends "muss" to the very end.</p>
+      <div class="one-stage" id="one-stage"></div>
+      <div class="one-foot"><button class="btn small-btn" id="one-replay" type="button">Replay</button></div>
+    </div>
+  </section>
+
+  <!-- First visit: choose languages and try a few cards -->
+  <section class="first-run" id="first-run" hidden aria-labelledby="first-title"></section>
+
+  <!-- How it works -->
+  <section class="how" id="how" aria-labelledby="how-title">
+    <div class="act-inner">
+      <p class="eyebrow">How it works</p>
+      <h2 class="act-title" id="how-title">How it works</h2>
+      <p class="prose">A <b>door</b> is a verb frame with a gap: "I want to ___". A <b>turn</b> changes its tense, or makes it negative or a question. <b>Glue</b> is a linking word like "because", which can change word order. Phrases and vocabulary fill the gaps.</p>
+      <nav class="contents" aria-label="On this page">
+        <a href="#machine">2 · Change it</a><a href="#rivers">3 · Word order</a><a href="#time">4 · Tenses</a><a href="#parts">The parts</a><a href="#next">Next</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="act machine" id="machine" aria-labelledby="machine-title">
+    <div class="act-inner m-grid">
+      <div class="act-side">
+        <div class="m-head">
+          <p class="eyebrow">2 · Change it</p>
+          <h2 class="act-title" id="machine-title">Change the sentence</h2>
+          <p class="prose">Pick a sentence, then put it in the past, make it negative, or turn it into a question. All five languages update together, so you can see which words move.</p>
+        </div>
+        <div class="m-ctl" id="m-ctl">
+          <div class="ctl-label" id="lbl-sentence">Sentence</div>
+          <div class="m-chips" id="meaning-chips" role="group" aria-labelledby="lbl-sentence"></div>
+          <div class="ctl-label" id="lbl-change">Change</div>
+          <div class="seg" id="variant-seg" role="group" aria-labelledby="lbl-change"></div>
+          <p class="ctl-hint" id="variant-hint"></p>
+        </div>
+        <div class="m-extra">
+          <div class="ctl-label">Building blocks</div>
+          <div class="recipe" id="recipe"></div>
+          <p class="small muted">Tap or hover a word to highlight its match in each language. Dashed words have no English match.</p>
+          <div class="legend" id="legend"></div>
+          <p class="hover-cap" id="hover-cap" aria-live="polite">Tap a word</p>
+        </div>
       </div>
-      <p class="prose small">Hover any word. Its counterpart lights up in every other language, including the pieces a language adds that English never had.</p>
-      <div class="legend" id="legend"></div>
-      <p class="hover-cap" id="hover-cap">hover a word</p>
-    </aside>
-    <div class="stage" id="machine-stage"></div>
-  </div>
-</section>
+      <div class="m-rows" id="machine-stage"></div>
+    </div>
+  </section>
 
-<!-- ACT III -->
-<section class="act rivers" id="rivers">
-  <div class="act-inner">
-    <p class="kicker">III · Rivers</p>
-    <h2 class="title">Where the order bends.</h2>
-    <p class="prose">Ribbons run from the English word order to each language's. Parallel ribbons mean the language keeps English order. Braids mean it does not. Count the crossings and you have a measure of how far you must travel from your first language to sound native.</p>
-    <div class="rivers-grid" id="rivers-stage"></div>
-  </div>
-</section>
+  <!-- 3 -->
+  <section class="act rivers" id="rivers" aria-labelledby="rivers-title">
+    <div class="act-inner">
+      <p class="eyebrow">3 · Word order</p>
+      <h2 class="act-title" id="rivers-title">Word order compared with English</h2>
+      <p class="prose">Each line joins an English word to the word doing the same job. Straight lines mean the same order as English; crossing lines mean the order changes.</p>
+      <p class="small muted rivers-now" id="rivers-now"></p>
+      <div class="rivers-list" id="rivers-stage"></div>
+    </div>
+  </section>
 
-<!-- ACT IV -->
-<section class="act time" id="time">
-  <div class="act-inner two-col">
-    <aside class="side">
-      <p class="kicker">IV · Where time lives</p>
-      <h2 class="title">One door, nine turns.</h2>
-      <p class="prose">Take the door <strong>GO</strong> and rotate it through past, present and future, simple, progressive and perfect. Each language changes a different part of the sentence to do it. Only the changed words light up. Some languages move a mountain; some flip one particle.</p>
-      <div class="dial-wrap"><svg id="dial" viewBox="0 0 320 320" role="img" aria-label="A dial with three time sectors and three aspect rings"></svg></div>
-      <p class="ctl-hint" id="dial-caption"></p>
-    </aside>
-    <div class="stage" id="time-stage"></div>
-  </div>
-</section>
+  <!-- 4 -->
+  <section class="act time" id="time" aria-labelledby="time-title">
+    <div class="act-inner tp">
+      <div class="tp-side">
+        <p class="eyebrow">4 · Tenses</p>
+        <h2 class="act-title" id="time-title">Which word shows the tense?</h2>
+        <p class="prose tp-intro">English has nine forms of "go" here. Pick one and see which words carry the tense in each language. German needs fewer: "ich gehe" covers both "I go" and "I'm going".</p>
+        <div class="tp-sticky" id="tp-sticky">
+          <div class="tp-grid" id="tp-grid" role="grid" aria-label="Tense table for go: past, present and future by simple, progressive and perfect"></div>
+          <div class="tp-now" id="tp-now-phone" aria-hidden="true"></div>
+        </div>
+        <p class="tp-legend small muted"><span class="dot on"></span>real form <span class="dot"></span>workaround or no such form. One dot per language, in the order below.</p>
+        <button type="button" class="tog" id="tp-test" aria-pressed="false">Test me</button>
+        <p class="small muted" id="tp-test-hint" hidden>Pick a cell, then tap the word you think carries the tense in each language.</p>
+      </div>
+      <div class="tp-main">
+        <div class="tp-head" id="tp-head" aria-live="polite"></div>
+        <div class="tp-rows" id="tp-rows"></div>
+      </div>
+    </div>
+  </section>
 
-<!-- ACT V -->
-<section class="act coda" id="coda">
-  <div class="act-inner">
-    <p class="kicker">V · Coda</p>
-    <h2 class="title">The recipe never changed.</h2>
-    <div class="coda-strip" id="coda-strip"></div>
-    <p class="prose">Every sentence above was the same string of IDs. Function, door, turn, glue. What each language did with them is what you are learning. The reference table lists the parts; the drill makes you reach for them without looking; this page is for understanding why they land where they do.</p>
-    <div class="coda-links"><a class="ghost" href="app.html#reference">Reference</a><a class="ghost" href="app.html#drill">Drill</a><a class="ghost" href="app.html#practice">Practice</a></div>
-  </div>
-</section>
+  <!-- The parts -->
+  <section class="act parts" id="parts" aria-labelledby="parts-title">
+    <div class="act-inner">
+      <p class="eyebrow">The parts</p>
+      <h2 class="act-title" id="parts-title">The parts</h2>
+      <p class="prose">Every sentence on this page is built from these. The right-hand note says how much of each part carries over from one language to the next.</p>
+      <div class="stack" id="stack"></div>
+    </div>
+  </section>
 
-<script src="home.js"></script>
+  <!-- 5 -->
+  <section class="act next" id="next" aria-labelledby="next-title">
+    <div class="act-inner">
+      <p class="eyebrow">5 · Next</p>
+      <h2 class="act-title" id="next-title">What to do with this</h2>
+      <p class="prose">Every sentence above used the same few parts. Look them up, say them out loud in Drill, or write longer answers in Write.</p>
+      <div class="next-cards">
+        <a class="next-card primary" href="app.html#drill/start"><b>Start today's drill</b><span>Say sentences out loud in your languages. Misses come back sooner.</span><i aria-hidden="true">→</i></a>
+        <a class="next-card" href="app.html#lookup"><b>Look up</b><span>Phrases, verb frames and linking words in your languages side by side.</span><i aria-hidden="true">→</i></a>
+        <a class="next-card" href="app.html#write"><b>Write</b><span>Short writing tasks with a model answer and a word check.</span><i aria-hidden="true">→</i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <span>Drafted with AI and corrected as I use it. If a form looks wrong, fix it in data/‹language›.json.</span>
+    <a href="https://github.com/pakrasi/language-doors">Source</a>
+  </div>
+</footer>
+
+<script src="site.js?v=20260929"></script>
+<script src="home.js?v=20260929"></script>
 </body>
 </html>
