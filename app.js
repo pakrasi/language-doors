@@ -170,6 +170,7 @@
     document.body.dataset.view = state.view;
     DG.initBar(state.view);
     renderPickers();
+    todayStrip();
     const view = $('#view');
     const y = scrollY;
     view.replaceChildren(skeleton());
@@ -192,6 +193,27 @@
       if (state.view !== 'lookup') { go({ view: 'lookup' }); setTimeout(() => $('#look-search')?.focus(), 50); } else $('#look-search')?.focus();
     }
   });
+
+  // ---------- Today strip: one slim line above Look up and Write (Drill's setup shows the same numbers) ----------
+  function todayStrip() {
+    const box = $('#today-strip');
+    const hide = () => { box.hidden = true; box.replaceChildren(); };
+    if (state.view === 'drill' || load(KEYS.todayStrip, null) === dayNow()) return hide();
+    const list = DG.langs();
+    const due = DG.dueByLang(list);
+    const dueLangs = list.filter(l => due[l]);
+    const newTotal = list.reduce((a, l) => a + DG.newLeft(l), 0);
+    if (!dueLangs.length && !newTotal) return hide();
+    const parts = dueLangs.map((l, i) => h('span', { class: 'ts-part' }, meta(l)?.name || l, ' ', h('b', {}, fmt(due[l])), i === dueLangs.length - 1 ? ' due' : null));
+    if (newTotal) parts.push(h('span', { class: 'ts-part' }, h('b', {}, fmt(newTotal)), ' new'));
+    const line = h('p', { class: 'ts-line' }, h('span', { class: 'ts-label' }, 'Today'), parts);
+    const close = h('button', { type: 'button', class: 'icon-btn ts-x', 'aria-label': 'Hide until tomorrow', title: 'Hide until tomorrow', html: DG.ICON.close, onclick: () => {
+      save(KEYS.todayStrip, dayNow()); hide(); DG.announce("Today's drill hidden until tomorrow");
+      $('#view h1')?.focus({ preventScroll: true });
+    } });
+    box.replaceChildren(line, h('a', { class: 'btn primary small-btn ts-start', href: '#drill/start' }, 'Start'), close);
+    box.hidden = false;
+  }
 
   // ===== Look up: phrases, verb frames, linking words, grammar, notes =====
   const CHUNK_CATS = [['sentence_frame', 'Sentence starters'], ['collocation', 'Word pairs'], ['gambit_filler', 'Fillers and reactions'], ['fixed_formula', 'Set phrases'], ['discourse_connector', 'Linking words']];
@@ -446,6 +468,7 @@
 
   // ===== Drill: say it out loud, spaced repetition =====
   const VOICE_LANG = { german: 'de-DE', french: 'fr-FR', hindi: 'hi-IN', swissgerman: 'de-CH', khasi: null, bengali: 'bn-IN', spanish: 'es-MX', italian: 'it-IT', portuguese: 'pt-BR', arabic: 'ar-SA' };
+  // fallback levels for sentence-bank meanings without a "level" field in data/sentences/en.json
   const BANK_LEVEL = { want: 'A1', like: 'A1', go: 'A1', decline: 'A2', live: 'B1', if: 'B1' };
   const ALL_TYPES = ['bank', 'chunk', 'sentence', 'scenario'];
   const TYPE_LABEL = { bank: 'Phrases', chunk: 'Verb frames', sentence: 'Sentences', scenario: 'Situations' };
@@ -482,7 +505,7 @@
         cards.push({ id: 'X:' + m.id, type: 'sentence', level: m.level, en, uses: [shortEn(m.id)], ids: [m.id], prio: 1, per });
       }
       if (SENT_EN) for (const mn of SENT_EN.meanings) for (const v of mn.variants) {
-        const lv = BANK_LEVEL[mn.id] || 'A2'; if (!ok(lv)) continue;
+        const lv = (FW.levels.includes(mn.level) && mn.level) || BANK_LEVEL[mn.id] || 'A2'; if (!ok(lv)) continue;
         const per = {}; for (const l of langs) { const s = SENT[l]?.variants?.[`${mn.id}.${v.id}`]; if (s) per[l] = { target: s.tokens.map(t => t[0]).join(' '), translit: s.tokens.some(t => t[2]) ? s.tokens.map(t => t[2] || '').join(' ') : '', note: s.why, hint: null, blocks: s.tokens }; }
         if (Object.keys(per).length) cards.push({ id: 'S:' + mn.id + '.' + v.id, type: 'sentence', level: lv, en: v.tokens.map(t => t[0]).join(' '), uses: mn.recipe.filter(id => !id.startsWith('T-')).map(shortEn), ids: mn.recipe, prio: 0, per });
       }

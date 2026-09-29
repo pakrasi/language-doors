@@ -2,6 +2,16 @@
 .main{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
 .view{display:flex;flex-direction:column;gap:18px}
 #banner:not(:empty){margin-bottom:16px}
+/* Today strip (Look up, Write) */
+.today-strip{display:flex;align-items:center;gap:8px 12px;margin-bottom:16px;padding:6px 6px 6px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-ctl);font-size:14px;color:var(--ink-2)}
+.ts-line{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 0}
+.ts-label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-right:10px}
+.ts-part b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.ts-part + .ts-part::before{content:"·";margin:0 8px;color:var(--ink-3)}
+.ts-start{flex:none;text-decoration:none}
+.ts-x{flex:none;width:32px;height:32px;border-color:transparent;background:transparent}
+.ts-x svg{width:16px;height:16px}
+@media (pointer:coarse){.ts-x{width:44px;height:44px}}
 .section{display:flex;flex-direction:column;gap:10px}
 .section h1:focus{outline:none}
 .lede{font-size:17px}

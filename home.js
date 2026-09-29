@@ -1,4 +1,4 @@
-/* Igloo homepage: Today panel, one sentence in ten languages, change it, word order, tenses, the parts.
+/* Igloo homepage: first-visit language picker, one sentence in ten languages, change it, word order, tenses, the parts.
    Reads data/framework.json, data/sentences/*.json and data/turns.json. No build step. */
 (() => {
   'use strict';
@@ -14,7 +14,7 @@
   const CELL_NAME = c => { const [t, a] = c.split('.'); return `${t === 'present' ? 'present' : t} ${a}`; };
 
   let FW, EN, TURNS, LANGS = [], SENT = {};
-  const state = { meaning: 'decline', variant: 'now', cell: 'present.simple', test: false, touched: false, answers: {} };
+  const state = { meaning: null, variant: null, cell: 'present.simple', test: false, touched: false, answers: {} };
   const meta = id => FW.languages.find(l => l.id === id);
   const dirOf = lang => (lang !== 'en' && meta(lang)?.rtl ? 'rtl' : null);
   const roleClass = roles => { for (const r of ROLE_PRI) if (roles.includes(r)) return ROLE_CLASS[r]; return ''; };
@@ -94,40 +94,11 @@
     return { reset: () => { pinned = null; show(null); } };
   }
 
-  // ---------- Today (returning) and first visit ----------
-  function renderToday() {
-    const box = $('#today');
+  // ---------- first visit: choose languages, then try a few cards (the daily drill lives in the app) ----------
+  function renderFirst() {
     const first = $('#first-run');
-    if (!DG.hasHistory()) {
-      box.hidden = true; first.hidden = false; renderFirstRun(); return;
-    }
-    first.hidden = true; box.hidden = false;
-    const list = DG.langs();
-    const due = DG.dueByLang(list);
-    const totalDue = Object.values(due).reduce((a, b) => a + b, 0);
-    const newTotal = list.reduce((a, l) => a + DG.newLeft(l), 0);
-    const tomorrow = Object.values(DG.dueByLang(list, DG.dayNow() + 1)).reduce((a, b) => a + b, 0) - totalDue;
-    const streak = DG.streak();
-    const name = id => meta(id)?.name || id;
-    const mins = Math.max(1, Math.round((totalDue + newTotal) * 10 / 60));
-    const inner = h('div', { class: 'today-inner' }, h('p', { class: 'eyebrow' }, 'Today'));
-    if (totalDue + newTotal === 0) {
-      inner.append(h('h2', { id: 'today-title' }, 'Done for today'),
-        h('p', { class: 'today-line' }, `Next: ${tomorrow} due tomorrow.` + (streak ? ` ${streak} ${streak === 1 ? 'day' : 'days'} in a row.` : '')),
-        h('div', { class: 'today-row' }, h('a', { class: 'btn', href: 'app.html#drill' }, 'Practise more'), h('a', { class: 'btn', href: 'app.html#lookup' }, 'Look up')));
-    } else {
-      const parts = list.filter(l => due[l]).map((l, i) => h('span', {}, h('b', {}, name(l)), ` ${due[l]}${i === 0 ? ' due' : ''}`));
-      if (!parts.length) parts.push(h('span', {}, 'Nothing due'));
-      const start = h('a', { class: 'btn primary big', href: 'app.html#drill/start', id: 'today-start' }, 'Start');
-      inner.append(h('h2', { id: 'today-title' }, "Today's drill"),
-        h('p', { class: 'today-line' }, parts, newTotal ? h('span', { class: 'm' }, `${newTotal} new`) : h('span', { class: 'm' }, 'No new cards left today'), h('span', { class: 'm' }, `about ${mins} min`)),
-        h('div', { class: 'today-row' }, start, h('a', { class: 'btn', href: 'app.html#drill' }, 'Options'),
-          streak ? h('span', { class: 'sub' }, `${streak} ${streak === 1 ? 'day' : 'days'} in a row`) : null));
-      // Enter or Space starts: the Start link has focus
-      requestAnimationFrame(() => { if (!location.hash) start.focus({ preventScroll: true }); });
-      start.addEventListener('keydown', e => { if (e.key === ' ') { e.preventDefault(); start.click(); } });
-    }
-    box.replaceChildren(inner);
+    first.hidden = DG.hasHistory();
+    if (!first.hidden) renderFirstRun();
   }
   function renderFirstRun() {
     const box = $('#first-run');
@@ -150,16 +121,22 @@
     draw();
   }
 
-  // ---------- 1: one sentence ----------
+  // ---------- 1: one sentence (the first meaning in en.json, first variant) ----------
+  const NUM = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+  const countWord = n => NUM[n] || String(n);
   function one(play) {
     const stage = $('#one-stage'); if (stage.closest('[hidden]')) return;
     document.querySelectorAll('.ghost-tile').forEach(g => g.remove());
-    const mid = 'decline', vid = 'now';
+    const m0 = EN.meanings[0]; if (!m0) return;
+    const mid = m0.id, vid = m0.variants[0].id;
     const enRow = langRow('en'); const rows = [enRow];
     const list = h('div', { class: 'lang-rows' }, enRow);
     fillRow(enRow, 'en', tokensFor('en', mid, vid), false);
     for (const l of LANGS) { const t = tokensFor(l, mid, vid); if (!t) continue; const r = langRow(l); fillRow(r, l, t, false); rows.push(r); list.append(r); }
     stage.replaceChildren(list);
+    const said = tokensFor('en', mid, vid).map(t => t[0]).join(' ').replace(/\.$/, '');
+    const n = rows.length - 1;
+    $('#one-title').textContent = n ? `"${said}" in ${countWord(n)} ${n === 1 ? 'language' : 'languages'}` : `"${said}"`;
     wireMatch(list);
     if (!play || reduce) { stage.classList.remove('pre'); return; }
     stage.classList.add('pre');
@@ -207,7 +184,7 @@
     updateMachine(false);
   }
   function updateMachine(animate = true) {
-    const m = EN.meanings.find(x => x.id === state.meaning); const v = m.variants.find(x => x.id === state.variant) || m.variants[0]; state.variant = v.id;
+    const m = EN.meanings.find(x => x.id === state.meaning) || EN.meanings[0]; state.meaning = m.id; const v = m.variants.find(x => x.id === state.variant) || m.variants[0]; state.variant = v.id;
     mMatch?.reset();
     $('#meaning-chips').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.id === m.id ? 'true' : 'false'));
     if (animate) $('#meaning-chips [aria-pressed="true"]')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -409,6 +386,7 @@
   async function boot() {
     try {
       [FW, EN, TURNS] = await Promise.all([framework(), getJSON('data/sentences/en.json'), getJSON('data/turns.json')]);
+      if (!EN.meanings?.length) throw new Error('no sentences');
       LANGS = orderLangs();
       await Promise.all(LANGS.map(async l => { SENT[l] = await getJSON(`data/sentences/${l}.json`); }));
     } catch (e) {
@@ -417,7 +395,8 @@
     }
     const solo = new URLSearchParams(location.search).get('act');
     if (solo) { const id = { prism: 'one', coda: 'next' }[solo] || solo; document.querySelectorAll('main > section').forEach(s => { s.hidden = s.id !== id; }); }
-    else renderToday();
+    else renderFirst();
+    state.meaning = EN.meanings[0]?.id; state.variant = EN.meanings[0]?.variants[0]?.id;
     buildMachine();
     buildTenses();
     parts();
@@ -428,8 +407,8 @@
   }
   DG.on(what => {
     if (!FW) return;
-    if (what === 'langs' || what === 'langs-closed') { LANGS = orderLangs(); Promise.all(LANGS.filter(l => !SENT[l]).map(async l => { SENT[l] = await getJSON(`data/sentences/${l}.json`); })).then(() => { renderToday(); one(false); buildMachine(); buildTenses(); }); }
-    if (what === 'reset' || what === 'newPerDay') renderToday();
+    if (what === 'langs' || what === 'langs-closed') { LANGS = orderLangs(); Promise.all(LANGS.filter(l => !SENT[l]).map(async l => { SENT[l] = await getJSON(`data/sentences/${l}.json`); })).then(() => { renderFirst(); one(false); buildMachine(); buildTenses(); }); }
+    if (what === 'reset') renderFirst();
   });
   boot();
 })();
