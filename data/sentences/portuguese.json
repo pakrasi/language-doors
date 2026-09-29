@@ -1,0 +1,641 @@
+{
+ "lang": "portuguese",
+ "variants": {
+  "want.now": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "quero",
+     "door"
+    ],
+    [
+     "aprender",
+     "verb"
+    ],
+    [
+     "khasi.",
+     "obj"
+    ]
+   ],
+   "why": "quero takes a bare infinitive, no 'to' and no preposition. Language names go without an article after aprender: khasi, not o khasi."
+  },
+  "want.past": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "queria",
+     "door|aux"
+    ],
+    [
+     "aprender",
+     "verb"
+    ],
+    [
+     "khasi.",
+     "obj"
+    ]
+   ],
+   "why": "Tense sits on the door: queria is the imperfeito, the normal past for a wish. Eu quis aprender would mean I decided or tried to."
+  },
+  "want.neg": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "quero",
+     "door"
+    ],
+    [
+     "aprender",
+     "verb"
+    ],
+    [
+     "khasi.",
+     "obj"
+    ]
+   ],
+   "why": "No do-support: não simply goes in front of the conjugated verb. Speech often doubles it: eu não quero aprender khasi, não."
+  },
+  "want.q": {
+   "tokens": [
+    [
+     "Você",
+     "subj"
+    ],
+    [
+     "quer",
+     "door"
+    ],
+    [
+     "aprender",
+     "verb"
+    ],
+    [
+     "khasi?",
+     "obj"
+    ]
+   ],
+   "why": "Nothing moves and no question word is added: the statement order stays and rising pitch alone makes it a question."
+  },
+  "decline.now": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "posso",
+     "door"
+    ],
+    [
+     "ir",
+     "verb"
+    ],
+    [
+     "porque",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "tenho que",
+     "door2"
+    ],
+    [
+     "trabalhar.",
+     "verb2"
+    ]
+   ],
+   "why": "Declining an invitation uses ir (go), not vir (come): you go to where the other person is. tenho que is the everyday have to."
+  },
+  "decline.past": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "pude",
+     "door|aux"
+    ],
+    [
+     "ir",
+     "verb"
+    ],
+    [
+     "porque",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "tive que",
+     "door2|aux"
+    ],
+    [
+     "trabalhar.",
+     "verb2"
+    ]
+   ],
+   "why": "Both doors take the pretérito perfeito (pude, tive), one-off events. Speech often uses não consegui ir, I didn't manage to go."
+  },
+  "decline.fut": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "vou",
+     "aux"
+    ],
+    [
+     "poder",
+     "door"
+    ],
+    [
+     "ir",
+     "verb"
+    ],
+    [
+     "porque",
+     "glue"
+    ],
+    [
+     "vou",
+     "aux"
+    ],
+    [
+     "ter que",
+     "door2"
+    ],
+    [
+     "trabalhar.",
+     "verb2"
+    ]
+   ],
+   "why": "vou + infinitive carries the future in both halves, so poder and ter que become infinitives. The second eu is dropped: vou already says I."
+  },
+  "decline.although": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "posso",
+     "door"
+    ],
+    [
+     "ir,",
+     "verb"
+    ],
+    [
+     "mesmo que",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "tenha que",
+     "door2"
+    ],
+    [
+     "trabalhar.",
+     "verb2"
+    ]
+   ],
+   "why": "mesmo que forces the subjunctive: tenha instead of tenho. Word order stays the same as in a main clause, unlike German."
+  },
+  "like.now": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "gosto",
+     "door"
+    ],
+    [
+     "de",
+     "x"
+    ],
+    [
+     "café.",
+     "obj"
+    ]
+   ],
+   "why": "gostar always needs de before the thing liked: gosto de café. No article for coffee in general."
+  },
+  "like.neg": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "gosto",
+     "door"
+    ],
+    [
+     "de",
+     "x"
+    ],
+    [
+     "café.",
+     "obj"
+    ]
+   ],
+   "why": "não goes before gosto and nothing else changes; de stays glued to the verb in the negative too."
+  },
+  "like.she": {
+   "tokens": [
+    [
+     "Ela",
+     "subj"
+    ],
+    [
+     "gosta",
+     "door"
+    ],
+    [
+     "de",
+     "x"
+    ],
+    [
+     "café.",
+     "obj"
+    ]
+   ],
+   "why": "gosto becomes gosta: the verb ending shows the person, -o for eu and -a for ela (and for você)."
+  },
+  "like.q": {
+   "tokens": [
+    [
+     "Você",
+     "subj"
+    ],
+    [
+     "gosta",
+     "door"
+    ],
+    [
+     "de",
+     "x"
+    ],
+    [
+     "café?",
+     "obj"
+    ]
+   ],
+   "why": "Same order as the statement; intonation makes the question. você takes the same verb form as ela: gosta."
+  },
+  "go.habit": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "vou",
+     "verb"
+    ],
+    [
+     "ao mercado",
+     "obj"
+    ],
+    [
+     "todo dia.",
+     "adv"
+    ]
+   ],
+   "why": "a + o fuses into ao. Speech in Brazil usually says vou no mercado, with em instead of a, though schools call it wrong."
+  },
+  "go.prog": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "estou",
+     "aux"
+    ],
+    [
+     "indo",
+     "verb"
+    ],
+    [
+     "ao mercado",
+     "obj"
+    ],
+    [
+     "agora.",
+     "adv"
+    ]
+   ],
+   "why": "A real progressive, estar + gerund, shaped like English am going. In speech estou shrinks to tô: tô indo ao mercado."
+  },
+  "go.past": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "fui",
+     "verb|aux"
+    ],
+    [
+     "ao mercado",
+     "obj"
+    ],
+    [
+     "ontem.",
+     "adv"
+    ]
+   ],
+   "why": "One word carries go and past: fui. It is also the past of ser (to be), so eu fui can mean I went or I was."
+  },
+  "go.fut": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "vou",
+     "verb"
+    ],
+    [
+     "ao mercado",
+     "obj"
+    ],
+    [
+     "amanhã.",
+     "adv|aux"
+    ]
+   ],
+   "why": "Plain present plus amanhã: the usual future of ir is not vou ir. Eu irei ao mercado is correct but sounds written."
+  },
+  "go.neg": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "não",
+     "neg"
+    ],
+    [
+     "estou",
+     "aux"
+    ],
+    [
+     "indo",
+     "verb"
+    ],
+    [
+     "ao mercado.",
+     "obj"
+    ]
+   ],
+   "why": "não comes before the auxiliary, not between estou and indo: the whole progressive is negated from the front."
+  },
+  "live.now": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "moro",
+     "verb"
+    ],
+    [
+     "aqui",
+     "adv"
+    ],
+    [
+     "há dois anos.",
+     "dur|aux"
+    ]
+   ],
+   "why": "Present moro plus há (it has been) two years. Speech often flips it: faz dois anos que eu moro aqui."
+  },
+  "live.past": {
+   "tokens": [
+    [
+     "Eu",
+     "subj"
+    ],
+    [
+     "morei",
+     "verb|aux"
+    ],
+    [
+     "lá",
+     "adv"
+    ],
+    [
+     "por dois anos.",
+     "dur"
+    ]
+   ],
+   "why": "Finished period: pretérito perfeito morei, and há changes to por. Speech often drops it: morei lá dois anos."
+  },
+  "live.fut": {
+   "tokens": [
+    [
+     "Ano que vem",
+     "adv"
+    ],
+    [
+     "vai fazer",
+     "aux"
+    ],
+    [
+     "três anos",
+     "dur"
+    ],
+    [
+     "que",
+     "x"
+    ],
+    [
+     "eu",
+     "subj"
+    ],
+    [
+     "moro",
+     "verb"
+    ],
+    [
+     "aqui.",
+     "adv"
+    ]
+   ],
+   "why": "No future perfect: the future goes on vai fazer (it will make), que links, and morar stays in the present."
+  },
+  "live.q": {
+   "tokens": [
+    [
+     "Faz quanto tempo",
+     "q|aux"
+    ],
+    [
+     "que",
+     "x"
+    ],
+    [
+     "você",
+     "subj"
+    ],
+    [
+     "mora",
+     "verb"
+    ],
+    [
+     "aqui?",
+     "adv"
+    ]
+   ],
+   "why": "The question opens with faz quanto tempo (how long does it make) and que; mora stays plain present. Há quanto tempo você mora aqui? also works."
+  },
+  "if.real": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj"
+    ],
+    [
+     "tiver",
+     "verb|aux"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "vou",
+     "aux"
+    ],
+    [
+     "viajar.",
+     "verb2"
+    ]
+   ],
+   "why": "se + future subjunctive tiver, a form English lacks. Se eu tenho tempo sounds foreign here. Main clause: vou + infinitive."
+  },
+  "if.unreal": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj"
+    ],
+    [
+     "tivesse",
+     "verb|aux"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "viajaria.",
+     "verb2|aux"
+    ]
+   ],
+   "why": "Past subjunctive tivesse, conditional viajaria. Everyday Brazilian speech often swaps in the imperfeito: eu viajava."
+  },
+  "if.past": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "eu",
+     "subj"
+    ],
+    [
+     "tivesse",
+     "aux"
+    ],
+    [
+     "tido",
+     "verb"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "eu",
+     "subj2"
+    ],
+    [
+     "teria",
+     "aux"
+    ],
+    [
+     "viajado.",
+     "verb2"
+    ]
+   ],
+   "why": "Both halves are ter + participle: tivesse tido, teria viajado. Speech often says eu tinha viajado for the second half."
+  }
+ }
+}

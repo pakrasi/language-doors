@@ -1,0 +1,513 @@
+{
+ "lang": "italian",
+ "variants": {
+  "want.now": {
+   "tokens": [
+    [
+     "Voglio",
+     "door"
+    ],
+    [
+     "imparare",
+     "verb"
+    ],
+    [
+     "il khasi.",
+     "obj"
+    ]
+   ],
+   "why": "No io: the -o of voglio already says who. imparare follows with no 'to', and language names take the article: il khasi."
+  },
+  "want.past": {
+   "tokens": [
+    [
+     "Volevo",
+     "door|aux"
+    ],
+    [
+     "imparare",
+     "verb"
+    ],
+    [
+     "il khasi.",
+     "obj"
+    ]
+   ],
+   "why": "Tense sits on the door: volevo is imperfetto, the natural past for a wish. Ho voluto (passato prossimo) would mean I actually set out to."
+  },
+  "want.neg": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "voglio",
+     "door"
+    ],
+    [
+     "imparare",
+     "verb"
+    ],
+    [
+     "il khasi.",
+     "obj"
+    ]
+   ],
+   "why": "One-piece negation: non goes straight in front of the door. No do-support and no second word like French pas."
+  },
+  "want.q": {
+   "tokens": [
+    [
+     "Vuoi",
+     "door"
+    ],
+    [
+     "imparare",
+     "verb"
+    ],
+    [
+     "il khasi?",
+     "obj"
+    ]
+   ],
+   "why": "Same order as a statement; only rising pitch makes it a question. No tu either: the -i ending of vuoi already means you."
+  },
+  "decline.now": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "posso",
+     "door"
+    ],
+    [
+     "venire",
+     "verb"
+    ],
+    [
+     "perché",
+     "glue"
+    ],
+    [
+     "devo",
+     "door2"
+    ],
+    [
+     "lavorare.",
+     "verb2"
+    ]
+   ],
+   "why": "Both subjects are dropped: posso and devo carry the person. perché leaves the second clause in plain main-clause order."
+  },
+  "decline.past": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "ho",
+     "aux"
+    ],
+    [
+     "potuto",
+     "door"
+    ],
+    [
+     "venire",
+     "verb"
+    ],
+    [
+     "perché",
+     "glue"
+    ],
+    [
+     "dovevo",
+     "door2|aux"
+    ],
+    [
+     "lavorare.",
+     "verb2"
+    ]
+   ],
+   "why": "Passato prossimo for the one-off failure, imperfetto dovevo for the standing duty. Textbooks prefer sono potuto (venire takes essere); ho potuto is common speech."
+  },
+  "decline.fut": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "potrò",
+     "door|aux"
+    ],
+    [
+     "venire",
+     "verb"
+    ],
+    [
+     "perché",
+     "glue"
+    ],
+    [
+     "dovrò",
+     "door2|aux"
+    ],
+    [
+     "lavorare.",
+     "verb2"
+    ]
+   ],
+   "why": "Future is a suffix on each door: potrò, dovrò. No 'be able to' swap. In speech the present often does it: domani non posso, devo lavorare."
+  },
+  "decline.although": {
+   "tokens": [
+    [
+     "Posso",
+     "door"
+    ],
+    [
+     "venire",
+     "verb"
+    ],
+    [
+     "anche se",
+     "glue"
+    ],
+    [
+     "devo",
+     "door2"
+    ],
+    [
+     "lavorare.",
+     "verb2"
+    ]
+   ],
+   "why": "anche se takes the plain indicative (devo). The textbook benché would force the subjunctive: benché debba lavorare."
+  },
+  "like.now": {
+   "tokens": [
+    [
+     "Mi",
+     "subj"
+    ],
+    [
+     "piace",
+     "door"
+    ],
+    [
+     "il caffè.",
+     "obj"
+    ]
+   ],
+   "why": "Back to front, like Hindi: il caffè is the grammatical subject and mi (to me) is the liker, so piace agrees with the coffee."
+  },
+  "like.neg": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "mi",
+     "subj"
+    ],
+    [
+     "piace",
+     "door"
+    ],
+    [
+     "il caffè.",
+     "obj"
+    ]
+   ],
+   "why": "non goes before the whole mi piace block, never between mi and piace. The article stays: il caffè means coffee in general."
+  },
+  "like.she": {
+   "tokens": [
+    [
+     "Le",
+     "subj"
+    ],
+    [
+     "piace",
+     "door"
+    ],
+    [
+     "il caffè.",
+     "obj"
+    ]
+   ],
+   "why": "Only the pronoun changes, mi to le (to her). piace stays the same because it agrees with il caffè, not with her."
+  },
+  "like.q": {
+   "tokens": [
+    [
+     "Ti",
+     "subj"
+    ],
+    [
+     "piace",
+     "door"
+    ],
+    [
+     "il caffè?",
+     "obj"
+    ]
+   ],
+   "why": "ti (to you) replaces mi; word order is identical to the statement and rising pitch does the asking."
+  },
+  "go.habit": {
+   "tokens": [
+    [
+     "Vado",
+     "verb"
+    ],
+    [
+     "al mercato",
+     "obj"
+    ],
+    [
+     "tutti i giorni.",
+     "adv"
+    ]
+   ],
+   "why": "a + il fuses into al, so al mercato is one unit. No io: vado alone means I go. Ogni giorno is an equally common time phrase."
+  },
+  "go.prog": {
+   "tokens": [
+    [
+     "Sto",
+     "aux"
+    ],
+    [
+     "andando",
+     "verb"
+    ],
+    [
+     "al mercato",
+     "obj"
+    ],
+    [
+     "adesso.",
+     "adv"
+    ]
+   ],
+   "why": "A real progressive: stare + gerund (sto andando), close to English am going. It is optional; vado al mercato can also mean right now."
+  },
+  "go.past": {
+   "tokens": [
+    [
+     "Sono",
+     "aux"
+    ],
+    [
+     "andato",
+     "verb"
+    ],
+    [
+     "al mercato",
+     "obj"
+    ],
+    [
+     "ieri.",
+     "adv"
+    ]
+   ],
+   "why": "andare takes essere, not avere: sono andato. The participle agrees with the speaker, andata for a woman."
+  },
+  "go.fut": {
+   "tokens": [
+    [
+     "Domani",
+     "adv|aux"
+    ],
+    [
+     "vado",
+     "verb"
+    ],
+    [
+     "al mercato.",
+     "obj"
+    ]
+   ],
+   "why": "Speech keeps the present and lets domani carry the future. The synthetic future andrò al mercato is also common, with tense as a suffix."
+  },
+  "go.neg": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "vado",
+     "verb"
+    ],
+    [
+     "al mercato.",
+     "obj"
+    ]
+   ],
+   "why": "Plain present with non before it: non sto andando is grammatical but rare, so non vado covers I'm not going."
+  },
+  "live.now": {
+   "tokens": [
+    [
+     "Abito",
+     "verb"
+    ],
+    [
+     "qui",
+     "adv"
+    ],
+    [
+     "da due anni.",
+     "dur|aux"
+    ]
+   ],
+   "why": "Present plus da: literally I live here from two years. No perfect and no auxiliary; da alone says it started and is still true."
+  },
+  "live.past": {
+   "tokens": [
+    [
+     "Ho",
+     "aux"
+    ],
+    [
+     "abitato",
+     "verb"
+    ],
+    [
+     "lì",
+     "adv"
+    ],
+    [
+     "per due anni.",
+     "dur"
+    ]
+   ],
+   "why": "Finished stretch: passato prossimo with avere (ho abitato) and da becomes per. Speech often drops per: ho abitato lì due anni."
+  },
+  "live.fut": {
+   "tokens": [
+    [
+     "L'anno prossimo",
+     "adv"
+    ],
+    [
+     "saranno",
+     "aux"
+    ],
+    [
+     "tre anni",
+     "dur"
+    ],
+    [
+     "che",
+     "x"
+    ],
+    [
+     "abito",
+     "verb"
+    ],
+    [
+     "qui.",
+     "adv"
+    ]
+   ],
+   "why": "Not a future perfect: the future goes on saranno (it will be) three years, che links, abito stays present. Avrò abitato sounds bookish."
+  },
+  "live.q": {
+   "tokens": [
+    [
+     "Da quanto tempo",
+     "q"
+    ],
+    [
+     "abiti",
+     "verb|aux"
+    ],
+    [
+     "qui?",
+     "adv"
+    ]
+   ],
+   "why": "The question phrase comes first and the verb is plain present abiti: da quanto tempo is the question form of da due anni."
+  },
+  "if.real": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "ho",
+     "verb"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "viaggerò.",
+     "verb2|aux"
+    ]
+   ],
+   "why": "se + present, future viaggerò in the main clause: the -rò ending is English will. Both subjects dropped; no article on tempo."
+  },
+  "if.unreal": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "avessi",
+     "verb|aux"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "viaggerei.",
+     "verb2|aux"
+    ]
+   ],
+   "why": "se + congiuntivo imperfetto (avessi), condizionale (viaggerei) in the main clause. Se avrei is the classic mistake to avoid."
+  },
+  "if.past": {
+   "tokens": [
+    [
+     "Se",
+     "glue"
+    ],
+    [
+     "avessi",
+     "aux"
+    ],
+    [
+     "avuto",
+     "verb"
+    ],
+    [
+     "tempo,",
+     "obj"
+    ],
+    [
+     "avrei",
+     "aux"
+    ],
+    [
+     "viaggiato.",
+     "verb2"
+    ]
+   ],
+   "why": "Both halves are avere + participle: avessi avuto (subjunctive), avrei viaggiato (conditional). Speech often says se avevo tempo, viaggiavo."
+  }
+ }
+}

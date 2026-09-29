@@ -8,7 +8,7 @@ ROLES = set(EN["roles"])
 path = pathlib.Path(sys.argv[1])
 try: L = json.loads(path.read_text())
 except Exception as e: print("INVALID JSON:", e); sys.exit(1)
-need_tr = L.get("lang") == "hindi"
+need_tr = L.get("lang") in ("hindi", "bengali", "arabic")
 errs = []
 keys = {f"{m['id']}.{v['id']}": (m, v) for m in EN["meanings"] for v in m["variants"]}
 got = L.get("variants", {})
