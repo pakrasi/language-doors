@@ -1,10 +1,10 @@
 {
  "lang": "swissgerman",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "Ich",
+     "Min Vermieter",
      "subj"
     ],
     [
@@ -12,182 +12,180 @@
      "door"
     ],
     [
-     "Khasi",
-     "obj"
+     "morn",
+     "adv"
     ],
     [
-     "lerne.",
-     "verb"
-    ]
-   ],
-   "why": "The door 'wott' sits second and pushes the infinitive to the end, so the object slips in between: Ich wott Khasi lerne."
-  },
-  "want.past": {
-   "tokens": [
-    [
-     "Ich",
-     "subj"
-    ],
-    [
-     "ha",
-     "aux"
-    ],
-    [
-     "Khasi",
-     "obj"
-    ],
-    [
-     "lerne",
+     "verbiicho,",
      "verb"
     ],
     [
-     "wele.",
-     "door"
-    ]
-   ],
-   "why": "No Präteritum: tense goes on 'ha' in second place and the door drops to the very end as 'wele' (same shape as the infinitive), after the verb."
-  },
-  "want.neg": {
-   "tokens": [
-    [
-     "Ich",
-     "subj"
-    ],
-    [
-     "wott",
-     "door"
-    ],
-    [
-     "nöd",
-     "neg"
-    ],
-    [
-     "Khasi",
-     "obj"
-    ],
-    [
-     "lerne.",
-     "verb"
-    ]
-   ],
-   "why": "'nöd' comes right after the door, before object and infinitive; no do-support of any kind."
-  },
-  "want.q": {
-   "tokens": [
-    [
-     "Wotsch",
-     "door|q"
-    ],
-    [
-     "du",
-     "subj"
-    ],
-    [
-     "Khasi",
-     "obj"
-    ],
-    [
-     "lerne?",
-     "verb"
-    ]
-   ],
-   "why": "Yes/no question by pure inversion: 'wotsch' moves to the front and is the question marker itself. Friends often drop 'du' (Wotsch Khasi lerne?)."
-  },
-  "decline.now": {
-   "tokens": [
-    [
-     "Ich",
-     "subj"
-    ],
-    [
-     "cha",
-     "door"
-    ],
-    [
-     "nöd",
-     "neg"
-    ],
-    [
-     "cho,",
-     "verb"
-    ],
-    [
-     "wil",
+     "also",
      "glue"
-    ],
-    [
-     "ich",
-     "subj2"
     ],
     [
      "mues",
      "door2"
     ],
     [
-     "schaffe.",
+     "ich",
+     "subj2"
+    ],
+    [
+     "de Hund",
+     "obj2"
+    ],
+    [
+     "verstecke.",
      "verb2"
     ]
    ],
-   "why": "Causal glue is 'wil' (wo is only temporal/relative in Zürich). Unlike Standard German the modal stays before its infinitive: wil ich mues schaffe."
+   "why": "After 'also' the modal jumps ahead of the subject (mues ich); both infinitives, verbiicho and verstecke, wait at the clause ends."
   },
-  "decline.past": {
+  "dog.past": {
    "tokens": [
     [
-     "Ich",
+     "Min Vermieter",
      "subj"
     ],
     [
-     "ha",
+     "hät",
      "aux"
     ],
     [
-     "nöd",
-     "neg"
+     "geschter",
+     "adv"
     ],
     [
-     "cho",
-     "verb"
-    ],
-    [
-     "chöne,",
+     "wele",
      "door"
     ],
     [
-     "wil",
+     "verbiicho,",
+     "verb"
+    ],
+    [
+     "also",
      "glue"
+    ],
+    [
+     "han",
+     "aux"
     ],
     [
      "ich",
      "subj2"
     ],
     [
-     "ha",
-     "aux"
+     "de Hund",
+     "obj2"
     ],
     [
      "müese",
      "door2"
     ],
     [
-     "schaffe.",
+     "verstecke.",
      "verb2"
     ]
    ],
-   "why": "Both doors go Perfekt with 'ha' plus a bare infinitive, never a participle: cho chöne, ha müese schaffe. Clause 2 keeps aux-modal-verb order after 'wil'."
+   "why": "No Präteritum: tense sits on hät/han, and the modals become bare infinitives (wele, müese) placed before the main verb."
   },
-  "decline.fut": {
+  "dog.neg": {
    "tokens": [
     [
-     "Ich",
+     "Min Vermieter",
      "subj"
     ],
     [
-     "cha",
+     "wott",
+     "door"
+    ],
+    [
+     "nöd",
+     "neg"
+    ],
+    [
+     "verbiicho,",
+     "verb"
+    ],
+    [
+     "also",
+     "glue"
+    ],
+    [
+     "mues",
+     "door2"
+    ],
+    [
+     "ich",
+     "subj2"
+    ],
+    [
+     "de Hund",
+     "obj2"
+    ],
+    [
+     "nöd",
+     "neg"
+    ],
+    [
+     "verstecke.",
+     "verb2"
+    ]
+   ],
+   "why": "'mues nöd' means no need, like English; a ban would be 'darf nöd'. The second nöd waits after the object, just before verstecke."
+  },
+  "dog.q": {
+   "tokens": [
+    [
+     "Din Vermieter",
+     "subj"
+    ],
+    [
+     "wott",
      "door"
     ],
     [
      "morn",
-     "aux"
+     "adv"
+    ],
+    [
+     "verbiicho,",
+     "verb"
+    ],
+    [
+     "also",
+     "glue"
+    ],
+    [
+     "muesch",
+     "door2"
+    ],
+    [
+     "du",
+     "subj2"
+    ],
+    [
+     "de Hund",
+     "obj2"
+    ],
+    [
+     "verstecke?",
+     "verb2"
+    ]
+   ],
+   "why": "'also' already inverts statements (mues ich), so the question has the same order as a statement: only the rising voice marks it."
+  },
+  "cant.now": {
+   "tokens": [
+    [
+     "Mir",
+     "subj"
+    ],
+    [
+     "chönd",
+     "door"
     ],
     [
      "nöd",
@@ -202,29 +200,127 @@
      "glue"
     ],
     [
-     "ich",
+     "d Chind",
      "subj2"
     ],
     [
-     "mues",
-     "door2"
+     "d Autoschlüssel",
+     "obj2"
     ],
     [
-     "schaffe.",
+     "versteckt",
      "verb2"
+    ],
+    [
+     "händ.",
+     "aux"
     ]
    ],
-   "why": "No future form: 'morn' carries the whole 'won't be able to'. CAN needs no substitute, and clause 2 stays bare present after 'wil'."
+   "why": "'hid' has to be Perfekt (versteckt händ), the only past. After 'wil' the aux händ lands at the very end, behind the participle."
   },
-  "decline.although": {
+  "cant.past": {
    "tokens": [
     [
-     "Ich",
+     "Mir",
      "subj"
     ],
     [
-     "cha",
+     "händ",
+     "aux"
+    ],
+    [
+     "nöd",
+     "neg"
+    ],
+    [
+     "chöne",
      "door"
+    ],
+    [
+     "cho,",
+     "verb"
+    ],
+    [
+     "wil",
+     "glue"
+    ],
+    [
+     "d Chind",
+     "subj2"
+    ],
+    [
+     "d Autoschlüssel",
+     "obj2"
+    ],
+    [
+     "versteckt",
+     "verb2"
+    ],
+    [
+     "händ.",
+     "aux"
+    ]
+   ],
+   "why": "'couldn't' is händ ... chöne cho: tense moves to händ, the modal stays an infinitive and goes before cho. Clause two doesn't change."
+  },
+  "cant.fut": {
+   "tokens": [
+    [
+     "Mir",
+     "subj"
+    ],
+    [
+     "chönd",
+     "door"
+    ],
+    [
+     "morn",
+     "adv|aux"
+    ],
+    [
+     "nöd",
+     "neg"
+    ],
+    [
+     "cho,",
+     "verb"
+    ],
+    [
+     "wil",
+     "glue"
+    ],
+    [
+     "d Chind",
+     "subj2"
+    ],
+    [
+     "d Autoschlüssel",
+     "obj2"
+    ],
+    [
+     "versteckt",
+     "verb2"
+    ],
+    [
+     "händ.",
+     "aux"
+    ]
+   ],
+   "why": "No future and no 'be able to': plain present chönd plus morn does all of 'won't be able to ... tomorrow'."
+  },
+  "cant.although": {
+   "tokens": [
+    [
+     "Mir",
+     "subj"
+    ],
+    [
+     "chönd",
+     "door"
+    ],
+    [
+     "glich",
+     "adv"
     ],
     [
      "cho,",
@@ -235,66 +331,28 @@
      "glue"
     ],
     [
-     "ich",
+     "d Chind",
      "subj2"
     ],
     [
-     "mues",
-     "door2"
+     "d Autoschlüssel",
+     "obj2"
     ],
     [
-     "schaffe.",
+     "versteckt",
      "verb2"
+    ],
+    [
+     "händ.",
+     "aux"
     ]
    ],
-   "why": "'obwohl' behaves like 'wil': the second clause keeps modal-before-infinitive. Spoken Zürich often prefers 'au wänn' (even if) for the same job."
+   "why": "'glich' is the spoken 'still/anyway' (Standard trotzdem). 'obwohl' works like 'wil': versteckt händ closes the clause."
   },
   "like.now": {
    "tokens": [
     [
-     "Ich",
-     "subj"
-    ],
-    [
-     "ha",
-     "door"
-    ],
-    [
-     "Kafi",
-     "obj"
-    ],
-    [
-     "gern.",
-     "door"
-    ]
-   ],
-   "why": "LIKE is 'gern haa': the door splits, 'ha' in second place carries person, 'gern' waits at the end, and the object sits inside the bracket."
-  },
-  "like.neg": {
-   "tokens": [
-    [
-     "Ich",
-     "subj"
-    ],
-    [
-     "mag",
-     "door"
-    ],
-    [
-     "Kafi",
-     "obj"
-    ],
-    [
-     "nöd.",
-     "neg"
-    ]
-   ],
-   "why": "The negative usually switches door to 'mag' with 'nöd' at the very end (Ich ha Kafi nöd gern also works but is less common in Zürich)."
-  },
-  "like.she": {
-   "tokens": [
-    [
-     "Si",
+     "Mini Schwöschter",
      "subj"
     ],
     [
@@ -310,7 +368,49 @@
      "door"
     ]
    ],
-   "why": "Only the first half of the split door changes for third person: ha becomes hät; 'gern' never inflects."
+   "why": "LIKE is 'gern haa', a split door: hät sits second with the person ending, gern closes the sentence, Kafi sits in between."
+  },
+  "like.neg": {
+   "tokens": [
+    [
+     "Si",
+     "subj"
+    ],
+    [
+     "mag",
+     "door"
+    ],
+    [
+     "kei",
+     "neg"
+    ],
+    [
+     "Kafi.",
+     "obj"
+    ]
+   ],
+   "why": "The negative switches to 'mag' and fuses 'not' into the object: kei Kafi (no coffee). 'Si hät Kafi nöd gern' also works."
+  },
+  "like.they": {
+   "tokens": [
+    [
+     "Mini Eltere",
+     "subj"
+    ],
+    [
+     "händ",
+     "door"
+    ],
+    [
+     "Kafi",
+     "obj"
+    ],
+    [
+     "gern.",
+     "door"
+    ]
+   ],
+   "why": "Only hät changes, to plural händ; gern and Kafi stay as they are. 'Mini' already had the plural-looking form."
   },
   "like.q": {
    "tokens": [
@@ -331,20 +431,20 @@
      "door"
     ]
    ],
-   "why": "Inversion again: the inflected half 'häsch' fronts as the question marker, 'gern' still closes the sentence."
+   "why": "No 'do': the inflected half häsch jumps to the front and marks the question; gern still closes the sentence."
   },
   "go.habit": {
    "tokens": [
     [
-     "Ich",
+     "Mini Grosseltere",
      "subj"
     ],
     [
-     "gang",
+     "gönd",
      "verb"
     ],
     [
-     "jede Tag",
+     "jede Sunntig",
      "adv"
     ],
     [
@@ -352,16 +452,16 @@
      "obj"
     ]
    ],
-   "why": "Plain present, time before place as in Standard German: the adverb sits between verb and destination. 'gaa' is irregular: ich gang."
+   "why": "Plain present gönd. Time comes before place, so 'jede Sunntig' sits between the verb and 'uf de Märt', the reverse of English."
   },
   "go.prog": {
    "tokens": [
     [
-     "Ich",
+     "Si",
      "subj"
     ],
     [
-     "gang",
+     "gönd",
      "verb"
     ],
     [
@@ -373,16 +473,16 @@
      "obj"
     ]
    ],
-   "why": "No progressive with a destination: the present plus 'jetzt grad' does the right-now work; 'am Gaa' exists but does not take a place phrase well."
+   "why": "No progressive: same gönd as 'every Sunday'; 'jetzt grad' does the right-now work. 'am Gaa' doesn't take a destination well."
   },
   "go.past": {
    "tokens": [
     [
-     "Ich",
+     "Si",
      "subj"
     ],
     [
-     "bin",
+     "sind",
      "aux"
     ],
     [
@@ -398,16 +498,16 @@
      "verb"
     ]
    ],
-   "why": "Perfekt is the only past: 'bin' in second place, participle 'ggange' (doubled g) at the very end, everything else inside the bracket."
+   "why": "Perfekt is the only past: sind second, participle ggange (double g) at the very end, time and place inside the bracket."
   },
   "go.fut": {
    "tokens": [
     [
-     "Ich",
+     "Si",
      "subj"
     ],
     [
-     "gang",
+     "gönd",
      "verb"
     ],
     [
@@ -419,17 +519,21 @@
      "obj"
     ]
    ],
-   "why": "Future is just present plus a time word: 'morn' is both 'will' and 'tomorrow'. 'wird' would sound like a guess or a promise."
+   "why": "Future is present plus a time word: morn does the job of both 'will' and 'tomorrow'. 'werdet gaa' would sound like a guess."
   },
   "go.neg": {
    "tokens": [
     [
-     "Ich",
+     "Si",
      "subj"
     ],
     [
-     "gang",
+     "gönd",
      "verb"
+    ],
+    [
+     "hüt",
+     "adv"
     ],
     [
      "nöd",
@@ -440,37 +544,37 @@
      "obj"
     ]
    ],
-   "why": "No auxiliary at all: 'nöd' follows the finite verb and precedes the destination."
+   "why": "No auxiliary: nöd follows the verb and time word (gönd hüt nöd) and comes before the destination."
   },
   "live.now": {
    "tokens": [
     [
-     "Ich",
+     "Min Brüeder",
      "subj"
     ],
     [
-     "wohne",
-     "verb"
+     "wohnt",
+     "verb|aux"
     ],
     [
      "sit zwei Jahr",
      "dur"
     ],
     [
-     "daa.",
+     "in Shillong.",
      "adv"
     ]
    ],
-   "why": "Ongoing state is plain present plus 'sit' (for and since); no perfect. 'Jahr' stays singular after a number, and 'daa' closes the sentence."
+   "why": "Plain present wohnt plus 'sit' (for/since) for something still true; no perfect. 'Jahr' stays singular after zwei."
   },
   "live.past": {
    "tokens": [
     [
-     "Ich",
+     "Er",
      "subj"
     ],
     [
-     "ha",
+     "hät",
      "aux"
     ],
     [
@@ -478,7 +582,7 @@
      "dur"
     ],
     [
-     "dete",
+     "in Delhi",
      "adv"
     ],
     [
@@ -486,24 +590,24 @@
      "verb"
     ]
    ],
-   "why": "Finished period goes Perfekt: 'ha' second, 'gwohnt' last, duration and place inside the bracket. 'lang' marks the span as closed."
+   "why": "Finished stretch goes Perfekt: hät second, gwohnt last. 'sit' becomes 'lang' after the number to mark the span as closed."
   },
   "live.fut": {
    "tokens": [
     [
-     "Nächscht Jahr",
+     "Im Juni",
      "adv"
     ],
     [
-     "wohne",
+     "wohnt",
      "verb"
     ],
     [
-     "ich",
+     "er",
      "subj"
     ],
     [
-     "scho",
+     "dänn scho",
      "aux"
     ],
     [
@@ -511,11 +615,11 @@
      "dur"
     ],
     [
-     "daa.",
+     "in Shillong.",
      "adv"
     ]
    ],
-   "why": "No future perfect: fronted 'Nächscht Jahr' forces inversion (wohne ich) and 'scho' (already) plus present does the 'will have lived' job."
+   "why": "No future perfect: present wohnt plus 'dänn scho' (by then already). Fronting 'Im Juni' flips the order to wohnt er."
   },
   "live.q": {
    "tokens": [
@@ -540,7 +644,7 @@
      "adv"
     ]
    ],
-   "why": "Wh-word first, verb second (wohnsch du). The present carries the tense and 'scho' stands in for 'have been'."
+   "why": "Question word first, verb second (wohnsch du). The present carries the tense and 'scho' (already) stands in for 'have been'."
   },
   "if.real": {
    "tokens": [
@@ -549,7 +653,7 @@
      "glue"
     ],
     [
-     "ich",
+     "mir",
      "subj"
     ],
     [
@@ -557,16 +661,12 @@
      "obj"
     ],
     [
-     "ha,",
+     "händ,",
      "verb"
     ],
     [
-     "gang",
-     "aux"
-    ],
-    [
-     "ich",
-     "subj2"
+     "gömmer",
+     "aux|subj2"
     ],
     [
      "go",
@@ -577,7 +677,7 @@
      "verb2"
     ]
    ],
-   "why": "'wänn' is the spoken if; its clause is verb-final. The main clause inverts (gang ich) and 'travel' becomes 'gang go reise' with the doubled go."
+   "why": "Main clause inverts and fuses: gönd mir becomes gömmer. 'will travel' is present 'go reise' with the extra go, no future."
   },
   "if.unreal": {
    "tokens": [
@@ -586,7 +686,7 @@
      "glue"
     ],
     [
-     "ich",
+     "mir",
      "subj"
     ],
     [
@@ -594,15 +694,15 @@
      "obj"
     ],
     [
-     "hett,",
+     "hetted,",
      "verb|aux"
     ],
     [
-     "würd",
+     "würded",
      "aux"
     ],
     [
-     "ich",
+     "mir",
      "subj2"
     ],
     [
@@ -614,7 +714,7 @@
      "verb2"
     ]
    ],
-   "why": "Unreal condition uses the short subjunctive 'hett' at the end of the if-clause, then 'würd' plus infinitive; 'go' still slips in before reise."
+   "why": "Subjunctive hetted closes the if-clause, then würded fronts the main clause; 'go' still slips in before reise."
   },
   "if.past": {
    "tokens": [
@@ -623,7 +723,7 @@
      "glue"
     ],
     [
-     "ich",
+     "mir",
      "subj"
     ],
     [
@@ -631,15 +731,15 @@
      "obj"
     ],
     [
-     "gha hett,",
+     "gha hetted,",
      "verb|aux"
     ],
     [
-     "wär",
+     "wäred",
      "aux"
     ],
     [
-     "ich",
+     "mir",
      "subj2"
     ],
     [
@@ -651,7 +751,106 @@
      "verb2"
     ]
    ],
-   "why": "Third conditional is participle plus 'hett' (gha hett). 'wär ich go reise' is the Perfekt of gaa without any participle: the go-construction drops ggange."
+   "why": "Past unreal is 'gha hetted', then 'wäred mir go reise': the go-construction uses wäred and no participle for travelled."
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "Es",
+     "subj"
+    ],
+    [
+     "rägnet,",
+     "verb|aux"
+    ],
+    [
+     "also",
+     "glue"
+    ],
+    [
+     "nimm",
+     "verb2"
+    ],
+    [
+     "en Schirm",
+     "obj2"
+    ],
+    [
+     "mit.",
+     "verb2"
+    ]
+   ],
+   "why": "Es stays as a dummy subject. 'take' is separable mitnää: nimm opens the order, mit closes it around 'en Schirm'."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "Es",
+     "subj"
+    ],
+    [
+     "rägnet",
+     "verb"
+    ],
+    [
+     "spöter,",
+     "adv|door"
+    ],
+    [
+     "also",
+     "glue"
+    ],
+    [
+     "nimm",
+     "verb2"
+    ],
+    [
+     "en Schirm",
+     "obj2"
+    ],
+    [
+     "mit.",
+     "verb2"
+    ]
+   ],
+   "why": "No 'going to': present rägnet plus spöter makes the prediction, so spöter carries the door. 'es wird rägne' sounds bookish."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "Es",
+     "subj"
+    ],
+    [
+     "rägnet",
+     "verb|aux"
+    ],
+    [
+     "nöd,",
+     "neg"
+    ],
+    [
+     "also",
+     "glue"
+    ],
+    [
+     "nimm",
+     "verb2"
+    ],
+    [
+     "kei",
+     "neg"
+    ],
+    [
+     "Schirm",
+     "obj2"
+    ],
+    [
+     "mit.",
+     "verb2"
+    ]
+   ],
+   "why": "The negative order keeps plain nimm and puts the 'not' on the umbrella: kei Schirm (no umbrella), not 'nimm nöd'."
   }
  }
 }

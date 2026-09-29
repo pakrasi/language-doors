@@ -1,77 +1,152 @@
 {
  "lang": "bengali",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "আমি",
+     "আমার বাড়িওয়ালা",
      "subj",
-     "aami"
+     "aamaar baariwaalaa"
     ],
     [
-     "খাসি",
-     "obj",
-     "khaasi"
+     "কাল",
+     "adv",
+     "kaal"
     ],
     [
-     "শিখতে",
+     "আসতে",
      "verb",
-     "shikhte"
+     "aaste"
     ],
     [
-     "চাই।",
+     "চাইছেন,",
      "door",
-     "chaai."
+     "chaaichhen,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "আমাকে",
+     "subj2",
+     "aamaake"
+    ],
+    [
+     "কুকুরটা",
+     "obj2",
+     "kukurtaa"
+    ],
+    [
+     "লুকোতে",
+     "verb2",
+     "lukote"
+    ],
+    [
+     "হবে।",
+     "door2",
+     "hobe."
     ]
    ],
-   "why": "SOV: object খাসি and infinitive শিখতে come first, then the door চাই, whose ending alone carries person and present. No auxiliary, no gender."
+   "why": "Both doors come last in their halves: আসতে চাইছেন, লুকোতে হবে. The landlord gets honorific চাইছেন; -টা on কুকুর does the work of 'the'."
   },
-  "want.past": {
+  "dog.past": {
    "tokens": [
     [
-     "আমি",
+     "আমার বাড়িওয়ালা",
      "subj",
-     "aami"
+     "aamaar baariwaalaa"
     ],
     [
-     "খাসি",
-     "obj",
-     "khaasi"
+     "কাল",
+     "adv",
+     "kaal"
     ],
     [
-     "শিখতে",
+     "আসতে",
      "verb",
-     "shikhte"
+     "aaste"
     ],
     [
-     "চেয়েছিলাম।",
+     "চেয়েছিলেন,",
      "door|aux",
-     "cheyechhilaam."
+     "cheyechhilen,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "আমাকে",
+     "subj2",
+     "aamaake"
+    ],
+    [
+     "কুকুরটা",
+     "obj2",
+     "kukurtaa"
+    ],
+    [
+     "লুকোতে",
+     "verb2",
+     "lukote"
+    ],
+    [
+     "হয়েছিল।",
+     "door2|aux",
+     "hoyechhilo."
     ]
    ],
-   "why": "Past fuses into the door: চেয়েছিলাম is the everyday 'I wanted'; চাইছিলাম ('was wanting') is common for a wish that lingered."
+   "why": "Tense sits on both doors: চেয়েছিলেন, হয়েছিল. কাল is unchanged from 'tomorrow'; only the verb endings say it was yesterday."
   },
-  "want.neg": {
+  "dog.neg": {
    "tokens": [
     [
-     "আমি",
+     "আমার বাড়িওয়ালা",
      "subj",
-     "aami"
+     "aamaar baariwaalaa"
     ],
     [
-     "খাসি",
-     "obj",
-     "khaasi"
-    ],
-    [
-     "শিখতে",
+     "আসতে",
      "verb",
-     "shikhte"
+     "aaste"
     ],
     [
-     "চাই",
+     "চান",
      "door",
-     "chaai"
+     "chaan"
+    ],
+    [
+     "না,",
+     "neg",
+     "naa,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "আমাকে",
+     "subj2",
+     "aamaake"
+    ],
+    [
+     "কুকুরটা",
+     "obj2",
+     "kukurtaa"
+    ],
+    [
+     "লুকোতে",
+     "verb2",
+     "lukote"
+    ],
+    [
+     "হবে",
+     "door2",
+     "hobe"
     ],
     [
      "না।",
@@ -79,14 +154,39 @@
      "naa."
     ]
    ],
-   "why": "না comes after the verb and ends the sentence (চাই না), the mirror image of Hindi नहीं चाहता; the door keeps its present ending."
+   "why": "না follows each door (চান না, হবে না). লুকোতে হবে না means 'no need to hide', matching English don't have to, not a ban."
   },
-  "want.q": {
+  "dog.q": {
    "tokens": [
     [
-     "তুমি",
+     "তোমার বাড়িওয়ালা",
      "subj",
-     "tumi"
+     "tomaar baariwaalaa"
+    ],
+    [
+     "কাল",
+     "adv",
+     "kaal"
+    ],
+    [
+     "আসতে",
+     "verb",
+     "aaste"
+    ],
+    [
+     "চাইছেন,",
+     "door",
+     "chaaichhen,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "তোমাকে",
+     "subj2",
+     "tomaake"
     ],
     [
      "কি",
@@ -94,29 +194,29 @@
      "ki"
     ],
     [
-     "খাসি",
-     "obj",
-     "khaasi"
+     "কুকুরটা",
+     "obj2",
+     "kukurtaa"
     ],
     [
-     "শিখতে",
-     "verb",
-     "shikhte"
+     "লুকোতে",
+     "verb2",
+     "lukote"
     ],
     [
-     "চাও?",
-     "door",
-     "chaao?"
+     "হবে?",
+     "door2",
+     "hobe?"
     ]
    ],
-   "why": "কি slots in right after the subject, not at the front, and nothing inverts. চাও is the informal তুমি ending of চাওয়া."
+   "why": "Only the second half is a question: কি slips in after তোমাকে and nothing inverts. The first half is word for word the statement."
   },
-  "decline.now": {
+  "cant.now": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
     ],
     [
      "আসতে",
@@ -139,29 +239,29 @@
      "kaaron"
     ],
     [
-     "আমাকে",
+     "বাচ্চারা",
      "subj2",
-     "aamaake"
+     "baachchaaraa"
     ],
     [
-     "কাজ করতে",
-     "verb2",
-     "kaaj korte"
+     "গাড়ির চাবি",
+     "obj2",
+     "gaarir chaabi"
     ],
     [
-     "হবে।",
-     "door2",
-     "hobe."
+     "লুকিয়ে রেখেছে।",
+     "verb2|aux",
+     "lukiye rekhechhe."
     ]
    ],
-   "why": "A present can't is 'am not managing' (পারছি না). After কারণ the doer is আমাকে, and a one-off duty takes future হবে even when said now."
+   "why": "'Hid' becomes লুকিয়ে রেখেছে, 'have hidden and kept', since the keys are still missing. A present can't is পারছি না, 'not managing'."
   },
-  "decline.past": {
+  "cant.past": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
     ],
     [
      "আসতে",
@@ -179,29 +279,34 @@
      "kaaron"
     ],
     [
-     "আমাকে",
+     "বাচ্চারা",
      "subj2",
-     "aamaake"
+     "baachchaaraa"
     ],
     [
-     "কাজ করতে",
-     "verb2",
-     "kaaj korte"
+     "গাড়ির চাবি",
+     "obj2",
+     "gaarir chaabi"
     ],
     [
-     "হয়েছিল।",
-     "door2|aux",
-     "hoyechhilo."
+     "লুকিয়ে রেখেছিল।",
+     "verb2|aux",
+     "lukiye rekhechhilo."
     ]
    ],
-   "why": "Past negation fuses into one word: পারিনি, present stem plus নি; পারলাম না is also heard for a just-missed event. হয়েছিল carries the past on the duty."
+   "why": "Past can't fuses into one word, পারিনি (stem + নি). The hiding shifts back too: রেখেছে becomes রেখেছিল, 'had hidden'."
   },
-  "decline.fut": {
+  "cant.fut": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
+    ],
+    [
+     "কাল",
+     "adv",
+     "kaal"
     ],
     [
      "আসতে",
@@ -224,54 +329,49 @@
      "kaaron"
     ],
     [
-     "আমাকে",
+     "বাচ্চারা",
      "subj2",
-     "aamaake"
+     "baachchaaraa"
     ],
     [
-     "কাজ করতে",
-     "verb2",
-     "kaaj korte"
+     "গাড়ির চাবি",
+     "obj2",
+     "gaarir chaabi"
     ],
     [
-     "হবে।",
-     "door2|aux",
-     "hobe."
+     "লুকিয়ে রেখেছে।",
+     "verb2|aux",
+     "lukiye rekhechhe."
     ]
    ],
-   "why": "CAN has a plain future পারব with না after it. The second half is word for word the same as the 'now' sentence: হবে was future all along."
+   "why": "No 'be able to' swap: the ordinary CAN just takes future পারব, with না after it. Tomorrow's কাল sits before the verb, not at the end."
   },
-  "decline.although": {
+  "cant.although": {
    "tokens": [
     [
-     "যদিও",
-     "glue",
-     "jodio"
-    ],
-    [
-     "আমাকে",
+     "বাচ্চারা",
      "subj2",
-     "aamaake"
+     "baachchaaraa"
     ],
     [
-     "কাজ করতে",
-     "verb2",
-     "kaaj korte"
+     "গাড়ির চাবি",
+     "obj2",
+     "gaarir chaabi"
     ],
     [
-     "হবে,",
-     "door2",
-     "hobe,"
+     "লুকিয়ে রাখলেও,",
+     "verb2|glue",
+     "lukiye raakhleo,"
     ],
     [
-     "তবু",
-     "x",
-     "tobu"
-    ],
-    [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
+    ],
+    [
+     "তবুও",
+     "adv",
+     "tobuo"
     ],
     [
      "আসতে",
@@ -279,19 +379,19 @@
      "aaste"
     ],
     [
-     "পারব।",
+     "পারি।",
      "door",
-     "paarbo."
+     "paari."
     ]
    ],
-   "why": "The যদিও clause comes first and তবু ('still') opens the main one, flipping English order. Both halves are in future, as for a plan."
+   "why": "No separate 'although': -লেও on the verb (রাখলেও, 'even having hidden') does it, so the reason comes first. তবুও is 'still'."
   },
   "like.now": {
    "tokens": [
     [
-     "আমার",
+     "আমার বোনের",
      "subj",
-     "aamaar"
+     "aamaar boner"
     ],
     [
      "কফি",
@@ -304,14 +404,14 @@
      "bhaalo laage."
     ]
    ],
-   "why": "The liker is genitive আমার and the coffee 'feels good' (ভালো লাগে); লাগে agrees with the coffee, so nothing here marks me."
+   "why": "The liker is genitive বোনের and the coffee 'feels good' (ভালো লাগে); লাগে agrees with the coffee, so nothing marks the sister."
   },
   "like.neg": {
    "tokens": [
     [
-     "আমার",
+     "ওর",
      "subj",
-     "aamaar"
+     "or"
     ],
     [
      "কফি",
@@ -329,14 +429,14 @@
      "naa."
     ]
    ],
-   "why": "না is simply tacked on after লাগে; there is no auxiliary to split and nothing moves, unlike English 'don't like'."
+   "why": "না is tacked on after লাগে; no auxiliary, nothing moves. ওর is 'her' but also 'his': Bengali pronouns have no gender."
   },
-  "like.she": {
+  "like.they": {
    "tokens": [
     [
-     "ওর",
+     "আমার বাবা-মায়ের",
      "subj",
-     "or"
+     "aamaar baabaa-maayer"
     ],
     [
      "কফি",
@@ -349,7 +449,7 @@
      "bhaalo laage."
     ]
    ],
-   "why": "Only আমার becomes ওর; ও/ওর means he or she alike, and লাগে stays put because it agrees with the coffee, not with her."
+   "why": "Nothing agrees with two people: only -এর on বাবা-মা marks the likers, and লাগে stays as is because it agrees with the coffee."
   },
   "like.q": {
    "tokens": [
@@ -379,14 +479,14 @@
   "go.habit": {
    "tokens": [
     [
-     "আমি",
+     "আমার দাদু-ঠাকুমা",
      "subj",
-     "aami"
+     "aamaar daadu-thaakumaa"
     ],
     [
-     "রোজ",
+     "প্রতি রবিবার",
      "adv",
-     "roj"
+     "proti robibaar"
     ],
     [
      "বাজারে",
@@ -394,19 +494,19 @@
      "baajaare"
     ],
     [
-     "যাই।",
+     "যান।",
      "verb",
-     "jaai."
+     "jaan."
     ]
    ],
-   "why": "বাজারে is market + locative -এ, so 'to the market' is one word. Time রোজ comes before place, and যাই closes with present in its ending."
+   "why": "Time before place, verb last. বাজারে is market + -এ, one word for 'to the market'. যান is the honorific ending used for elders."
   },
   "go.prog": {
    "tokens": [
     [
-     "আমি",
+     "ওঁরা",
      "subj",
-     "aami"
+     "onraa"
     ],
     [
      "এখন",
@@ -419,19 +519,19 @@
      "baajaare"
     ],
     [
-     "যাচ্ছি।",
+     "যাচ্ছেন।",
      "verb|aux",
-     "jaachchhi."
+     "jaachchhen."
     ]
    ],
-   "why": "The progressive is fused into one word: যাচ্ছি, with -চ্ছ- marking 'ongoing'. No separate 'am'; only the ending changed from যাই."
+   "why": "No separate 'are': -চ্ছ- inside যাচ্ছেন marks ongoing. ওঁরা with the chandrabindu is the respectful 'they' for grandparents."
   },
   "go.past": {
    "tokens": [
     [
-     "আমি",
+     "ওঁরা",
      "subj",
-     "aami"
+     "onraa"
     ],
     [
      "কাল",
@@ -444,19 +544,19 @@
      "baajaare"
     ],
     [
-     "গেছিলাম।",
+     "গেছিলেন।",
      "verb|aux",
-     "gechhilaam."
+     "gechhilen."
     ]
    ],
-   "why": "কাল is both yesterday and tomorrow; only the verb decides. For a specific earlier day speakers say গেছিলাম (written গিয়েছিলাম), not গেলাম."
+   "why": "Spoken গেছিলেন (written গিয়েছিলেন) fuses went + honorific. কাল is yesterday or tomorrow; only this ending decides."
   },
   "go.fut": {
    "tokens": [
     [
-     "আমি",
+     "ওঁরা",
      "subj",
-     "aami"
+     "onraa"
     ],
     [
      "কাল",
@@ -469,19 +569,24 @@
      "baajaare"
     ],
     [
-     "যাব।",
+     "যাবেন।",
      "verb|aux",
-     "jaabo."
+     "jaaben."
     ]
    ],
-   "why": "One word যাব fuses go and will. Same কাল as in 'yesterday': swap গেছিলাম for যাব and the day flips."
+   "why": "One word যাবেন fuses go, will and respect. Same কাল as 'yesterday': swap গেছিলেন for যাবেন and the day flips."
   },
   "go.neg": {
    "tokens": [
     [
-     "আমি",
+     "ওঁরা",
      "subj",
-     "aami"
+     "onraa"
+    ],
+    [
+     "আজ",
+     "adv",
+     "aaj"
     ],
     [
      "বাজারে",
@@ -489,9 +594,9 @@
      "baajaare"
     ],
     [
-     "যাচ্ছি",
+     "যাচ্ছেন",
      "verb|aux",
-     "jaachchhi"
+     "jaachchhen"
     ],
     [
      "না।",
@@ -499,19 +604,14 @@
      "naa."
     ]
    ],
-   "why": "না follows the verb (যাচ্ছি না) instead of preceding it, and closes the sentence; the progressive ending stays intact."
+   "why": "না comes after the verb (যাচ্ছেন না) and closes the sentence; the progressive ending stays intact, unlike English aren't."
   },
   "live.now": {
    "tokens": [
     [
-     "আমি",
+     "আমার ভাই",
      "subj",
-     "aami"
-    ],
-    [
-     "এখানে",
-     "adv",
-     "ekhaane"
+     "aamaar bhaai"
     ],
     [
      "দু'বছর ধরে",
@@ -519,24 +619,24 @@
      "du'bochhor dhore"
     ],
     [
-     "থাকছি।",
+     "শিলংয়ে",
+     "adv",
+     "shilonge"
+    ],
+    [
+     "থাকে।",
      "verb|aux",
-     "thaakchhi."
+     "thaake."
     ]
    ],
-   "why": "No perfect needed: present progressive থাকছি plus ধরে ('holding') on the duration. Many speakers just say এখানে আছি, 'I am here'."
+   "why": "No perfect: plain present থাকে ('lives') plus ধরে ('holding') on the duration, which comes before the place."
   },
   "live.past": {
    "tokens": [
     [
-     "আমি",
+     "ও",
      "subj",
-     "aami"
-    ],
-    [
-     "ওখানে",
-     "adv",
-     "okhaane"
+     "o"
     ],
     [
      "দু'বছর",
@@ -544,34 +644,34 @@
      "du'bochhor"
     ],
     [
-     "ছিলাম।",
+     "দিল্লিতে",
+     "adv",
+     "dillite"
+    ],
+    [
+     "ছিল।",
      "verb|aux",
-     "chhilaam."
+     "chhilo."
     ]
    ],
-   "why": "A finished stay drops ধরে and uses ছিলাম, 'I was', for lived; থাকতাম would mean 'used to live' instead."
+   "why": "A finished stay drops ধরে and uses ছিল, 'was', for lived; থাকত would mean 'used to live' instead."
   },
   "live.fut": {
    "tokens": [
     [
-     "সামনের বছর",
+     "জুনের মধ্যে",
      "adv",
-     "saamner bochhor"
+     "juner moddhe"
     ],
     [
-     "আমার",
+     "ওর",
      "subj",
-     "aamaar"
+     "or"
     ],
     [
-     "এখানে",
+     "শিলংয়ে",
      "adv",
-     "ekhaane"
-    ],
-    [
-     "থাকার",
-     "verb",
-     "thaakaar"
+     "shilonge"
     ],
     [
      "তিন বছর",
@@ -579,12 +679,17 @@
      "tin bochhor"
     ],
     [
+     "থাকা",
+     "verb",
+     "thaakaa"
+    ],
+    [
      "হয়ে যাবে।",
      "aux",
      "hoye jaabe."
     ]
    ],
-   "why": "Bengali turns it round: 'my three years of living here will be done'. Verbal noun থাকার, and the future sits on হয়ে যাবে."
+   "why": "Bengali turns it round: 'his three years of living will be done'. Genitive ওর, verbal noun থাকা, and the future sits on হয়ে যাবে."
   },
   "live.q": {
    "tokens": [
@@ -604,19 +709,124 @@
      "kotodin dhore"
     ],
     [
-     "থাকছ?",
+     "আছ?",
      "verb|aux",
-     "thaakchho?"
+     "aachho?"
     ]
    ],
-   "why": "কতদিন ধরে ('since how many days') stays in place before the verb rather than fronting; nothing inverts. তুমি এখানে কতদিন আছ? is just as common."
+   "why": "কতদিন ধরে ('since how many days') stays before the verb rather than fronting. Spoken Bengali just says আছ, 'you are here'."
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "বৃষ্টি",
+     "subj",
+     "brishti"
+    ],
+    [
+     "পড়ছে,",
+     "verb|aux",
+     "porchhe,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "ছাতা",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "নিয়ে যাও।",
+     "verb2",
+     "niye jaao."
+    ]
+   ],
+   "why": "No dummy 'it': rain itself is the subject, 'falling' (পড়ছে). 'Take' is নিয়ে যাও, 'take and go', in the তুমি command form."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "পরে",
+     "adv",
+     "pore"
+    ],
+    [
+     "বৃষ্টি",
+     "subj|verb",
+     "brishti"
+    ],
+    [
+     "হবে,",
+     "door|aux",
+     "hobe,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "ছাতা",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "নিয়ে যাও।",
+     "verb2",
+     "niye jaao."
+    ]
+   ],
+   "why": "No 'going to': the rain simply 'will happen' (বৃষ্টি হবে), so the noun carries the verb's meaning and হবে carries the future."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "বৃষ্টি",
+     "subj",
+     "brishti"
+    ],
+    [
+     "পড়ছে",
+     "verb|aux",
+     "porchhe"
+    ],
+    [
+     "না,",
+     "neg",
+     "naa,"
+    ],
+    [
+     "তাই",
+     "glue",
+     "taai"
+    ],
+    [
+     "ছাতা",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "নিয়ে যেও",
+     "verb2",
+     "niye jeo"
+    ],
+    [
+     "না।",
+     "neg",
+     "naa."
+    ]
+   ],
+   "why": "The negative order swaps যাও for যেও before না (নিয়ে যেও না); the same না as পড়ছে না, still after the verb."
   },
   "if.real": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
     ],
     [
      "যদি",
@@ -649,14 +859,14 @@
      "jaabo."
     ]
    ],
-   "why": "যদি sits after the subject, and the if-verb পাই is plain present ('get time'). তাহলে opens the result, whose subject is dropped: যাব shows it."
+   "why": "যদি sits after the subject, and the if-verb পাই is plain present ('get time'). তাহলে opens the result, whose 'we' is dropped."
   },
   "if.unreal": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
     ],
     [
      "যদি",
@@ -694,9 +904,9 @@
   "if.past": {
    "tokens": [
     [
-     "আমি",
+     "আমরা",
      "subj",
-     "aami"
+     "aamraa"
     ],
     [
      "তখন",

@@ -1,11 +1,15 @@
 {
  "lang": "khasi",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "Nga",
+     "U trai ïing jong nga",
      "subj"
+    ],
+    [
+     "u",
+     "x"
     ],
     [
      "kwah",
@@ -16,25 +20,53 @@
      "x"
     ],
     [
-     "nang",
+     "wan kai",
      "verb"
     ],
     [
-     "ka",
+     "lashai,",
+     "adv"
+    ],
+    [
+     "kumta",
+     "glue"
+    ],
+    [
+     "nga",
+     "subj2"
+    ],
+    [
+     "hap",
+     "door2"
+    ],
+    [
+     "ban",
      "x"
     ],
     [
-     "ktien Khasi.",
-     "obj"
+     "rieh",
+     "verb2"
+    ],
+    [
+     "ïa",
+     "x"
+    ],
+    [
+     "u ksew.",
+     "obj2"
     ]
    ],
-   "why": "Same order as English, but kwah needs the link word ban before a verb, and ktien (language) carries its marker ka."
+   "why": "Both doors (kwah, hap) take ban before the verb; the subject is echoed by its marker u, and kumta links without moving anything."
   },
-  "want.past": {
+  "dog.past": {
    "tokens": [
     [
-     "Nga",
+     "U trai ïing jong nga",
      "subj"
+    ],
+    [
+     "u",
+     "x"
     ],
     [
      "la",
@@ -49,56 +81,59 @@
      "x"
     ],
     [
-     "nang",
+     "wan kai",
      "verb"
     ],
     [
-     "ka",
-     "x"
+     "mynhynnin,",
+     "adv"
     ],
     [
-     "ktien Khasi.",
-     "obj"
-    ]
-   ],
-   "why": "Tense is the particle la slipped in between subject and door; kwah itself never changes shape."
-  },
-  "want.neg": {
-   "tokens": [
-    [
-     "Ngam",
-     "subj|neg"
+     "kumta",
+     "glue"
     ],
     [
-     "kwah",
-     "door"
+     "nga",
+     "subj2"
+    ],
+    [
+     "la",
+     "aux"
+    ],
+    [
+     "hap",
+     "door2"
     ],
     [
      "ban",
      "x"
     ],
     [
-     "nang",
-     "verb"
+     "rieh",
+     "verb2"
     ],
     [
-     "ka",
+     "ïa",
      "x"
     ],
     [
-     "ktien Khasi.",
-     "obj"
+     "u ksew.",
+     "obj2"
     ]
    ],
-   "why": "ym fuses onto the pronoun: nga + ym = ngam, one word carrying both subject and negation, in front of the door."
+   "why": "Past is the particle la placed before each door (u la kwah, nga la hap); kwah and hap themselves never change shape."
   },
-  "want.q": {
+  "dog.neg": {
    "tokens": [
     [
-     "Me",
+     "U trai ïing jong nga",
      "subj"
     ],
     [
+     "um",
+     "x|neg"
+    ],
+    [
      "kwah",
      "door"
     ],
@@ -107,24 +142,105 @@
      "x"
     ],
     [
-     "nang",
+     "wan kai,",
      "verb"
     ],
     [
-     "ka",
+     "kumta",
+     "glue"
+    ],
+    [
+     "ngam",
+     "subj2|neg"
+    ],
+    [
+     "donkam",
+     "door2"
+    ],
+    [
+     "ban",
      "x"
     ],
     [
-     "ktien Khasi?",
-     "obj"
+     "rieh",
+     "verb2"
+    ],
+    [
+     "ïa",
+     "x"
+    ],
+    [
+     "u ksew.",
+     "obj2"
     ]
    ],
-   "why": "No particle and no inversion: statement order with a rising tone. me is 'you' to a male friend; pha to a female friend, phi to anyone else."
+   "why": "ym fuses onto the echo and the pronoun (um, ngam). 'Don't have to' becomes ngam donkam ban, 'I don't need to', since hap means must."
   },
-  "decline.now": {
+  "dog.q": {
    "tokens": [
     [
-     "Ngam",
+     "U trai ïing jong me",
+     "subj"
+    ],
+    [
+     "u",
+     "x"
+    ],
+    [
+     "kwah",
+     "door"
+    ],
+    [
+     "ban",
+     "x"
+    ],
+    [
+     "wan kai",
+     "verb"
+    ],
+    [
+     "lashai,",
+     "adv"
+    ],
+    [
+     "te",
+     "glue"
+    ],
+    [
+     "me",
+     "subj2"
+    ],
+    [
+     "hap",
+     "door2"
+    ],
+    [
+     "ban",
+     "x"
+    ],
+    [
+     "rieh",
+     "verb2"
+    ],
+    [
+     "ïa",
+     "x"
+    ],
+    [
+     "u ksew",
+     "obj2"
+    ],
+    [
+     "ne em?",
+     "q"
+    ]
+   ],
+   "why": "Statement order throughout; the question is only the tag ne em at the very end. te is the light spoken 'so then'; me is informal you."
+  },
+  "cant.now": {
+   "tokens": [
+    [
+     "Ngim",
      "subj|neg"
     ],
     [
@@ -144,28 +260,36 @@
      "glue"
     ],
     [
-     "nga",
+     "ki khun",
      "subj2"
     ],
     [
-     "hap",
-     "door2"
-    ],
-    [
-     "ban",
+     "ki",
      "x"
     ],
     [
-     "trei.",
+     "la",
+     "aux"
+    ],
+    [
+     "rieh",
      "verb2"
+    ],
+    [
+     "ïa",
+     "x"
+    ],
+    [
+     "ki sabi kali.",
+     "obj2"
     ]
    ],
-   "why": "Both doors (lah, hap) take ban before their verb; namar ba links the clauses and changes nothing after it."
+   "why": "ngi (we) + ym fuse into ngim. The hiding is past, so la sits before rieh; namar ba changes nothing in the clause after it."
   },
-  "decline.past": {
+  "cant.past": {
    "tokens": [
     [
-     "Ngam",
+     "Ngim",
      "subj|neg"
     ],
     [
@@ -193,32 +317,36 @@
      "glue"
     ],
     [
-     "nga",
+     "ki khun",
      "subj2"
+    ],
+    [
+     "ki",
+     "x"
     ],
     [
      "la",
      "aux"
     ],
     [
-     "hap",
-     "door2"
+     "rieh",
+     "verb2"
     ],
     [
-     "ban",
+     "ïa",
      "x"
     ],
     [
-     "trei.",
-     "verb2"
+     "ki sabi kali.",
+     "obj2"
     ]
    ],
-   "why": "Past negation adds shym before la (ngam shym la); in speech the second la is often dropped once the past is set."
+   "why": "Past negation stacks three small words before lah: ngim shym la. The door itself is identical to the present."
   },
-  "decline.fut": {
+  "cant.fut": {
    "tokens": [
     [
-     "Ngan",
+     "Ngin",
      "subj|aux"
     ],
     [
@@ -238,53 +366,77 @@
      "verb"
     ],
     [
+     "lashai",
+     "adv"
+    ],
+    [
      "namar ba",
      "glue"
     ],
     [
-     "ngan",
-     "subj2|aux"
+     "ki khun",
+     "subj2"
     ],
     [
-     "hap",
-     "door2"
-    ],
-    [
-     "ban",
+     "ki",
      "x"
     ],
     [
-     "trei.",
+     "la",
+     "aux"
+    ],
+    [
+     "rieh",
      "verb2"
+    ],
+    [
+     "ïa",
+     "x"
+    ],
+    [
+     "ki sabi kali.",
+     "obj2"
     ]
    ],
-   "why": "Future yn fuses to the pronoun (ngan) and ym then sits after it, unlike the present where ym fuses instead. lah needs no substitute."
+   "why": "Future yn fuses to the pronoun (ngin) so ym stands alone after it. Khasi keeps plain lah; no 'be able to' swap is needed."
   },
-  "decline.although": {
+  "cant.although": {
    "tokens": [
     [
      "Wat la",
      "glue"
     ],
     [
-     "nga",
+     "ki khun",
      "subj2"
     ],
     [
-     "hap",
-     "door2"
-    ],
-    [
-     "ban",
+     "ki",
      "x"
     ],
     [
-     "trei,",
+     "la",
+     "aux"
+    ],
+    [
+     "rieh",
      "verb2"
     ],
     [
-     "nga",
+     "ïa",
+     "x"
+    ],
+    [
+     "ki sabi kali,",
+     "obj2"
+    ],
+    [
+     "ngi",
      "subj"
+    ],
+    [
+     "dang",
+     "adv"
     ],
     [
      "lah",
@@ -299,13 +451,17 @@
      "verb"
     ]
    ],
-   "why": "wat la opens the concession, so the 'although' clause comes first and the main clause follows; each clause keeps subject-door-ban-verb."
+   "why": "wat la opens the concession, so the 'although' clause comes first; 'still' is dang placed right before the door lah."
   },
   "like.now": {
    "tokens": [
     [
-     "Nga",
+     "Ka para jong nga",
      "subj"
+    ],
+    [
+     "ka",
+     "x"
     ],
     [
      "ieid",
@@ -316,20 +472,16 @@
      "x"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "kophi.",
+     "ka kophi.",
      "obj"
     ]
    ],
-   "why": "The liked thing is an ordinary object, but it takes the object marker ïa and its own gender marker ka."
+   "why": "para is sibling; the marker ka makes it 'sister'. ka returns as the subject echo and again on kophi, with ïa marking the object."
   },
   "like.neg": {
    "tokens": [
     [
-     "Ngam",
+     "Kam",
      "subj|neg"
     ],
     [
@@ -341,21 +493,21 @@
      "x"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "kophi.",
+     "ka kophi.",
      "obj"
     ]
    ],
-   "why": "Negation is the fused pronoun ngam; nothing else moves and ieid stays the same."
+   "why": "ka (she) + ym fuse into one word, kam, carrying both subject and 'not'; no 'does' and ieid stays the same."
   },
-  "like.she": {
+  "like.they": {
    "tokens": [
     [
-     "Ka",
+     "Ki kmie ki kpa jong nga",
      "subj"
+    ],
+    [
+     "ki",
+     "x"
     ],
     [
      "ieid",
@@ -366,15 +518,11 @@
      "x"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "kophi.",
+     "ka kophi.",
      "obj"
     ]
    ],
-   "why": "ka is both 'she' and the feminine marker, so the sentence opens and the object begins with the same word. No agreement on the door."
+   "why": "No agreement on ieid; the plural shows only in the marker ki, on each parent and again as the subject echo."
   },
   "like.q": {
    "tokens": [
@@ -391,11 +539,7 @@
      "x"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "kophi",
+     "ka kophi",
      "obj"
     ],
     [
@@ -403,37 +547,41 @@
      "q"
     ]
    ],
-   "why": "Statement order plus the everyday tag ne em (or not) at the end; rising tone alone also works. me is the informal 'you' to a male friend."
+   "why": "Statement order plus the everyday tag ne em (or not) at the end; a rising tone alone also works. me is informal 'you' to a male friend."
   },
   "go.habit": {
    "tokens": [
     [
-     "Nga",
+     "Ka meirad bad u thawlang jong nga",
      "subj"
+    ],
+    [
+     "ki",
+     "x"
+    ],
+    [
+     "ju",
+     "aux"
     ],
     [
      "leit",
      "verb"
     ],
     [
-     "sha",
-     "x"
-    ],
-    [
-     "ïew",
+     "sha ïew",
      "obj"
     ],
     [
-     "man ka sngi.",
+     "man ka sngi Sunday.",
      "adv"
     ]
    ],
-   "why": "Bare verb for habit; sha marks direction and the market noun ïew goes without its marker after sha, as in spoken Shillong Khasi."
+   "why": "Two nouns with their own markers (ka, u) are echoed together by plural ki; ju marks habit, which English leaves to 'every Sunday'."
   },
   "go.prog": {
    "tokens": [
     [
-     "Nga",
+     "Ki",
      "subj"
     ],
     [
@@ -445,11 +593,7 @@
      "verb"
     ],
     [
-     "sha",
-     "x"
-    ],
-    [
-     "ïew",
+     "sha ïew",
      "obj"
     ],
     [
@@ -457,12 +601,12 @@
      "adv"
     ]
    ],
-   "why": "Progressive is the particle dang ('in the middle of') before the verb; leit does not change."
+   "why": "Progressive is the particle dang ('in the middle of') before the verb; leit does not change and there is no 'are'."
   },
   "go.past": {
    "tokens": [
     [
-     "Nga",
+     "Ki",
      "subj"
     ],
     [
@@ -474,11 +618,7 @@
      "verb"
     ],
     [
-     "sha",
-     "x"
-    ],
-    [
-     "ïew",
+     "sha ïew",
      "obj"
     ],
     [
@@ -491,7 +631,7 @@
   "go.fut": {
    "tokens": [
     [
-     "Ngan",
+     "Kin",
      "subj|aux"
     ],
     [
@@ -499,11 +639,7 @@
      "verb"
     ],
     [
-     "sha",
-     "x"
-    ],
-    [
-     "ïew",
+     "sha ïew",
      "obj"
     ],
     [
@@ -511,62 +647,62 @@
      "adv"
     ]
    ],
-   "why": "Future yn fuses with the pronoun into ngan, so the subject and 'will' are one word; older texts write nga'n."
+   "why": "Future yn fuses with the pronoun ki into kin, so the subject and 'will' are one word in front of a bare leit."
   },
   "go.neg": {
    "tokens": [
     [
-     "Ngam",
-     "subj|neg"
-    ],
-    [
-     "dang",
-     "aux"
+     "Kim",
+     "subj|aux|neg"
     ],
     [
      "leit",
      "verb"
     ],
     [
-     "sha",
-     "x"
+     "sha ïew",
+     "obj"
     ],
     [
-     "ïew.",
-     "obj"
+     "mynta ka sngi.",
+     "adv"
     ]
    ],
-   "why": "Negation fuses onto the pronoun (ngam) and comes before dang, matching the fixed particle order: neg, then aspect, then verb."
+   "why": "ki + ym fuse into kim; nothing marks 'going', the bare verb plus mynta ka sngi (today) is enough."
   },
   "live.now": {
    "tokens": [
     [
-     "Nga",
+     "U para jong nga",
      "subj"
+    ],
+    [
+     "u",
+     "x"
+    ],
+    [
+     "dang",
+     "aux"
     ],
     [
      "shong",
      "verb"
     ],
     [
-     "hangne",
+     "ha Shillong,",
      "adv"
     ],
     [
-     "lah",
-     "aux"
-    ],
-    [
-     "ar snem.",
+     "ka la long ar snem.",
      "dur"
     ]
    ],
-   "why": "The verb stays bare present; lah (already) on the duration does the perfect's job, and 'for' has no word: ar snem is just 'two years'."
+   "why": "No perfect: dang (still) on a bare verb, and the duration is its own little clause, 'it has become two years'."
   },
   "live.past": {
    "tokens": [
     [
-     "Nga",
+     "U",
      "subj"
     ],
     [
@@ -578,7 +714,7 @@
      "verb"
     ],
     [
-     "hangta",
+     "ha Delhi",
      "adv"
     ],
     [
@@ -586,36 +722,40 @@
      "dur"
     ]
    ],
-   "why": "Finished period: plain past la before shong. The duration is bare, no preposition."
+   "why": "Finished period: plain past la before shong. The duration is bare, ar snem, with no word for 'for'."
   },
   "live.fut": {
    "tokens": [
     [
-     "U snem ba wan",
+     "Haduh u bnai June",
      "adv"
     ],
     [
-     "ngan",
-     "subj|aux"
+     "kan long",
+     "aux"
     ],
     [
-     "lah",
-     "aux"
+     "lai snem",
+     "dur"
+    ],
+    [
+     "ba",
+     "x"
+    ],
+    [
+     "u",
+     "subj"
     ],
     [
      "shong",
      "verb"
     ],
     [
-     "hangne",
+     "ha Shillong.",
      "adv"
-    ],
-    [
-     "lai snem.",
-     "dur"
     ]
    ],
-   "why": "Future perfect stacks yn (fused: ngan) and lah before the verb; in speech the lah is often dropped and the time word carries it."
+   "why": "Said as 'by June it will be three years that he lives in Shillong': the future sits on kan long, and shong stays bare."
   },
   "live.q": {
    "tokens": [
@@ -636,7 +776,94 @@
      "adv"
     ]
    ],
-   "why": "Khasi asks 'since when' (naduh lano) rather than 'how long'; the verb is bare present with no tense particle, and order stays subject-verb."
+   "why": "Khasi asks 'since when' (naduh lano) rather than 'how long'; the verb is bare with no tense particle, and order stays subject-verb."
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "Ka",
+     "subj"
+    ],
+    [
+     "dang",
+     "aux"
+    ],
+    [
+     "slap,",
+     "verb"
+    ],
+    [
+     "kumta",
+     "glue"
+    ],
+    [
+     "shim",
+     "verb2"
+    ],
+    [
+     "ka syrbaïn.",
+     "obj2"
+    ]
+   ],
+   "why": "The rain has a subject, ka, like English 'it'; dang makes it ongoing. The command shim is a bare verb with no 'you'."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "Kan",
+     "subj|aux|door"
+    ],
+    [
+     "sa",
+     "adv"
+    ],
+    [
+     "slap,",
+     "verb"
+    ],
+    [
+     "kumta",
+     "glue"
+    ],
+    [
+     "shim",
+     "verb2"
+    ],
+    [
+     "ka syrbaïn.",
+     "obj2"
+    ]
+   ],
+   "why": "'Going to' is just future yn fused into kan, and 'later' is the particle sa slipped between it and the verb."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "Kam",
+     "subj|aux|neg"
+    ],
+    [
+     "slap,",
+     "verb"
+    ],
+    [
+     "kumta",
+     "glue"
+    ],
+    [
+     "wat",
+     "neg"
+    ],
+    [
+     "shim",
+     "verb2"
+    ],
+    [
+     "ka syrbaïn.",
+     "obj2"
+    ]
+   ],
+   "why": "Two different nots: ym fused into kam for the statement, but the command is negated with wat in front of the verb."
   },
   "if.real": {
    "tokens": [
@@ -645,7 +872,7 @@
      "glue"
     ],
     [
-     "nga",
+     "ngi",
      "subj"
     ],
     [
@@ -653,15 +880,11 @@
      "verb"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "por,",
+     "ka por,",
      "obj"
     ],
     [
-     "ngan",
+     "ngin",
      "subj2|aux"
     ],
     [
@@ -669,7 +892,7 @@
      "verb2"
     ]
    ],
-   "why": "lada plus the bare verb, then fused future ngan in the result clause. leit kai (go about) is the everyday word for travelling for pleasure."
+   "why": "lada plus the bare verb, then future yn fused into ngin. leit kai (go about) is the everyday way to say travel for pleasure."
   },
   "if.unreal": {
    "tokens": [
@@ -678,23 +901,19 @@
      "glue"
     ],
     [
-     "nga",
+     "ngi",
      "subj"
     ],
     [
      "don",
-     "verb"
+     "verb|aux"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "por,",
+     "ka por,",
      "obj"
     ],
     [
-     "ngan",
+     "ngin",
      "subj2|aux"
     ],
     [
@@ -702,7 +921,7 @@
      "verb2"
     ]
    ],
-   "why": "Identical to the real conditional: Khasi has no subjunctive, so unreality comes from context or an adverb; lada tang (if only) can stress it."
+   "why": "Identical to the real conditional: Khasi has no subjunctive, so unreality comes from context; lada tang (if only) can stress it."
   },
   "if.past": {
    "tokens": [
@@ -711,7 +930,7 @@
      "glue"
     ],
     [
-     "nga",
+     "ngi",
      "subj"
     ],
     [
@@ -723,15 +942,11 @@
      "verb"
     ],
     [
-     "ka",
-     "x"
-    ],
-    [
-     "por,",
+     "ka por,",
      "obj"
     ],
     [
-     "ngan",
+     "ngin",
      "subj2|aux"
     ],
     [
@@ -743,7 +958,7 @@
      "verb2"
     ]
    ],
-   "why": "Past la in the if-clause, and yn plus la together (ngan la) in the result: the only place Khasi stacks future and past on one verb, meaning 'would have'."
+   "why": "Past la in the if-clause, and yn plus la together (ngin la) in the result: future and past stacked on one verb means 'would have'."
   }
  }
 }

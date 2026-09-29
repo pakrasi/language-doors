@@ -1,117 +1,22 @@
 {
  "lang": "hindi",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "मैं",
+     "मेरे मकान-मालिक",
      "subj",
-     "main"
+     "mere makaan-maalik"
     ],
     [
-     "खासी",
-     "obj",
-     "khaasii"
+     "कल",
+     "adv",
+     "kal"
     ],
     [
-     "सीखना",
+     "आना",
      "verb",
-     "siikhnaa"
-    ],
-    [
-     "चाहता",
-     "door",
-     "chaahtaa"
-    ],
-    [
-     "हूँ।",
-     "aux",
-     "huun."
-    ]
-   ],
-   "why": "SOV: object खासी and infinitive सीखना come first, then the door चाहता, then हूँ carrying present tense last. चाहता is masculine because the learner is male."
-  },
-  "want.past": {
-   "tokens": [
-    [
-     "मैं",
-     "subj",
-     "main"
-    ],
-    [
-     "खासी",
-     "obj",
-     "khaasii"
-    ],
-    [
-     "सीखना",
-     "verb",
-     "siikhnaa"
-    ],
-    [
-     "चाहता",
-     "door",
-     "chaahtaa"
-    ],
-    [
-     "था।",
-     "aux",
-     "thaa."
-    ]
-   ],
-   "why": "Past is just the final auxiliary swapped, हूँ to था; the door चाहता itself does not change shape at all."
-  },
-  "want.neg": {
-   "tokens": [
-    [
-     "मैं",
-     "subj",
-     "main"
-    ],
-    [
-     "खासी",
-     "obj",
-     "khaasii"
-    ],
-    [
-     "सीखना",
-     "verb",
-     "siikhnaa"
-    ],
-    [
-     "नहीं",
-     "neg",
-     "nahiin"
-    ],
-    [
-     "चाहता।",
-     "door",
-     "chaahtaa."
-    ]
-   ],
-   "why": "नहीं sits right before the door, and in speech the हूँ drops after नहीं, so चाहता ends the sentence alone with no tense carrier."
-  },
-  "want.q": {
-   "tokens": [
-    [
-     "क्या",
-     "q",
-     "kyaa"
-    ],
-    [
-     "तुम",
-     "subj",
-     "tum"
-    ],
-    [
-     "खासी",
-     "obj",
-     "khaasii"
-    ],
-    [
-     "सीखना",
-     "verb",
-     "siikhnaa"
+     "aanaa"
     ],
     [
      "चाहते",
@@ -119,39 +24,14 @@
      "chaahte"
     ],
     [
-     "हो?",
+     "हैं,",
      "aux",
-     "ho?"
-    ]
-   ],
-   "why": "क्या at the front makes a yes/no question; nothing inverts. Informal तुम takes the plural-looking चाहते हो even for one friend."
-  },
-  "decline.now": {
-   "tokens": [
-    [
-     "मैं",
-     "subj",
-     "main"
+     "hain,"
     ],
     [
-     "नहीं",
-     "neg",
-     "nahiin"
-    ],
-    [
-     "आ",
-     "verb",
-     "aa"
-    ],
-    [
-     "सकता",
-     "door",
-     "saktaa"
-    ],
-    [
-     "क्योंकि",
+     "तो",
      "glue",
-     "kyonki"
+     "to"
     ],
     [
      "मुझे",
@@ -159,104 +39,14 @@
      "mujhe"
     ],
     [
-     "काम करना",
+     "कुत्ते को",
+     "obj2",
+     "kutte ko"
+    ],
+    [
+     "छुपाना",
      "verb2",
-     "kaam karnaa"
-    ],
-    [
-     "पड़ता",
-     "door2",
-     "paRtaa"
-    ],
-    [
-     "है।",
-     "aux",
-     "hai."
-    ]
-   ],
-   "why": "English can't splits into नहीं + सकता and the हूँ drops after नहीं. After क्योंकि the doer is dative मुझे; for a one-off, spoken Hindi often says just काम करना है."
-  },
-  "decline.past": {
-   "tokens": [
-    [
-     "मैं",
-     "subj",
-     "main"
-    ],
-    [
-     "नहीं",
-     "neg",
-     "nahiin"
-    ],
-    [
-     "आ",
-     "verb",
-     "aa"
-    ],
-    [
-     "सका",
-     "door|aux",
-     "sakaa"
-    ],
-    [
-     "क्योंकि",
-     "glue",
-     "kyonki"
-    ],
-    [
-     "मुझे",
-     "subj2",
-     "mujhe"
-    ],
-    [
-     "काम करना",
-     "verb2",
-     "kaam karnaa"
-    ],
-    [
-     "पड़ा।",
-     "door2|aux",
-     "paRaa."
-    ]
-   ],
-   "why": "Both doors go perfective with no था: सका and पड़ा carry the past by themselves. आना is intransitive, so मैं takes no ने."
-  },
-  "decline.fut": {
-   "tokens": [
-    [
-     "मैं",
-     "subj",
-     "main"
-    ],
-    [
-     "नहीं",
-     "neg",
-     "nahiin"
-    ],
-    [
-     "आ",
-     "verb",
-     "aa"
-    ],
-    [
-     "सकूँगा",
-     "door|aux",
-     "sakuungaa"
-    ],
-    [
-     "क्योंकि",
-     "glue",
-     "kyonki"
-    ],
-    [
-     "मुझे",
-     "subj2",
-     "mujhe"
-    ],
-    [
-     "काम करना",
-     "verb2",
-     "kaam karnaa"
+     "chhupaanaa"
     ],
     [
      "पड़ेगा।",
@@ -264,14 +54,39 @@
      "paRegaa."
     ]
    ],
-   "why": "Unlike English, CAN has a real future: सकूँगा with the -ऊँगा ending, and पड़ेगा does the same for HAVE-TO. Spoken Hindi says नहीं आ पाऊँगा just as often."
+   "why": "Both verbs sit at the end of their halves. Spoken Hindi puts the coming obligation in future पड़ेगा; the landlord gets respectful plural चाहते हैं."
   },
-  "decline.although": {
+  "dog.past": {
    "tokens": [
     [
-     "हालाँकि",
+     "मेरे मकान-मालिक",
+     "subj",
+     "mere makaan-maalik"
+    ],
+    [
+     "कल",
+     "adv",
+     "kal"
+    ],
+    [
+     "आना",
+     "verb",
+     "aanaa"
+    ],
+    [
+     "चाहते",
+     "door",
+     "chaahte"
+    ],
+    [
+     "थे,",
+     "aux",
+     "the,"
+    ],
+    [
+     "तो",
      "glue",
-     "haalaanki"
+     "to"
     ],
     [
      "मुझे",
@@ -279,89 +94,34 @@
      "mujhe"
     ],
     [
-     "काम करना",
+     "कुत्ते को",
+     "obj2",
+     "kutte ko"
+    ],
+    [
+     "छुपाना",
      "verb2",
-     "kaam karnaa"
+     "chhupaanaa"
     ],
     [
-     "पड़ता",
-     "door2",
-     "paRtaa"
-    ],
+     "पड़ा।",
+     "door2|aux",
+     "paRaa."
+    ]
+   ],
+   "why": "कल means both yesterday and tomorrow; only the tense tells them apart. था-form थे carries past in half one, perfective पड़ा in half two."
+  },
+  "dog.neg": {
+   "tokens": [
     [
-     "है,",
-     "aux",
-     "hai,"
-    ],
-    [
-     "फिर भी",
-     "x",
-     "phir bhii"
-    ],
-    [
-     "मैं",
+     "मेरे मकान-मालिक",
      "subj",
-     "main"
+     "mere makaan-maalik"
     ],
     [
-     "आ",
+     "आना",
      "verb",
-     "aa"
-    ],
-    [
-     "सकता",
-     "door",
-     "saktaa"
-    ],
-    [
-     "हूँ।",
-     "aux",
-     "huun."
-    ]
-   ],
-   "why": "Hindi fronts the concession: हालाँकि clause first, then फिर भी (even so) opens the main clause, a pair like अगर...तो. Clause order flips versus English."
-  },
-  "like.now": {
-   "tokens": [
-    [
-     "मुझे",
-     "subj",
-     "mujhe"
-    ],
-    [
-     "कॉफ़ी",
-     "obj",
-     "kaufii"
-    ],
-    [
-     "पसंद",
-     "door",
-     "pasand"
-    ],
-    [
-     "है।",
-     "aux",
-     "hai."
-    ]
-   ],
-   "why": "The liker is dative मुझे and कॉफ़ी is the grammatical subject; है agrees with कॉफ़ी, not with me, so nothing here would change for a female speaker."
-  },
-  "like.neg": {
-   "tokens": [
-    [
-     "मुझे",
-     "subj",
-     "mujhe"
-    ],
-    [
-     "कॉफ़ी",
-     "obj",
-     "kaufii"
-    ],
-    [
-     "पसंद",
-     "door",
-     "pasand"
+     "aanaa"
     ],
     [
      "नहीं",
@@ -369,14 +129,339 @@
      "nahiin"
     ],
     [
+     "चाहते,",
+     "door",
+     "chaahte,"
+    ],
+    [
+     "तो",
+     "glue",
+     "to"
+    ],
+    [
+     "मुझे",
+     "subj2",
+     "mujhe"
+    ],
+    [
+     "कुत्ते को",
+     "obj2",
+     "kutte ko"
+    ],
+    [
+     "छुपाना",
+     "verb2",
+     "chhupaanaa"
+    ],
+    [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
+     "पड़ेगा।",
+     "door2|aux",
+     "paRegaa."
+    ]
+   ],
+   "why": "Each नहीं sits right before its door. हैं drops after नहीं in speech. छुपाना नहीं पड़ेगा means no need, not a ban."
+  },
+  "dog.q": {
+   "tokens": [
+    [
+     "तुम्हारे मकान-मालिक",
+     "subj",
+     "tumhaare makaan-maalik"
+    ],
+    [
+     "कल",
+     "adv",
+     "kal"
+    ],
+    [
+     "आना",
+     "verb",
+     "aanaa"
+    ],
+    [
+     "चाहते",
+     "door",
+     "chaahte"
+    ],
+    [
+     "हैं,",
+     "aux",
+     "hain,"
+    ],
+    [
+     "तो",
+     "glue",
+     "to"
+    ],
+    [
+     "क्या",
+     "q",
+     "kyaa"
+    ],
+    [
+     "तुम्हें",
+     "subj2",
+     "tumhen"
+    ],
+    [
+     "कुत्ते को",
+     "obj2",
+     "kutte ko"
+    ],
+    [
+     "छुपाना",
+     "verb2",
+     "chhupaanaa"
+    ],
+    [
+     "पड़ेगा?",
+     "door2|aux",
+     "paRegaa?"
+    ]
+   ],
+   "why": "क्या opens only the second half, right after तो; nothing inverts. The doer of पड़ना is dative तुम्हें, not तुम."
+  },
+  "cant.now": {
+   "tokens": [
+    [
+     "हम",
+     "subj",
+     "ham"
+    ],
+    [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
+     "आ",
+     "verb",
+     "aa"
+    ],
+    [
+     "सकते",
+     "door",
+     "sakte"
+    ],
+    [
+     "क्योंकि",
+     "glue",
+     "kyonki"
+    ],
+    [
+     "बच्चों ने",
+     "subj2",
+     "bachchon ne"
+    ],
+    [
+     "गाड़ी की चाबियाँ",
+     "obj2",
+     "gaaRii kii chaabiyaan"
+    ],
+    [
+     "छुपा दी",
+     "verb2|aux",
+     "chhupaa dii"
+    ],
+    [
+     "हैं।",
+     "aux",
+     "hain."
+    ]
+   ],
+   "why": "Can't splits into नहीं + सकते. Transitive past: बच्चों takes ने and छुपा दी agrees with the feminine keys, not the kids."
+  },
+  "cant.past": {
+   "tokens": [
+    [
+     "हम",
+     "subj",
+     "ham"
+    ],
+    [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
+     "आ",
+     "verb",
+     "aa"
+    ],
+    [
+     "पाए",
+     "door|aux",
+     "paae"
+    ],
+    [
+     "क्योंकि",
+     "glue",
+     "kyonki"
+    ],
+    [
+     "बच्चों ने",
+     "subj2",
+     "bachchon ne"
+    ],
+    [
+     "गाड़ी की चाबियाँ",
+     "obj2",
+     "gaaRii kii chaabiyaan"
+    ],
+    [
+     "छुपा दी",
+     "verb2|aux",
+     "chhupaa dii"
+    ],
+    [
+     "थीं।",
+     "aux",
+     "thiin."
+    ]
+   ],
+   "why": "For a missed chance speech prefers पाना over सकना: नहीं आ पाए. The hiding happened earlier still, so it gets थीं."
+  },
+  "cant.fut": {
+   "tokens": [
+    [
+     "हम",
+     "subj",
+     "ham"
+    ],
+    [
+     "कल",
+     "adv",
+     "kal"
+    ],
+    [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
+     "आ",
+     "verb",
+     "aa"
+    ],
+    [
+     "पाएँगे",
+     "door|aux",
+     "paaenge"
+    ],
+    [
+     "क्योंकि",
+     "glue",
+     "kyonki"
+    ],
+    [
+     "बच्चों ने",
+     "subj2",
+     "bachchon ne"
+    ],
+    [
+     "गाड़ी की चाबियाँ",
+     "obj2",
+     "gaaRii kii chaabiyaan"
+    ],
+    [
+     "छुपा दी",
+     "verb2|aux",
+     "chhupaa dii"
+    ],
+    [
+     "हैं।",
+     "aux",
+     "hain."
+    ]
+   ],
+   "why": "No be-able-to detour: the door पाना just takes the future ending -एँगे. कल moves in front of नहीं, before the verb group."
+  },
+  "cant.although": {
+   "tokens": [
+    [
+     "हालाँकि",
+     "glue",
+     "haalaanki"
+    ],
+    [
+     "बच्चों ने",
+     "subj2",
+     "bachchon ne"
+    ],
+    [
+     "गाड़ी की चाबियाँ",
+     "obj2",
+     "gaaRii kii chaabiyaan"
+    ],
+    [
+     "छुपा दी",
+     "verb2|aux",
+     "chhupaa dii"
+    ],
+    [
+     "हैं,",
+     "aux",
+     "hain,"
+    ],
+    [
+     "फिर भी",
+     "adv",
+     "phir bhii"
+    ],
+    [
+     "हम",
+     "subj",
+     "ham"
+    ],
+    [
+     "आ",
+     "verb",
+     "aa"
+    ],
+    [
+     "सकते",
+     "door",
+     "sakte"
+    ],
+    [
+     "हैं।",
+     "aux",
+     "hain."
+    ]
+   ],
+   "why": "Order flips: the हालाँकि clause comes first and फिर भी (still) opens the main clause, a paired glue like अगर ... तो."
+  },
+  "like.now": {
+   "tokens": [
+    [
+     "मेरी बहन को",
+     "subj",
+     "merii bahan ko"
+    ],
+    [
+     "कॉफ़ी",
+     "obj",
+     "kaufii"
+    ],
+    [
+     "पसंद",
+     "door",
+     "pasand"
+    ],
+    [
      "है।",
      "aux",
      "hai."
     ]
    ],
-   "why": "Here नहीं slips in after the door, between पसंद and है, unlike चाहता where it goes before. Casual speech drops the है: पसंद नहीं."
+   "why": "The sister is dative (बहन को) and कॉफ़ी is the grammatical subject: coffee is pleasing to my sister. पसंद is a noun, not a verb."
   },
-  "like.she": {
+  "like.neg": {
    "tokens": [
     [
      "उसे",
@@ -394,12 +479,42 @@
      "pasand"
     ],
     [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
      "है।",
      "aux",
      "hai."
     ]
    ],
-   "why": "Only the dative pronoun changes, मुझे to उसे; पसंद है is untouched and shows no gender since it agrees with कॉफ़ी. उसे is he or she alike."
+   "why": "नहीं slots between पसंद and है. उसे is the dative of वो and serves for she or he alike; no gender shows."
+  },
+  "like.they": {
+   "tokens": [
+    [
+     "मेरे मम्मी-पापा को",
+     "subj",
+     "mere mammii-paapaa ko"
+    ],
+    [
+     "कॉफ़ी",
+     "obj",
+     "kaufii"
+    ],
+    [
+     "पसंद",
+     "door",
+     "pasand"
+    ],
+    [
+     "है।",
+     "aux",
+     "hai."
+    ]
+   ],
+   "why": "Nothing agrees with the parents: है stays singular because it agrees with कॉफ़ी. Only मेरी becomes oblique मेरे."
   },
   "like.q": {
    "tokens": [
@@ -429,19 +544,19 @@
      "hai?"
     ]
    ],
-   "why": "क्या fronted, informal dative तुम्हें; the verb stays है because कॉफ़ी is the subject, so nothing in the sentence agrees with you at all."
+   "why": "क्या in front plus rising tone; the order is the statement's. Informal तुम becomes dative तुम्हें, and है still agrees with coffee."
   },
   "go.habit": {
    "tokens": [
     [
-     "मैं",
+     "मेरे दादा-दादी",
      "subj",
-     "main"
+     "mere daadaa-daadii"
     ],
     [
-     "रोज़",
+     "हर इतवार",
      "adv",
-     "roz"
+     "har itvaar"
     ],
     [
      "बाज़ार",
@@ -449,24 +564,24 @@
      "baazaar"
     ],
     [
-     "जाता",
+     "जाते",
      "verb",
-     "jaataa"
+     "jaate"
     ],
     [
-     "हूँ।",
+     "हैं।",
      "aux",
-     "huun."
+     "hain."
     ]
    ],
-   "why": "Time रोज़ comes before place and the verb group जाता हूँ closes. बाज़ार takes no postposition after जाना, so 'to the market' is a single bare word."
+   "why": "Time before place, verb last. Habitual जाते हैं; no postposition needed on बाज़ार with जाना. Urban speakers also say हर संडे."
   },
   "go.prog": {
    "tokens": [
     [
-     "मैं",
+     "वो",
      "subj",
-     "main"
+     "vo"
     ],
     [
      "अभी",
@@ -484,24 +599,24 @@
      "jaa"
     ],
     [
-     "रहा",
+     "रहे",
      "aux",
-     "rahaa"
+     "rahe"
     ],
     [
-     "हूँ।",
+     "हैं।",
      "aux",
-     "huun."
+     "hain."
     ]
    ],
-   "why": "Progressive is bare stem जा plus रहा (masculine, agreeing with me) plus हूँ: two carriers after the verb where English has one 'am' before it."
+   "why": "Unlike German or French, the progressive is its own form: bare stem जा + रहे + हैं. Spoken वो for written वे."
   },
   "go.past": {
    "tokens": [
     [
-     "मैं",
+     "वो",
      "subj",
-     "main"
+     "vo"
     ],
     [
      "कल",
@@ -514,19 +629,19 @@
      "baazaar"
     ],
     [
-     "गया।",
+     "गए।",
      "verb|aux",
-     "gayaa."
+     "gae."
     ]
    ],
-   "why": "गया is the perfective participle standing alone as the past, masculine to match मैं. जाना is intransitive so no ने; कल means yesterday and tomorrow."
+   "why": "Like English went, गए replaces the stem जा entirely. जाना is intransitive, so no ने on वो."
   },
   "go.fut": {
    "tokens": [
     [
-     "मैं",
+     "वो",
      "subj",
-     "main"
+     "vo"
     ],
     [
      "कल",
@@ -539,19 +654,24 @@
      "baazaar"
     ],
     [
-     "जाऊँगा।",
+     "जाएँगे।",
      "verb|aux",
-     "jaauungaa."
+     "jaaenge."
     ]
    ],
-   "why": "One synthetic future जाऊँगा fuses verb and tense where English needs 'will'. For a fixed plan people say कल बाज़ार जा रहा हूँ instead."
+   "why": "No separate will: the future ending -एँगे fuses onto the verb. Same कल as yesterday, the verb decides."
   },
   "go.neg": {
    "tokens": [
     [
-     "मैं",
+     "वो",
      "subj",
-     "main"
+     "vo"
+    ],
+    [
+     "आज",
+     "adv",
+     "aaj"
     ],
     [
      "बाज़ार",
@@ -569,24 +689,19 @@
      "jaa"
     ],
     [
-     "रहा",
+     "रहे।",
      "aux",
-     "rahaa"
-    ],
-    [
-     "हूँ।",
-     "aux",
-     "huun."
+     "rahe."
     ]
    ],
-   "why": "नहीं goes right before the whole verb group जा रहा हूँ; in speech the final हूँ often drops after नहीं (मैं बाज़ार नहीं जा रहा)."
+   "why": "नहीं goes before the verb group, and spoken Hindi drops हैं after it, so रहे ends the sentence."
   },
   "live.now": {
    "tokens": [
     [
-     "मैं",
+     "मेरा भाई",
      "subj",
-     "main"
+     "meraa bhaaii"
     ],
     [
      "दो साल से",
@@ -594,9 +709,9 @@
      "do saal se"
     ],
     [
-     "यहाँ",
+     "शिलॉन्ग में",
      "adv",
-     "yahaan"
+     "shilaung men"
     ],
     [
      "रह",
@@ -609,24 +724,19 @@
      "rahaa"
     ],
     [
-     "हूँ।",
+     "है।",
      "aux",
-     "huun."
+     "hai."
     ]
    ],
-   "why": "No perfect tense: plain present progressive रह रहा हूँ plus से on the duration does the work of 'have been living'. Duration comes before place."
+   "why": "Present progressive plus से (since) does the has-been-living job; no perfect needed. Duration comes before place."
   },
   "live.past": {
    "tokens": [
     [
-     "मैं",
+     "वो",
      "subj",
-     "main"
-    ],
-    [
-     "वहाँ",
-     "adv",
-     "vahaan"
+     "vo"
     ],
     [
      "दो साल",
@@ -634,29 +744,34 @@
      "do saal"
     ],
     [
+     "दिल्ली में",
+     "adv",
+     "dillii men"
+    ],
+    [
      "रहा।",
      "verb|aux",
      "rahaa."
     ]
    ],
-   "why": "Finished period: bare दो साल with no से (or दो साल तक), and this रहा is the perfective of रहना 'stayed', not the progressive marker."
+   "why": "Finished stretch: से drops from दो साल and plain perfective रहा ends it. Same रहा as the progressive helper, here the main verb."
   },
   "live.fut": {
    "tokens": [
     [
-     "अगले साल",
+     "जून तक",
      "adv",
-     "agle saal"
+     "juun tak"
     ],
     [
-     "मुझे",
+     "उसे",
      "subj",
-     "mujhe"
+     "use"
     ],
     [
-     "यहाँ",
+     "शिलॉन्ग में",
      "adv",
-     "yahaan"
+     "shilaung men"
     ],
     [
      "रहते हुए",
@@ -674,7 +789,7 @@
      "ho jaaenge."
     ]
    ],
-   "why": "Hindi flips it: 'to me, living here, three years will happen'. Dative मुझे, participle रहते हुए, and the tense sits on हो जाएँगे, agreeing with तीन साल."
+   "why": "Recast as by June, to him, living in Shillong, three years will be complete. The years are the subject of हो जाएँगे."
   },
   "live.q": {
    "tokens": [
@@ -709,7 +824,122 @@
      "ho?"
     ]
    ],
-   "why": "The question word कब से (since when) stays in place just before the verb instead of fronting; रहे हो is the तुम form, plural-looking for one friend."
+   "why": "कब से (since when) stays in place just before the verb instead of moving to the front, and the present progressive covers have been."
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "बारिश",
+     "subj|verb",
+     "baarish"
+    ],
+    [
+     "हो रही",
+     "aux",
+     "ho rahii"
+    ],
+    [
+     "है,",
+     "aux",
+     "hai,"
+    ],
+    [
+     "तो",
+     "glue",
+     "to"
+    ],
+    [
+     "छाता",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "ले जाओ।",
+     "verb2",
+     "le jaao."
+    ]
+   ],
+   "why": "No dummy it: the noun बारिश is the subject and हो रही है (is happening) carries the -ing. ले जाओ is the तुम order, take along."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "बाद में",
+     "adv",
+     "baad men"
+    ],
+    [
+     "बारिश",
+     "subj|verb",
+     "baarish"
+    ],
+    [
+     "होने वाली",
+     "door",
+     "hone vaalii"
+    ],
+    [
+     "है,",
+     "aux",
+     "hai,"
+    ],
+    [
+     "तो",
+     "glue",
+     "to"
+    ],
+    [
+     "छाता",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "ले जाओ।",
+     "verb2",
+     "le jaao."
+    ]
+   ],
+   "why": "होने वाली है is Hindi going to: about to happen. वाली is feminine to agree with बारिश. बाद में leads the sentence."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "बारिश",
+     "subj|verb",
+     "baarish"
+    ],
+    [
+     "नहीं",
+     "neg",
+     "nahiin"
+    ],
+    [
+     "हो रही,",
+     "aux",
+     "ho rahii,"
+    ],
+    [
+     "तो",
+     "glue",
+     "to"
+    ],
+    [
+     "छाता",
+     "obj2",
+     "chhaataa"
+    ],
+    [
+     "मत",
+     "neg",
+     "mat"
+    ],
+    [
+     "ले जाओ।",
+     "verb2",
+     "le jaao."
+    ]
+   ],
+   "why": "Two different nots: नहीं for the fact, मत for the order. है drops after नहीं in speech."
   },
   "if.real": {
    "tokens": [
@@ -719,9 +949,9 @@
      "agar"
     ],
     [
-     "मेरे पास",
+     "हमारे पास",
      "subj",
-     "mere paas"
+     "hamaare paas"
     ],
     [
      "वक़्त",
@@ -739,9 +969,9 @@
      "to"
     ],
     [
-     "मैं",
+     "हम",
      "subj2",
-     "main"
+     "ham"
     ],
     [
      "घूमने",
@@ -749,12 +979,12 @@
      "ghuumne"
     ],
     [
-     "जाऊँगा।",
+     "जाएँगे।",
      "verb2|aux",
-     "jaauungaa."
+     "jaaenge."
     ]
    ],
-   "why": "Possession is मेरे पास 'with me', and the if-clause verb goes perfective (वक़्त हुआ, 'if time happened'). तो opens the result and has no English word."
+   "why": "No have verb: हमारे पास वक़्त हुआ is with us time was. Spoken Hindi puts the if-verb in perfective हुआ; तो marks the then-half."
   },
   "if.unreal": {
    "tokens": [
@@ -764,9 +994,9 @@
      "agar"
     ],
     [
-     "मेरे पास",
+     "हमारे पास",
      "subj",
-     "mere paas"
+     "hamaare paas"
     ],
     [
      "वक़्त",
@@ -784,9 +1014,9 @@
      "to"
     ],
     [
-     "मैं",
+     "हम",
      "subj2",
-     "main"
+     "ham"
     ],
     [
      "घूमने",
@@ -794,12 +1024,12 @@
      "ghuumne"
     ],
     [
-     "जाता।",
+     "जाते।",
      "verb2|aux",
-     "jaataa."
+     "jaate."
     ]
    ],
-   "why": "Unreal: the bare habitual participle in both halves, होता ... जाता, with no auxiliary anywhere; English 'would' has no separate word. जाता is masculine."
+   "why": "Both halves use the bare -ता participle (होता, जाते) with no है: that alone makes it imagined."
   },
   "if.past": {
    "tokens": [
@@ -809,9 +1039,9 @@
      "agar"
     ],
     [
-     "मेरे पास",
+     "हमारे पास",
      "subj",
-     "mere paas"
+     "hamaare paas"
     ],
     [
      "वक़्त",
@@ -829,9 +1059,9 @@
      "to"
     ],
     [
-     "मैं",
+     "हम",
      "subj2",
-     "main"
+     "ham"
     ],
     [
      "घूमने",
@@ -839,17 +1069,17 @@
      "ghuumne"
     ],
     [
-     "गया",
+     "गए",
      "verb2|aux",
-     "gayaa"
+     "gae"
     ],
     [
-     "होता।",
+     "होते।",
      "aux",
-     "hotaa."
+     "hote."
     ]
    ],
-   "why": "The if-clause is identical to the unreal one; only the result shifts to perfective plus होता (गया होता) to mark the missed past. No ने: जाना is intransitive."
+   "why": "The if-half is identical to the unreal one; only the then-half changes to गए होते to push it into the past."
   }
  }
 }

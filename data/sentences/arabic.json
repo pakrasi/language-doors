@@ -1,12 +1,17 @@
 {
  "lang": "arabic",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "أريد",
+     "صاحب البيت",
+     "subj",
+     "saa7ib al-bayt"
+    ],
+    [
+     "يريد",
      "door",
-     "uriid"
+     "yuriid"
     ],
     [
      "أن",
@@ -14,134 +19,19 @@
      "an"
     ],
     [
-     "أتعلم",
+     "يزورني",
      "verb",
-     "ata3allam"
+     "yazuurunii"
     ],
     [
-     "اللغة الخاسية.",
-     "obj",
-     "al-lugha al-khaasiyya."
-    ]
-   ],
-   "why": "No 'I': the a- prefix on أريد and أتعلم marks the speaker. أن (an) links the two verbs, like English 'to'."
-  },
-  "want.past": {
-   "tokens": [
-    [
-     "كنت",
-     "aux",
-     "kuntu"
+     "غدًا،",
+     "adv",
+     "ghadan,"
     ],
     [
-     "أريد",
-     "door",
-     "uriid"
-    ],
-    [
-     "أن",
-     "x",
-     "an"
-    ],
-    [
-     "أتعلم",
-     "verb",
-     "ata3allam"
-    ],
-    [
-     "اللغة الخاسية.",
-     "obj",
-     "al-lugha al-khaasiyya."
-    ]
-   ],
-   "why": "Past goes on a separate كنت (kuntu, 'I was') while أريد stays present; أردت (aradtu) also works but sounds more one-off."
-  },
-  "want.neg": {
-   "tokens": [
-    [
-     "لا",
-     "neg",
-     "laa"
-    ],
-    [
-     "أريد",
-     "door",
-     "uriid"
-    ],
-    [
-     "أن",
-     "x",
-     "an"
-    ],
-    [
-     "أتعلم",
-     "verb",
-     "ata3allam"
-    ],
-    [
-     "اللغة الخاسية.",
-     "obj",
-     "al-lugha al-khaasiyya."
-    ]
-   ],
-   "why": "لا (laa) goes straight before the present verb with no 'do'. Levantine swaps it for ما: ما بدّي إتعلّم (ma baddi et3allam)."
-  },
-  "want.q": {
-   "tokens": [
-    [
-     "هل",
-     "q",
-     "hal"
-    ],
-    [
-     "تريد",
-     "door",
-     "turiid"
-    ],
-    [
-     "أن",
-     "x",
-     "an"
-    ],
-    [
-     "تتعلم",
-     "verb",
-     "tata3allam"
-    ],
-    [
-     "اللغة الخاسية؟",
-     "obj",
-     "al-lugha al-khaasiyya?"
-    ]
-   ],
-   "why": "هل (hal) at the front makes it a yes/no question and nothing moves. 'You' is only the t- prefix on تريد and تتعلم."
-  },
-  "decline.now": {
-   "tokens": [
-    [
-     "لا",
-     "neg",
-     "laa"
-    ],
-    [
-     "أستطيع",
-     "door",
-     "astatii3"
-    ],
-    [
-     "أن",
-     "x",
-     "an"
-    ],
-    [
-     "آتي",
-     "verb",
-     "aatii"
-    ],
-    [
-     "لأن",
+     "لذلك",
      "glue",
-     "li-anna"
+     "li-dhaalik"
     ],
     [
      "عليّ",
@@ -154,24 +44,29 @@
      "an"
     ],
     [
-     "أعمل.",
+     "أخبّئ",
      "verb2",
-     "a3mal."
-    ]
-   ],
-   "why": "HAVE-TO is عليّ (3alayya, 'on me'): a preposition with the person built in, like Hindi मुझे. Both subjects are dropped."
-  },
-  "decline.past": {
-   "tokens": [
-    [
-     "لم",
-     "neg|aux",
-     "lam"
+     "ukhabbi2"
     ],
     [
-     "أستطع",
-     "door",
-     "astati3"
+     "الكلب.",
+     "obj2",
+     "al-kalb."
+    ]
+   ],
+   "why": "HAVE-TO is عليّ (3alayya, 'on me'), with no verb and no 'I'. Levantine: لازم خبّي الكلب (laazim khabbi il-kalb)."
+  },
+  "dog.past": {
+   "tokens": [
+    [
+     "أراد",
+     "door|aux",
+     "araada"
+    ],
+    [
+     "صاحب البيت",
+     "subj",
+     "saa7ib al-bayt"
     ],
     [
      "أن",
@@ -179,14 +74,19 @@
      "an"
     ],
     [
-     "آتي",
+     "يزورني",
      "verb",
-     "aatii"
+     "yazuurunii"
     ],
     [
-     "لأنه",
+     "أمس،",
+     "adv",
+     "ams,"
+    ],
+    [
+     "لذلك",
      "glue",
-     "li-annahu"
+     "li-dhaalik"
     ],
     [
      "كان",
@@ -204,44 +104,54 @@
      "an"
     ],
     [
-     "أعمل.",
+     "أخبّئ",
      "verb2",
-     "a3mal."
+     "ukhabbi2"
+    ],
+    [
+     "الكلب.",
+     "obj2",
+     "al-kalb."
     ]
    ],
-   "why": "Past sits in the negator: لم (lam) plus a non-past verb means 'didn't'. عليّ has no tense, so كان (kaana) is added."
+   "why": "The past verb أراد (araada) moves in front of the landlord. عليّ has no tense of its own, so كان (kaana, 'was') is added."
   },
-  "decline.fut": {
+  "dog.neg": {
    "tokens": [
     [
-     "لن",
+     "صاحب البيت",
+     "subj",
+     "saa7ib al-bayt"
+    ],
+    [
+     "لا",
+     "neg",
+     "laa"
+    ],
+    [
+     "يريد",
+     "door",
+     "yuriid"
+    ],
+    [
+     "أن",
+     "x",
+     "an"
+    ],
+    [
+     "يزورني،",
+     "verb",
+     "yazuurunii,"
+    ],
+    [
+     "لذلك",
+     "glue",
+     "li-dhaalik"
+    ],
+    [
+     "ليس",
      "neg|aux",
-     "lan"
-    ],
-    [
-     "أستطيع",
-     "door",
-     "astatii3"
-    ],
-    [
-     "أن",
-     "x",
-     "an"
-    ],
-    [
-     "آتي",
-     "verb",
-     "aatii"
-    ],
-    [
-     "لأنه",
-     "glue",
-     "li-annahu"
-    ],
-    [
-     "سيكون",
-     "aux",
-     "sa-yakuun"
+     "laysa"
     ],
     [
      "عليّ",
@@ -254,19 +164,29 @@
      "an"
     ],
     [
-     "أعمل.",
+     "أخبّئ",
      "verb2",
-     "a3mal."
+     "ukhabbi2"
+    ],
+    [
+     "الكلب.",
+     "obj2",
+     "al-kalb."
     ]
    ],
-   "why": "لن (lan) is a separate negator just for the future: laa for now, lam for the past, lan for later. سيكون puts عليّ into the future."
+   "why": "Two different nots: لا (laa) before the verb يريد, but ليس (laysa, 'is not') before عليّ, which is not a verb."
   },
-  "decline.although": {
+  "dog.q": {
    "tokens": [
     [
-     "أستطيع",
+     "صاحب بيتك",
+     "subj",
+     "saa7ib baytak"
+    ],
+    [
+     "يريد",
      "door",
-     "astatii3"
+     "yuriid"
     ],
     [
      "أن",
@@ -274,19 +194,24 @@
      "an"
     ],
     [
-     "آتي",
+     "يزورك",
      "verb",
-     "aatii"
+     "yazuurak"
     ],
     [
-     "مع أن",
-     "glue",
-     "ma3a anna"
+     "غدًا،",
+     "adv",
+     "ghadan,"
     ],
     [
-     "عليّ",
+     "فهل",
+     "glue|q",
+     "fa-hal"
+    ],
+    [
+     "عليك",
      "subj2|door2",
-     "3alayya"
+     "3alayk"
     ],
     [
      "أن",
@@ -294,29 +219,19 @@
      "an"
     ],
     [
-     "أعمل.",
+     "تخبّئ",
      "verb2",
-     "a3mal."
-    ]
-   ],
-   "why": "Same shape as the because sentence, with مع أن (ma3a anna, literally 'with that') in place of لأن."
-  },
-  "like.now": {
-   "tokens": [
-    [
-     "أحب",
-     "door",
-     "u7ibb"
+     "tukhabbi2"
     ],
     [
-     "القهوة.",
-     "obj",
-     "al-qahwa."
+     "الكلب؟",
+     "obj2",
+     "al-kalb?"
     ]
    ],
-   "why": "Plain verb then object, and the pronoun is dropped. Levantine adds a b- prefix: بحبّ القهوة (b7ebb il-2ahwe)."
+   "why": "فهل (fa-hal) fuses 'so' and the question word into one. 'You' is only the -k of عليك and the t- of تخبّئ."
   },
-  "like.neg": {
+  "cant.now": {
    "tokens": [
     [
      "لا",
@@ -324,24 +239,189 @@
      "laa"
     ],
     [
-     "أحب",
+     "نستطيع",
      "door",
-     "u7ibb"
+     "nastatii3"
     ],
     [
-     "القهوة.",
-     "obj",
-     "al-qahwa."
+     "أن",
+     "x",
+     "an"
+    ],
+    [
+     "نأتي",
+     "verb",
+     "na2tii"
+    ],
+    [
+     "لأن",
+     "glue",
+     "li-anna"
+    ],
+    [
+     "الأولاد",
+     "subj2",
+     "al-awlaad"
+    ],
+    [
+     "خبّأوا",
+     "verb2|aux",
+     "khabba2uu"
+    ],
+    [
+     "مفاتيح السيارة.",
+     "obj2",
+     "mafaatii7 as-sayyaara."
     ]
    ],
-   "why": "Only لا (laa) is added in front. The verb does not change and there is no 'do'."
+   "why": "'We' is only the n- on نستطيع and نأتي. After لأن (li-anna) the kids come first, then the past verb خبّأوا."
   },
-  "like.she": {
+  "cant.past": {
    "tokens": [
     [
-     "هي",
+     "لم",
+     "neg|aux",
+     "lam"
+    ],
+    [
+     "نستطع",
+     "door",
+     "nastati3"
+    ],
+    [
+     "أن",
+     "x",
+     "an"
+    ],
+    [
+     "نأتي",
+     "verb",
+     "na2tii"
+    ],
+    [
+     "لأن",
+     "glue",
+     "li-anna"
+    ],
+    [
+     "الأولاد",
+     "subj2",
+     "al-awlaad"
+    ],
+    [
+     "خبّأوا",
+     "verb2|aux",
+     "khabba2uu"
+    ],
+    [
+     "مفاتيح السيارة.",
+     "obj2",
+     "mafaatii7 as-sayyaara."
+    ]
+   ],
+   "why": "Past sits in the negator: لم (lam) plus the short form نستطع means 'couldn't'. The because half does not change."
+  },
+  "cant.fut": {
+   "tokens": [
+    [
+     "لن",
+     "neg|aux",
+     "lan"
+    ],
+    [
+     "نستطيع",
+     "door",
+     "nastatii3"
+    ],
+    [
+     "أن",
+     "x",
+     "an"
+    ],
+    [
+     "نأتي",
+     "verb",
+     "na2tii"
+    ],
+    [
+     "غدًا",
+     "adv",
+     "ghadan"
+    ],
+    [
+     "لأن",
+     "glue",
+     "li-anna"
+    ],
+    [
+     "الأولاد",
+     "subj2",
+     "al-awlaad"
+    ],
+    [
+     "خبّأوا",
+     "verb2|aux",
+     "khabba2uu"
+    ],
+    [
+     "مفاتيح السيارة.",
+     "obj2",
+     "mafaatii7 as-sayyaara."
+    ]
+   ],
+   "why": "No 'be able to' swap: لن (lan), a 'not' used only for the future, goes before the same نستطيع. Levantine: ما رح نقدر نيجي."
+  },
+  "cant.although": {
+   "tokens": [
+    [
+     "ما زلنا",
+     "adv",
+     "maa zilnaa"
+    ],
+    [
+     "نستطيع",
+     "door",
+     "nastatii3"
+    ],
+    [
+     "أن",
+     "x",
+     "an"
+    ],
+    [
+     "نأتي،",
+     "verb",
+     "na2tii,"
+    ],
+    [
+     "مع أن",
+     "glue",
+     "ma3a anna"
+    ],
+    [
+     "الأولاد",
+     "subj2",
+     "al-awlaad"
+    ],
+    [
+     "خبّأوا",
+     "verb2|aux",
+     "khabba2uu"
+    ],
+    [
+     "مفاتيح السيارة.",
+     "obj2",
+     "mafaatii7 as-sayyaara."
+    ]
+   ],
+   "why": "'Still' is ما زلنا (maa zilnaa), literally 'we haven't stopped', and it has its own 'we' ending. مع أن is 'although'."
+  },
+  "like.now": {
+   "tokens": [
+    [
+     "أختي",
      "subj",
-     "hiya"
+     "ukhtii"
     ],
     [
      "تحب",
@@ -354,7 +434,52 @@
      "al-qahwa."
     ]
    ],
-   "why": "تحب (tu7ibb) is spelled exactly like 'you (m.) like', so هي (hiya, she) is kept to show who. Only the prefix changes, a- to t-."
+   "why": "'My' is the -ii ending on أختي (ukhtii). Levantine adds a b- to the verb: أختي بتحبّ القهوة (bet7ebb il-2ahwe)."
+  },
+  "like.neg": {
+   "tokens": [
+    [
+     "هي",
+     "subj",
+     "hiya"
+    ],
+    [
+     "لا",
+     "neg",
+     "laa"
+    ],
+    [
+     "تحب",
+     "door",
+     "tu7ibb"
+    ],
+    [
+     "القهوة.",
+     "obj",
+     "al-qahwa."
+    ]
+   ],
+   "why": "هي (hiya) is kept because تحب alone could also mean 'you (m.) like'. لا sits right before the verb, with no 'do'."
+  },
+  "like.they": {
+   "tokens": [
+    [
+     "والداي",
+     "subj",
+     "waalidaaya"
+    ],
+    [
+     "يحبّان",
+     "door",
+     "yu7ibbaan"
+    ],
+    [
+     "القهوة.",
+     "obj",
+     "al-qahwa."
+    ]
+   ],
+   "why": "Arabic has a 'two' form: والداي (my two parents) and the verb يحبّان both take it. Levantine just says أهلي بيحبّوا."
   },
   "like.q": {
    "tokens": [
@@ -379,9 +504,14 @@
   "go.habit": {
    "tokens": [
     [
-     "أذهب",
+     "جدّي وجدّتي",
+     "subj",
+     "jaddii wa-jaddatii"
+    ],
+    [
+     "يذهبان",
      "verb",
-     "adh-hab"
+     "yadh-habaan"
     ],
     [
      "إلى السوق",
@@ -389,24 +519,24 @@
      "ilaa as-suuq"
     ],
     [
-     "كل يوم.",
+     "كل يوم أحد.",
      "adv",
-     "kull yawm."
+     "kull yawm a7ad."
     ]
    ],
-   "why": "Verb first with the pronoun dropped, then place, then time. Levantine uses a different verb: بروح عالسوق (bruu7 3as-suu2)."
+   "why": "'Grandparents' is 'my grandfather and my grandmother'. Two people, so the verb takes the dual -aan: يذهبان."
   },
   "go.prog": {
    "tokens": [
     [
-     "أنا",
+     "هما",
      "subj",
-     "ana"
+     "humaa"
     ],
     [
-     "ذاهب",
+     "ذاهبان",
      "verb|aux",
-     "dhaahib"
+     "dhaahibaan"
     ],
     [
      "إلى السوق",
@@ -419,14 +549,14 @@
      "al-aan."
     ]
    ],
-   "why": "No word for 'am'. أنا plus the participle ذاهب ('going', an adjective-like form) is a full sentence. Levantine: أنا رايح."
+   "why": "No word for 'are': هما ('they two') plus the participle ذاهبان is a full sentence. Levantine: هنّي رايحين عالسوق."
   },
   "go.past": {
    "tokens": [
     [
-     "ذهبت",
+     "ذهبا",
      "verb|aux",
-     "dhahabtu"
+     "dhahabaa"
     ],
     [
      "إلى السوق",
@@ -439,14 +569,14 @@
      "ams."
     ]
    ],
-   "why": "ذهبت is a different verb shape: the -tu suffix carries both 'I' and the past, where the present used an a- prefix."
+   "why": "One word does 'they went': ذهبا (dhahabaa), past in the stem and -aa for two people. No separate 'they'."
   },
   "go.fut": {
    "tokens": [
     [
-     "سأذهب",
-     "verb|aux",
-     "sa-adh-hab"
+     "سيذهبان",
+     "aux|verb",
+     "sa-yadh-habaan"
     ],
     [
      "إلى السوق",
@@ -459,39 +589,49 @@
      "ghadan."
     ]
    ],
-   "why": "'Will' is the prefix sa- written onto أذهب as one word; سوف أذهب is the separate-word version. Levantine: رح روح (ra7 ruu7)."
+   "why": "'Will' is the prefix sa- written onto the verb, so 'they will go' is one word. Levantine uses a separate رح: رح يروحوا."
   },
   "go.neg": {
    "tokens": [
     [
-     "لست",
-     "neg|aux",
-     "lastu"
+     "ليسا",
+     "aux|neg",
+     "laysaa"
     ],
     [
-     "ذاهبًا",
+     "ذاهبين",
      "verb",
-     "dhaahiban"
+     "dhaahibayn"
     ],
     [
-     "إلى السوق.",
+     "إلى السوق",
      "obj",
-     "ilaa as-suuq."
+     "ilaa as-suuq"
+    ],
+    [
+     "اليوم.",
+     "adv",
+     "al-yawm."
     ]
    ],
-   "why": "لست (lastu, 'I am not') is a negator that takes a person ending. The participle then takes the -an ending: ذاهبًا."
+   "why": "ليس ('is not') takes the dual ending, ليسا, and holds 'they' too. The participle then shifts from ذاهبان to ذاهبين."
   },
   "live.now": {
    "tokens": [
     [
-     "أسكن",
-     "verb",
-     "askun"
+     "أخي",
+     "subj",
+     "akhii"
     ],
     [
-     "هنا",
+     "يسكن",
+     "verb",
+     "yaskun"
+    ],
+    [
+     "في شيلونغ",
      "adv",
-     "hunaa"
+     "fii shiilung"
     ],
     [
      "منذ سنتين.",
@@ -499,19 +639,19 @@
      "mundhu sanatayn."
     ]
    ],
-   "why": "Plain present with منذ (mundhu, since) does the 'have been' work. سنتين is the dual form: 'two years' in one word."
+   "why": "Plain present يسكن plus منذ (mundhu, 'since') does the 'has been' work. سنتين is one word for 'two years'."
   },
   "live.past": {
    "tokens": [
     [
-     "سكنت",
+     "سكن",
      "verb|aux",
-     "sakantu"
+     "sakana"
     ],
     [
-     "هناك",
+     "في دلهي",
      "adv",
-     "hunaak"
+     "fii dilhii"
     ],
     [
      "لمدة سنتين.",
@@ -519,19 +659,19 @@
      "li-muddat sanatayn."
     ]
    ],
-   "why": "The past verb سكنت (sakantu) closes the time span. لمدة (li-muddat, 'for a period of') replaces منذ."
+   "why": "The past verb سكن (sakana, 'he lived') closes the span, and لمدة ('for a period of') replaces منذ."
   },
   "live.fut": {
    "tokens": [
     [
-     "في السنة القادمة",
+     "بحلول يونيو",
      "adv",
-     "fii as-sana al-qaadima"
+     "bi-7uluul yuunyuu"
     ],
     [
-     "سأكون",
+     "سيكون",
      "aux",
-     "sa-akuun"
+     "sa-yakuun"
     ],
     [
      "قد",
@@ -539,14 +679,14 @@
      "qad"
     ],
     [
-     "سكنت",
+     "سكن",
      "verb",
-     "sakantu"
+     "sakana"
     ],
     [
-     "هنا",
+     "في شيلونغ",
      "adv",
-     "hunaa"
+     "fii shiilung"
     ],
     [
      "ثلاث سنوات.",
@@ -554,7 +694,7 @@
      "thalaath sanawaat."
     ]
    ],
-   "why": "MSA has a real future perfect: سأكون قد + past verb. People rarely say it; Levantine: بكون صرلي تلات سنين هون."
+   "why": "MSA has a real future perfect: سيكون قد + past verb. The Levant names June حزيران (7uzayraan), not يونيو."
   },
   "live.q": {
    "tokens": [
@@ -565,7 +705,7 @@
     ],
     [
      "تسكن",
-     "verb",
+     "verb|aux",
      "taskun"
     ],
     [
@@ -575,6 +715,106 @@
     ]
    ],
    "why": "'Since when' comes first, then a plain present verb. Levantine asks 'how much': قدّيش صرلك ساكن هون؟"
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "السماء",
+     "subj",
+     "as-samaa2"
+    ],
+    [
+     "تمطر،",
+     "verb|aux",
+     "tumtir,"
+    ],
+    [
+     "لذلك",
+     "glue",
+     "li-dhaalik"
+    ],
+    [
+     "خذ",
+     "verb2",
+     "khudh"
+    ],
+    [
+     "مظلة.",
+     "obj2",
+     "mizalla."
+    ]
+   ],
+   "why": "No empty 'it': MSA says السماء تمطر, 'the sky is raining'. Levantine: عم تشتي، خود شمسية (3am tishti, khood shamsiyye)."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "ستمطر",
+     "door|verb|aux",
+     "sa-tumtir"
+    ],
+    [
+     "لاحقًا،",
+     "adv",
+     "laa7iqan,"
+    ],
+    [
+     "لذلك",
+     "glue",
+     "li-dhaalik"
+    ],
+    [
+     "خذ",
+     "verb2",
+     "khudh"
+    ],
+    [
+     "مظلة.",
+     "obj2",
+     "mizalla."
+    ]
+   ],
+   "why": "One word, ستمطر (sa-tumtir), holds 'it's going to rain': sa- for the future, t- for the unspoken sky."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "السماء",
+     "subj",
+     "as-samaa2"
+    ],
+    [
+     "لا",
+     "aux|neg",
+     "laa"
+    ],
+    [
+     "تمطر،",
+     "verb",
+     "tumtir,"
+    ],
+    [
+     "لذلك",
+     "glue",
+     "li-dhaalik"
+    ],
+    [
+     "لا",
+     "neg",
+     "laa"
+    ],
+    [
+     "تأخذ",
+     "verb2",
+     "ta2khudh"
+    ],
+    [
+     "مظلة.",
+     "obj2",
+     "mizalla."
+    ]
+   ],
+   "why": "Same لا for both nots, but the order changes shape: خذ (khudh) becomes لا تأخذ (laa ta2khudh), built on the 'you' verb."
   },
   "if.real": {
    "tokens": [
@@ -589,9 +829,9 @@
      "kaana"
     ],
     [
-     "عندي",
+     "عندنا",
      "subj",
-     "3indii"
+     "3indanaa"
     ],
     [
      "وقت،",
@@ -599,12 +839,12 @@
      "waqt,"
     ],
     [
-     "فسأسافر.",
+     "فسنسافر.",
      "x|aux|verb2",
-     "fa-sa-usaafir."
+     "fa-sa-nusaafir."
     ]
    ],
-   "why": "إذا (idhaa) takes a past-form كان even for the future. Possession is عندي ('at me'), and فـ (fa) opens the result."
+   "why": "إذا (idhaa) takes past-form كان even for the future. 'We have' is عندنا, 'at us', and فـ (fa) opens the result."
   },
   "if.unreal": {
    "tokens": [
@@ -619,9 +859,9 @@
      "kaana"
     ],
     [
-     "عندي",
+     "عندنا",
      "subj",
-     "3indii"
+     "3indanaa"
     ],
     [
      "وقت،",
@@ -629,12 +869,12 @@
      "waqt,"
     ],
     [
-     "لسافرت.",
+     "لسافرنا.",
      "aux|verb2",
-     "la-saafartu."
+     "la-saafarnaa."
     ]
    ],
-   "why": "A different 'if', لو (law), marks it as imagined. The result is a past verb with the la- prefix: لسافرت, 'I would travel'."
+   "why": "A different 'if', لو (law), marks it as imagined. The result is a past verb with a la- prefix: لسافرنا, 'we would travel'."
   },
   "if.past": {
    "tokens": [
@@ -649,9 +889,9 @@
      "kaana"
     ],
     [
-     "عندي",
+     "عندنا",
      "subj",
-     "3indii"
+     "3indanaa"
     ],
     [
      "وقت،",
@@ -659,17 +899,17 @@
      "waqt,"
     ],
     [
-     "لكنت",
+     "لكنّا",
      "aux",
-     "la-kuntu"
+     "la-kunnaa"
     ],
     [
-     "سافرت.",
+     "سافرنا.",
      "verb2",
-     "saafartu."
+     "saafarnaa."
     ]
    ],
-   "why": "Same لو clause as the imagined one. Adding كنت (kuntu) in the result moves it into the past: 'I would have travelled'."
+   "why": "The لو clause is the same as the imagined one. Adding لكنّا (la-kunnaa) to the result makes it 'we would have travelled'."
   }
  }
 }

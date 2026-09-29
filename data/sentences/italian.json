@@ -1,86 +1,170 @@
 {
  "lang": "italian",
  "variants": {
-  "want.now": {
+  "dog.now": {
    "tokens": [
     [
-     "Voglio",
+     "Il mio padrone di casa",
+     "subj"
+    ],
+    [
+     "vuole",
      "door"
     ],
     [
-     "imparare",
+     "passare",
      "verb"
     ],
     [
-     "il khasi.",
-     "obj"
+     "domani,",
+     "adv"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "devo",
+     "door2"
+    ],
+    [
+     "nascondere",
+     "verb2"
+    ],
+    [
+     "il cane.",
+     "obj2"
     ]
    ],
-   "why": "No io: the -o of voglio already says who. imparare follows with no 'to', and language names take the article: il khasi."
+   "why": "No io in the second half: devo carries the person. quindi changes nothing about word order, unlike German also. passare is the everyday 'drop by'."
   },
-  "want.past": {
+  "dog.past": {
    "tokens": [
     [
-     "Volevo",
+     "Il mio padrone di casa",
+     "subj"
+    ],
+    [
+     "voleva",
      "door|aux"
     ],
     [
-     "imparare",
+     "passare",
      "verb"
     ],
     [
-     "il khasi.",
-     "obj"
+     "ieri,",
+     "adv"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "ho",
+     "aux"
+    ],
+    [
+     "dovuto",
+     "door2"
+    ],
+    [
+     "nascondere",
+     "verb2"
+    ],
+    [
+     "il cane.",
+     "obj2"
     ]
    ],
-   "why": "Tense sits on the door: volevo is imperfetto, the natural past for a wish. Ho voluto (passato prossimo) would mean I actually set out to."
+   "why": "Two different pasts: imperfetto voleva for the intention, passato prossimo ho dovuto for what actually had to happen. Tense sits on the doors."
   },
-  "want.neg": {
+  "dog.neg": {
+   "tokens": [
+    [
+     "Il mio padrone di casa",
+     "subj"
+    ],
+    [
+     "non",
+     "neg"
+    ],
+    [
+     "vuole",
+     "door"
+    ],
+    [
+     "passare,",
+     "verb"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "non",
+     "neg"
+    ],
+    [
+     "c'è bisogno di",
+     "door2"
+    ],
+    [
+     "nascondere",
+     "verb2"
+    ],
+    [
+     "il cane.",
+     "obj2"
+    ]
+   ],
+   "why": "Non devo can also mean mustn't, so speech says non c'è bisogno di (there's no need to). That frame is impersonal, so the I disappears."
+  },
+  "dog.q": {
+   "tokens": [
+    [
+     "Il tuo padrone di casa",
+     "subj"
+    ],
+    [
+     "vuole",
+     "door"
+    ],
+    [
+     "passare",
+     "verb"
+    ],
+    [
+     "domani,",
+     "adv"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "devi",
+     "door2"
+    ],
+    [
+     "nascondere",
+     "verb2"
+    ],
+    [
+     "il cane?",
+     "obj2"
+    ]
+   ],
+   "why": "No question word and no inversion: rising pitch on the second half does it. No tu either; the -i of devi already means you."
+  },
+  "cant.now": {
    "tokens": [
     [
      "Non",
      "neg"
     ],
     [
-     "voglio",
-     "door"
-    ],
-    [
-     "imparare",
-     "verb"
-    ],
-    [
-     "il khasi.",
-     "obj"
-    ]
-   ],
-   "why": "One-piece negation: non goes straight in front of the door. No do-support and no second word like French pas."
-  },
-  "want.q": {
-   "tokens": [
-    [
-     "Vuoi",
-     "door"
-    ],
-    [
-     "imparare",
-     "verb"
-    ],
-    [
-     "il khasi?",
-     "obj"
-    ]
-   ],
-   "why": "Same order as a statement; only rising pitch makes it a question. No tu either: the -i ending of vuoi already means you."
-  },
-  "decline.now": {
-   "tokens": [
-    [
-     "Non",
-     "neg"
-    ],
-    [
-     "posso",
+     "possiamo",
      "door"
     ],
     [
@@ -92,24 +176,32 @@
      "glue"
     ],
     [
-     "devo",
-     "door2"
+     "i bambini",
+     "subj2"
     ],
     [
-     "lavorare.",
+     "hanno",
+     "aux"
+    ],
+    [
+     "nascosto",
      "verb2"
+    ],
+    [
+     "le chiavi della macchina.",
+     "obj2"
     ]
    ],
-   "why": "Both subjects are dropped: posso and devo carry the person. perché leaves the second clause in plain main-clause order."
+   "why": "No noi: possiamo carries the we. hid becomes passato prossimo hanno nascosto, the normal spoken past; perché keeps main-clause order."
   },
-  "decline.past": {
+  "cant.past": {
    "tokens": [
     [
      "Non",
      "neg"
     ],
     [
-     "ho",
+     "abbiamo",
      "aux"
     ],
     [
@@ -125,24 +217,36 @@
      "glue"
     ],
     [
-     "dovevo",
-     "door2|aux"
+     "i bambini",
+     "subj2"
     ],
     [
-     "lavorare.",
+     "avevano",
+     "aux"
+    ],
+    [
+     "nascosto",
      "verb2"
+    ],
+    [
+     "le chiavi della macchina.",
+     "obj2"
     ]
    ],
-   "why": "Passato prossimo for the one-off failure, imperfetto dovevo for the standing duty. Textbooks prefer sono potuto (venire takes essere); ho potuto is common speech."
+   "why": "The hiding came first, so it moves back to trapassato avevano nascosto. Textbooks want siamo potuti (venire takes essere); abbiamo potuto is common speech."
   },
-  "decline.fut": {
+  "cant.fut": {
    "tokens": [
     [
-     "Non",
+     "Domani",
+     "adv"
+    ],
+    [
+     "non",
      "neg"
     ],
     [
-     "potrò",
+     "potremo",
      "door|aux"
     ],
     [
@@ -154,20 +258,28 @@
      "glue"
     ],
     [
-     "dovrò",
-     "door2|aux"
+     "i bambini",
+     "subj2"
     ],
     [
-     "lavorare.",
+     "hanno",
+     "aux"
+    ],
+    [
+     "nascosto",
      "verb2"
+    ],
+    [
+     "le chiavi della macchina.",
+     "obj2"
     ]
    ],
-   "why": "Future is a suffix on each door: potrò, dovrò. No 'be able to' swap. In speech the present often does it: domani non posso, devo lavorare."
+   "why": "No 'be able to' swap: the future is just an ending on potere, potremo. Domani usually opens the sentence rather than trailing after venire."
   },
-  "decline.although": {
+  "cant.although": {
    "tokens": [
     [
-     "Posso",
+     "Possiamo",
      "door"
     ],
     [
@@ -175,24 +287,36 @@
      "verb"
     ],
     [
+     "lo stesso,",
+     "adv"
+    ],
+    [
      "anche se",
      "glue"
     ],
     [
-     "devo",
-     "door2"
+     "i bambini",
+     "subj2"
     ],
     [
-     "lavorare.",
+     "hanno",
+     "aux"
+    ],
+    [
+     "nascosto",
      "verb2"
+    ],
+    [
+     "le chiavi della macchina.",
+     "obj2"
     ]
    ],
-   "why": "anche se takes the plain indicative (devo). The textbook benché would force the subjunctive: benché debba lavorare."
+   "why": "still becomes lo stesso after the verb. anche se takes the plain indicative; the bookish sebbene would force the subjunctive abbiano nascosto."
   },
   "like.now": {
    "tokens": [
     [
-     "Mi",
+     "A mia sorella",
      "subj"
     ],
     [
@@ -204,7 +328,7 @@
      "obj"
     ]
    ],
-   "why": "Back to front, like Hindi: il caffè is the grammatical subject and mi (to me) is the liker, so piace agrees with the coffee."
+   "why": "Back to front: il caffè is the grammatical subject and a mia sorella (to my sister) is the liker. No article before a singular relative: mia sorella."
   },
   "like.neg": {
    "tokens": [
@@ -213,7 +337,7 @@
      "neg"
     ],
     [
-     "mi",
+     "le",
      "subj"
     ],
     [
@@ -225,12 +349,12 @@
      "obj"
     ]
    ],
-   "why": "non goes before the whole mi piace block, never between mi and piace. The article stays: il caffè means coffee in general."
+   "why": "le (to her) replaces a mia sorella, and non goes before the whole le piace block, never between le and piace."
   },
-  "like.she": {
+  "like.they": {
    "tokens": [
     [
-     "Le",
+     "Ai miei genitori",
      "subj"
     ],
     [
@@ -242,7 +366,7 @@
      "obj"
     ]
    ],
-   "why": "Only the pronoun changes, mi to le (to her). piace stays the same because it agrees with il caffè, not with her."
+   "why": "piace stays singular because it agrees with il caffè, not the parents. Plural relatives take the article: ai miei genitori (a + i)."
   },
   "like.q": {
    "tokens": [
@@ -259,12 +383,16 @@
      "obj"
     ]
    ],
-   "why": "ti (to you) replaces mi; word order is identical to the statement and rising pitch does the asking."
+   "why": "ti (to you) at the front, same order as the statement; only rising pitch makes it a question. No do-word."
   },
   "go.habit": {
    "tokens": [
     [
-     "Vado",
+     "I miei nonni",
+     "subj"
+    ],
+    [
+     "vanno",
      "verb"
     ],
     [
@@ -272,16 +400,16 @@
      "obj"
     ],
     [
-     "tutti i giorni.",
+     "ogni domenica.",
      "adv"
     ]
    ],
-   "why": "a + il fuses into al, so al mercato is one unit. No io: vado alone means I go. Ogni giorno is an equally common time phrase."
+   "why": "Plain present vanno, same order as English. a + il fuses into al, so al mercato moves as one unit. La domenica alone also means every Sunday."
   },
   "go.prog": {
    "tokens": [
     [
-     "Sto",
+     "Stanno",
      "aux"
     ],
     [
@@ -297,7 +425,7 @@
      "adv"
     ]
    ],
-   "why": "A real progressive: stare + gerund (sto andando), close to English am going. It is optional; vado al mercato can also mean right now."
+   "why": "Subject dropped: stanno says they. stare + gerund mirrors are going, but it's optional; vanno al mercato adesso means the same."
   },
   "go.past": {
    "tokens": [
@@ -306,7 +434,7 @@
      "aux"
     ],
     [
-     "andato",
+     "andati",
      "verb"
     ],
     [
@@ -318,7 +446,7 @@
      "adv"
     ]
    ],
-   "why": "andare takes essere, not avere: sono andato. The participle agrees with the speaker, andata for a woman."
+   "why": "andare takes essere, not avere: sono andati. The participle agrees with them, -i for a mixed or male group, andate for women only."
   },
   "go.fut": {
    "tokens": [
@@ -327,7 +455,7 @@
      "adv|aux"
     ],
     [
-     "vado",
+     "vanno",
      "verb"
     ],
     [
@@ -335,16 +463,20 @@
      "obj"
     ]
    ],
-   "why": "Speech keeps the present and lets domani carry the future. The synthetic future andrò al mercato is also common, with tense as a suffix."
+   "why": "No will word: speech keeps the present vanno and lets domani carry the future. Andranno al mercato, with tense as a suffix, is also fine."
   },
   "go.neg": {
    "tokens": [
     [
-     "Non",
+     "Oggi",
+     "adv"
+    ],
+    [
+     "non",
      "neg"
     ],
     [
-     "vado",
+     "vanno",
      "verb"
     ],
     [
@@ -352,16 +484,20 @@
      "obj"
     ]
    ],
-   "why": "Plain present with non before it: non sto andando is grammatical but rare, so non vado covers I'm not going."
+   "why": "Plain present with non before it. Non stanno andando is grammatical but odd here, so non vanno covers aren't going."
   },
   "live.now": {
    "tokens": [
     [
-     "Abito",
+     "Mio fratello",
+     "subj"
+    ],
+    [
+     "abita",
      "verb"
     ],
     [
-     "qui",
+     "a Shillong",
      "adv"
     ],
     [
@@ -369,12 +505,12 @@
      "dur|aux"
     ]
    ],
-   "why": "Present plus da: literally I live here from two years. No perfect and no auxiliary; da alone says it started and is still true."
+   "why": "Present plus da: literally lives in Shillong from two years. No perfect, no auxiliary; da alone says it started and is still true."
   },
   "live.past": {
    "tokens": [
     [
-     "Ho",
+     "Ha",
      "aux"
     ],
     [
@@ -382,7 +518,7 @@
      "verb"
     ],
     [
-     "lì",
+     "a Delhi",
      "adv"
     ],
     [
@@ -390,12 +526,12 @@
      "dur"
     ]
    ],
-   "why": "Finished stretch: passato prossimo with avere (ho abitato) and da becomes per. Speech often drops per: ho abitato lì due anni."
+   "why": "Finished stretch: passato prossimo ha abitato, and da turns into per. Subject dropped; ha already says he."
   },
   "live.fut": {
    "tokens": [
     [
-     "L'anno prossimo",
+     "A giugno",
      "adv"
     ],
     [
@@ -411,15 +547,15 @@
      "x"
     ],
     [
-     "abito",
+     "abita",
      "verb"
     ],
     [
-     "qui.",
+     "a Shillong.",
      "adv"
     ]
    ],
-   "why": "Not a future perfect: the future goes on saranno (it will be) three years, che links, abito stays present. Avrò abitato sounds bookish."
+   "why": "Not a future perfect: the future sits on saranno (it will be) three years, che links, abita stays present. Avrà abitato sounds bookish."
   },
   "live.q": {
    "tokens": [
@@ -436,7 +572,82 @@
      "adv"
     ]
    ],
-   "why": "The question phrase comes first and the verb is plain present abiti: da quanto tempo is the question form of da due anni."
+   "why": "Question phrase first, then plain present abiti: da quanto tempo is the question form of da due anni. No have been, no tu."
+  },
+  "rain.now": {
+   "tokens": [
+    [
+     "Piove,",
+     "verb"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "prendi",
+     "verb2"
+    ],
+    [
+     "l'ombrello.",
+     "obj2"
+    ]
+   ],
+   "why": "No dummy it: piove is the whole first half. prendi is the tu imperative, and l'ombrello takes the, since it's the umbrella you own."
+  },
+  "rain.fut": {
+   "tokens": [
+    [
+     "Più tardi",
+     "adv"
+    ],
+    [
+     "pioverà,",
+     "door|verb|aux"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "prendi",
+     "verb2"
+    ],
+    [
+     "l'ombrello.",
+     "obj2"
+    ]
+   ],
+   "why": "going to rain collapses into one word: the future ending -à on pioverà does the predicting. Più tardi usually comes first."
+  },
+  "rain.neg": {
+   "tokens": [
+    [
+     "Non",
+     "neg"
+    ],
+    [
+     "piove,",
+     "verb"
+    ],
+    [
+     "quindi",
+     "glue"
+    ],
+    [
+     "non",
+     "neg"
+    ],
+    [
+     "prendere",
+     "verb2"
+    ],
+    [
+     "l'ombrello.",
+     "obj2"
+    ]
+   ],
+   "why": "A negative tu order uses the infinitive: non prendere, not non prendi. The first half is just non before piove."
   },
   "if.real": {
    "tokens": [
@@ -445,7 +656,7 @@
      "glue"
     ],
     [
-     "ho",
+     "abbiamo",
      "verb"
     ],
     [
@@ -453,11 +664,11 @@
      "obj"
     ],
     [
-     "viaggerò.",
+     "viaggeremo.",
      "verb2|aux"
     ]
    ],
-   "why": "se + present, future viaggerò in the main clause: the -rò ending is English will. Both subjects dropped; no article on tempo."
+   "why": "se + present, then future viaggeremo: the -emo ending is English will. Both noi dropped; no article on tempo."
   },
   "if.unreal": {
    "tokens": [
@@ -466,7 +677,7 @@
      "glue"
     ],
     [
-     "avessi",
+     "avessimo",
      "verb|aux"
     ],
     [
@@ -474,11 +685,11 @@
      "obj"
     ],
     [
-     "viaggerei.",
+     "viaggeremmo.",
      "verb2|aux"
     ]
    ],
-   "why": "se + congiuntivo imperfetto (avessi), condizionale (viaggerei) in the main clause. Se avrei is the classic mistake to avoid."
+   "why": "Subjunctive avessimo after se, conditional viaggeremmo in the main clause. One extra m separates would (viaggeremmo) from will (viaggeremo)."
   },
   "if.past": {
    "tokens": [
@@ -487,7 +698,7 @@
      "glue"
     ],
     [
-     "avessi",
+     "avessimo",
      "aux"
     ],
     [
@@ -499,7 +710,7 @@
      "obj"
     ],
     [
-     "avrei",
+     "avremmo",
      "aux"
     ],
     [
@@ -507,7 +718,7 @@
      "verb2"
     ]
    ],
-   "why": "Both halves are avere + participle: avessi avuto (subjunctive), avrei viaggiato (conditional). Speech often says se avevo tempo, viaggiavo."
+   "why": "Both halves are avere + participle: avessimo avuto, avremmo viaggiato. Speech often flattens it to se avevamo tempo, viaggiavamo."
   }
  }
 }
