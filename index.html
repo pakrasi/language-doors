@@ -2,73 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+/* Old bookmarks such as index.html#drill/B1/german belong to the app, which now lives at app.html. */
+(function () {
+  var m = location.hash.match(/^#\/?(reference|chunks|drill|practice|framework|lookup|write|how)\b/);
+  if (!m) return;
+  if (m[1] === 'framework' || m[1] === 'how') { history.replaceState(null, '', '#how'); return; }
+  location.replace('app.html' + location.hash);
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Doors and Glue</title>
-<meta name="description" content="A reusable framework for learning any language: verb doors, turns, glue, slots, functions. Compare five languages side by side, drill the doors, practise scenarios.">
+<title>Prism · Doors and Glue</title>
+<meta name="description" content="One meaning, five shapes. An interactive look at how Khasi, German, Hindi, French and Swiss German carry the same sentence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&display=swap">
+<link rel="stylesheet" href="home.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='3' fill='%231f6f8b'/%3E%3Crect x='11' y='10' width='10' height='18' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<nav class="bar">
+  <a class="back" href="app.html">← Doors and Glue</a>
+  <div class="bar-acts">
+    <a href="#prism">Prism</a><a href="#machine">Machine</a><a href="#rivers">Rivers</a><a href="#time">Time</a><a href="#coda">Coda</a>
+  </div>
+</nav>
 
-<header class="top">
-  <div class="top-inner">
-    <a class="brand" href="#" id="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">Doors and Glue</span>
-    </a>
-    <nav class="views" aria-label="Sections">
-      <a href="#" data-view="reference">Reference</a>
-      <a href="#" data-view="chunks">Chunks</a>
-      <a href="#" data-view="drill">Drill</a>
-      <a href="#" data-view="practice">Practice</a>
-      <a href="#" data-view="framework">Framework</a>
-      <a href="explore.html" class="ext">Prism ↗</a>
-    </nav>
-    <div class="top-tools">
-      <button id="theme-btn" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
-      <button id="settings-btn" class="icon-btn" type="button" aria-label="Settings" title="Settings">⚙</button>
+<!-- ACT I -->
+<section class="act prism" id="prism">
+  <div class="act-inner">
+    <p class="kicker">I · Prism</p>
+    <h1 class="title">One meaning.<br><em>Five shapes.</em></h1>
+    <p class="prose">A sentence is not its words. It is a recipe: a function, a door, a turn of the dial, some glue. Pass the same recipe through five languages and the light bends differently each time.</p>
+    <div class="prism-stage" id="prism-stage" aria-live="polite"></div>
+    <div class="prism-foot">
+      <button class="ghost" id="prism-replay" type="button">Replay</button>
+      <span class="hint">scroll ↓</span>
     </div>
   </div>
-  <div class="pickers">
-    <div class="pickers-inner">
-      <div class="lang-picker" id="lang-picker" aria-label="Languages (toggle)"></div>
-      <div class="level-picker" id="level-picker" role="tablist" aria-label="Level"></div>
-    </div>
+</section>
+
+<!-- ACT II -->
+<section class="act machine" id="machine">
+  <div class="act-inner two-col">
+    <aside class="side">
+      <p class="kicker">II · The machine</p>
+      <h2 class="title">Turn it.</h2>
+      <p class="prose">Pick a meaning. Then move it in time, negate it, ask it, or swap the glue. Every language re-forms at once. Watch which pieces travel and which stay put: that motion <em>is</em> the grammar.</p>
+      <div class="ctl">
+        <div class="ctl-label">Meaning</div>
+        <div class="chips" id="meaning-chips"></div>
+        <div class="ctl-label">Variant</div>
+        <div class="chips" id="variant-chips"></div>
+        <p class="ctl-hint" id="variant-hint"></p>
+        <div class="ctl-label">Recipe</div>
+        <div class="recipe" id="recipe"></div>
+      </div>
+      <p class="prose small">Hover any word. Its counterpart lights up in every other language, including the pieces a language adds that English never had.</p>
+      <div class="legend" id="legend"></div>
+      <p class="hover-cap" id="hover-cap">hover a word</p>
+    </aside>
+    <div class="stage" id="machine-stage"></div>
   </div>
-</header>
+</section>
 
-<main id="main" class="main">
-  <div id="view" class="view" aria-live="polite"></div>
-</main>
-
-<footer class="foot">
-  <div class="foot-inner">
-    <span>Doors and Glue. One framework, many languages. Content is AI-drafted from the framework and corrected as it is used: a form that looks wrong is a bug in the data file.</span>
-    <a href="https://github.com/pakrasi/language-doors">Source</a>
+<!-- ACT III -->
+<section class="act rivers" id="rivers">
+  <div class="act-inner">
+    <p class="kicker">III · Rivers</p>
+    <h2 class="title">Where the order bends.</h2>
+    <p class="prose">Ribbons run from the English word order to each language's. Parallel ribbons mean the language keeps English order. Braids mean it does not. Count the crossings and you have a measure of how far you must travel from your first language to sound native.</p>
+    <div class="rivers-grid" id="rivers-stage"></div>
   </div>
-</footer>
+</section>
 
-<div id="settings" class="modal" hidden>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
-    <h2 id="settings-title">Settings</h2>
-    <p class="muted">Everything here stays in this browser only.</p>
-    <label class="field">
-      <span>Anthropic API key for "Check with Claude" in Practice (optional)</span>
-      <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-...">
-    </label>
-    <p class="muted small">Stored in localStorage and sent only to api.anthropic.com from this page. Without it, Practice still works with the built-in checker.</p>
-    <div class="row">
-      <button id="settings-save" class="btn primary" type="button">Save</button>
-      <button id="settings-clear" class="btn" type="button">Reset drill and practice progress</button>
-      <button id="settings-close" class="btn" type="button">Close</button>
-    </div>
+<!-- ACT IV -->
+<section class="act time" id="time">
+  <div class="act-inner two-col">
+    <aside class="side">
+      <p class="kicker">IV · Where time lives</p>
+      <h2 class="title">One door, nine turns.</h2>
+      <p class="prose">Take the door <strong>GO</strong> and rotate it through past, present and future, simple, progressive and perfect. Each language changes a different part of the sentence to do it. Only the changed words light up. Some languages move a mountain; some flip one particle.</p>
+      <div class="dial-wrap"><svg id="dial" viewBox="0 0 320 320" role="img" aria-label="A dial with three time sectors and three aspect rings"></svg></div>
+      <p class="ctl-hint" id="dial-caption"></p>
+    </aside>
+    <div class="stage" id="time-stage"></div>
   </div>
-</div>
+</section>
 
-<script src="app.js"></script>
+<!-- ACT V -->
+<section class="act coda" id="coda">
+  <div class="act-inner">
+    <p class="kicker">V · Coda</p>
+    <h2 class="title">The recipe never changed.</h2>
+    <div class="coda-strip" id="coda-strip"></div>
+    <p class="prose">Every sentence above was the same string of IDs. Function, door, turn, glue. What each language did with them is what you are learning. The reference table lists the parts; the drill makes you reach for them without looking; this page is for understanding why they land where they do.</p>
+    <div class="coda-links"><a class="ghost" href="app.html#reference">Reference</a><a class="ghost" href="app.html#drill">Drill</a><a class="ghost" href="app.html#practice">Practice</a></div>
+  </div>
+</section>
+
+<script src="home.js"></script>
 </body>
 </html>
