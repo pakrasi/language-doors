@@ -1,0 +1,614 @@
+{
+ "about": "GO in nine tenses. Built by scripts/build_turns.py from data/<lang>.json turnGrid plus authored status/marker/alt.",
+ "times": [
+  "past",
+  "present",
+  "future"
+ ],
+ "aspects": [
+  "simple",
+  "progressive",
+  "perfect"
+ ],
+ "english": {
+  "past.simple": {
+   "form": "I went",
+   "marker": [
+    "went"
+   ],
+   "short": "went"
+  },
+  "past.progressive": {
+   "form": "I was going",
+   "marker": [
+    "was going"
+   ],
+   "short": "was going"
+  },
+  "past.perfect": {
+   "form": "I had gone",
+   "marker": [
+    "had gone"
+   ],
+   "short": "had gone"
+  },
+  "present.simple": {
+   "form": "I go",
+   "marker": [],
+   "short": "go"
+  },
+  "present.progressive": {
+   "form": "I am going",
+   "marker": [
+    "am going"
+   ],
+   "short": "am going"
+  },
+  "present.perfect": {
+   "form": "I have gone",
+   "marker": [
+    "have gone"
+   ],
+   "short": "have gone"
+  },
+  "future.simple": {
+   "form": "I will go",
+   "marker": [
+    "will"
+   ],
+   "short": "will go"
+  },
+  "future.progressive": {
+   "form": "I will be going",
+   "marker": [
+    "will be going"
+   ],
+   "short": "will be going"
+  },
+  "future.perfect": {
+   "form": "I will have gone",
+   "marker": [
+    "will have gone"
+   ],
+   "short": "will have gone"
+  }
+ },
+ "languages": {
+  "khasi": {
+   "name": "Khasi",
+   "native": "Ka Ktien Khasi",
+   "cells": {
+    "past.simple": {
+     "form": "nga la leit",
+     "status": "form",
+     "marker": [
+      "la"
+     ],
+     "gloss": "I went",
+     "note": "la before the verb is the whole past tense; the verb leit never changes. Negative: ngam shym la leit.",
+     "source": "nga la leit"
+    },
+    "past.progressive": {
+     "form": "nga la dang leit",
+     "status": "form",
+     "marker": [
+      "la dang"
+     ],
+     "gloss": "I was going",
+     "note": "la (past) plus dang (in the middle of). In a story the la is often dropped once the past is set: nga dang leit haba ...",
+     "source": "nga la dang leit"
+    },
+    "past.perfect": {
+     "form": "nga la lah leit",
+     "status": "form",
+     "marker": [
+      "la lah"
+     ],
+     "gloss": "I had gone",
+     "note": "la plus lah (already, completed). Usually paired with shwa ba (before) to mark the earlier of two past events.",
+     "source": "nga la lah leit"
+    },
+    "present.simple": {
+     "form": "nga leit",
+     "status": "form",
+     "marker": [],
+     "gloss": "I go",
+     "note": "Bare verb: habit, fact, and also the present moment when dang is not needed. man ka sngi (every day) makes the habit explicit.",
+     "source": "nga leit"
+    },
+    "present.progressive": {
+     "form": "nga dang leit",
+     "status": "form",
+     "marker": [
+      "dang"
+     ],
+     "gloss": "I am going",
+     "note": "dang means 'still, in the middle of'. It is the only progressive marker and is used far less than the English -ing form.",
+     "source": "nga dang leit"
+    },
+    "present.perfect": {
+     "form": "nga lah leit",
+     "status": "form",
+     "marker": [
+      "lah"
+     ],
+     "gloss": "I have gone (already)",
+     "note": "lah alone before a verb means 'already done'. Experience ('have you ever') uses la ju: phi la ju leit? Not yet: ngam pat leit.",
+     "source": "nga lah leit"
+    },
+    "future.simple": {
+     "form": "ngan leit",
+     "status": "form",
+     "marker": [
+      "ngan"
+     ],
+     "gloss": "I will go",
+     "note": "yn fuses with the pronoun: ngan, phin, un, kan, ngin, kin. sa adds 'later': ngan sa leit. Negative: ngan ym leit.",
+     "source": "ngan leit",
+     "alt": "ngan sa leit"
+    },
+    "future.progressive": {
+     "form": "ngan dang leit",
+     "status": "form",
+     "marker": [
+      "ngan dang"
+     ],
+     "gloss": "I will be going",
+     "note": "yn plus dang. Rare; Khasi normally just says ngan leit with a time word (lashai, mynstep).",
+     "source": "ngan dang leit",
+     "alt": "ngan leit lashai"
+    },
+    "future.perfect": {
+     "form": "ngan lah leit",
+     "status": "form",
+     "marker": [
+      "ngan lah"
+     ],
+     "gloss": "I will have gone",
+     "note": "yn plus lah. For 'finished by' add dep after the verb and haduh (by): ngan lah trei dep haduh janmiet.",
+     "source": "ngan lah leit"
+    }
+   }
+  },
+  "german": {
+   "name": "German",
+   "native": "Deutsch",
+   "cells": {
+    "past.simple": {
+     "form": "ich bin gegangen",
+     "status": "form",
+     "marker": [
+      "bin gegangen"
+     ],
+     "gloss": "I went",
+     "note": "Spoken German uses the Perfekt (bin gegangen); ging is the written Präteritum.",
+     "source": "ich bin gegangen / ich ging",
+     "alt": "ich ging"
+    },
+    "past.progressive": {
+     "form": "ich ging gerade",
+     "status": "periphrasis",
+     "marker": [
+      "ging gerade"
+     ],
+     "gloss": "I was going",
+     "note": "No progressive form: Präteritum or Perfekt plus gerade, or a rephrase such as unterwegs sein.",
+     "source": "ich ging gerade / ich war gerade unterwegs",
+     "alt": "ich war gerade unterwegs"
+    },
+    "past.perfect": {
+     "form": "ich war gegangen",
+     "status": "form",
+     "marker": [
+      "war gegangen"
+     ],
+     "gloss": "I had gone",
+     "note": "Plusquamperfekt: war/hatte + Partizip II. Used with nachdem, bevor and als to order two past events.",
+     "source": "ich war gegangen"
+    },
+    "present.simple": {
+     "form": "ich gehe",
+     "status": "form",
+     "marker": [],
+     "gloss": "I go",
+     "note": "The only present tense; it also covers 'I am going' and, with a time word, the future.",
+     "source": "ich gehe"
+    },
+    "present.progressive": {
+     "form": "ich gehe gerade",
+     "status": "periphrasis",
+     "marker": [
+      "gerade"
+     ],
+     "gloss": "I am going (right now)",
+     "note": "No -ing form; gerade or jetzt marks right now. 'Ich bin am Gehen' is colloquial and regional.",
+     "source": "ich gehe gerade"
+    },
+    "present.perfect": {
+     "form": "ich bin gegangen",
+     "status": "form",
+     "marker": [
+      "bin gegangen"
+     ],
+     "gloss": "I have gone",
+     "note": "The Perfekt is the everyday past, not an English present perfect. 'I have been here since May' is present: ich bin seit Mai hier.",
+     "source": "ich bin gegangen"
+    },
+    "future.simple": {
+     "form": "ich gehe morgen",
+     "status": "form",
+     "marker": [
+      "morgen"
+     ],
+     "gloss": "I will go",
+     "note": "Present plus a time word is the default; werde gehen adds a promise, a prediction or formality.",
+     "source": "ich gehe (morgen) / ich werde gehen",
+     "alt": "ich werde gehen"
+    },
+    "future.progressive": {
+     "form": "ich gehe dann gerade",
+     "status": "none",
+     "marker": [
+      "dann gerade"
+     ],
+     "gloss": "I will be going",
+     "note": "Does not exist as a form; use the present or werden with gerade or dann.",
+     "source": "ich gehe dann gerade / ich werde dann gerade gehen",
+     "alt": "ich werde dann gerade gehen"
+    },
+    "future.perfect": {
+     "form": "ich werde gegangen sein",
+     "status": "form",
+     "marker": [
+      "werde gegangen sein"
+     ],
+     "gloss": "I will have gone",
+     "note": "Futur II exists but is rare in speech; usually the Perfekt plus bis dahin does the job.",
+     "source": "ich werde gegangen sein / bis dahin bin ich gegangen",
+     "alt": "bis dahin bin ich gegangen"
+    }
+   }
+  },
+  "hindi": {
+   "name": "Hindi",
+   "native": "हिन्दी",
+   "cells": {
+    "past.simple": {
+     "form": "मैं गया",
+     "status": "form",
+     "marker": [
+      "गया"
+     ],
+     "gloss": "I went",
+     "note": "Perfective participle agreeing with the subject. जाना is intransitive so no ने. Also covers English 'I have gone' in most contexts.",
+     "source": "मैं गया / गई",
+     "alt": "मैं गई",
+     "translit": "main gayaa",
+     "altTranslit": "main gaii",
+     "markerTr": [
+      "gayaa"
+     ]
+    },
+    "past.progressive": {
+     "form": "मैं जा रहा था",
+     "status": "form",
+     "marker": [
+      "रहा था"
+     ],
+     "gloss": "I was going",
+     "note": "Stem + रहा + past of होना. Both रहा and था agree with the subject in gender and number.",
+     "source": "मैं जा रहा था / रही थी",
+     "alt": "मैं जा रही थी",
+     "translit": "main jaa rahaa thaa",
+     "altTranslit": "main jaa rahii thii",
+     "markerTr": [
+      "rahaa thaa"
+     ]
+    },
+    "past.perfect": {
+     "form": "मैं गया था",
+     "status": "form",
+     "marker": [
+      "गया था"
+     ],
+     "gloss": "I had gone",
+     "note": "Simple past plus था. Also used for a remote or completed-before-another-event past, and often where English says 'I went' with a time long ago.",
+     "source": "मैं गया था / गई थी",
+     "alt": "मैं गई थी",
+     "translit": "main gayaa thaa",
+     "altTranslit": "main gaii thii",
+     "markerTr": [
+      "gayaa thaa"
+     ]
+    },
+    "present.simple": {
+     "form": "मैं जाता हूँ",
+     "status": "form",
+     "marker": [],
+     "gloss": "I go",
+     "note": "Habitual: imperfective participle + हूँ. Means what you regularly do, never what you are doing now.",
+     "source": "मैं जाता हूँ / जाती हूँ",
+     "alt": "मैं जाती हूँ",
+     "translit": "main jaataa huun",
+     "altTranslit": "main jaatii huun",
+     "markerTr": []
+    },
+    "present.progressive": {
+     "form": "मैं जा रहा हूँ",
+     "status": "form",
+     "marker": [
+      "रहा"
+     ],
+     "gloss": "I am going",
+     "note": "Stem + रहा/रही/रहे + हूँ. Also the normal way to say a near-future arrangement: कल जा रहा हूँ.",
+     "source": "मैं जा रहा हूँ / रही हूँ",
+     "alt": "मैं जा रही हूँ",
+     "translit": "main jaa rahaa huun",
+     "altTranslit": "main jaa rahii huun",
+     "markerTr": [
+      "rahaa"
+     ]
+    },
+    "present.perfect": {
+     "form": "मैं गया हूँ",
+     "status": "form",
+     "marker": [
+      "गया"
+     ],
+     "gloss": "I have gone",
+     "note": "Simple past + हूँ. Sounds bookish for most verbs; in speech people say मैं गया (हुआ) हूँ for 'I've been (to)', or use जा चुका हूँ for 'have already gone'.",
+     "source": "मैं गया हूँ / गई हूँ",
+     "alt": "मैं गई हूँ",
+     "translit": "main gayaa huun",
+     "altTranslit": "main gaii huun",
+     "markerTr": [
+      "gayaa"
+     ]
+    },
+    "future.simple": {
+     "form": "मैं जाऊँगा",
+     "status": "form",
+     "marker": [
+      "जाऊँगा"
+     ],
+     "gloss": "I will go",
+     "note": "Synthetic future: subjunctive जाऊँ + गा/गी/गे. Used for predictions and promises; for fixed plans use the progressive or जाना है.",
+     "source": "मैं जाऊँगा / जाऊँगी",
+     "alt": "मैं जाऊँगी",
+     "translit": "main jaauungaa",
+     "altTranslit": "main jaauungii",
+     "markerTr": [
+      "jaauungaa"
+     ]
+    },
+    "future.progressive": {
+     "form": "मैं जा रहा हूँगा",
+     "status": "form",
+     "marker": [
+      "रहा हूँगा"
+     ],
+     "gloss": "I will be going",
+     "note": "Progressive + future of होना. Doubles as the presumptive 'I am probably going' (see D-MUST-BE).",
+     "source": "मैं जा रहा हूँगा / रही हूँगी",
+     "alt": "मैं जा रही हूँगी",
+     "translit": "main jaa rahaa huungaa",
+     "altTranslit": "main jaa rahii huungii",
+     "markerTr": [
+      "rahaa huungaa"
+     ]
+    },
+    "future.perfect": {
+     "form": "मैं गया हूँगा",
+     "status": "form",
+     "marker": [
+      "गया हूँगा"
+     ],
+     "gloss": "I will have gone",
+     "note": "Simple past + हूँगा. In real speech it usually means 'I must have gone / probably went' (past presumption); for 'will have finished by X' people say तब तक जा चुका हूँगा.",
+     "source": "मैं गया हूँगा / गई हूँगी",
+     "alt": "मैं गई हूँगी",
+     "translit": "main gayaa huungaa",
+     "altTranslit": "main gaii huungii",
+     "markerTr": [
+      "gayaa huungaa"
+     ]
+    }
+   }
+  },
+  "french": {
+   "name": "French",
+   "native": "Français",
+   "cells": {
+    "past.simple": {
+     "form": "je suis allé(e)",
+     "status": "form",
+     "marker": [
+      "suis allé(e)"
+     ],
+     "gloss": "I went",
+     "note": "Passé composé with être for aller; the participle agrees with the subject (allée for a woman). The passé simple (j'allai) is never spoken.",
+     "source": "je suis allé(e)"
+    },
+    "past.progressive": {
+     "form": "j'allais",
+     "status": "form",
+     "marker": [
+      "j'allais"
+     ],
+     "gloss": "I was going / I used to go",
+     "note": "Imparfait: background, habit, description. j'étais en train d'aller exists but is heavy; the imparfait alone usually does the job.",
+     "source": "j'allais",
+     "alt": "j'étais en train d'aller"
+    },
+    "past.perfect": {
+     "form": "j'étais allé(e)",
+     "status": "form",
+     "marker": [
+      "j'étais allé(e)"
+     ],
+     "gloss": "I had gone",
+     "note": "Plus-que-parfait: imparfait of être/avoir plus participle. Used exactly like English past perfect, and obligatory in the third conditional (si j'étais allé...).",
+     "source": "j'étais allé(e)"
+    },
+    "present.simple": {
+     "form": "je vais",
+     "status": "form",
+     "marker": [],
+     "gloss": "I go / I am going",
+     "note": "One form for habit and for right now. aller is irregular: vais, vas, va, allons, allez, vont.",
+     "source": "je vais"
+    },
+    "present.progressive": {
+     "form": "je suis en train d'aller",
+     "status": "periphrasis",
+     "marker": [
+      "suis en train"
+     ],
+     "gloss": "I am (in the middle of) going",
+     "note": "No progressive tense. en train de is a substitute used only when you must stress 'right now, mid-action'; most of the time je vais is enough.",
+     "source": "je suis en train d'aller",
+     "alt": "je vais"
+    },
+    "present.perfect": {
+     "form": "je suis allé(e)",
+     "status": "form",
+     "marker": [
+      "suis allé(e)"
+     ],
+     "gloss": "I have gone",
+     "note": "Same form as the past simple cell: the passé composé is both 'I went' and 'I have gone'. 'I have been going for' is present tense plus depuis (je vais ... depuis deux ans).",
+     "source": "je suis allé(e)"
+    },
+    "future.simple": {
+     "form": "je vais aller",
+     "status": "form",
+     "marker": [
+      "vais"
+     ],
+     "gloss": "I am going to go / I will go",
+     "note": "aller plus infinitive is the spoken default for anything planned or near; the futur simple (j'irai) is for predictions, promises and more distant plans, and is compulsory after quand referring to the future.",
+     "source": "je vais aller / j'irai",
+     "alt": "j'irai"
+    },
+    "future.progressive": {
+     "form": "je serai en train d'aller",
+     "status": "none",
+     "marker": [
+      "serai en train"
+     ],
+     "gloss": "I will be going",
+     "note": "Does not exist as a tense. Use the futur simple with a time phrase (à cette heure-là, je serai sur la route) or en train de if the mid-action sense really matters.",
+     "source": "je serai en train d'aller"
+    },
+    "future.perfect": {
+     "form": "je serai allé(e)",
+     "status": "form",
+     "marker": [
+      "serai allé(e)"
+     ],
+     "gloss": "I will have gone",
+     "note": "Futur antérieur: futur simple of être/avoir plus participle. Used with d'ici (by), and also for likely explanations (il aura raté son train, he must have missed his train).",
+     "source": "je serai allé(e)"
+    }
+   }
+  },
+  "swissgerman": {
+   "name": "Swiss German",
+   "native": "Schwiizerdütsch",
+   "cells": {
+    "past.simple": {
+     "form": "ich bin ggange",
+     "status": "form",
+     "marker": [
+      "bin ggange"
+     ],
+     "gloss": "I went",
+     "note": "Perfekt only: the dialect has no Präteritum, so 'ich ging' does not exist. sii/haa too: ich bin gsi, ich ha gha.",
+     "source": "ich bin ggange"
+    },
+    "past.progressive": {
+     "form": "ich bin grad am Gaa gsi",
+     "status": "periphrasis",
+     "marker": [
+      "bin grad am",
+      "gsi"
+     ],
+     "gloss": "I was (in the middle of) going",
+     "note": "No imperfect. Background is 'am + infinitive' inside the Perfekt, or just the Perfekt plus 'grad' (just then).",
+     "source": "ich bin grad am Gaa gsi"
+    },
+    "past.perfect": {
+     "form": "ich bin scho ggange gsi",
+     "status": "form",
+     "marker": [
+      "bin",
+      "ggange gsi"
+     ],
+     "gloss": "I had gone",
+     "note": "Doubled Perfekt (Perfekt II): participle plus gsi/gha. Speech mostly uses plain Perfekt with 'scho' or 'vorhär' instead.",
+     "source": "ich bin scho ggange gsi"
+    },
+    "present.simple": {
+     "form": "ich gang",
+     "status": "form",
+     "marker": [],
+     "gloss": "I go / I am going",
+     "note": "One form for habit and now. gaa is irregular: gang, gasch, gaat, gönd, gönd, gönd. Standard 'ich gehe'.",
+     "source": "ich gang"
+    },
+    "present.progressive": {
+     "form": "ich bin am Gaa",
+     "status": "form",
+     "marker": [
+      "bin am"
+     ],
+     "gloss": "I am going (right now)",
+     "note": "'am + infinitive' is the only progressive and is far more common than in Standard German (ich bin am Ässe). Otherwise use the present.",
+     "source": "ich bin am Gaa"
+    },
+    "present.perfect": {
+     "form": "ich bin ggange",
+     "status": "form",
+     "marker": [
+      "bin ggange"
+     ],
+     "gloss": "I have gone",
+     "note": "Same form as the past simple cell: the Perfekt is both 'I went' and 'I have gone'. 'Have been going since' is present plus sit (ich gang sit zwei Jahr).",
+     "source": "ich bin ggange"
+    },
+    "future.simple": {
+     "form": "ich gang morn",
+     "status": "form",
+     "marker": [
+      "morn"
+     ],
+     "gloss": "I will go / I am going to go",
+     "note": "Present plus a time word is the normal future. 'wird + infinitive' is for guesses (er wird scho cho) and promises, and is rarer than in Standard German.",
+     "source": "ich gang (morn) / ich wird gaa",
+     "alt": "ich wird gaa"
+    },
+    "future.progressive": {
+     "form": "ich bin dänn am Gaa",
+     "status": "none",
+     "marker": [
+      "bin dänn am"
+     ],
+     "gloss": "I will be going",
+     "note": "No such tense. Present 'am + infinitive' plus a time word (dänn, am Achti) does the job.",
+     "source": "ich bin dänn am Gaa"
+    },
+    "future.perfect": {
+     "form": "ich bin dänn scho ggange",
+     "status": "none",
+     "marker": [
+      "bin dänn scho ggange"
+     ],
+     "gloss": "I will have gone",
+     "note": "No future perfect. Perfekt plus 'dänn scho' (by then already), or 'bis dänn bin ich ggange'. 'ich wird ggange sii' sounds bookish.",
+     "source": "ich bin dänn scho ggange",
+     "alt": "bis dänn bin ich ggange"
+    }
+   }
+  }
+ }
+}

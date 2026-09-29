@@ -1,20 +1,20 @@
 {
  "roles": {
   "subj": "subject",
-  "subj2": "subject (clause 2)",
-  "door": "door",
-  "door2": "door (clause 2)",
-  "verb": "verb in the slot",
-  "verb2": "verb (clause 2)",
-  "obj": "object / destination",
-  "obj2": "object (clause 2)",
+  "subj2": "subject (second half)",
+  "door": "verb frame",
+  "door2": "verb frame (second half)",
+  "verb": "main verb",
+  "verb2": "main verb (second half)",
+  "obj": "object or place",
+  "obj2": "object (second half)",
   "adv": "time or place",
   "dur": "duration",
-  "aux": "tense carrier",
-  "neg": "negation",
-  "q": "question marker",
-  "glue": "glue",
-  "x": "added by this language"
+  "aux": "tense word",
+  "neg": "\"not\" word",
+  "q": "question word",
+  "glue": "linking word",
+  "x": "no English match"
  },
  "meanings": [
   {
@@ -46,7 +46,7 @@
        "obj"
       ]
      ],
-     "hint": "Present. The door WANT with a verb slot."
+     "hint": "Present: \"want\" followed by a verb."
     },
     {
      "id": "past",
@@ -69,7 +69,7 @@
        "obj"
       ]
      ],
-     "hint": "Past. Where does the tense go: on the door, on an auxiliary, on a particle?"
+     "hint": "Past. See which word changes in each language."
     },
     {
      "id": "neg",
@@ -96,7 +96,7 @@
        "obj"
       ]
      ],
-     "hint": "Negative. Where does the negation word sit relative to the door?"
+     "hint": "Negative. Look at where the \"not\" word sits next to \"want\"."
     },
     {
      "id": "q",
@@ -123,7 +123,7 @@
        "obj"
       ]
      ],
-     "hint": "Yes/no question to a friend (informal you). Particle, inversion, or intonation only?"
+     "hint": "Question to a friend. Some languages add a question word; German swaps the word order."
     }
    ]
   },
@@ -170,7 +170,7 @@
        "verb2"
       ]
      ],
-     "hint": "Two doors joined by BECAUSE. Watch what the glue does to the second clause."
+     "hint": "Two verb frames joined by \"because\". In German the verb after \"weil\" goes to the end."
     },
     {
      "id": "past",
@@ -205,7 +205,7 @@
        "verb2"
       ]
      ],
-     "hint": "Past of both doors."
+     "hint": "Past, in both halves of the sentence."
     },
     {
      "id": "fut",
@@ -240,7 +240,7 @@
        "verb2"
       ]
      ],
-     "hint": "Future of both doors. CAN needs a substitute in English; does it in your language?"
+     "hint": "Future. English swaps \"can\" for \"be able to\"; see which languages do the same."
     },
     {
      "id": "although",
@@ -275,7 +275,7 @@
        "verb2"
       ]
      ],
-     "hint": "Glue swapped to ALTHOUGH, first door now positive."
+     "hint": "\"Although\" instead of \"because\"; the first half is now positive."
     }
    ]
   },
@@ -304,7 +304,7 @@
        "obj"
       ]
      ],
-     "hint": "In several languages the liked thing is the grammatical subject and the liker is marked dative."
+     "hint": "In Hindi you say it the other way round: \"mujhe coffee pasand hai\", roughly \"coffee is pleasing to me\"."
     },
     {
      "id": "neg",
@@ -346,7 +346,7 @@
        "obj"
       ]
      ],
-     "hint": "Third person: watch agreement, gender markers, and what changes on the door."
+     "hint": "She instead of I. See which words change to agree with her."
     },
     {
      "id": "q",
@@ -369,7 +369,7 @@
        "obj"
       ]
      ],
-     "hint": "Question to a friend (informal you)."
+     "hint": "Question to a friend."
     }
    ]
   },
@@ -405,7 +405,7 @@
        "adv"
       ]
      ],
-     "hint": "Habitual present."
+     "hint": "Something you do regularly."
     },
     {
      "id": "prog",
@@ -432,7 +432,7 @@
        "adv"
       ]
      ],
-     "hint": "Progressive: an auxiliary, a particle, or nothing at all?"
+     "hint": "\"I'm going\" right now. German and French use the same form as \"I go\"."
     },
     {
      "id": "past",
@@ -455,7 +455,7 @@
        "adv"
       ]
      ],
-     "hint": "Simple past of GO."
+     "hint": "Past."
     },
     {
      "id": "fut",
@@ -482,7 +482,7 @@
        "adv"
       ]
      ],
-     "hint": "Future: a future form, or present plus a time word?"
+     "hint": "Future. Swiss German just uses the present with \"tomorrow\"; German adds \"werde\"."
     },
     {
      "id": "neg",
@@ -509,7 +509,7 @@
        "obj"
       ]
      ],
-     "hint": "Negative progressive."
+     "hint": "Not going, right now."
     }
    ]
   },
@@ -547,7 +547,7 @@
        "dur"
       ]
      ],
-     "hint": "Started in the past, still true. English uses the perfect continuous; most languages use the present plus a duration word."
+     "hint": "Started in the past and still true. English says \"have been living\"; German and French use the present with \"for two years\"."
     },
     {
      "id": "past",
@@ -570,7 +570,7 @@
        "dur"
       ]
      ],
-     "hint": "Finished period in the past."
+     "hint": "A finished stretch of time in the past."
     },
     {
      "id": "fut",
@@ -597,7 +597,7 @@
        "dur"
       ]
      ],
-     "hint": "Future perfect, or whatever the language uses instead."
+     "hint": "\"Will have lived\". Most languages use a simpler form."
     },
     {
      "id": "q",
@@ -624,7 +624,7 @@
        "adv"
       ]
      ],
-     "hint": "Question with a wh-word (informal you)."
+     "hint": "A \"how long\" question to a friend."
     }
    ]
   },
@@ -671,7 +671,7 @@
        "verb2"
       ]
      ],
-     "hint": "First conditional: possible."
+     "hint": "Possible: it could still happen."
     },
     {
      "id": "unreal",
@@ -706,7 +706,7 @@
        "verb2"
       ]
      ],
-     "hint": "Second conditional: hypothetical now."
+     "hint": "Imagined: it isn't true now."
     },
     {
      "id": "past",
@@ -741,7 +741,7 @@
        "verb2"
       ]
      ],
-     "hint": "Third conditional: hypothetical past, regret."
+     "hint": "Too late: it didn't happen."
     }
    ]
   }
