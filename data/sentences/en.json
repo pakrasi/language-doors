@@ -18,42 +18,65 @@
  },
  "meanings": [
   {
-   "id": "want",
-   "title": "I want to learn Khasi.",
-   "function": "F-WANT",
+   "id": "dog",
+   "level": "A2",
+   "title": "My landlord wants to visit tomorrow, so I have to hide the dog.",
+   "function": "F-GIVE-REASONS",
    "recipe": [
-    "D-WANT"
+    "D-WANT",
+    "D-HAVE-TO",
+    "G-SO"
    ],
    "variants": [
     {
      "id": "now",
-     "label": "now",
+     "label": "tomorrow",
      "tokens": [
       [
-       "I",
+       "My landlord",
        "subj"
       ],
       [
-       "want",
+       "wants",
        "door"
       ],
       [
-       "to learn",
+       "to visit",
        "verb"
       ],
       [
-       "Khasi.",
-       "obj"
+       "tomorrow,",
+       "adv"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "have to",
+       "door2"
+      ],
+      [
+       "hide",
+       "verb2"
+      ],
+      [
+       "the dog.",
+       "obj2"
       ]
      ],
-     "hint": "Present: \"want\" followed by a verb."
+     "hint": "Two verb frames, \"wants to visit\" and \"have to hide\", joined by \"so\". After German \"also\" the verb jumps ahead of \"ich\"."
     },
     {
      "id": "past",
      "label": "yesterday",
      "tokens": [
       [
-       "I",
+       "My landlord",
        "subj"
       ],
       [
@@ -61,26 +84,46 @@
        "door|aux"
       ],
       [
-       "to learn",
+       "to visit",
        "verb"
       ],
       [
-       "Khasi.",
-       "obj"
+       "yesterday,",
+       "adv"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "had to",
+       "door2|aux"
+      ],
+      [
+       "hide",
+       "verb2"
+      ],
+      [
+       "the dog.",
+       "obj2"
       ]
      ],
-     "hint": "Past. See which word changes in each language."
+     "hint": "Past in both halves. See whether each language puts the tense on the door (wanted, had to) or somewhere else."
     },
     {
      "id": "neg",
      "label": "not",
      "tokens": [
       [
-       "I",
+       "My landlord",
        "subj"
       ],
       [
-       "don't",
+       "doesn't",
        "neg|aux"
       ],
       [
@@ -88,53 +131,94 @@
        "door"
       ],
       [
-       "to learn",
+       "to visit,",
        "verb"
       ],
       [
-       "Khasi.",
-       "obj"
+       "so",
+       "glue"
+      ],
+      [
+       "I",
+       "subj2"
+      ],
+      [
+       "don't",
+       "neg|aux"
+      ],
+      [
+       "have to",
+       "door2"
+      ],
+      [
+       "hide",
+       "verb2"
+      ],
+      [
+       "the dog.",
+       "obj2"
       ]
      ],
-     "hint": "Negative. Look at where the \"not\" word sits next to \"want\"."
+     "hint": "Two negatives. \"Don't have to\" means no need, not a ban; German says \"muss nicht\", French changes the verb entirely."
     },
     {
      "id": "q",
      "label": "you?",
      "tokens": [
       [
-       "Do",
+       "Your landlord",
+       "subj"
+      ],
+      [
+       "wants",
+       "door"
+      ],
+      [
+       "to visit",
+       "verb"
+      ],
+      [
+       "tomorrow,",
+       "adv"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "do",
        "q|aux"
       ],
       [
        "you",
-       "subj"
+       "subj2"
       ],
       [
-       "want",
-       "door"
+       "have to",
+       "door2"
       ],
       [
-       "to learn",
-       "verb"
+       "hide",
+       "verb2"
       ],
       [
-       "Khasi?",
-       "obj"
+       "the dog?",
+       "obj2"
       ]
      ],
-     "hint": "Question to a friend. Some languages add a question word; German swaps the word order."
+     "hint": "Question to a friend. Only the second half is a question; see where each language puts its question marker."
     }
    ]
   },
   {
-   "id": "decline",
-   "title": "I can't come because I have to work.",
+   "id": "cant",
+   "level": "A2",
+   "title": "We can't come because the kids hid the car keys.",
    "function": "F-ACCEPT-DECLINE",
    "recipe": [
     "D-CAN",
     "G-BECAUSE",
-    "D-HAVE-TO"
+    "D-ABLE-TO"
    ],
    "variants": [
     {
@@ -142,7 +226,7 @@
      "label": "now",
      "tokens": [
       [
-       "I",
+       "We",
        "subj"
       ],
       [
@@ -158,26 +242,26 @@
        "glue"
       ],
       [
-       "I",
+       "the kids",
        "subj2"
       ],
       [
-       "have to",
-       "door2"
+       "hid",
+       "verb2|aux"
       ],
       [
-       "work.",
-       "verb2"
+       "the car keys.",
+       "obj2"
       ]
      ],
-     "hint": "Two verb frames joined by \"because\". In German the verb after \"weil\" goes to the end."
+     "hint": "\"Because\" starts the reason. After German \"weil\" the verb goes to the end: \"weil die Kinder ... versteckt haben\"."
     },
     {
      "id": "past",
-     "label": "yesterday",
+     "label": "last week",
      "tokens": [
       [
-       "I",
+       "We",
        "subj"
       ],
       [
@@ -193,26 +277,26 @@
        "glue"
       ],
       [
-       "I",
+       "the kids",
        "subj2"
       ],
       [
-       "had to",
-       "door2|aux"
+       "hid",
+       "verb2|aux"
       ],
       [
-       "work.",
-       "verb2"
+       "the car keys.",
+       "obj2"
       ]
      ],
-     "hint": "Past, in both halves of the sentence."
+     "hint": "\"Can't\" becomes \"couldn't\". The second half was already past, so only the first half changes."
     },
     {
      "id": "fut",
      "label": "tomorrow",
      "tokens": [
       [
-       "I",
+       "We",
        "subj"
       ],
       [
@@ -224,30 +308,34 @@
        "verb"
       ],
       [
+       "tomorrow",
+       "adv"
+      ],
+      [
        "because",
        "glue"
       ],
       [
-       "I",
+       "the kids",
        "subj2"
       ],
       [
-       "will have to",
-       "door2|aux"
+       "hid",
+       "verb2|aux"
       ],
       [
-       "work.",
-       "verb2"
+       "the car keys.",
+       "obj2"
       ]
      ],
-     "hint": "Future. English swaps \"can\" for \"be able to\"; see which languages do the same."
+     "hint": "Future. English swaps \"can\" for \"be able to\"; see which languages just put their normal \"can\" in the future."
     },
     {
      "id": "although",
      "label": "although",
      "tokens": [
       [
-       "I",
+       "We",
        "subj"
       ],
       [
@@ -255,7 +343,11 @@
        "door"
       ],
       [
-       "come",
+       "still",
+       "adv"
+      ],
+      [
+       "come,",
        "verb"
       ],
       [
@@ -263,25 +355,26 @@
        "glue"
       ],
       [
-       "I",
+       "the kids",
        "subj2"
       ],
       [
-       "have to",
-       "door2"
+       "hid",
+       "verb2|aux"
       ],
       [
-       "work.",
-       "verb2"
+       "the car keys.",
+       "obj2"
       ]
      ],
-     "hint": "\"Although\" instead of \"because\"; the first half is now positive."
+     "hint": "\"Although\" instead of \"because\", and the first half turns positive. German \"obwohl\" also sends the verb to the end."
     }
    ]
   },
   {
    "id": "like",
-   "title": "I like coffee.",
+   "level": "A1",
+   "title": "My sister likes coffee.",
    "function": "F-LIKE",
    "recipe": [
     "D-LIKE"
@@ -289,52 +382,10 @@
    "variants": [
     {
      "id": "now",
-     "label": "now",
-     "tokens": [
-      [
-       "I",
-       "subj"
-      ],
-      [
-       "like",
-       "door"
-      ],
-      [
-       "coffee.",
-       "obj"
-      ]
-     ],
-     "hint": "In Hindi you say it the other way round: \"mujhe coffee pasand hai\", roughly \"coffee is pleasing to me\"."
-    },
-    {
-     "id": "neg",
-     "label": "not",
-     "tokens": [
-      [
-       "I",
-       "subj"
-      ],
-      [
-       "don't",
-       "neg|aux"
-      ],
-      [
-       "like",
-       "door"
-      ],
-      [
-       "coffee.",
-       "obj"
-      ]
-     ],
-     "hint": "Negative."
-    },
-    {
-     "id": "she",
      "label": "she",
      "tokens": [
       [
-       "She",
+       "My sister",
        "subj"
       ],
       [
@@ -346,7 +397,49 @@
        "obj"
       ]
      ],
-     "hint": "She instead of I. See which words change to agree with her."
+     "hint": "In Hindi and Spanish the coffee is the subject: roughly \"coffee pleases my sister\" (\"a mi hermana le gusta el café\")."
+    },
+    {
+     "id": "neg",
+     "label": "not",
+     "tokens": [
+      [
+       "She",
+       "subj"
+      ],
+      [
+       "doesn't",
+       "neg|aux"
+      ],
+      [
+       "like",
+       "door"
+      ],
+      [
+       "coffee.",
+       "obj"
+      ]
+     ],
+     "hint": "Negative. English needs \"doesn't\"; most languages just add their \"not\" word. Look where it sits."
+    },
+    {
+     "id": "they",
+     "label": "they",
+     "tokens": [
+      [
+       "My parents",
+       "subj"
+      ],
+      [
+       "like",
+       "door"
+      ],
+      [
+       "coffee.",
+       "obj"
+      ]
+     ],
+     "hint": "Plural. English only loses the -s; see which words change to agree with two people."
     },
     {
      "id": "q",
@@ -369,13 +462,14 @@
        "obj"
       ]
      ],
-     "hint": "Question to a friend."
+     "hint": "Question to a friend. English adds \"do\"; others add a question word, flip the order, or just raise the voice."
     }
    ]
   },
   {
    "id": "go",
-   "title": "I go to the market.",
+   "level": "A1",
+   "title": "My grandparents go to the market every Sunday.",
    "function": "F-DESCRIBE-PAST",
    "recipe": [
     "D-GOING-TO",
@@ -386,10 +480,10 @@
    "variants": [
     {
      "id": "habit",
-     "label": "every day",
+     "label": "every Sunday",
      "tokens": [
       [
-       "I",
+       "My grandparents",
        "subj"
       ],
       [
@@ -401,22 +495,22 @@
        "obj"
       ],
       [
-       "every day.",
+       "every Sunday.",
        "adv"
       ]
      ],
-     "hint": "Something you do regularly."
+     "hint": "Something done regularly. \"Every Sunday\" does the work; the verb is the plain present."
     },
     {
      "id": "prog",
      "label": "right now",
      "tokens": [
       [
-       "I",
+       "They",
        "subj"
       ],
       [
-       "am",
+       "are",
        "aux"
       ],
       [
@@ -428,18 +522,18 @@
        "obj"
       ],
       [
-       "now.",
+       "right now.",
        "adv"
       ]
      ],
-     "hint": "\"I'm going\" right now. German and French use the same form as \"I go\"."
+     "hint": "Happening right now. German and French use the same form as \"every Sunday\"; Hindi adds \"rahe hain\"."
     },
     {
      "id": "past",
      "label": "yesterday",
      "tokens": [
       [
-       "I",
+       "They",
        "subj"
       ],
       [
@@ -455,14 +549,14 @@
        "adv"
       ]
      ],
-     "hint": "Past."
+     "hint": "Past. English swaps the whole word (go, went); see which languages add a tense word instead."
     },
     {
      "id": "fut",
      "label": "tomorrow",
      "tokens": [
       [
-       "I",
+       "They",
        "subj"
       ],
       [
@@ -482,40 +576,41 @@
        "adv"
       ]
      ],
-     "hint": "Future. Swiss German just uses the present with \"tomorrow\"; German adds \"werde\"."
+     "hint": "Future. Swiss German just uses the present with \"tomorrow\"; German adds \"werden\"."
     },
     {
      "id": "neg",
      "label": "not",
      "tokens": [
       [
-       "I",
+       "They",
        "subj"
       ],
       [
-       "am",
-       "aux"
-      ],
-      [
-       "not",
-       "neg"
+       "aren't",
+       "aux|neg"
       ],
       [
        "going",
        "verb"
       ],
       [
-       "to the market.",
+       "to the market",
        "obj"
+      ],
+      [
+       "today.",
+       "adv"
       ]
      ],
-     "hint": "Not going, right now."
+     "hint": "Not going today. Look at where the \"not\" word sits next to the verb."
     }
    ]
   },
   {
    "id": "live",
-   "title": "I have been living here for two years.",
+   "level": "B1",
+   "title": "My brother has been living in Shillong for two years.",
    "function": "F-INTRO",
    "recipe": [
     "D-HAVE-BEEN-ING",
@@ -524,14 +619,14 @@
    "variants": [
     {
      "id": "now",
-     "label": "still here",
+     "label": "still there",
      "tokens": [
       [
-       "I",
+       "My brother",
        "subj"
       ],
       [
-       "have been",
+       "has been",
        "aux"
       ],
       [
@@ -539,7 +634,7 @@
        "verb"
       ],
       [
-       "here",
+       "in Shillong",
        "adv"
       ],
       [
@@ -547,14 +642,14 @@
        "dur"
       ]
      ],
-     "hint": "Started in the past and still true. English says \"have been living\"; German and French use the present with \"for two years\"."
+     "hint": "Started in the past and still true. English says \"has been living\"; German and French use the present with \"for two years\"."
     },
     {
      "id": "past",
      "label": "finished",
      "tokens": [
       [
-       "I",
+       "He",
        "subj"
       ],
       [
@@ -562,7 +657,7 @@
        "verb|aux"
       ],
       [
-       "there",
+       "in Delhi",
        "adv"
       ],
       [
@@ -570,18 +665,18 @@
        "dur"
       ]
      ],
-     "hint": "A finished stretch of time in the past."
+     "hint": "A finished stretch of time. Compare with the first variant: this is where most languages switch to the past."
     },
     {
      "id": "fut",
-     "label": "next year",
+     "label": "by June",
      "tokens": [
       [
-       "Next year",
+       "By June",
        "adv"
       ],
       [
-       "I",
+       "he",
        "subj"
       ],
       [
@@ -589,7 +684,7 @@
        "verb|aux"
       ],
       [
-       "here",
+       "in Shillong",
        "adv"
       ],
       [
@@ -597,7 +692,7 @@
        "dur"
       ]
      ],
-     "hint": "\"Will have lived\". Most languages use a simpler form."
+     "hint": "\"Will have lived\". Most languages use a simpler form here."
     },
     {
      "id": "q",
@@ -624,13 +719,124 @@
        "adv"
       ]
      ],
-     "hint": "A \"how long\" question to a friend."
+     "hint": "A \"how long\" question to a friend. See whether the question word comes first or stays at the end."
+    }
+   ]
+  },
+  {
+   "id": "rain",
+   "level": "A2",
+   "title": "It's raining, so take an umbrella.",
+   "function": "F-ADVISE",
+   "recipe": [
+    "G-SO",
+    "T-IMPERATIVE",
+    "D-GOING-TO"
+   ],
+   "variants": [
+    {
+     "id": "now",
+     "label": "now",
+     "tokens": [
+      [
+       "It's",
+       "subj|aux"
+      ],
+      [
+       "raining,",
+       "verb"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "take",
+       "verb2"
+      ],
+      [
+       "an umbrella.",
+       "obj2"
+      ]
+     ],
+     "hint": "\"It\" points at nothing. German keeps \"es\", Spanish drops it, Hindi says \"rain is happening\". The second half is an order."
+    },
+    {
+     "id": "fut",
+     "label": "later",
+     "tokens": [
+      [
+       "It's",
+       "subj|aux"
+      ],
+      [
+       "going to",
+       "door"
+      ],
+      [
+       "rain",
+       "verb"
+      ],
+      [
+       "later,",
+       "adv"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "take",
+       "verb2"
+      ],
+      [
+       "an umbrella.",
+       "obj2"
+      ]
+     ],
+     "hint": "\"Going to\" for a prediction. See which languages use a future form and which use the present with \"later\"."
+    },
+    {
+     "id": "neg",
+     "label": "not",
+     "tokens": [
+      [
+       "It",
+       "subj"
+      ],
+      [
+       "isn't",
+       "aux|neg"
+      ],
+      [
+       "raining,",
+       "verb"
+      ],
+      [
+       "so",
+       "glue"
+      ],
+      [
+       "don't",
+       "neg"
+      ],
+      [
+       "take",
+       "verb2"
+      ],
+      [
+       "an umbrella.",
+       "obj2"
+      ]
+     ],
+     "hint": "A negative order. Hindi uses \"mat\" instead of its usual \"nahin\"; Spanish and Italian change the verb form."
     }
    ]
   },
   {
    "id": "if",
-   "title": "If I had time, I would travel.",
+   "level": "B1",
+   "title": "If we had time, we would travel.",
    "function": "F-REGRET",
    "recipe": [
     "G-IF",
@@ -647,7 +853,7 @@
        "glue"
       ],
       [
-       "I",
+       "we",
        "subj"
       ],
       [
@@ -659,7 +865,7 @@
        "obj"
       ],
       [
-       "I",
+       "we",
        "subj2"
       ],
       [
@@ -682,7 +888,7 @@
        "glue"
       ],
       [
-       "I",
+       "we",
        "subj"
       ],
       [
@@ -694,7 +900,7 @@
        "obj"
       ],
       [
-       "I",
+       "we",
        "subj2"
       ],
       [
@@ -706,7 +912,7 @@
        "verb2"
       ]
      ],
-     "hint": "Imagined: it isn't true now."
+     "hint": "Imagined: it isn't true now. English uses the past \"had\" for the present."
     },
     {
      "id": "past",
@@ -717,7 +923,7 @@
        "glue"
       ],
       [
-       "I",
+       "we",
        "subj"
       ],
       [
@@ -729,7 +935,7 @@
        "obj"
       ],
       [
-       "I",
+       "we",
        "subj2"
       ],
       [
