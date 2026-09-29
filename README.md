@@ -1,6 +1,6 @@
-# Doors and Glue
+# Igloo
 
-A reusable framework for learning any language, as a static site.
+Igloo is a static site for learning languages with one reusable framework: the same doors, turns and glue in every language.
 
 - **Doors**: verb frames with one open slot (*I want to ___*).
 - **Turns**: the same door rotated through time, polarity and mood.

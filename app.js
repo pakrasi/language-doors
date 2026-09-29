@@ -1,4 +1,4 @@
-/* Doors and Glue app: Drill, Look up, Write. Static, no build step. Shared helpers come from site.js (window.DG). */
+/* Igloo app: Drill, Look up, Write. Static, no build step. Shared helpers come from site.js (window.DG). */
 (() => {
   'use strict';
   const { h, $, getJSON, framework, load, save, KEYS, dayNow } = DG;

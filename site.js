@@ -1,8 +1,8 @@
-/* Doors and Glue: shared by the homepage and the app. Prefs, theme, site bar, settings, languages sheet,
+/* Igloo: shared by the homepage and the app. Prefs, theme, site bar, settings, languages sheet,
    data loading and the review counters the Today panel and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20260929';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20260929b';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen',

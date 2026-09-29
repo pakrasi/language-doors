@@ -14,23 +14,38 @@
 (function () { try { var p = JSON.parse(localStorage.getItem('doors.prefs.v2')) || {}; document.documentElement.dataset.theme = p.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Doors and Glue</title>
+<title>Igloo</title>
 <meta name="description" content="See the same sentence in Khasi, German, Hindi, French and Swiss German, and how each one builds it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
-<link rel="stylesheet" href="tokens.css?v=20260929">
-<link rel="stylesheet" href="home.css?v=20260929">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' rx='3' fill='%231f6f8b'/%3E%3Crect x='9' y='8' width='8' height='14' rx='1' fill='%23f5f6f8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="tokens.css?v=20260929b">
+<link rel="stylesheet" href="home.css?v=20260929b">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Igloo">
+<meta property="og:title" content="Igloo">
+<meta property="og:description" content="See the same sentence in Khasi, German, Hindi, French and Swiss German, and how each one builds it.">
+<meta property="og:url" content="https://pakrasi.github.io/language-doors/">
+<meta property="og:image" content="https://pakrasi.github.io/language-doors/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Igloo mark and name, with the line: Phrases and grammar across ten languages">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Igloo">
+<meta name="twitter:description" content="See the same sentence in Khasi, German, Hindi, French and Swiss German, and how each one builds it.">
+<meta name="twitter:image" content="https://pakrasi.github.io/language-doors/assets/og-image.png">
 </head>
 <body class="home">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-bar">
   <div class="bar-inner">
-    <a class="brand" href="index.html" aria-label="Doors and Glue, home">
-      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="var(--door)"/><rect x="9" y="8" width="8" height="14" rx="1" fill="var(--surface)"/></svg>
-      <span class="brand-name">Doors and Glue</span>
+    <a class="brand" href="index.html" aria-label="Igloo, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M4.82 14A15 15 0 0 1 27.18 14ZM1 24A15 15 0 0 1 3.311 16H28.689A15 15 0 0 1 31 24H20V22A4 4 0 0 0 12 22V24Z"/></svg>
+      <span class="brand-name">Igloo</span>
     </a>
     <nav class="views" aria-label="Sections">
       <a href="app.html#drill" data-view="drill">Drill</a>
@@ -163,14 +178,8 @@
   </section>
 </main>
 
-<footer class="foot">
-  <div class="foot-inner">
-    <span>Drafted with AI and corrected as I use it. If a form looks wrong, fix it in data/‹language›.json.</span>
-    <a href="https://github.com/pakrasi/language-doors">Source</a>
-  </div>
-</footer>
 
-<script src="site.js?v=20260929"></script>
-<script src="home.js?v=20260929"></script>
+<script src="site.js?v=20260929b"></script>
+<script src="home.js?v=20260929b"></script>
 </body>
 </html>

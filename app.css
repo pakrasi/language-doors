@@ -158,7 +158,7 @@
 @media (hover:none) and (pointer:coarse){.sess-card{cursor:pointer}}
 
 /* focus mode during a session */
-body.focus .pick-row,body.focus .foot{display:none}
+body.focus .pick-row{display:none}
 body.focus .main{padding-top:12px}
 body.focus .drill-stage{max-width:none}
 @media (max-width:640px){body.focus .views{visibility:hidden}}

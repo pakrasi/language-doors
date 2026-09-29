@@ -1,4 +1,4 @@
-/* Doors and Glue: shared tokens and components for the homepage (index.html) and the app (app.html). */
+/* Igloo: shared tokens and components for the homepage (index.html) and the app (app.html). */
 :root{
   color-scheme:light;
   --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef0f4; --line:#d7dbe3; --line-soft:#e8ebf0;
@@ -97,7 +97,7 @@ button,select,input,textarea{font:inherit;color:inherit}
 .site-bar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .bar-inner{max-width:1180px;margin:0 auto;height:var(--bar-h);padding:0 16px;display:flex;align-items:center;gap:20px}
 .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);flex:none;min-height:40px}
-.brand-mark{width:24px;height:24px;display:block;flex:none}
+.brand-mark{width:30px;height:30px;display:block;flex:none;color:var(--door);transform:translateY(-2px)}
 .brand-name{font-family:var(--display);font-weight:700;font-size:18px;white-space:nowrap}
 .views{display:flex;gap:18px;align-items:stretch;align-self:stretch}
 .views a{display:flex;align-items:center;text-decoration:none;color:var(--ink-2);font-weight:500;font-size:14.5px;white-space:nowrap;border-bottom:2px solid transparent;border-top:2px solid transparent;padding:0 1px}
@@ -194,11 +194,6 @@ dialog.sheet{width:min(400px,calc(100vw - 32px))}
   dialog.sheet{margin:auto 0 0;width:100vw;max-width:100vw;max-height:78vh;border-radius:16px 16px 0 0}
   dialog.sheet .dlg-body{padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 }
-
-/* footer */
-.foot{border-top:1px solid var(--line);background:var(--surface);padding-bottom:env(safe-area-inset-bottom,0px)}
-.foot-inner{max-width:1180px;margin:0 auto;padding:16px;display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
-.foot a{color:var(--ink-2)}
 
 /* touch: 44px targets, no keyboard hints */
 @media (pointer:coarse){
