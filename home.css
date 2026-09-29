@@ -237,3 +237,4 @@ mark,.tp-sent mark,.tp-head mark{background:var(--turn-soft);color:var(--ink);bo
 
 .load-err{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .tp-fb:focus{outline:none}
+#tp-test{align-self:flex-start}

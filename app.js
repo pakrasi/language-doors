@@ -139,7 +139,7 @@
   // ---------- shared bits ----------
   function T(lang, text, cls = '') { return h('span', { class: 't ' + cls, lang, dataset: { script: meta(lang).script } }, text); }
   function target(lang, it) {
-    if (!it) return h('span', { class: 'missing' }, '—');
+    if (!it) return h('span', { class: 'missing' }, 'not written yet');
     return h('div', { class: 'tt' }, T(lang, it.target), it.translit ? h('div', { class: 'tr' }, it.translit) : null);
   }
   function detail(lang, it) {
@@ -410,7 +410,7 @@
         chips.replaceChildren(...ls.map(l => h('button', { type: 'button', class: 'chip', 'aria-pressed': l === cur ? 'true' : 'false', onclick: () => { cur = l; state.plang = l; paint(); } }, meta(l).name)));
         const notes = LANG[cur].notes || {};
         const card = (title, text) => {
-          const p = h('p', { class: 'note-text' }, text || '—');
+          const p = h('p', { class: 'note-text' }, text || 'Not written yet.');
           const more = h('button', { type: 'button', class: 'linkish', 'aria-expanded': 'false', onclick: () => { const o = p.classList.toggle('open'); more.textContent = o ? 'Less' : 'More'; more.setAttribute('aria-expanded', o ? 'true' : 'false'); } }, 'More');
           const c = h('div', { class: 'note-card' }, h('h3', {}, title), p, more);
           requestAnimationFrame(() => { if (p.scrollHeight <= p.clientHeight + 2) more.hidden = true; });
