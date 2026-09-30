@@ -140,6 +140,19 @@
   narrow.addEventListener?.('change', () => { renderPickers(); if (state.view === 'lookup') render({ keepScroll: true }); });
 
   // ---------- shared bits ----------
+  // One Messages API call from the browser (key from Settings); returns the reply text. Used by Write and Test.
+  async function claudeText(key, body) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'anthropic-beta': 'server-side-fallback-2026-07-01' }, body: JSON.stringify(body) });
+    let j = null; try { j = await r.json(); } catch {}
+    if (!r.ok) throw new Error(j?.error?.message || r.status);
+    return (j?.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+  }
+  // text with the first case-insensitive occurrence of `part` in <mark>
+  function highlight(text, part) {
+    const i = String(text).toLowerCase().indexOf(String(part).toLowerCase());
+    if (i < 0 || !part) return text;
+    return [text.slice(0, i), h('mark', { class: 'hl' }, text.slice(i, i + part.length)), text.slice(i + part.length)];
+  }
   function T(lang, text, cls = '') { return h('span', { class: 't ' + cls, lang, dataset: { script: meta(lang).script } }, text); }
   function target(lang, it) {
     if (!it) return h('span', { class: 'missing' }, 'not written yet');
@@ -811,6 +824,26 @@
     })().catch(e => { TD_P = null; throw e; });
     return TD_P;
   }
+  // Accepted German for each phrase (data/chunks/accept_german.json: {id: {core_en, accept: [patterns]}}), Test view only.
+  // Until the assembled file exists, the part files in data/chunks/accept/german/ are read from the directory listing
+  // (local preview); phrases without an entry are graded on the whole example sentence as before.
+  let ACC = null, ACC_P = null;
+  function ensureAccept() {
+    if (ACC) return Promise.resolve(ACC);
+    if (!ACC_P) ACC_P = (async () => {
+      try { const d = await getJSON(`data/chunks/accept_${TEST_LANG}.json`); if (d && typeof d === 'object') return (ACC = d); } catch {}
+      const map = {}, dir = `data/chunks/accept/${TEST_LANG}/`;
+      try {
+        const r = await fetch(dir);
+        if (r.ok) {
+          const names = [...new Set([...(await r.text()).matchAll(/href="([\w-]+\.json)"/g)].map(m => m[1]))];
+          for (const d of await Promise.all(names.map(n => getJSON(dir + n).catch(() => null)))) if (d && typeof d === 'object') Object.assign(map, d);
+        }
+      } catch {}
+      return (ACC = map);
+    })();
+    return ACC_P;
+  }
   const testCtx = () => ({ know: DG.knowAll(), srs, lang: TEST_LANG, today: dayNow() });
   const readyLevel = () => LEVELS6.includes(state.level) ? state.level : LEVELS6.includes(prefs.testLevel) ? prefs.testLevel : 'B1';
   function readySummary(L = readyLevel()) {
@@ -833,23 +866,53 @@
   }
 
   // --- test items: one shape for words, phrases and grammar ---
+  // Time limit: the base (Settings, 10 s) for words; phrases and grammar add 0.5 s per character of the model answer
+  // beyond 12, up to 30 s.
+  function itemSecs(kind, model) {
+    const base = DG.testSecs();
+    if (kind === 'words') return base;
+    return Math.max(base, Math.min(30, Math.round(base + 0.5 * Math.max(0, String(model || '').length - 12))));
+  }
+  // Nouns: about 30% of countable nouns are asked with "a" (ein/eine), the rest with "the"; stable per word.
   function wordItem(w) {
     const th = TD.themeById.get(w.theme);
-    return { id: 'W:' + w.id, kind: 'words', level: w.level, group: w.theme, prompt: (w.en || [])[0] || w.w, meta: [w.pos, th?.en || w.theme].filter(Boolean),
-      accepted: Match.acceptedForWord(w), opts: { pos: w.pos }, answer: Match.acceptedForWord(w)[0],
+    const form = Match.nounForm(w), noun = w.pos === 'noun' && !!w.art;
+    const accepted = Match.acceptedForWord(w, form), def = Match.acceptedForWord(w);
+    const indef = noun && form === 'indef';
+    return { id: 'W:' + w.id, kind: 'words', level: w.level, group: w.theme, prompt: noun ? Match.nounPrompt(w, form) : (w.en || [])[0] || w.w, meta: [w.pos, th?.en || w.theme].filter(Boolean),
+      accepted, opts: { pos: w.pos }, answer: accepted[0], secs: itemSecs('words'),
+      indef, defForm: indef ? def[0] : null, shown: indef ? accepted.filter(a => !def.includes(a)) : null,
       extra: [w.pos === 'noun' && w.pl ? `Plural: ${w.pl}` : null, (w.en || []).length > 1 ? 'Also means: ' + w.en.slice(1).join(', ') : null].filter(Boolean),
       ex: w.ex, exen: w.exen };
   }
+  // Phrases with accept patterns: the prompt highlights core_en and only that part is graded.
   function chunkItem(c) {
     const r = CHUNK[TEST_LANG]?.[c.id]; if (!r) return null;
-    return { id: 'K:' + c.id, kind: 'chunks', level: chunkLevel(c), group: TD.fnOf[c.id] || c.category, prompt: c.natural_example, meta: ['phrase', c.pragmatic_function].filter(Boolean),
-      accepted: Match.acceptedForChunk(r.t, r.ex), opts: {}, answer: r.ex, key: r.t, note: r.n };
+    const base = { id: 'K:' + c.id, kind: 'chunks', level: chunkLevel(c), group: TD.fnOf[c.id] || c.category, prompt: c.natural_example, meta: ['phrase', c.pragmatic_function].filter(Boolean), key: r.t, note: r.n };
+    const acc = ACC?.[c.id];
+    if (acc && Array.isArray(acc.accept) && acc.accept.length && acc.core_en && c.natural_example.toLowerCase().includes(String(acc.core_en).toLowerCase())) {
+      // frames continue after the pattern (matching looks anywhere in the answer), so show where the rest goes
+      const tail = p => c.category === 'sentence_frame' && !/\]\s*$/.test(p) ? ' …' : '';
+      const show = p => Match.renderPattern(p, r.ex) + tail(p);
+      const model = show(acc.accept[0]);
+      return { ...base, hl: acc.core_en, accepted: acc.accept, opts: { anywhere: true }, answer: model, auto: r.ex, ex: r.ex, secs: itemSecs('chunks', model),
+        shown: [...new Set(acc.accept.slice(1).map(show))].filter(x => x !== model).slice(0, 3) };
+    }
+    return { ...base, accepted: Match.acceptedForChunk(r.t, r.ex), opts: {}, answer: r.ex, secs: itemSecs('chunks', r.ex) };
   }
+  // Grammar: gap items also take the whole phrase with the gap filled. Words carried over from the prompt may have
+  // typos; the words being tested (not in the prompt) must be exact. Translations use the plain typo rules.
   function grammarItem(it) {
     const c = TD.conceptById.get(it.concept);
     const ans = Array.isArray(it.answer) ? it.answer : [it.answer];
+    const gap = String(it.prompt).includes('___');
+    const opts = { strictCase: !!it.strict_case };
+    if (gap || it.kind !== 'translate') opts.loose = Match.gapLoose(it.prompt);
+    // "Wann kommt der Bus? → Weißt du, …": the answer without the given opening words also counts
+    const lead = (String(it.prompt).match(/→\s*(.+?)\s*…\s*$/) || [])[1];
+    const short = lead ? ans.filter(a => a.startsWith(lead)).map(a => a.slice(lead.length).trim()).filter(Boolean) : [];
     return { id: 'G:' + it.id, kind: 'grammar', level: c?.level || it.level, group: it.concept, task: it.task, prompt: it.prompt, meta: ['grammar', c?.name || it.concept].filter(Boolean),
-      accepted: ans, opts: { strictCase: !!it.strict_case }, answer: ans[0], note: it.note };
+      accepted: gap ? Match.acceptedForGap(it.prompt, ans) : [...ans, ...short], ans, gap, opts, answer: ans[0], shown: gap ? null : ans, secs: itemSecs('grammar', ans[0]), note: it.note };
   }
   const tested = id => !!DG.know(TEST_LANG, id);
   const untestedFirst = list => [...list.filter(x => !tested(x.id)), ...list.filter(x => tested(x.id))];
@@ -859,7 +922,7 @@
   }
   function chunksAt(L) {
     const prio = new Map(TD.pools.chunks.map(c => [c.id, c.prio]));
-    return (CHUNK_EN || []).filter(c => chunkLevel(c) === L && CHUNK[TEST_LANG]?.[c.id]).sort((a, b) => (prio.get('K:' + a.id) || 3) - (prio.get('K:' + b.id) || 3) || a._i - b._i).map(chunkItem).filter(Boolean);
+    return (CHUNK_EN || []).filter(c => chunkLevel(c) === L && CHUNK[TEST_LANG]?.[c.id] && !ACC?.[c.id]?.weak).sort((a, b) => (prio.get('K:' + a.id) || 3) - (prio.get('K:' + b.id) || 3) || a._i - b._i).map(chunkItem).filter(Boolean);
   }
   // grammar items at L, spread across concepts (sticky concepts first), one item per concept per round
   function grammarAt(L, onlyConcept) {
@@ -909,7 +972,7 @@
 
   function viewTest(view, allLangs) {
     const sub = state.sub; const tlevel = state.tlevel; state.sub = null; state.tlevel = null;
-    app(view, header('Test · German', 'Test', `Type the German for each English prompt. Right on the first try within ${DG.testSecs()} seconds counts as known.`));
+    app(view, header('Test · German', 'Test', `Type the German for each English prompt. Right on the first try, spelled right and within the time limit (${DG.testSecs()} seconds for a word, more for long answers) counts as known.`));
     const stage = h('div', { class: 'test-stage' }); app(view, stage);
     window.__cleanup = () => stage._cleanup?.();
     if (!allLangs.includes(TEST_LANG)) {
@@ -918,7 +981,9 @@
       return;
     }
     app(stage, skeleton());
-    ensureTestData().then(() => {
+    Promise.all([ensureTestData(), ensureAccept()]).then(() => {
+      // phrases whose German is one generic word ("oder", "also") can't be tested by typing: leave them out of the test and the score
+      if (ACC && !TD.weakDropped) { TD.pools.chunks = TD.pools.chunks.filter(c => !ACC[c.id.slice(2)]?.weak); TD.weakDropped = true; }
       if (sub === 'placement') return runPlacement();
       if (sub === 'sweep') { const opts = sweepOpts(tlevel); const items = sweepItems(opts); if (items.length) return runSweep(opts, items); }
       setup();
@@ -1054,7 +1119,8 @@
     // --- one typed session: prompt, input, timer, try again, reveal, summary ---
     function runSession(src) {
       stage._cleanup?.();
-      const secs = DG.testSecs(), maxTries = Math.max(1, DG.testTries());
+      const maxTries = Math.max(1, DG.testTries());
+      let secs = DG.testSecs();
       const results = [];
       const autoN = (() => { const a = new URLSearchParams(location.search).get('autotest'); return a == null ? 0 : a === 'reveal' ? -1 : Math.max(1, +a || 12); })();
       history.replaceState(null, '', src.hash);
@@ -1075,6 +1141,7 @@
         cur = src.next(results);
         if (!cur) return summary();
         tries = 0; am = false; revealed = false; over = false;
+        secs = cur.secs || DG.testSecs();
         const p = src.progress(results);
         prog.firstChild.style.width = (100 * p.i / Math.max(1, p.total)) + '%';
         progN.textContent = `${p.label} · ${p.i + 1} / ${p.total}`;
@@ -1083,9 +1150,11 @@
         fb = h('div', { class: 'tt-fb', 'aria-live': 'polite' });
         const form = h('form', { class: 'tt-form', onsubmit: e => { e.preventDefault(); revealed ? next() : submit(); } }, input, h('button', { type: 'submit', class: 'btn primary tt-check' }, 'Check'));
         rep(cardEl,
-          h('div', { class: 'sess-lang' }, h('span', { class: 'lvl' }, cur.level), cur.meta.map(m => h('span', { class: 'tt-meta' }, m))),
+          h('div', { class: 'sess-lang' }, h('span', { class: 'lvl' }, cur.level), cur.meta.map(m => h('span', { class: 'tt-meta' }, m)),
+            h('span', { class: 'tt-limit mono', title: 'Time limit for this answer' }, `${secs} s`)),
           cur.task ? h('div', { class: 'tt-task' }, cur.task) : null,
-          h('div', { class: 'sess-prompt', lang: cur.kind === 'grammar' ? 'de' : 'en' }, cur.prompt),
+          h('div', { class: 'sess-prompt', lang: cur.kind === 'grammar' ? 'de' : 'en' }, cur.hl ? highlight(cur.prompt, cur.hl) : cur.prompt),
+          cur.hl ? h('div', { class: 'tt-hint small muted' }, 'Type the German for the highlighted part (you can write the whole sentence).') : null,
           form, timeBar, fb);
         rep(foot, h('div', { class: 'foot-row' }, h('button', { type: 'button', class: 'btn', onclick: skip }, 'Skip', h('kbd', { class: 'keys-only' }, 'Tab'))));
         input.focus({ preventScroll: false });
@@ -1094,7 +1163,7 @@
         bi.style.transition = 'none'; bi.style.width = '100%';
         requestAnimationFrame(() => requestAnimationFrame(() => { bi.style.transition = `width ${secs}s linear`; bi.style.width = '0%'; }));
         timer = setTimeout(() => { over = true; timeBar.classList.add('over'); }, secs * 1000);
-        DG.announce(`${cur.task ? cur.task + '. ' : ''}${cur.prompt}`);
+        DG.announce(`${cur.task ? cur.task + '. ' : ''}${cur.prompt}${cur.hl ? `. Type the German for: ${cur.hl}` : ''}. ${secs} seconds.`);
         if (autoN) autoplay();
       }
       function submit() {
@@ -1104,8 +1173,7 @@
         const ms = performance.now() - t0;
         const r = Match.check(val, cur.accepted, { ...cur.opts, slots: true });
         if (r.articleMiss) am = true;
-        if (r.ok) return finish(tries === 1 && ms <= secs * 1000 ? 'known' : 'shaky', true, ms, r, val);
-        if (r.close) return finish('shaky', true, ms, r, val);
+        if (r.ok) return finish(tries === 1 && ms <= secs * 1000 && !r.typos.length ? 'known' : 'shaky', true, ms, r, val);
         if (tries < maxTries) {
           rep(fb, h('div', { class: 'tt-again' }, h('b', {}, 'Try again'), r.articleMiss ? ' · Right word, wrong article.' : r.caseMiss ? ' · Check the capital letters.' : null));
           input.select();
@@ -1127,32 +1195,98 @@
       }
       function drawReveal(res) {
         const it = res.item, r = res.r;
+        const nt = r?.typos?.length || 0;
         const why = res.s === 'known' ? null
-          : res.s === 'shaky' ? (r?.close ? 'Almost: one letter off.' : res.tries > 1 ? `Right on try ${res.tries}.` : `Right, but over ${secs} seconds.`)
+          : res.s === 'shaky' ? (nt ? `Right, with ${nt === 1 ? 'a typo' : nt + ' typos'}.` : res.tries > 1 ? `Right on try ${res.tries}.` : `Right, but over ${secs} seconds.`)
             : res.skipped ? 'Skipped.' : res.am ? 'Right word, wrong article.' : r?.caseMiss ? 'Check the capital letters.' : null;
-        const correct = r && (r.ok || r.close || r.articleMiss || r.caseMiss) ? r.fixed : it.answer;
-        const others = (r?.ok ? r.others : it.accepted.filter(a => a !== (r?.matched || it.accepted[0]) && a !== correct)).filter(a => a !== correct);
+        // the answer to show: the model for phrases, the filled phrase for gaps, the form asked for nouns
+        let correct, answerNode;
+        if (it.hl) correct = it.answer;
+        else if (it.gap) {
+          const m = r && (r.ok || r.caseMiss) ? r.matched : null;
+          const word = it.ans.find(a => a === m) || it.ans.find(a => m && Match.gapFill(it.prompt, a)?.text === m) || it.ans[0];
+          const f = Match.gapFill(it.prompt, word);
+          correct = f ? f.text : word;
+          if (f) answerNode = h('span', { class: 't', lang: 'de' }, f.before, h('b', { class: 'tt-gap' }, f.gap), f.after);
+        } else if (it.indef) correct = r?.ok && it.shown.includes(r.matched) ? r.fixed : it.answer;
+        else correct = r && (r.ok || r.articleMiss || r.caseMiss) && (!it.ans || it.ans.includes(r.matched)) ? r.fixed : it.answer;
+        const others = it.shown ? it.shown.filter(a => a !== correct)
+          : it.gap ? []
+            : (r?.ok ? r.others : it.accepted.filter(a => a !== (r?.matched || it.accepted[0]) && a !== correct)).filter(a => a !== correct);
         const knewIt = res.s === 'unknown' && !res.skipped ? h('button', { type: 'button', class: 'linkish small', onclick: e => {
           DG.putKnow(TEST_LANG, it.id, res.prev);
           DG.setKnow(TEST_LANG, it.id, { s: 'shaky', ok: true, ms: res.ms, am: res.am });
           res.s = 'shaky'; res.knewIt = true;
           e.currentTarget.replaceWith(h('span', { class: 'small muted' }, 'Marked shaky.'));
-          fb.querySelector('.tt-state').textContent = STATE_LABEL.shaky; fb.querySelector('.tt-state').className = 'tt-state s-shaky';
+          setState('shaky');
           $('.tt-next')?.focus();
         } }, 'I knew it (typo)') : null;
+        const stateEl = h('b', { class: 'tt-state s-' + res.s }, STATE_LABEL[res.s]);
+        const setState = st => { stateEl.textContent = STATE_LABEL[st]; stateEl.className = 'tt-state s-' + st; };
+        // Claude check for close calls on phrases and grammar
+        const close = r && !r.ok && r.close && !res.skipped && (it.kind === 'chunks' || it.kind === 'grammar');
+        let hasKey = false; try { hasKey = !!localStorage.getItem(KEYS.apikey); } catch {}
+        const aiBox = close && hasKey ? h('div', { class: 'tt-ai' }) : null;
+        if (aiBox) {
+          const run = () => askClaude(res, aiBox, (st, v) => { setState(st); if (v !== 'wrong') knewIt?.remove(); });
+          if (prefs.testAiClose) run();
+          else aiBox.append(h('button', { type: 'button', class: 'btn small-btn', onclick: run }, 'Ask Claude'));
+        }
         rep(fb,
-          h('div', { class: 'tt-verdict' }, h('b', { class: 'tt-state s-' + res.s }, STATE_LABEL[res.s]), why ? h('span', { class: 'muted' }, why) : null, knewIt),
-          h('div', { class: 'tt-answer' }, T(TEST_LANG, correct)),
-          res.val && !r?.ok && !res.skipped ? h('div', { class: 'small muted' }, 'You wrote: ', h('span', { lang: 'de' }, res.val)) : null,
-          r?.ok && !r.exact && res.val ? h('div', { class: 'small muted' }, 'Spelled: ', T(TEST_LANG, r.fixed)) : null,
+          h('div', { class: 'tt-verdict' }, stateEl, why ? h('span', { class: 'muted' }, why) : null, knewIt),
+          h('div', { class: 'tt-answer' }, answerNode || T(TEST_LANG, correct)),
+          it.indef ? h('div', { class: 'small muted' }, 'With the definite article: ', h('span', { lang: 'de' }, it.defForm)) : null,
+          nt && res.val ? h('div', { class: 'small tt-wrote' }, h('span', { class: 'muted' }, 'You wrote: '), typoLine(r, it.ex)) : null,
+          res.val && !nt && !r?.ok && !res.skipped ? h('div', { class: 'small muted' }, 'You wrote: ', h('span', { lang: 'de' }, res.val)) : null,
+          r?.ok && !r.exact && !nt && res.val && !it.hl && !it.gap ? h('div', { class: 'small muted' }, 'Spelled: ', T(TEST_LANG, r.fixed)) : null,
           others.length ? h('div', { class: 'small' }, h('span', { class: 'muted' }, 'Also correct: '), others.map((o, i) => [i ? ' · ' : '', T(TEST_LANG, o)])) : null,
           (it.extra || []).length ? h('div', { class: 'small muted' }, it.extra.join(' · ')) : null,
           it.ex ? h('div', { class: 'tt-ex' }, T(TEST_LANG, it.ex), it.exen ? h('div', { class: 'gl' }, it.exen) : null) : null,
-          it.note ? h('div', { class: 'ans-note' }, it.note) : null);
+          it.note ? h('div', { class: 'ans-note' }, it.note) : null,
+          aiBox);
         cardEl.classList.add('revealed');
         rep(foot, h('div', { class: 'foot-row' }, h('button', { type: 'button', class: 'btn primary big tt-next', onclick: next }, 'Next', h('kbd', { class: 'keys-only' }, 'Enter'))));
         input.focus({ preventScroll: true });
         DG.announce(`${STATE_LABEL[res.s]}. ${correct}`);
+      }
+      // the learner's answer with each typo underlined and the right spelling after it
+      function typoLine(r, caseRef) {
+        const src = r.input || '', out = []; let at = 0;
+        const refWords = new Map(Match.words(caseRef || '').slice(1).map(w => [w.low, w.raw]));
+        for (const t of r.typos) {
+          out.push(src.slice(at, t.start), h('u', { class: 'tt-typo' }, src.slice(t.start, t.end)), h('span', { class: 'tt-fix' }, refWords.get(t.expected.toLowerCase()) || t.expected));
+          at = t.end;
+        }
+        out.push(src.slice(at));
+        return h('span', { lang: 'de' }, out);
+      }
+      // Ask Claude about a close answer: correct -> known (first try, in time) or shaky, minor -> shaky, wrong -> not yet.
+      async function askClaude(res, box, onState) {
+        const it = res.item;
+        let key = ''; try { key = localStorage.getItem(KEYS.apikey) || ''; } catch {}
+        if (!key) { rep(box, h('span', { class: 'small muted' }, 'Add an Anthropic API key in Settings to ask Claude.')); return; }
+        rep(box, h('span', { class: 'small muted' }, 'Asking Claude…'));
+        const what = it.hl
+          ? `English sentence: ${it.prompt}\nHighlighted phrase: ${it.hl}\nAccepted German patterns for the highlighted phrase ("(words)" optional, "[x]" any 1-6 words):\n${it.accepted.map(p => '- ' + p).join('\n')}`
+          : `Task: ${it.task || 'Translate into German.'}\nPrompt: ${it.prompt}\nAccepted answers:\n${it.accepted.map(p => '- ' + p).join('\n')}`;
+        const prompt = `You check one typed answer from a German learner (CEFR ${it.level}). Judge only ${it.hl ? 'the German for the highlighted phrase; ignore the rest of the sentence unless it changes that part' : 'the answer to the task'}. Accept other correct, natural German even if it is not in the list.\n\n${what}\n\nLearner's answer: ${res.val}\n\nverdict: "correct" = right and natural; "minor" = right apart from a small slip (spelling, one ending, capitalisation); "wrong" = wrong word, wrong grammar or a different meaning.\nReply with JSON only: {"verdict":"correct"|"minor"|"wrong","why":"one short sentence in English","better":"the most natural German for the ${it.hl ? 'highlighted part' : 'answer'}"}`;
+        let parsed = null;
+        try {
+          const text = await claudeText(key, { model: 'claude-haiku-4-5-20251001', max_tokens: 300, messages: [{ role: 'user', content: prompt }] });
+          try { parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)); } catch {}
+        } catch (e) { rep(box, h('span', { class: 'small muted' }, `Couldn't reach Claude (${String(e.message).replace(/\.$/, '')}). The grade above stands.`)); return; }
+        const v = parsed && ['correct', 'minor', 'wrong'].includes(parsed.verdict) ? parsed.verdict : null;
+        if (!v) { rep(box, h('span', { class: 'small muted' }, "Couldn't read Claude's reply. The grade above stands.")); return; }
+        const st = v === 'correct' ? (res.tries === 1 && res.ms <= (it.secs || DG.testSecs()) * 1000 ? 'known' : 'shaky') : v === 'minor' ? 'shaky' : 'unknown';
+        DG.putKnow(TEST_LANG, it.id, res.prev);
+        DG.setKnow(TEST_LANG, it.id, { s: st, ok: st !== 'unknown', ms: res.ms, am: res.am, ai: v });
+        if (st === 'known' && (prefs.queueNext || []).includes(it.id)) { prefs.queueNext = prefs.queueNext.filter(x => x !== it.id); DG.savePrefs(); }
+        res.s = st; res.ai = v;
+        onState(st, v);
+        rep(box,
+          h('div', {}, h('b', { class: 's-' + st }, { correct: 'Claude: correct', minor: 'Claude: right, with a small slip', wrong: 'Claude: not right' }[v]), parsed.why ? ' · ' + String(parsed.why) : ''),
+          parsed.better ? h('div', {}, h('span', { class: 'muted' }, 'Most natural: '), T(TEST_LANG, String(parsed.better))) : null,
+          h('div', { class: 'small muted' }, 'Checked by Claude'));
       }
       function onKey(e) {
         if (e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
@@ -1204,7 +1338,7 @@
         later(() => {
           if (autoN === -1 && k > 1) return;
           if (wrong) { input.value = 'weiss nicht'; submit(); if (!revealed) { input.value = 'keine Ahnung'; submit(); } if (autoN > 0) later(next); return; }
-          input.value = cur.kind === 'words' && k % 5 === 1 ? Match.fold(cur.answer) : cur.kind === 'chunks' ? cur.answer : cur.answer;
+          input.value = cur.kind === 'words' && k % 5 === 1 ? Match.fold(cur.answer) : cur.auto || cur.answer;
           submit();
           if (autoN > 0) later(() => { if (revealed) next(); });
           else if (autoN === -1 && k === 0) later(() => { if (revealed) next(); });
@@ -1300,9 +1434,7 @@
         try {
           const recipe = sc.recipe.map(id => `${id}: ${item(plang, id)?.target || M[id]?.en}`).join('\n');
           const prompt = `You are a ${m.name} tutor (${m.variety}). The learner is at CEFR ${sc.level}.\nSituation: ${sc.situation}\nTask: ${sc.task}\nRecipe the model answer uses:\n${recipe}\nModel answer: ${data?.model?.target || '(none)'}\n\nLearner's attempt:\n${attempt}\n\nJudge the attempt on its own merits; it need not match the model. Reply with JSON only:\n{"score": 0-3, "corrected": "the attempt with minimal corrections, in ${m.name}", "feedback": "2-3 sentences in English: what was right, the one most important fix, whether the recipe pieces were used", "natural": "how a native speaker would most likely say it"}`;
-          const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true', 'anthropic-beta': 'server-side-fallback-2026-07-01' }, body: JSON.stringify({ model: 'claude-opus-5', max_tokens: 1024, fallbacks: 'default', messages: [{ role: 'user', content: prompt }] }) });
-          const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || r.status);
-          const text = (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+          const text = await claudeText(key, { model: 'claude-opus-5', max_tokens: 1024, fallbacks: 'default', messages: [{ role: 'user', content: prompt }] });
           let parsed = null; try { parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)); } catch {}
           rep(box, h('div', { class: 'score' }, parsed ? `Score ${parsed.score}/3` : 'Feedback'), parsed ? h('div', {}, h('span', { class: 'muted' }, 'Corrected: '), T(plang, parsed.corrected)) : null, h('div', {}, parsed ? parsed.feedback : text), parsed?.natural ? h('div', {}, h('span', { class: 'muted' }, 'A native speaker would say: '), T(plang, parsed.natural)) : null);
           if (parsed && typeof parsed.score === 'number') rate(Math.max(1, Math.min(3, Math.round(parsed.score))));

@@ -280,6 +280,15 @@ body.focus .test-stage{max-width:none}
 .tt-answer .t{font-size:26px;line-height:1.25;font-weight:500;color:var(--ink)}
 .tt-ex{border-left:3px solid var(--line);padding-left:10px;font-size:15px;display:flex;flex-direction:column;gap:2px}
 .tt-est{font-size:17px;font-weight:600}
+.tt-limit{margin-left:auto;font-size:13px;color:var(--ink-3)}
+.sess-prompt mark.hl{background:var(--door-soft);color:var(--ink);border-bottom:2px solid var(--door);padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tt-hint{margin-top:-8px;color:var(--ink-2)}
+.tt-wrote{line-height:1.7}
+.tt-typo{text-decoration:underline wavy var(--warn);text-decoration-thickness:1.5px;text-underline-offset:3px}
+.tt-fix{margin:0 2px 0 5px;padding:0 5px;border-radius:4px;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.tt-gap{font-weight:700;color:var(--ink)}
+.tt-answer .t .tt-gap{font-weight:700}
+.tt-ai{border-top:1px solid var(--line-soft);padding-top:10px;display:flex;flex-direction:column;gap:4px;font-size:14px;align-items:flex-start}
 .tt-foot{display:flex;flex-direction:column;gap:10px;align-items:center}
 .tt-card .linkish.small{align-self:auto}
 @media (max-width:640px){

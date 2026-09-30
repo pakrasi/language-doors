@@ -2,7 +2,7 @@
    data loading and the review counters the app's Today strip and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20260929e';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20260929f';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1', know: 'doors.know.v1',
@@ -105,7 +105,8 @@
   const hasHistory = () => Object.keys(srs).length > 0;
 
   // ---------- knowledge store: what the Test view (and Drill grades) say is known ----------
-  // doors.know.v1: {"<lang>|<id>": {s: 'unknown'|'shaky'|'known', n, ok, ms, last, am, hist: [[day, ok0/1, ms], ...last 20]}}
+  // doors.know.v1: {"<lang>|<id>": {s: 'unknown'|'shaky'|'known', n, ok, ms, last, am, hist: [[day, ok0/1, ms, {ai}?], ...last 20]}}
+  // ({ai: 'correct'|'minor'|'wrong'} is added when Claude checked that attempt)
   // ids: W:<word id>, K:<chunk id>, G:<grammar item id>. "solid" is not stored: it is an SRS interval of 21+ days.
   const KNOW_RANK = { unknown: 0, shaky: 1, known: 2 };
   const testSecs = () => (Number.isFinite(prefs.testSecs) ? prefs.testSecs : 10);
@@ -117,7 +118,7 @@
     if (s && s.reps && s.ivl >= 21) return 'solid';
     return know[`${lang}|${id}`]?.s || null;
   }
-  // result: {s, ok, ms, am}. A known result starts the SRS schedule at 7 days; shaky or unknown queues the card for Drill.
+  // result: {s, ok, ms, am, ai?}. A known result starts the SRS schedule at 7 days; shaky or unknown queues the card for Drill.
   function setKnow(lang, id, result) {
     const key = `${lang}|${id}`, day = dayNow();
     const r = know[key] ? { ...know[key], hist: (know[key].hist || []).slice() } : { s: 'unknown', n: 0, ok: 0, ms: 0, last: 0, am: 0, hist: [] };
@@ -126,7 +127,7 @@
     r.n++; r.ok += good; r.last = day;
     if (good && ms && (!r.ms || ms < r.ms)) r.ms = ms;
     if (result.am) r.am = (r.am || 0) + 1;
-    r.hist.push([day, good, ms]); r.hist = r.hist.slice(-20);
+    r.hist.push(result.ai ? [day, good, ms, { ai: result.ai }] : [day, good, ms]); r.hist = r.hist.slice(-20);
     know[key] = r; saveKnow();
     if (r.s === 'known') {
       if (!srs[key]?.reps) { srs[key] = { ease: 2.5, ivl: 7, due: day + 7, reps: 1, lapses: 0, last: day, hist: '3' }; saveSrs(); }
@@ -275,18 +276,19 @@
         h('label', { class: 'dlg-row' }, h('span', {}, 'New cards per day, per language'), perDay),
         h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: prefs.drillAudio !== false, onchange: e => { prefs.drillAudio = e.target.checked; savePrefs(); emit('audio'); } }), 'Read the answer aloud')),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Test'),
-        h('label', { class: 'dlg-row' }, h('span', {}, 'Seconds per answer'),
+        h('label', { class: 'dlg-row' }, h('span', {}, 'Seconds per word'),
           h('select', { class: 'field-sel', id: 'set-secs', onchange: e => { prefs.testSecs = +e.target.value; savePrefs(); emit('test'); } },
             [5, 8, 10, 15, 20, 30].map(n => h('option', { value: n, selected: n === testSecs() }, String(n))))),
         h('label', { class: 'dlg-row' }, h('span', {}, 'Tries per question'),
           h('select', { class: 'field-sel', id: 'set-tries', onchange: e => { prefs.testTries = +e.target.value; savePrefs(); emit('test'); } },
             [1, 2, 3].map(n => h('option', { value: n, selected: n === testTries() }, String(n))))),
-        h('p', { class: 'small muted' }, 'Known = right on the first try within the time. Slower or on a later try = shaky.')),
+        h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'set-ai-close', checked: !!prefs.testAiClose, onchange: e => { prefs.testAiClose = e.target.checked; savePrefs(); emit('test'); } }), 'Check close answers with Claude'),
+        h('p', { class: 'small muted' }, 'Phrases and grammar get 0.5 s more per letter of the answer beyond 12, up to 30 s. Known = right on the first try, spelled right, within the time. A typo, a slower answer or a later try = shaky. Close answers to phrases and grammar can be checked by Claude (needs the API key below); with this off, you get an Ask Claude button instead.')),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Display'),
         h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'set-dark', checked: document.documentElement.dataset.theme === 'dark', onchange: e => setTheme(e.target.checked ? 'dark' : 'light') }), 'Dark mode')),
       h('div', { class: 'dlg-sec' },
-        h('label', { class: 'field' }, h('span', {}, 'Anthropic API key (optional, for AI feedback in Write)'), key),
-        h('p', { class: 'small muted' }, 'Sent only to api.anthropic.com. Without a key, Write uses the built-in word check.')),
+        h('label', { class: 'field' }, h('span', {}, 'Anthropic API key (optional, for AI feedback in Write and Test)'), key),
+        h('p', { class: 'small muted' }, 'Sent only to api.anthropic.com. Without a key, Write uses the built-in word check and Test uses its own checker.')),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Progress'),
         h('div', { class: 'dlg-row' }, h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress (JSON)'), delBtn),
         confirmBox),
