@@ -1,0 +1,12605 @@
+[
+ {
+  "w": "ab und zu",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "now and then"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Abfahrt",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "departure"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "abgeben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hand in",
+   "submit"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "abgemacht",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "deal",
+   "it's settled"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "abholen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to pick up"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "abhängig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "dependent (on)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Abhängigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the dependency"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Abitur",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "school-leaving exam"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "ablehnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to reject",
+   "decline"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ableiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to derive",
+   "deduce"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "abnehmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to lose weight",
+   "to decrease"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "absagen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to cancel"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "abschalten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to switch off",
+   "unwind"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Abschied nehmen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to say goodbye (to)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Abschluss",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "qualification"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "Absicht",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the intention"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Absicht haben",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "to intend"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Abteilung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "department"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "abwaschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "wash up"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Abweichung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the deviation",
+   "discrepancy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "abwägen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to weigh up"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "aktuell",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "current",
+   "up to date"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "allerdings",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "however",
+   "though"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "alles klar",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "all good",
+   "got it"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "als",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "when (single past event)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "alt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "old"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Alter",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "age"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Ampel",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "traffic lights"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "analysieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to analyse"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "anbieten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to offer"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "anderthalb",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "one and a half"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Anfang",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the beginning"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "anfangen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to begin",
+   "to start"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Anforderung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the requirement",
+   "demand"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Angebot",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "offer",
+   "the offer",
+   "the special deal"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "work",
+  "pl": "-e"
+ },
+ {
+  "w": "angemessen",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "appropriate",
+   "adequate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Angestellte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "employee"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Angst",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "fear"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "Angst haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be afraid (of)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ankunft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "arrival"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "anmelden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to register",
+   "sign in"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Annahme",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the assumption"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "annehmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to accept",
+   "to assume",
+   "accept"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "anprobieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "try on",
+   "to try on"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "anrufen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to call (phone)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Anschreiben",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "cover letter"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-"
+ },
+ {
+  "w": "anstreben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to strive for",
+   "aim at"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "anstrengend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "exhausting",
+   "strenuous"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Anteil",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the share",
+   "proportion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Antwort",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the answer"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "antworten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to answer",
+   "to answer (someone)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "anwenden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to apply"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Anzeige",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "ad",
+   "advertisement"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "Apfel",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "apple"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Apotheke",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "pharmacy",
+   "the pharmacy"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "App",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "app"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Arbeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "work",
+   "the work",
+   "the job"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "arbeiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "work",
+   "to work"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Arbeitslosigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "unemployment"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Argument",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "argument",
+   "the argument"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "argumentieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to argue",
+   "make a case"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Arzt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "doctor",
+   "the doctor"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Aspekt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the aspect"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "auf jeden Fall",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "definitely",
+   "in any case"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "auf keinen Fall",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "no way",
+   "under no circumstances"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Aufführung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "performance"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Aufgabe",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "task"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "aufgeregt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "excited",
+   "nervous"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "aufhalten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to stay",
+   "spend time"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "aufhören",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to stop",
+   "to quit"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "aufpassen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to pay attention",
+   "to watch"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Aufregung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "excitement",
+   "nervousness"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "aufräumen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "tidy up",
+   "to tidy up"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "aufstehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "get up",
+   "to get up"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Auftrag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "order, contract"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "aufwachen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to wake up"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Aufwand",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the effort",
+   "expense (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "aufwerfen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to raise (a question)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "aufzeigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to demonstrate",
+   "show"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Aufzug",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "elevator"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "¨-e"
+ },
+ {
+  "w": "aus",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "from",
+   "out of"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausbauen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to expand",
+   "develop further"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ausbildung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "vocational training",
+   "apprenticeship",
+   "the vocational training"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "work",
+  "pl": "-en"
+ },
+ {
+  "w": "Ausgangspunkt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the starting point"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausgeben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to spend (money)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Auskunft geben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to give information (about)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausleihen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to borrow",
+   "to lend out"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausmachen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to turn off",
+   "to arrange",
+   "to matter"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ausnahme",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the exception"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausreichend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "sufficient"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Aussage",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the statement"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausschließen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to exclude",
+   "rule out"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ausstellung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "exhibition"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Ausweis",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "ID"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Auswirkung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the impact",
+   "effect",
+   "the effect (on)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ausziehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to move out"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Auto",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the car"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "außerdem",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "besides",
+   "in addition"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "außergewöhnlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "exceptional(ly)",
+   "unusual(ly)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "backen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to bake"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bad",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "bathroom"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Bahnhof",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "station",
+   "the train station"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "bald",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "soon"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Balkon",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "balcony"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Bank",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "bank"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "bar",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "cash"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Bauch",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "stomach"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "bauen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to build"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bedeuten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to mean"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bedeutung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "significance",
+   "the meaning",
+   "importance"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Bedingung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the condition"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beeindruckend",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "impressive"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "beginnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to begin"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "begrenzt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "limited"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "begründen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to justify",
+   "give reasons"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "begrüßen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to greet",
+   "welcome"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Begrüßung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "welcome",
+   "greeting"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "behaupten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to claim",
+   "assert"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bei",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "at",
+   "near",
+   "at someone's place"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bein",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "leg"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Beispiel",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the example"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Beitrag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the contribution"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beitragen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to contribute (to)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bekannt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "well-known",
+   "familiar"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bekommen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to get",
+   "to receive"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beliebt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "popular"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "benutzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to use"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beobachten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to observe"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bequem",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "comfortable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beraten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to advise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Beratung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "advice",
+   "consultation"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "berechnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to charge",
+   "calculate",
+   "to calculate"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Bereich",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the area",
+   "field"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Berg",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "mountain"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Bericht",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "report"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Beruf",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "job",
+   "the profession"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "berufstätig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "working",
+   "employed"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "berücksichtigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to take into account"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bescheid",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "notice",
+   "word"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "Bescheid geben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to let someone know"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beschreiben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to describe"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beschweren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to complain"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "beschäftigt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "busy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Beschäftigte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "employee"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "besonders",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "especially"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Besprechung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "meeting",
+   "the meeting"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Besprechungsraum",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "meeting room"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "¨-e"
+ },
+ {
+  "w": "bestehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to pass"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "bestellen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to order"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "bestimmt",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "certainly",
+   "surely"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bestätigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to confirm"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "besuchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to visit"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "betonen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to emphasise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "betrachten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to consider",
+   "look at"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "betreuen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to look after",
+   "care for"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "beurteilen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to assess",
+   "judge"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bevor",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "before"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bevölkerung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "population"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Beweis",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the proof",
+   "evidence"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "beweisen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to prove"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "bewerben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to apply (for a job)",
+   "to apply"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Bewerbung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "application",
+   "the (job) application"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "bewältigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to cope with",
+   "overcome"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "bezahlen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to pay"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Beziehung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "relationship",
+   "the relationship",
+   "connection"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "bezweifeln",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to doubt"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bier",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "beer"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Bildschirm",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "screen"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "billig",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "cheap"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "bleiben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to stay"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Bock haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be up for (slang)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "brauchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "need",
+   "to need"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "bringen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to bring",
+   "to take (somewhere)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Brot",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "bread"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Bruder",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "brother",
+   "the brother"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Brötchen",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "roll"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "buchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to book"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Buchung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "booking"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "Bühne",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "stage"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Bürger",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "citizen"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Büro",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "office"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Chef",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the boss"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "damit",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "so that (purpose)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "danach",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "afterwards"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "darstellen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to represent",
+   "present"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "dass",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "that"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Daten",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "data"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Datenschutz",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "data protection"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "dauerhaft",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "permanent",
+   "lasting"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "dauern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to last",
+   "to take (time)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Debatte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the debate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "definieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to define"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Demokratie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "democracy"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "denken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to think"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "denken an",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to think of",
+   "about"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "denn",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "because",
+   "for"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "deshalb",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "that's why",
+   "therefore"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "deutlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "clearly",
+   "noticeably"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Deutscher/Deutsche",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "German"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Diskussion",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the discussion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "diskutieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to discuss"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "doppelt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "double",
+   "twice"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Dorf",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the village"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "durch",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "through"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Durst haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be thirsty"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "duschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "shower"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Dürre",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the drought"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "E-Mail",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "email"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Echt jetzt?",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Seriously?"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Effizienz",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the efficiency (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "egal",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "all the same",
+   "doesn't matter"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ehrlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "honest"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ehrlich gesagt",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be honest"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ei",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "egg"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "eigen-",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "own"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Eigenschaft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the property",
+   "characteristic"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eigentlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "actually"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ein Foto machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to take a photo"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einbeziehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to include",
+   "involve"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eindeutig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "unambiguous",
+   "clear"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eine Entscheidung treffen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to make a decision"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eine Frage stellen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to ask a question"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eine Pause machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to take a break"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eine Rolle spielen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to play a role",
+   "to matter"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "eine Schlussfolgerung ziehen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to draw a conclusion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einen Fehler machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to make a mistake"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einen Termin vereinbaren",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to arrange an appointment"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einen Vorschlag machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to make a suggestion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einerseits / andererseits",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "on the one hand / on the other"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "einfach",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "easy",
+   "simple",
+   "just"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Einfluss",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "influence",
+   "the influence"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "einführen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to introduce (a system)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "eingeschrieben",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "enrolled (student)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Einheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the unit",
+   "entity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to agree",
+   "reach agreement"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einkaufen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to shop",
+   "shop for food",
+   "to shop (for groceries)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "einladen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to invite"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "einleiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to introduce",
+   "initiate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einordnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to classify",
+   "put into context"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einräumen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to concede",
+   "admit"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einschränken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to limit",
+   "restrict"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Einschränkung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the limitation"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einschätzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to assess",
+   "estimate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Einschätzung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the assessment",
+   "estimation"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einstellen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hire"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "einteilen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to plan",
+   "divide up (time)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Eintritt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "admission (fee)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "Einwand",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the objection"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "einziehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to move in"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Eltern",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "parents",
+   "the parents"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Empfang",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "reception (desk)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "¨-e"
+ },
+ {
+  "w": "empfehlen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to recommend"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Ende",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the end"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "endlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "finally"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Energie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the energy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Entdeckung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "discovery"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "entscheidend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "decisive",
+   "crucial"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Entscheidung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "decision",
+   "the decision"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "entsprechend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "corresponding",
+   "accordingly"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "entstehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to arise",
+   "come about"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "enttäuscht",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "disappointed",
+   "disappointed (by)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "entweder … oder",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "either … or"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "entwickeln",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to develop"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Entwicklung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "development",
+   "the development"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Erdgeschoss",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "ground floor"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "erfahren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to find out",
+   "to learn (news)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Erfahrung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "experience",
+   "the experience"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "school",
+  "pl": "-en"
+ },
+ {
+  "w": "Erfindung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "invention"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Erfolg",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the success"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Erfolg haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be successful"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erfolgreich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "successful"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erfordern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to require",
+   "demand"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ergebnis",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "result"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "ergänzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to add",
+   "complement"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erhalten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to receive"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "erheblich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "considerable",
+   "significant"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erkennen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to recognise",
+   "identify"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Erkenntnis",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "finding",
+   "the insight"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "erklären",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to explain"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Erkältung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "cold"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "erlauben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to allow",
+   "permit"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "erledigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to get done",
+   "take care of"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "erläutern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to explain",
+   "elaborate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erreichbar",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "reachable",
+   "available"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "erreichen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to reach",
+   "achieve",
+   "to achieve"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erst",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "only (not until)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "erwarten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to expect"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "erzählen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to tell (a story)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "es geht um",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "it's about"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "es gibt",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "there is",
+   "there are"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Es hat geklappt!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "It worked out!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "es kommt darauf an",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "it depends"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "es lohnt sich",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "it's worth it"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "es regnet",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "it's raining"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "es schneit",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "it's snowing"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "es tut mir leid",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "I'm sorry"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "essen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "eat",
+   "to eat"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Essen",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the food",
+   "the meal"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "etwas Lustiges",
+  "art": "",
+  "pos": "noun",
+  "en": [
+   "something funny"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Experiment",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "experiment",
+   "the experiment"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Fabrik",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "factory"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "Fach",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "subject"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "fahren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to drive",
+   "to ride",
+   "to go (by vehicle)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Fahrkarte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "ticket"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Fahrplan",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the timetable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Fahrrad",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "bicycle",
+   "the bicycle"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "falls",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "in case",
+   "if"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "falsch",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "wrong",
+   "false"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Familie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "family",
+   "the family"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "fast",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "almost"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "faul",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "lazy"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Fehler",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the mistake",
+   "error"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Feierabend",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "end of the working day",
+   "the end of the workday"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "fernsehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "watch TV"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "fertig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "finished",
+   "done (with)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "fest",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "fixed",
+   "set"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "feststellen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to find out",
+   "notice",
+   "to determine",
+   "find out"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Fieber",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "fever"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Figur",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "character"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Film",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "film"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "finden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to find",
+   "to think (opinion)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Firma",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "company",
+   "the company"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Firmenchefin",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "company boss (f)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-nen"
+ },
+ {
+  "w": "Fleisch",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "meat",
+   "the meat"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Flug",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "flight"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Flughafen",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "airport",
+   "the airport"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Flur",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "hallway"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "Fluss",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "river"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Folge",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "consequence",
+   "the consequence"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Formular",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the form"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Forscher",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "researcher",
+   "the researcher"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Forschung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "research",
+   "the research (no plural)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "fortgeschritten",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "advanced"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Fortschritt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the progress"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Frage",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the question"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "fragen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to ask"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Frau",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "wife"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Freiheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "freedom"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "freiwillig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "voluntary",
+   "by choice"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Freude",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "joy"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "freuen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to please",
+   "sich freuen = be glad"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Freund",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "friend, boyfriend",
+   "the friend"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Freundin",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "friend, girlfriend"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "freundlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "friendly"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Frist",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "deadline"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "froh",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "glad"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "früh",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "early"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Frühling",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "spring"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Frühstück",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the breakfast"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "frühstücken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "have breakfast"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "fundiert",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "well-founded",
+   "solid"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "funktionieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to function",
+   "work",
+   "to work (things)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Fähigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the ability",
+   "skill"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Führerschein",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the driver's license"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Führung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "guided tour · leadership"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "Führungskraft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "manager",
+   "executive"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "für",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "for"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "geben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "give",
+   "to give"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Gebühr",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "fee"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "gefallen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to be pleasing to (I like it)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gefährlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "dangerous"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gefühl",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "feeling"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "gegen",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "against",
+   "around (time)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gehalt",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "salary",
+   "the salary"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "work",
+  "pl": "¨-er"
+ },
+ {
+  "w": "gehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "go",
+   "to go",
+   "to walk"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "gehören",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to belong to"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Geld",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "money",
+   "the money"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Gelegenheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the opportunity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gelingen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to succeed",
+   "manage"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gelten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to apply",
+   "be valid"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Gemeinsamkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the common ground",
+   "similarity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gemälde",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "painting"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Gemüse",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "vegetables",
+   "the vegetables"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "gemütlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "cozy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "genau",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "exact",
+   "precise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "genauso",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "just as (much)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "geradeaus",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "straight on"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Gerechtigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "justice"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Gericht",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the dish (food)",
+   "the court"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gern",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "gladly",
+   "like to (rather · most of all)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gesamtheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the totality",
+   "whole (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Geschirr",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "dishes",
+   "crockery"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "Geschwister",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "siblings",
+   "the siblings"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Geschäft",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "shop",
+   "the shop",
+   "the business"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Gesellschaft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "society",
+   "the society"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Gesetz",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "law"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "gesetzlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "legal",
+   "statutory"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "gespannt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "curious",
+   "eager to see"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Gespräch",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "conversation",
+   "interview",
+   "the conversation"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "gestern",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "yesterday"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "gesund",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "healthy"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Gesundheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the health"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Getränk",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the drink"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gewerkschaftsvertreterin",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "union representative (f)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-nen"
+ },
+ {
+  "w": "Gewinn",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "profit"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "gewinnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to win"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gewährleisten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to ensure",
+   "guarantee"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "glauben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to believe",
+   "to think"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gleich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "same",
+   "equal",
+   "right away"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gleichberechtigung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "equal rights"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Gleichgewicht",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the balance",
+   "equilibrium (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gleichzeitig",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "at the same time"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Gleis",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "platform"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "glücklich",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "happy"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "Grad",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "degree"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Grenze",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the limit",
+   "border"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Großeltern",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "grandparents"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Großraumbüro",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "open-plan office"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-s"
+ },
+ {
+  "w": "Grund",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "reason",
+   "the reason"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Grundlage",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the basis",
+   "foundation"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "grundlegend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "fundamental",
+   "basic"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "grundsätzlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "fundamental",
+   "in principle"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Größe",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "size"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Gute Besserung!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Get well soon!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "gute Nachrichten",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "good news"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "günstig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "inexpensive",
+   "good value"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "haben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "have"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "halb",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "half"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Hals",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "throat"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "halten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hold",
+   "to stop (vehicle)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Haltestelle",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "stop",
+   "the (bus",
+   "tram) stop"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Handlung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "plot"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Handy",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "mobile phone"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Haube",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "hairnet",
+   "cap"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "Heizung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "heating"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "heiß",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "hot"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "helfen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to help (someone)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Hemd",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "shirt"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "herausfordern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to challenge"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Herausforderung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "challenge",
+   "the challenge"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Herbst",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "autumn"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "herunterladen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to download"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "hervorheben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to emphasise",
+   "highlight"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Herzlichen Glückwunsch!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Congratulations!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "heute",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "today"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "hinweisen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to point out",
+   "refer to"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "hochladen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to upload"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "hoffen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hope (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "hoffentlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "hopefully"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Hose",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "trousers"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Hotel",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "hotel"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Hunger haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be hungry"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Husten",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "cough"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Hälfte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "half"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "hängt davon ab.",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "That depends."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "höchstens",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "at most"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "höflich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "polite"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "hören",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hear",
+   "to listen"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ich bin damit einverstanden.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "I agree with that."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ich bin gespannt.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "I'm curious",
+   "can't wait."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ich verstehe nur Bahnhof.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "It's all Greek to me. (idiom)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Idee",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the idea"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "im Moment",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "at the moment"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "immerhin",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "at least",
+   "after all"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "in Betracht ziehen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to consider (an option)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "in der Nähe",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "nearby",
+   "close (to)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "in Frage kommen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be an option"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "in Ordnung",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "okay",
+   "alright"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Inder/Inderin",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "Indian"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Ingenieur",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "engineer"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Ingenieurbüro",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "engineering firm"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-s"
+ },
+ {
+  "w": "Innenstadt",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "city centre"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "innerhalb",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "within"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "interessant",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "interesting"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "inzwischen",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "meanwhile",
+   "by now"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ist doch Quatsch.",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "That's nonsense."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ist mir egal.",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "I don't care."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ist mir Wurst.",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "I couldn't care less. (idiom)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Jacke",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "jacket"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Jahr",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "year",
+   "the year"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Januar",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "January"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "je … desto",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "the … the (comparison)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "jetzt",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "now"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "jeweilig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "respective"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Job",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "job"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Jobmesse",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "job fair"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "jung",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "young"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kaffee",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "coffee"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "kalt",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "cold"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Kapazität",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the capacity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Karriere",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "career"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "Karte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "card"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Kasse",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "checkout"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "kaufen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "buy",
+   "to buy"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "kaum",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "hardly"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kaution",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "deposit"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "kein Bock",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to not feel like it (slang)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kein Problem",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "no problem"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "keine Ahnung",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "no idea"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "keine Sorge",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "no worries",
+   "don't worry"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kennen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to know (a person",
+   "thing)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kennenlernen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to get to know",
+   "to meet"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kind",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "child",
+   "the child"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Kino",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "cinema"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Kirche",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "church"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Kittel",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "lab coat",
+   "smock"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-"
+ },
+ {
+  "w": "klappen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to work out",
+   "succeed"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Klimawandel",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "climate change"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "klingt gut.",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "That sounds good."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kochen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "cook",
+   "to cook"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Koffer",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "suitcase"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Kohle",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the coal",
+   "(slang) money"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kollege",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "colleague",
+   "the colleague"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "kommen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "come",
+   "to come"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "komplex",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "complex"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Komplexität",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the complexity (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kompliziert",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "complicated"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kompromiss",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the compromise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Konsequenz",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the consequence"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kontakt aufnehmen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to get in touch (with)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Konto",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the bank account"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Konzert",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "concert"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Kopf",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "head"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "kostenlos",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "free of charge"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "krank",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "sick"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Krankenhaus",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "hospital",
+   "the hospital"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Krankheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the illness"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Krankschreibung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "sick note"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Krass!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Wow!",
+   "No way! (slang)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Krise",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "crisis"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Kritik",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "review",
+   "the criticism (no plural)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "kritisch",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "critical"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "kritisieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to criticise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Kunde",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "customer",
+   "the customer"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Kunst",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "art"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Kurs",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the course"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Käse",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "cheese"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Küche",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "kitchen",
+   "the kitchen"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "kündigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to quit"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Künstliche Intelligenz",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "AI",
+   "the artificial intelligence (AI)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Land",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "country",
+   "the country",
+   "the countryside"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Landwirtschaft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the agriculture"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "langsam",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "slow"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "langweilig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "boring"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lass uns …",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Let's …"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "lassen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to have (something done)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "laufen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to run",
+   "to walk"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "laut",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "loud"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "leben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to live (be alive",
+   "lead a life)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lebenslauf",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "CV",
+   "résumé",
+   "the CV",
+   "the résumé"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "school",
+  "pl": "¨-e"
+ },
+ {
+  "w": "ledig",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "single"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "legen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to lay",
+   "to put (flat)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lehrer",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the teacher"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lehrerin",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "teacher, f"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "leider",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "unfortunately"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "leise",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "quiet (sound)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Leistung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the performance",
+   "achievement"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "leiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to lead",
+   "run (a meeting)",
+   "run"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "lernen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "learn",
+   "to learn",
+   "to study"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "lesen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "read",
+   "to read"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Leute",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "people",
+   "the people"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Lieferdienst",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "delivery service"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "liefern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to deliver"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Lieferung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "delivery"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "links",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "left"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Luft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "air"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Lust haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to feel like (doing something)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "lustig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "funny"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lärm",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "noise"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Läuft bei mir.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Things are going well for me. (slang)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "löschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to delete"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "lösen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to solve"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Lösung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "solution",
+   "the solution"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Mach kein Theater.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Don't make a fuss. (idiom)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mach's gut!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Take care!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "machen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "do, make",
+   "to do",
+   "to make"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "macht nichts",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "that doesn't matter",
+   "no problem"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "manchmal",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "sometimes"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mangel",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the lack",
+   "shortage"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mann",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "husband"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "maßgeblich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "decisive",
+   "authoritative"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Maßnahme",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "measure",
+   "the measure",
+   "step"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Mechanismus",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the mechanism"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Medikament",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the medication"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Meer",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "sea"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "meiner Meinung nach",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "in my opinion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Meinung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "opinion",
+   "the opinion"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "meistens",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "mostly",
+   "usually"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mensch",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the human being",
+   "the person"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "merken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to notice",
+   "realize"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Messe",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "trade fair"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "messen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to measure"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Methode",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the method"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Miete",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "rent",
+   "the rent"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Mieter",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "tenant"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Mietvertrag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "lease"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Migration",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "migration"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Minute",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "minute"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Mist!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Darn!",
+   "Ugh!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "mit",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "with"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mitarbeiter",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "employee"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Mitarbeitergespräch",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "staff review meeting"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "mitbringen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to bring along"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Mitglied",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "member"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-er"
+ },
+ {
+  "w": "modern",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "modern"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Monat",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "month"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Montag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "Monday"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "morgen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "tomorrow"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Mutter",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "mother"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "mögen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "like"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "möglich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "possible"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Möglichkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "possibility",
+   "the possibility",
+   "the option"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "müde",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "tired"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Müll",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "rubbish"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "na klar",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "of course",
+   "sure thing"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "nach",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "after",
+   "to (cities",
+   "countries)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Nachbar",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "neighbour",
+   "the neighbor"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Nachbarin",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "neighbour, f"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "nachdem",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "after"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "nachgehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to pursue",
+   "follow up on"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "nachhaltig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "sustainable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Nachricht",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "message",
+   "the message",
+   "the news item"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Nachrichten",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "news"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Nachteil",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "disadvantage",
+   "the disadvantage"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "nachvollziehbar",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "understandable",
+   "logical"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "nachweisen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to demonstrate",
+   "prove"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Name",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "name"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Namensschild",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "name tag"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-er"
+ },
+ {
+  "w": "nass",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "wet"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Natur",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the nature"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Nebenkosten",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "utilities"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "nehmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "take",
+   "to take"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "nervös",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "nervous"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "neu",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "new"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Niederschlag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the precipitation",
+   "the rainfall"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Niveau",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the level"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "normalerweise",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "normally"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "notwendig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "necessary"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Notwendigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the necessity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Nur keine Eile.",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "No rush."
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Nussallergie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "nut allergy"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "nötig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "necessary"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "nützlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "useful"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ob",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "whether",
+   "if"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "objektiv",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "objective"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Obst",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the fruit"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "obwohl",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "although"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "oft",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "often"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ohne",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "without"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ozean",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the ocean"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Partei",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "party"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "passen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to fit",
+   "to suit"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "passieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to happen"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "passt",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "that works (informal)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Passwort",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "password"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Perspektive",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the perspective"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "planen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to plan"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Platz",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "square"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Platz nehmen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to take a seat"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "plötzlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "suddenly"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Potenzial",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the potential"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Praktikum",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "internship"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "praktisch",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "practical"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Praline",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "chocolate (praline)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "Praxis",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "doctor's office"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Preis",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "price",
+   "the price"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Priorität",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the priority"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "probieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to try",
+   "to taste"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Problem",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the problem"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Prozess",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the process"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "prägen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to shape",
+   "characterise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Präsenztag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "in-office day"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "präzise",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "precise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "prüfen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to check",
+   "examine"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Prüfung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "exam",
+   "the exam"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Publikum",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "audience"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "putzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "clean",
+   "to clean"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "pünktlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "punctual",
+   "on time"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Quereinsteiger",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "career changer",
+   "newcomer"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-"
+ },
+ {
+  "w": "Rabatt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "discount"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-e"
+ },
+ {
+  "w": "Rahmen",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the framework",
+   "context"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Rathaus",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "town hall"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Rechenzentrum",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the data center"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Rechner",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "computer"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Rechnung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "bill",
+   "the bill",
+   "the invoice"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Recht haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be right"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "rechtfertigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to justify"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "rechts",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "right"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "recyceln",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to recycle"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Regel",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the rule"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Regen",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "rain",
+   "the rain"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Regierung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "government"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Regisseur",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "director"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "Reichweite",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the range",
+   "scope"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Reise",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "trip",
+   "the trip",
+   "the journey"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "relevant",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "relevant"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Rente",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "pension"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "reparieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to repair"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Reservierung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "reservation"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "Ressource",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the resource"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Rezept",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "prescription"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "richtig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "correct",
+   "right",
+   "really"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Richtung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the direction"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Roman",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "novel"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "ruhig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "calm",
+   "quiet"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "rund um",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "all about",
+   "related to"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "räumen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to clear",
+   "vacate"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Rücken",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "back"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Rückschlag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the setback"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Rücksicht nehmen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to show consideration (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sachlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "factual",
+   "matter-of-fact"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sagen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "say",
+   "to say"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "sammeln",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to collect"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Satz",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the sentence"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sauber",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "clean"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sauer",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "annoyed"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "Schade!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "What a pity!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "schaffen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to manage",
+   "to accomplish"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schauspieler",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "actor"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "culture"
+ },
+ {
+  "w": "scheitern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to fail"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "schicken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to send"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "schlafen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "sleep",
+   "to sleep"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Schlafzimmer",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "bedroom"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "schlussfolgern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to conclude",
+   "draw a conclusion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schlussfolgerung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the conclusion"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schlüsselchip",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "key fob"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-s"
+ },
+ {
+  "w": "schmecken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to taste (good) to"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schmerzen",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "pain, pl",
+   "the pain"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "schmutzig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "dirty"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schnee",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "snow"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "schnell",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "fast"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schokoladenfabrik",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "chocolate factory"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "schreiben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "write",
+   "to write"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Schritt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the step"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schuhe",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "shoes"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Schule",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "school",
+   "the school"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "schwach",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "weak"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schwerpunkt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the focus",
+   "emphasis"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schwester",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "sister",
+   "the sister"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "schwierig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "difficult"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schwierigkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the difficulty"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "schwimmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to swim"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "schwächer werden",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to weaken"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Schüler",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the pupil",
+   "the student (school)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "See",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "lake"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "sehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "see",
+   "to see"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "sein",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "be"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "seit",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "since",
+   "for (time)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "seitdem",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "since then",
+   "since (conj.)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "selbstständig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "self-employed",
+   "independent"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "selten",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "rarely"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Sendung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "programme"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "sich anmelden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to register",
+   "to sign up"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich anziehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "get dressed"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "sich beschweren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to complain (about)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich bewerben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to apply (for a job)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich bewerben um",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to apply for"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "sich entscheiden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to decide (on)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich entschuldigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to apologize (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich ergeben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to arise",
+   "result"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich erholen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to recover",
+   "to relax (from)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich erinnern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to remember"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich freuen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to look forward to",
+   "to be glad about"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich fühlen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to feel"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich gewöhnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to get used (to)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich informieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to inform oneself (about)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich interessieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to be interested (in)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich kümmern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to take care (of)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich Sorgen machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to worry (about)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich streiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to argue"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "sich trennen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to split up"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "sich verhalten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to behave"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich verlieben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to fall in love"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "sich verändern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to change (oneself",
+   "itself)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich vorbereiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to prepare (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sich ärgern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to be annoyed (about)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sicher",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "safe",
+   "sure"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Sitzung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "meeting"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "so schnell wie möglich",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "as fast as possible"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sobald",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "as soon as"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sofort",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "immediately"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sogar",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "even"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sogenannt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "so-called"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Sohn",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "son"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Sommer",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "summer"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "sondern",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "but rather (after a negative)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Sonne",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "sun",
+   "the sun"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Sonnenblume",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "sunflower"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "Sonnenenergie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the solar energy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sonst",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "usually",
+   "otherwise"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Sorge",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "worry"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "sorgfältig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "careful",
+   "thorough"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sowohl … als auch",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "both … and"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "soziale Netzwerk",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "social network"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "spannend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "exciting",
+   "gripping"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "sparen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to save (time",
+   "money)",
+   "to save (money)"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Spaß machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be fun"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "speichern",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to save"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Speisekarte",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "menu"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "sperren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to close off",
+   "block"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "spielen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "play",
+   "to play"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Sport machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to do sports",
+   "to exercise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Sprache",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "language",
+   "the language"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "sprechen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "speak",
+   "to speak"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "spät",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "late"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "spät dran sein",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be running late"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Spülmaschine",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "dishwasher"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-n"
+ },
+ {
+  "w": "Staat",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "state"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "stabil",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "stable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Stabilität",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the stability (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Stadt",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "city",
+   "the city"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Stadtrand",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "outskirts"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Standpunkt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the point of view",
+   "standpoint"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "stark",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "strong"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "statt",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "instead of"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "stattfinden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to take place"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Stau",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "traffic jam"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Stelle",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "position"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "stellen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to put (upright)",
+   "to ask (a question)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Steuer",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "tax"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "stolz",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "proud (of)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "stornieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to cancel (a booking)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Straße",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "street",
+   "the street"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "Stress",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "stress"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "Strom",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the electricity"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Struktur",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the structure"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Student",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "student"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Studie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "study"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Studium",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "degree course",
+   "degree",
+   "the university studies"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Stunde",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "hour",
+   "the hour"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "stören",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to disturb",
+   "bother"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "subjektiv",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "subjective"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "suchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to look for"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Supermarkt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "supermarket"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "city"
+ },
+ {
+  "w": "System",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the system"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Tablette",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "pill"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Tag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "day",
+   "the day"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Tastatur",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "keyboard"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Technik",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "technology"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Technologie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the technology"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Tee",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "tea"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "teilnehmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to take part (in)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Termin",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "appointment",
+   "the appointment"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Termin beim Amt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the appointment at the government office"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "testen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to test"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "teuer",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "expensive"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Thema",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "topic"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "theoretisch",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "theoretical"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Theorie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the theory"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "tiefgreifend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "profound",
+   "deep-reaching"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Tochter",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "daughter"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "tragen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to wear",
+   "to carry"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "trainieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to train",
+   "to work out"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "traurig",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "sad"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "treffen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to meet"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "trinken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "drink",
+   "to drink"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "trocken",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "dry"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "trotz",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "despite"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "trotzdem",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "nevertheless",
+   "anyway"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Uhr",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "clock, o'clock"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "um … zu",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "in order to"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Umgebung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the environment",
+   "surroundings"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Umsatz",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "turnover"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "umsetzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to implement",
+   "put into practice"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Umsetzung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the implementation"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "umsteigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "change trains"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "umstritten",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "controversial"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "umtauschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "exchange"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "clothes"
+ },
+ {
+  "w": "Umwelt",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "environment",
+   "the environment"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "umweltfreundlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "environmentally friendly"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "umziehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to move house",
+   "to move (house)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "unabhängig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "independent (of)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "unbedingt",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "absolutely",
+   "definitely"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "unbegrenzt",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "unlimited"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ungefähr",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "approximately"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Uni",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "university"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Universität",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the university"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "unnötig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "unnecessary"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "unter Druck stehen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be under pressure"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Unterlagen",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the documents",
+   "the paperwork"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Unternehmen",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "company"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Unternehmer",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "entrepreneur",
+   "business owner"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-"
+ },
+ {
+  "w": "unterscheiden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to distinguish"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Unterschied",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "difference",
+   "the difference"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "unterschiedlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "different",
+   "varying"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "unterstützen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to support"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "untersuchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to investigate",
+   "to examine",
+   "investigate"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "unvermeidlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "unavoidable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Urlaub",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "holiday",
+   "the vacation"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Urlaub machen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to go on vacation"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Ursache",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "cause",
+   "the cause"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Ursprung",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the origin"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Vater",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "father"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "veranschaulichen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to illustrate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verantwortlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "responsible (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verantwortung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "responsibility",
+   "the responsibility (no plural)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "verarbeiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to process"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verbessern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to improve"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verbesserung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the improvement"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verbieten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to forbid",
+   "ban",
+   "to ban"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Verbindung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "connection"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "verdeutlichen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to clarify",
+   "illustrate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verdienen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to earn (money)",
+   "to earn",
+   "to deserve"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "vereinbaren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to agree on",
+   "arrange"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "vereinfachen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to simplify"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verfügung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "disposal"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-en"
+ },
+ {
+  "w": "Vergangenheit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the past"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vergessen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to forget"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vergleichbar",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "comparable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vergleichen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to compare"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verhalten",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the behaviour (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verhandeln",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to negotiate"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Verhandlung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "negotiation"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "verheiratet",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "married"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Verkaufsraum",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "shop",
+   "sales room"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "¨-e"
+ },
+ {
+  "w": "Verkehr",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "traffic",
+   "the traffic"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "verknüpfen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to link",
+   "connect"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verlangen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to demand",
+   "require"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "verlassen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to leave (a place/person)",
+   "to leave (a place",
+   "person)"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "verlieren",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to lose"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Verlust",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "loss"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "vermeiden",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to avoid"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Vermieter",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "landlord"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "vermissen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to miss someone"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "verpassen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to miss (train",
+   "chance)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verschieben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to postpone"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verschmutzung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "pollution"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "Versicherung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the insurance"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "versprechen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to promise"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verspätung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "delay",
+   "the delay"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "verstehen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to understand"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Verstärkung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "reinforcement",
+   "extra staff"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "versuchen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to try"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "verteilen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to distribute",
+   "spread"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "Vertrag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "contract"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "vertrauen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to trust"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "feelings"
+ },
+ {
+  "w": "vertreten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to represent",
+   "hold (a view)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Veränderung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the change"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Viel Erfolg!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Good luck! (with an endeavor)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Viel Spaß!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Have fun!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vielfältig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "diverse",
+   "varied"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vielversprechend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "promising"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Viertel",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "quarter"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "von",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "from",
+   "of"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vor allem",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "above all",
+   "especially"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vorantreiben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to drive forward",
+   "advance"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Voraussetzung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "prerequisite",
+   "requirement",
+   "the prerequisite"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "abstract",
+  "pl": "-en"
+ },
+ {
+  "w": "voraussichtlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "expected",
+   "anticipated"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vorbereiten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to prepare"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Vorbereitungen treffen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to make preparations"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vorher",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "before(hand)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Vorlesung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "lecture"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "vorläufig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "preliminary",
+   "provisional"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Vorname",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "first name"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "people"
+ },
+ {
+  "w": "Vorschlag",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the suggestion",
+   "proposal"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "vorschlagen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to suggest",
+   "propose"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Vorstellungsgespräch",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "job interview"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam"
+  ],
+  "theme_hint": "school",
+  "pl": "-e"
+ },
+ {
+  "w": "Vorteil",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "advantage",
+   "the advantage"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "vorübergehend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "temporary"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wahl",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "election"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "society"
+ },
+ {
+  "w": "Wahnsinn!",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "Amazing!",
+   "Insane!"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wahrscheinlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "probably"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wahrscheinlichkeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the probability"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wald",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "forest"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "wandern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to hike"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "warm",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "warm"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "warten",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to wait (for)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "waschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to wash"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wasser",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "water"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Wasserkraft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the hydropower"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wechseln",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to change",
+   "to switch"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wechselwirkung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the interaction",
+   "interplay"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "weder … noch",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "neither … nor"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Weg",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the way",
+   "the path"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wegen",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "because of"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wehtun",
+  "art": "",
+  "pos": "other",
+  "en": [
+   "to hurt"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "body"
+ },
+ {
+  "w": "Weihnachten",
+  "art": "",
+  "pos": "noun",
+  "en": [
+   "Christmas"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "weil",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "because"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wein",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "wine"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "Weiterbildung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "further training"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "school"
+ },
+ {
+  "w": "weiterführen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to continue",
+   "carry on"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "weitreichend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "far-reaching"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wenn",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "if",
+   "when(ever)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Werbung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "advertising"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Werkraum",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "workshop (name of the space)"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "¨-e"
+ },
+ {
+  "w": "wesentlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "essential",
+   "significant"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wetter",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "weather",
+   "the weather"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Wetterphänomen",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the weather phenomenon"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "WG",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "flat-share"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "wichtig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "important"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "widerlegen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to refute",
+   "disprove"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "widersprechen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to contradict"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Widerspruch",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the contradiction"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wieder",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "again"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "wiederholen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to repeat",
+   "to review"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wind",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "wind"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "Windenergie",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the wind energy"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Winter",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "winter"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "wirklich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "really"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wirkung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "effect",
+   "the effect"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "Wirtschaft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "economy",
+   "the economy (no plural)"
+  ],
+  "src": [
+   "lexicon",
+   "b1exam",
+   "anki"
+  ],
+  "theme_hint": "society",
+  "pl": "-en"
+ },
+ {
+  "w": "Wissen",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the knowledge (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wissen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to know (a fact)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "wissen/kennen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "know"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Wissenschaft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "science"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "science"
+ },
+ {
+  "w": "WLAN",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "wifi"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "media"
+ },
+ {
+  "w": "Woche",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "week",
+   "the week"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "Wochenende",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "weekend"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "time"
+ },
+ {
+  "w": "wohnen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "live",
+   "to live (reside)"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Wohnung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "flat",
+   "the apartment"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "Wolke",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "cloud"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "nature"
+ },
+ {
+  "w": "wollen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "want"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "core"
+ },
+ {
+  "w": "Wort",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the word"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wurst",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "sausage"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "food"
+ },
+ {
+  "w": "wählen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to choose",
+   "to vote"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "während",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "while",
+   "during"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Wäsche",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "laundry"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "home"
+ },
+ {
+  "w": "wünschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to wish (for)"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "zeigen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to show"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the time"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zeit haben",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to have time"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zeitung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "newspaper",
+   "the newspaper"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Zeugnis",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "certificate",
+   "reference"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "-se"
+ },
+ {
+  "w": "Ziel",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "the goal",
+   "the destination"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ziemlich",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "quite",
+   "rather"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zimmer",
+  "art": "das",
+  "pos": "noun",
+  "en": [
+   "room",
+   "the room"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "zu",
+  "art": "",
+  "pos": "prep",
+  "en": [
+   "to (people",
+   "places)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zufrieden",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "satisfied",
+   "content",
+   "satisfied (with)"
+  ],
+  "src": [
+   "b1exam",
+   "anki"
+  ]
+ },
+ {
+  "w": "Zug",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "train",
+   "the train"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "travel"
+ },
+ {
+  "w": "zugrunde liegen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to underlie",
+   "be the basis of"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zukunft",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the future"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zum Beispiel",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "for example"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zum Glück",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "luckily"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zunehmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to gain weight",
+   "to increase"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zur Verfügung stehen",
+  "art": "",
+  "pos": "phrase",
+  "en": [
+   "to be available (to)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zurzeit",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "currently"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "zusagen / absagen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to confirm / cancel"
+  ],
+  "src": [
+   "lexicon"
+  ],
+  "theme_hint": "work"
+ },
+ {
+  "w": "Zusammenarbeit",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the collaboration (no plural)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zusammenfassen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to summarize"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Zusammenhang",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "connection",
+   "the connection",
+   "context"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "abstract"
+ },
+ {
+  "w": "zusammenhängen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to be connected",
+   "related"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zustimmen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to agree"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "Zutritt",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "access",
+   "admission"
+  ],
+  "src": [
+   "b1exam"
+  ],
+  "pl": "–"
+ },
+ {
+  "w": "zuverlässig",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "reliable"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zwar … aber",
+  "art": "",
+  "pos": "conj",
+  "en": [
+   "it's true … but"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zweifeln",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to doubt"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "zwingen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to force"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "ähnlich",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "similar"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "ändern",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to change (something)"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "üben",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to practice"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "überbrücken",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to bridge"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Übereinstimmung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the agreement",
+   "consensus"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Übergang",
+  "art": "der",
+  "pos": "noun",
+  "en": [
+   "the transition"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "überprüfen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to check",
+   "verify"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Überprüfung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the review",
+   "check"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "überraschen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to surprise"
+  ],
+  "src": [
+   "b1exam"
+  ]
+ },
+ {
+  "w": "überrascht",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "surprised"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Überschwemmung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the flood"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "übersetzen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to translate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "überwiegen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to outweigh",
+   "predominate"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "überzeugen",
+  "art": "",
+  "pos": "verb",
+  "en": [
+   "to convince"
+  ],
+  "src": [
+   "lexicon",
+   "anki"
+  ],
+  "theme_hint": "communication"
+ },
+ {
+  "w": "überzeugend",
+  "art": "",
+  "pos": "adj",
+  "en": [
+   "convincing"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "übrigens",
+  "art": "",
+  "pos": "adv",
+  "en": [
+   "by the way"
+  ],
+  "src": [
+   "anki"
+  ]
+ },
+ {
+  "w": "Übung",
+  "art": "die",
+  "pos": "noun",
+  "en": [
+   "the exercise",
+   "the practice"
+  ],
+  "src": [
+   "anki"
+  ]
+ }
+]

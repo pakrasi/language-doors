@@ -14,7 +14,7 @@ Ten languages. The homepage shows all ten; in the app, Look up grammar and Write
 ## Pages
 
 - `index.html` (homepage): a Today panel for returning visitors (reviews due per language, new cards left, one-tap Start), one sentence in all ten languages, and How it works: change the sentence, word order compared with English, "go" in nine tenses, the parts, and links into the app.
-- `app.html`: Drill, Look up (Phrases, Verb frames, Linking words, Grammar, Notes, with one search across all of them) and Write. Hashes: `#drill`, `#drill/start`, `#lookup/<tab>`, `#write/<SC-id>`.
+- `app.html`: Drill, Test, Look up (Phrases, Verb frames, Linking words, Grammar, Notes, with one search across all of them) and Write. Hashes: `#drill`, `#drill/start`, `#test`, `#test/placement`, `#test/sweep/<level>`, `#lookup/<tab>`, `#write/<SC-id>`.
 
 Old links still work: the homepage forwards app-style hashes (`index.html#drill/B1/german`, `#reference/...`, `#chunks/...`, `#practice/...`) to `app.html`, which maps the old view names; `#framework` goes to How it works; `explore.html` redirects to the homepage.
 
@@ -22,13 +22,17 @@ Old links still work: the homepage forwards app-style hashes (`index.html#drill/
 
 ```
 index.html, home.css, home.js      homepage
-app.html, app.css, app.js          Drill, Look up, Write
+app.html, app.css, app.js          Drill, Test, Look up, Write
+match.js                           answer checker for typed answers (articles, umlaut spellings, typos, phrase variants)
+readiness.js                       per-level readiness score, coverage, estimate range, gaps
 tokens.css, site.js                shared: colour tokens, controls, site bar, settings, languages sheet
 data/framework.json                language-neutral master: layers, levels, item IDs, 30 scenarios
 data/<lang>.json                   one file per language, same IDs
 data/turns.json                    "go" in nine tenses for all ten languages (built, see below)
 data/sentences/                    sentence bank for the homepage and Drill (en.json built by a script)
-data/chunks/                       the phrase bank (1,450 phrases)
+data/chunks/                       the phrase bank (1,450 phrases); priority_de.json tags B1 exam phrases
+data/words/de.json                 German words A1-C2 (built from data/words/parts/de/, see below)
+data/grammar/                      German grammar concepts and typed items
 scripts/build_framework.py         regenerates framework.json from the tuples inside it
 scripts/build_turns.py             builds data/turns.json from each turnGrid plus authored status/marker/alt, and from data/turns_src/
 scripts/build_sentences_en.py      builds data/sentences/en.json (English tokens, roles, hints)
@@ -51,6 +55,24 @@ To add a door, glue, chunk or scenario, add it in `scripts/build_framework.py`, 
 
 If you change a language's `turnGrid` or a file in `data/turns_src/`, rerun `python3 scripts/build_turns.py`. It copies gloss and note, and checks that every authored marker is still a run of whole words in its form.
 
+## Words and grammar (German)
+
+`data/words/de.json` is built from eight slices in `data/words/parts/de/` (A1, A2, B1a, B1b, B2a, B2b, C1, C2), written to `scripts/WORDS_BRIEF.md`:
+
+```
+python3 scripts/seed_words_de.py                  # words from Anki, b1-exam and the site lexicon -> data/words/seed_de.json
+python3 scripts/check_word_part.py data/words/parts/de/*.json
+~/.venvs/igloo/bin/python scripts/build_words_de.py   # needs wordfreq; merges, ranks, reports unplaced seed words
+```
+
+Word ids come from the word itself (`der_Tisch`, `gehen.verb`, `Sie.pron`), because progress is stored under them; don't renumber. Grammar concepts come from Fritz (`fritz.db`) plus a few added ones; items follow `scripts/GRAMMAR_BRIEF.md` and are checked by `python3 scripts/validate_grammar.py`. Tests: `node scripts/test_match.mjs` and `node scripts/test_readiness.mjs`.
+
+## Test
+
+Type the German for an English prompt. Right on the first try within the time limit (10 seconds, set in Settings) counts as known; right on the second try, slower, or one letter off counts as shaky. Nouns need the article; a wrong article is counted separately. Placement walks up from A1 (10 words, 6 phrases, 4 grammar items per level) and stops below 80%. Sweep goes through every untested item of one level. Known items get a review scheduled 7 days out; missed ones are queued for Drill.
+
+Readiness per level = 35% words (weighted by frequency) + 35% phrases (B1 exam phrases count most) + 30% grammar concepts. Untested items count as not known, and the estimate range extrapolates from what has been tested.
+
 ## Local preview
 
 ```
@@ -71,4 +93,4 @@ Scenario writing with a built-in key-word check and an optional "Check with Clau
 
 ## Saved in the browser
 
-`doors.srs.v1` (reviews), `doors.progress.v1` (writing), `doors.prefs.v2` (languages, level, theme, view settings), `doors.apikey`, `doors.days.v1`, `doors.today.v1`, `doors.prismSeen`. Settings has Export progress (JSON) and Delete all progress, which asks first.
+`doors.srs.v1` (reviews), `doors.know.v1` (Test results), `doors.progress.v1` (writing), `doors.prefs.v2` (languages, level, theme, view settings), `doors.apikey`, `doors.days.v1`, `doors.today.v1`, `doors.prismSeen`. Settings has Export progress (JSON) and Delete all progress, which asks first.

@@ -5,7 +5,7 @@
 <script>
 /* Old bookmarks such as index.html#drill/B1/german belong to the app, which now lives at app.html. */
 (function () {
-  var m = location.hash.match(/^#\/?(reference|chunks|drill|practice|framework|lookup|write|how)\b/);
+  var m = location.hash.match(/^#\/?(reference|chunks|drill|test|practice|framework|lookup|write|how)\b/);
   if (!m) return;
   if (m[1] === 'framework' || m[1] === 'how') { history.replaceState(null, '', '#how'); return; }
   location.replace('app.html' + location.hash);
@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
-<link rel="stylesheet" href="tokens.css?v=20260929d">
-<link rel="stylesheet" href="home.css?v=20260929d">
+<link rel="stylesheet" href="tokens.css?v=20260929e">
+<link rel="stylesheet" href="home.css?v=20260929e">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -49,6 +49,7 @@
     </a>
     <nav class="views" aria-label="Sections">
       <a href="app.html#drill" data-view="drill">Drill</a>
+      <a href="app.html#test" data-view="test">Test</a>
       <a href="app.html#lookup" data-view="lookup">Look up</a>
       <a href="app.html#write" data-view="write">Write</a>
       <a href="index.html#how" data-view="how">How it works</a>
@@ -176,7 +177,7 @@
 </main>
 
 
-<script src="site.js?v=20260929d"></script>
-<script src="home.js?v=20260929d"></script>
+<script src="site.js?v=20260929e"></script>
+<script src="home.js?v=20260929e"></script>
 </body>
 </html>

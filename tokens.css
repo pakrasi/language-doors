@@ -208,3 +208,5 @@ dialog.sheet{width:min(400px,calc(100vw - 32px))}
 @media (hover:none) and (pointer:coarse){ kbd,.keys-only{display:none!important} }
 @media (hover:hover){ .touch-only{display:none!important} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* five nav links don't fit next to the logo and settings on narrow phones; How it works stays on the homepage */
+@media (max-width:430px){.views a[data-view="how"]{display:none}}

@@ -1,4 +1,4 @@
-/* Igloo app: Drill, Look up, Write. Static, no build step. Shared helpers come from site.js (window.DG). */
+/* Igloo app: Drill, Test, Look up, Write. Static, no build step. Shared helpers come from site.js (window.DG). */
 (() => {
   'use strict';
   const { h, $, getJSON, framework, load, save, KEYS, dayNow } = DG;
@@ -15,16 +15,16 @@
   const prefs = DG.prefs;
   let progress = load(KEYS.progress, {});
   const srs = DG.srs;
-  const VIEWS = ['drill', 'lookup', 'write'];
+  const VIEWS = ['drill', 'test', 'lookup', 'write'];
   const TABS = ['phrases', 'frames', 'linking', 'grammar', 'notes'];
   const OLD_VIEW = { reference: 'lookup', chunks: 'lookup', practice: 'write' };
   const OLD_LAYER_TAB = { door: 'frames', glue: 'linking' };
   const GRAMMAR = [['turn', 'Tense, "not" and questions'], ['slot', 'Nouns, articles and cases'], ['chunk', 'Set phrases'], ['lexicon', 'Vocabulary'], ['sound', 'Pronunciation'], ['function', 'Tasks']];
-  let state = { view: 'drill', level: 'A1', tab: 'phrases', gl: 'turn', scenario: null, plang: null, sub: null };
+  let state = { view: 'drill', level: 'A1', tab: 'phrases', gl: 'turn', scenario: null, plang: null, sub: null, tlevel: null };
   let firstRender = true;
 
   // ---------- routing ----------
-  // New hashes: #drill, #drill/start, #drill/try, #lookup/<tab>, #write/<SC-id>.
+  // New hashes: #drill, #drill/start, #drill/try, #test, #test/placement, #test/sweep/<level>, #lookup/<tab>, #write/<SC-id>.
   // Old hashes (#reference/A1/khasi,german/door, #chunks/B1/…, #practice/A2/…/SC-…) are mapped on the way in.
   function parseHash() {
     const p = location.hash.replace(/^#\/?/, '').split('/').filter(x => x !== '');
@@ -45,12 +45,15 @@
       if (next.view === 'lookup' && TABS.includes(p[1])) next.tab = p[1];
       if (next.view === 'write' && /^SC-/.test(p[1] || '')) next.scenario = p[1];
       if (next.view === 'drill' && ['start', 'try'].includes(p[1])) next.sub = p[1];
+      if (next.view === 'test' && p[1] === 'placement') next.sub = 'placement';
+      if (next.view === 'test' && p[1] === 'sweep' && Readiness.LEVELS.includes(p[2])) { next.sub = 'sweep'; next.tlevel = p[2]; }
     }
     return next;
   }
   function hashFor(s) {
     if (s.view === 'lookup') return '#lookup/' + s.tab;
     if (s.view === 'write') return '#write' + (s.scenario ? '/' + s.scenario : '');
+    if (s.view === 'test') return '#test';
     return '#drill';
   }
   function go(patch = {}, opts = {}) {
@@ -118,7 +121,7 @@
     bar.replaceChildren(); row.replaceChildren();
     const inSession = document.body.classList.contains('focus');
     if (inSession) return;
-    const showLevel = !(state.view === 'lookup' && state.tab === 'notes');
+    const showLevel = !(state.view === 'lookup' && state.tab === 'notes') && state.view !== 'test';
     const target = narrow.matches ? row : bar;
     const kids = [DG.langButton()];
     if (showLevel) {
@@ -177,7 +180,7 @@
     const langs = DG.langs();
     await ensureLangs(langs);
     view.replaceChildren();
-    ({ lookup: viewLookup, drill: viewDrill, write: viewWrite })[state.view](view, langs);
+    ({ lookup: viewLookup, drill: viewDrill, test: viewTest, write: viewWrite })[state.view](view, langs);
     if (opts.keepScroll) scrollTo(0, y);
     else if (!firstRender && !opts.quiet) { scrollTo(0, 0); view.querySelector('h1')?.focus({ preventScroll: true }); }
     firstRender = false;
@@ -186,6 +189,7 @@
     if (what === 'langs-closed' || what === 'reset' || what === 'newPerDay') { if (what === 'reset') progress = {}; render({ keepScroll: true }); }
     if (what === 'langs') renderPickers();
     if (what === 'apikey' && state.view === 'write') render({ keepScroll: true });
+    if (what === 'test' && state.view === 'test' && !document.body.classList.contains('focus')) render({ keepScroll: true, quiet: true });
   });
   document.addEventListener('keydown', e => {
     if (e.key === '/' && !e.target.matches?.('input,textarea,select') && !document.body.classList.contains('focus')) {
@@ -203,15 +207,19 @@
     const due = DG.dueByLang(list);
     const dueLangs = list.filter(l => due[l]);
     const newTotal = list.reduce((a, l) => a + DG.newLeft(l), 0);
-    if (!dueLangs.length && !newTotal) return hide();
+    // the readiness line needs the test data; draw without it first, then again once it's loaded
+    if (state.view !== 'test' && list.includes(TEST_LANG) && !TD) ensureTestData().then(() => { if (TD && state.view !== 'drill' && !box.querySelector('.ready-line')) todayStrip(); }).catch(() => {});
+    const ready = state.view !== 'test' && readySummary() ? readyLine() : null;
+    if (!dueLangs.length && !newTotal && !ready) return hide();
     const parts = dueLangs.map((l, i) => h('span', { class: 'ts-part' }, meta(l)?.name || l, ' ', h('b', {}, fmt(due[l])), i === dueLangs.length - 1 ? ' due' : null));
     if (newTotal) parts.push(h('span', { class: 'ts-part' }, h('b', {}, fmt(newTotal)), ' new'));
+    if (ready) parts.push(h('span', { class: 'ts-part' }, ready));
     const line = h('p', { class: 'ts-line' }, h('span', { class: 'ts-label' }, 'Today'), parts);
     const close = h('button', { type: 'button', class: 'icon-btn ts-x', 'aria-label': 'Hide until tomorrow', title: 'Hide until tomorrow', html: DG.ICON.close, onclick: () => {
       save(KEYS.todayStrip, dayNow()); hide(); DG.announce("Today's drill hidden until tomorrow");
       $('#view h1')?.focus({ preventScroll: true });
     } });
-    box.replaceChildren(line, h('a', { class: 'btn primary small-btn ts-start', href: '#drill/start' }, 'Start'), close);
+    rep(box, line, dueLangs.length || newTotal ? h('a', { class: 'btn primary small-btn ts-start', href: '#drill/start' }, 'Start') : null, close);
     box.hidden = false;
   }
 
@@ -483,6 +491,7 @@
     if (g === 2) s.ease = Math.max(1.3, s.ease - 0.15); if (g === 4) s.ease += 0.15;
     s.reps++; s.last = today; s.due = today + s.ivl; s.hist = (s.hist + g).slice(-12);
     srs[srsKey(lang, id)] = s; DG.saveSrs(); DG.logDay();
+    DG.knowFromGrade(lang, id, g, s.ivl);
   }
   function srsUndo(lang, id, prev) { if (prev) srs[srsKey(lang, id)] = prev; else delete srs[srsKey(lang, id)]; DG.saveSrs(); }
 
@@ -597,7 +606,7 @@
       for (const g of group(fresh)) { if (queue.length >= sz) break; queue.push(...g); }
       queue = queue.slice(0, sz).map(p => ({ c: p.c, l: p.l, isNew: !srsGet(p.l, p.c.id).reps }));
       if (order === 'mixed' && !o.newOnly) queue = shuffle(queue);
-      return { L, lv, ty, due, outside, outsideLevels, fresh, newAvail, pool, queue, quota };
+      return { L, lv, ty, due, outside, outsideLevels, fresh, newAvail, pool, queue, quota, queued };
     }
 
     function setup() {
@@ -626,8 +635,8 @@
         h('span', {}, h('b', {}, fmt(p.due.length)), ' due today'), h('span', {}, h('b', {}, fmt(p.fresh.length)), ' new today'),
         h('span', {}, h('b', {}, fmt(known)), ' known'), h('span', {}, h('b', {}, streak), streak === 1 ? ' day in a row' : ' days in a row')));
       if (p.outside.length) app(panel, h('p', { class: 'small muted' }, `Includes ${plural(p.outside.length, 'review')} from ${p.outsideLevels.join(', ')} or other card types, so nothing due gets skipped.`));
-      const queued = (prefs.queueNext || []).length;
-      if (queued) app(panel, h('p', { class: 'small muted' }, `${plural(queued, 'card')} you picked in Look up come first. `, h('button', { type: 'button', class: 'linkish', onclick: () => { prefs.queueNext = []; DG.savePrefs(); setup(); } }, 'Clear')));
+      const queued = p.queued.length;
+      if (queued) app(panel, h('p', { class: 'small muted' }, `${plural(queued, 'card')} you picked in Look up or missed in Test come first. `, h('button', { type: 'button', class: 'linkish', onclick: () => { prefs.queueNext = []; DG.savePrefs(); setup(); } }, 'Clear')));
       const noVoice = p.L.filter(l => !voiceFor(l));
       if (autoplay && noVoice.length && 'speechSynthesis' in window && speechSynthesis.getVoices().length) app(panel, h('p', { class: 'small muted' }, `No voice on this device for: ${names(noVoice)}.`));
       const perLang = h('div', { class: 'perlang' }, p.L.map(l => {
@@ -650,7 +659,7 @@
           audioChk));
       const keys = h('p', { class: 'keys-line keys-only' }, [['Space', 'show answer, then Good'], ['1–4', 'Again, Hard, Good, Easy'], ['H', 'hint'], ['P', 'hear it'], ['U', 'undo'], ['Esc', 'end']].map(([k, d]) => h('span', {}, h('kbd', {}, k), ' ', d)));
       const touch = h('p', { class: 'small muted touch-only' }, 'Tap the card to see the answer, then tap a grade. "All languages in a row" asks for the same sentence in each of your languages one after another.');
-      rep(stage, panel, perLang, opts, keys, touch);
+      rep(stage, panel, readyLine('drill'), perLang, opts, keys, touch);
       if (!firstRender || location.hash.startsWith('#drill')) requestAnimationFrame(() => { if (!startBtn.disabled && document.activeElement?.tagName !== 'H1') startBtn.focus({ preventScroll: true }); });
       const onKey = e => { if (e.repeat) return; if (e.code === 'Space' && !e.target.matches?.('input,select,textarea,button,summary,a') && p.queue.length) { e.preventDefault(); start(p); } };
       document.addEventListener('keydown', onKey);
@@ -769,6 +778,439 @@
         DG.announce('Session done');
       }
       show();
+    }
+  }
+
+  // ===== Test: typed answers that mark words, phrases and grammar as known (German only for now) =====
+  const TEST_LANG = 'german';
+  const LEVELS6 = Readiness.LEVELS;
+  const POOL_LABEL = { words: 'Words', chunks: 'Phrases', grammar: 'Grammar' };
+  const STATE_LABEL = { known: 'Known', shaky: 'Shaky', unknown: 'Not yet' };
+  const pct = x => Math.round(100 * x) + '%';
+  let TD = null, TD_P = null;
+  // Loads the word list, grammar concepts and items, and the phrase priorities. Missing files are fine (null).
+  function ensureTestData() {
+    if (TD) return Promise.resolve(TD);
+    if (!TD_P) TD_P = (async () => {
+      await ensureChunks([TEST_LANG]);
+      const opt = path => getJSON(path).catch(() => null);
+      const [words, themes, concepts, items, priority] = await Promise.all([opt('data/words/de.json'), opt('data/words/themes.json'), opt('data/grammar/concepts_de.json'), opt('data/grammar/items_de.json'), opt('data/chunks/priority_de.json')]);
+      const d = {
+        words: Array.isArray(words) && words.length ? words : null,
+        themes: Array.isArray(themes) ? themes.slice().sort((a, b) => (a.order || 0) - (b.order || 0)) : [],
+        concepts: Array.isArray(concepts) ? concepts : [],
+        items: Array.isArray(items) && items.length ? items : null,
+        priority: priority && typeof priority === 'object' ? priority : null,
+      };
+      d.pools = Readiness.pools({ words: d.words || [], chunksEn: CHUNK_EN || [], chunksDe: CHUNK[TEST_LANG] || {}, priority: d.priority, concepts: d.concepts, items: d.items || [] });
+      d.themeById = new Map(d.themes.map(t => [t.id, t]));
+      d.conceptById = new Map(d.concepts.map(c => [c.id, c]));
+      d.chunkById = new Map((CHUNK_EN || []).map(c => [c.id, c]));
+      d.fnOf = Readiness.functionMap(d.priority);
+      TD = d; return d;
+    })().catch(e => { TD_P = null; throw e; });
+    return TD_P;
+  }
+  const testCtx = () => ({ know: DG.knowAll(), srs, lang: TEST_LANG, today: dayNow() });
+  const readyLevel = () => LEVELS6.includes(state.level) ? state.level : LEVELS6.includes(prefs.testLevel) ? prefs.testLevel : 'B1';
+  function readySummary(L = readyLevel()) {
+    if (!TD || !DG.langs().includes(TEST_LANG)) return null;
+    const lv = Readiness.level(TD.pools, L, testCtx());
+    return lv.empty ? null : { L, lv };
+  }
+  // "B1 · 64% ready · 40% tested", a link to #test. Fills itself in once the test data is loaded.
+  function readyLine() {
+    if (!DG.langs().includes(TEST_LANG)) return null;
+    const el = h('a', { class: 'ready-line', href: '#test' });
+    const fill = () => {
+      const r = readySummary(); if (!r) { el.hidden = true; return; }
+      el.hidden = false;
+      el.replaceChildren(h('b', {}, r.L), ` · ${pct(r.lv.score)} ready · ${pct(r.lv.coverage)} tested`);
+      el.title = `${meta(TEST_LANG).name} ${r.L}: open Test for the breakdown`;
+    };
+    if (TD) fill(); else { el.hidden = true; ensureTestData().then(fill).catch(() => {}); }
+    return el;
+  }
+
+  // --- test items: one shape for words, phrases and grammar ---
+  function wordItem(w) {
+    const th = TD.themeById.get(w.theme);
+    return { id: 'W:' + w.id, kind: 'words', level: w.level, group: w.theme, prompt: (w.en || [])[0] || w.w, meta: [w.pos, th?.en || w.theme].filter(Boolean),
+      accepted: Match.acceptedForWord(w), opts: { pos: w.pos }, answer: Match.acceptedForWord(w)[0],
+      extra: [w.pos === 'noun' && w.pl ? `Plural: ${w.pl}` : null, (w.en || []).length > 1 ? 'Also means: ' + w.en.slice(1).join(', ') : null].filter(Boolean),
+      ex: w.ex, exen: w.exen };
+  }
+  function chunkItem(c) {
+    const r = CHUNK[TEST_LANG]?.[c.id]; if (!r) return null;
+    return { id: 'K:' + c.id, kind: 'chunks', level: chunkLevel(c), group: TD.fnOf[c.id] || c.category, prompt: c.natural_example, meta: ['phrase', c.pragmatic_function].filter(Boolean),
+      accepted: Match.acceptedForChunk(r.t, r.ex), opts: {}, answer: r.ex, key: r.t, note: r.n };
+  }
+  function grammarItem(it) {
+    const c = TD.conceptById.get(it.concept);
+    const ans = Array.isArray(it.answer) ? it.answer : [it.answer];
+    return { id: 'G:' + it.id, kind: 'grammar', level: c?.level || it.level, group: it.concept, task: it.task, prompt: it.prompt, meta: ['grammar', c?.name || it.concept].filter(Boolean),
+      accepted: ans, opts: { strictCase: !!it.strict_case }, answer: ans[0], note: it.note };
+  }
+  const tested = id => !!DG.know(TEST_LANG, id);
+  const untestedFirst = list => [...list.filter(x => !tested(x.id)), ...list.filter(x => tested(x.id))];
+  function wordsAt(L, themes) {
+    if (!TD.words) return [];
+    return TD.words.filter(w => w.level === L && (!themes || !themes.length || themes.includes(w.theme))).sort((a, b) => (a.rank ?? 1e9) - (b.rank ?? 1e9) || String(a.id).localeCompare(b.id)).map(wordItem);
+  }
+  function chunksAt(L) {
+    const prio = new Map(TD.pools.chunks.map(c => [c.id, c.prio]));
+    return (CHUNK_EN || []).filter(c => chunkLevel(c) === L && CHUNK[TEST_LANG]?.[c.id]).sort((a, b) => (prio.get('K:' + a.id) || 3) - (prio.get('K:' + b.id) || 3) || a._i - b._i).map(chunkItem).filter(Boolean);
+  }
+  // grammar items at L, spread across concepts (sticky concepts first), one item per concept per round
+  function grammarAt(L, onlyConcept) {
+    if (!TD.items) return [];
+    const concepts = TD.concepts.filter(c => c.level === L && (!onlyConcept || c.id === onlyConcept)).sort((a, b) => (b.sticky ? 1 : 0) - (a.sticky ? 1 : 0));
+    const lists = concepts.map(c => untestedFirst(TD.items.filter(it => it.concept === c.id).map(grammarItem)));
+    const out = [];
+    for (let round = 0; lists.some(l => l.length > round); round++) for (const l of lists) if (l[round]) out.push(l[round]);
+    return out;
+  }
+  // merge lists so each kind is spread through the session
+  function interleave(lists) {
+    lists = lists.filter(l => l.length).map(l => ({ l, i: 0 }));
+    const out = [];
+    while (lists.some(x => x.i < x.l.length)) {
+      const x = lists.filter(x => x.i < x.l.length).sort((a, b) => a.i / a.l.length - b.i / b.l.length)[0];
+      out.push(x.l[x.i++]);
+    }
+    return out;
+  }
+  const levelHasItems = L => TD.pools.words.some(x => x.level === L) || TD.pools.chunks.some(x => x.level === L) || grammarAt(L).length > 0;
+  function placementBlock(L) {
+    const pick = (list, n) => untestedFirst(list).slice(0, n);
+    return interleave([pick(wordsAt(L), 10), pick(chunksAt(L), 6), grammarAt(L).slice(0, 4)]).map(it => ({ ...it, block: L }));
+  }
+  function sweepItems({ level, pools, themes, retest }) {
+    const lists = [];
+    const want = x => retest ? tested(x.id) && !['known', 'solid'].includes(DG.knowState(TEST_LANG, x.id)) : !tested(x.id);
+    if (pools.includes('words')) lists.push(wordsAt(level, themes).filter(want));
+    if (pools.includes('chunks')) lists.push(chunksAt(level).filter(want));
+    if (pools.includes('grammar')) lists.push(grammarAt(level).filter(want));
+    return interleave(lists).slice(0, 20);
+  }
+  function gapItems(gap, L) {
+    let list = gap.kind === 'words' ? wordsAt(L, [gap.id]) : gap.kind === 'grammar' ? grammarAt(L, gap.id) : chunksAt(L).filter(x => x.group === gap.id);
+    const notKnown = x => !['known', 'solid'].includes(DG.knowState(TEST_LANG, x.id));
+    return [...list.filter(x => !tested(x.id)), ...list.filter(x => tested(x.id) && notKnown(x))].slice(0, 20);
+  }
+  function placementEstimate(pcts) {
+    const done = LEVELS6.filter(L => L in pcts);
+    if (!done.length) return null;
+    const x = done.find(L => pcts[L] < 0.8);
+    if (!x) return done[done.length - 1];
+    const i = done.indexOf(x);
+    return pcts[x] >= 0.5 || i === 0 ? x : done[i - 1];
+  }
+
+  function viewTest(view, allLangs) {
+    const sub = state.sub; const tlevel = state.tlevel; state.sub = null; state.tlevel = null;
+    app(view, header('Test · German', 'Test', `Type the German for each English prompt. Right on the first try within ${DG.testSecs()} seconds counts as known.`));
+    const stage = h('div', { class: 'test-stage' }); app(view, stage);
+    window.__cleanup = () => stage._cleanup?.();
+    if (!allLangs.includes(TEST_LANG)) {
+      app(stage, h('div', { class: 'notice' }, 'The test is German only for now. German is not in your languages.',
+        h('button', { type: 'button', class: 'btn small-btn', onclick: () => { DG.setLangs([...DG.langs(), TEST_LANG]); render(); } }, 'Add German')));
+      return;
+    }
+    app(stage, skeleton());
+    ensureTestData().then(() => {
+      if (sub === 'placement') return runPlacement();
+      if (sub === 'sweep') { const opts = sweepOpts(tlevel); const items = sweepItems(opts); if (items.length) return runSweep(opts, items); }
+      setup();
+    }).catch(() => rep(stage, h('div', { class: 'empty' }, "Couldn't load the test data. ", h('button', { type: 'button', class: 'btn small-btn', onclick: () => render() }, 'Retry'))));
+
+    function sweepOpts(level) {
+      const L = LEVELS6.includes(level) ? level : LEVELS6.includes(prefs.testLevel) ? prefs.testLevel : 'B1';
+      const pools = (prefs.testPools || ['words', 'chunks', 'grammar']).filter(p => POOL_LABEL[p]);
+      return { level: L, pools: pools.length ? pools : ['words', 'chunks', 'grammar'], themes: (prefs.testThemes || []).filter(t => TD.themeById.has(t)) };
+    }
+
+    function setup() {
+      stage._cleanup?.(); stage._cleanup = null;
+      document.body.classList.remove('focus'); $('#view > header')?.removeAttribute('hidden');
+      if (location.hash !== '#test') history.replaceState(null, '', '#test');
+      const ctx = testCtx();
+      const all = Readiness.all(TD.pools, ctx);
+      const levels = LEVELS6.filter(L => !all[L].empty);
+      const opts = sweepOpts();
+      const missing = [];
+      if (!TD.words) missing.push('No word list yet, so the test covers phrases and grammar only.');
+      if (!TD.items) missing.push('No grammar items yet.');
+
+      // placement
+      const place = h('section', { class: 'panel test-card' },
+        h('h2', {}, 'Placement'),
+        h('p', { class: 'small muted' }, 'Up to 20 questions per level (10 words, 6 phrases, 4 grammar), starting at A1. You move up a level while you know 80% or more of it.'),
+        h('div', {}, h('button', { type: 'button', class: 'btn primary', id: 'test-place', onclick: () => runPlacement() }, 'Start placement')));
+
+      // sweep
+      const sw = h('section', { class: 'panel test-card' });
+      const drawSweep = () => {
+        const o = sweepOpts();
+        const counts = o.pools.map(pl => {
+          const list = pl === 'words' ? wordsAt(o.level, o.themes) : pl === 'chunks' ? chunksAt(o.level) : grammarAt(o.level);
+          return { pl, total: list.length, done: list.filter(x => tested(x.id)).length };
+        });
+        const next = sweepItems(o), retest = next.length ? null : sweepItems({ ...o, retest: true });
+        const lvBtns = h('div', { class: 'seg mono', role: 'group', 'aria-label': 'Level' }, levels.map(L => h('button', { type: 'button', 'aria-pressed': L === o.level ? 'true' : 'false', onclick: () => { prefs.testLevel = L; DG.savePrefs(); drawSweep(); } }, L)));
+        const poolTogs = h('div', { class: 'chips', role: 'group', 'aria-label': 'What to test' }, Object.keys(POOL_LABEL).map(pl => h('button', { type: 'button', class: 'tog', 'aria-pressed': o.pools.includes(pl) ? 'true' : 'false', onclick: () => {
+          const set = new Set(o.pools); set.has(pl) ? set.delete(pl) : set.add(pl); if (!set.size) set.add(pl); prefs.testPools = [...set]; DG.savePrefs(); drawSweep();
+        } }, POOL_LABEL[pl])));
+        const themesHere = TD.words ? TD.themes.filter(t => TD.words.some(w => w.level === o.level && w.theme === t.id)) : [];
+        const themeChips = o.pools.includes('words') && themesHere.length ? h('div', { class: 'chips theme-chips', role: 'group', 'aria-label': 'Themes' },
+          h('button', { type: 'button', class: 'chip', 'aria-pressed': o.themes.length ? 'false' : 'true', onclick: () => { prefs.testThemes = []; DG.savePrefs(); drawSweep(); } }, 'All themes'),
+          themesHere.map(t => h('button', { type: 'button', class: 'chip', 'aria-pressed': o.themes.includes(t.id) ? 'true' : 'false', onclick: () => {
+            const set = new Set(o.themes); set.has(t.id) ? set.delete(t.id) : set.add(t.id); prefs.testThemes = [...set]; DG.savePrefs(); drawSweep();
+          } }, t.en))) : null;
+        rep(sw,
+          h('h2', {}, 'Sweep'),
+          h('p', { class: 'small muted' }, 'Goes through every item of one level, 20 untested items at a time. Stop whenever you like; the next sweep carries on where you left off.'),
+          h('div', { class: 'opt-row' }, h('span', { class: 'opt-label' }, 'Level'), lvBtns),
+          h('div', { class: 'opt-row' }, h('span', { class: 'opt-label' }, 'Test'), poolTogs),
+          themeChips ? h('div', { class: 'opt-row' }, h('span', { class: 'opt-label' }, 'Themes'), themeChips) : null,
+          h('div', { class: 'sweep-counts' }, counts.map(c => h('div', { class: 'pl' },
+            h('div', { class: 'pl-head small' }, h('span', {}, `${o.level} ${POOL_LABEL[c.pl].toLowerCase()} · `, h('b', {}, `${fmt(c.done)} / ${fmt(c.total)}`), ' tested'),
+              !c.total ? h('span', { class: 'muted' }, c.pl === 'words' && !TD.words ? 'No word list yet' : c.pl === 'grammar' && !TD.items ? 'No grammar items yet' : 'None at this level') : null),
+            h('div', { class: 'bar', 'aria-hidden': 'true' }, h('i', { style: `width:${c.total ? 100 * c.done / c.total : 0}%` }))))),
+          h('div', { class: 'row' },
+            next.length ? h('button', { type: 'button', class: 'btn primary', id: 'test-sweep', onclick: () => runSweep(o, next) }, `Start: ${next.length} untested`)
+              : retest.length ? h('button', { type: 'button', class: 'btn primary', onclick: () => runSweep(o, retest) }, `Everything here is tested. Retest ${plural(retest.length, 'shaky or missed item')}`)
+                : h('span', { class: 'muted small' }, 'Nothing left to test here.')));
+      };
+      drawSweep();
+
+      // readiness per level
+      const bars = h('section', { class: 'panel test-card' }, h('h2', {}, 'Levels'),
+        h('p', { class: 'small muted' }, 'Ready = share of the level you know (words 35%, phrases 35%, grammar 30%). Untested items count as not known; the estimate range guesses them from what you have tested.'),
+        h('div', { class: 'ready-list' }, levels.map(L => {
+          const lv = all[L];
+          return h('div', { class: 'ready-row' },
+            h('div', { class: 'ready-head' }, h('b', { class: 'mono' }, L),
+              h('span', { class: 'small' }, `${pct(lv.score)} ready · ${pct(lv.coverage)} tested`, lv.coverage > 0 && lv.coverage < 1 ? ` · est. ${pct(lv.estimate.lo)}–${pct(lv.estimate.hi)}` : ''),
+              L !== LEVELS6[0] && lv.reachable ? h('span', { class: 'lvl' }, 'reachable') : null),
+            h('div', { class: 'rbar', 'aria-hidden': 'true' },
+              lv.coverage > 0 ? h('span', { class: 'rbar-est', style: `left:${100 * lv.estimate.lo}%;width:${Math.max(0.5, 100 * (lv.estimate.hi - lv.estimate.lo))}%` }) : null,
+              h('i', { style: `width:${100 * lv.score}%` })));
+        })));
+      // biggest gaps at the sweep level
+      const gaps = Readiness.gaps(TD.pools, opts.level, ctx);
+      const gapBox = gaps.length ? h('section', { class: 'panel test-card' }, h('h2', {}, `Gaps at ${opts.level}`),
+        h('div', { class: 'gap-list' }, gaps.map(g => {
+          const name = g.kind === 'words' ? (TD.themeById.get(g.id)?.en || g.id) : g.kind === 'grammar' ? (g.name || g.id) : (CHUNK_CATS.find(x => x[0] === g.id)?.[1] || g.id);
+          const items = gapItems(g, opts.level);
+          return h('div', { class: 'gap-row' }, h('span', {}, h('b', {}, name), h('span', { class: 'muted small' }, ` · ${POOL_LABEL[g.kind].toLowerCase()} · ${pct(g.score)} · ${g.tested} of ${g.n} tested`)),
+            items.length ? h('button', { type: 'button', class: 'btn small-btn', onclick: () => runSweep({ ...opts, gap: g }, items) }, 'Test these') : null);
+        }))) : null;
+
+      rep(stage, missing.length ? h('div', { class: 'notice' }, missing.join(' ')) : null, place, sw, bars, gapBox);
+      const firstBtn = $('#test-place');
+      if (!firstRender && document.activeElement?.tagName !== 'H1') requestAnimationFrame(() => firstBtn?.focus({ preventScroll: true }));
+      const auto = new URLSearchParams(location.search).get('autotest');
+      if (auto && !stage._autoRan) { stage._autoRan = true; setTimeout(runPlacement, 0); }
+    }
+
+    // --- placement: level by level from A1 while 80%+ is known ---
+    function runPlacement() {
+      const levels = LEVELS6.filter(levelHasItems);
+      let li = 0; let block = []; const pcts = {};
+      const score = (results, L) => { const rs = results.filter(r => r.item.block === L); return rs.length ? rs.reduce((a, r) => a + Readiness.credit(r.s), 0) / rs.length : null; };
+      const src = {
+        kind: 'placement',
+        hash: '#test/placement',
+        next(results) {
+          while (!block.length) {
+            if (li > 0) { const L = levels[li - 1]; const p = score(results, L); if (p != null) pcts[L] = p; if (p == null || p < 0.8) return null; }
+            if (li >= levels.length) return null;
+            block = placementBlock(levels[li]); li++;
+          }
+          return block.shift();
+        },
+        progress(results) { const L = levels[li - 1]; const n = results.filter(r => r.item.block === L).length; return { label: `Placement · ${L}`, i: n, total: n + block.length + 1 }; },
+        finish(results) {
+          for (const L of LEVELS6) { const p = score(results, L); if (p != null) pcts[L] = p; }
+          const est = placementEstimate(pcts);
+          if (est) { prefs.testLevel = est; DG.savePrefs(); }
+          return { pcts, est };
+        },
+      };
+      runSession(src);
+    }
+    function runSweep(o, items) {
+      const list = items.slice();
+      runSession({
+        kind: 'sweep', hash: '#test/sweep/' + o.level,
+        next: () => list.shift() || null,
+        progress: results => ({ label: o.gap ? `${o.level} · ${o.gap.kind === 'words' ? (TD.themeById.get(o.gap.id)?.en || o.gap.id) : o.gap.name || o.gap.id}` : `Sweep · ${o.level}`, i: results.length, total: results.length + list.length + 1 }),
+        finish: () => ({}),
+        again: () => { const more = o.gap ? gapItems(o.gap, o.level) : sweepItems(o); return more.length ? () => runSweep(o, more) : null; },
+      });
+    }
+
+    // --- one typed session: prompt, input, timer, try again, reveal, summary ---
+    function runSession(src) {
+      stage._cleanup?.();
+      const secs = DG.testSecs(), maxTries = Math.max(1, DG.testTries());
+      const results = [];
+      const autoN = (() => { const a = new URLSearchParams(location.search).get('autotest'); return a == null ? 0 : a === 'reveal' ? -1 : Math.max(1, +a || 12); })();
+      history.replaceState(null, '', src.hash);
+      document.body.classList.add('focus'); renderPickers();
+      $('#view > header')?.setAttribute('hidden', ''); $('#today-strip').hidden = true;
+      const prog = h('div', { class: 'sess-prog', 'aria-hidden': 'true' }, h('i'));
+      const progN = h('span', { class: 'mono sess-n' });
+      const endBtn = h('button', { type: 'button', class: 'btn small-btn', onclick: () => end() }, 'End', h('kbd', {}, 'Esc'));
+      const bar = h('div', { class: 'sess-bar' }, prog, progN, endBtn);
+      const cardEl = h('div', { class: 'card sess-card tt-card' });
+      const foot = h('div', { class: 'tt-foot' });
+      const session = h('div', { class: 'session' }, bar, cardEl, foot);
+      rep(stage, session);
+      let cur = null, tries = 0, t0 = 0, am = false, revealed = false, timer = null, advance = null, input = null, fb = null, over = false;
+
+      function next() {
+        clearTimeout(advance); clearTimeout(timer);
+        cur = src.next(results);
+        if (!cur) return summary();
+        tries = 0; am = false; revealed = false; over = false;
+        const p = src.progress(results);
+        prog.firstChild.style.width = (100 * p.i / Math.max(1, p.total)) + '%';
+        progN.textContent = `${p.label} · ${p.i + 1} / ${p.total}`;
+        input = h('input', { class: 'tt-input', type: 'text', lang: 'de', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', enterkeyhint: 'done', 'aria-label': 'Your answer in German' });
+        const timeBar = h('div', { class: 'tt-timer', 'aria-hidden': 'true' }, h('i'));
+        fb = h('div', { class: 'tt-fb', 'aria-live': 'polite' });
+        const form = h('form', { class: 'tt-form', onsubmit: e => { e.preventDefault(); revealed ? next() : submit(); } }, input, h('button', { type: 'submit', class: 'btn primary tt-check' }, 'Check'));
+        rep(cardEl,
+          h('div', { class: 'sess-lang' }, h('span', { class: 'lvl' }, cur.level), cur.meta.map(m => h('span', { class: 'tt-meta' }, m))),
+          cur.task ? h('div', { class: 'tt-task' }, cur.task) : null,
+          h('div', { class: 'sess-prompt', lang: cur.kind === 'grammar' ? 'de' : 'en' }, cur.prompt),
+          form, timeBar, fb);
+        rep(foot, h('div', { class: 'foot-row' }, h('button', { type: 'button', class: 'btn', onclick: skip }, 'Skip', h('kbd', { class: 'keys-only' }, 'Tab'))));
+        input.focus({ preventScroll: false });
+        t0 = performance.now();
+        const bi = timeBar.firstChild;
+        bi.style.transition = 'none'; bi.style.width = '100%';
+        requestAnimationFrame(() => requestAnimationFrame(() => { bi.style.transition = `width ${secs}s linear`; bi.style.width = '0%'; }));
+        timer = setTimeout(() => { over = true; timeBar.classList.add('over'); }, secs * 1000);
+        DG.announce(`${cur.task ? cur.task + '. ' : ''}${cur.prompt}`);
+        if (autoN) autoplay();
+      }
+      function submit() {
+        if (revealed || !cur) return;
+        const val = input.value; if (!val.trim()) { input.focus(); return; }
+        tries++;
+        const ms = performance.now() - t0;
+        const r = Match.check(val, cur.accepted, { ...cur.opts, slots: true });
+        if (r.articleMiss) am = true;
+        if (r.ok) return finish(tries === 1 && ms <= secs * 1000 ? 'known' : 'shaky', true, ms, r, val);
+        if (r.close) return finish('shaky', true, ms, r, val);
+        if (tries < maxTries) {
+          rep(fb, h('div', { class: 'tt-again' }, h('b', {}, 'Try again'), r.articleMiss ? ' · Right word, wrong article.' : r.caseMiss ? ' · Check the capital letters.' : null));
+          input.select();
+          return;
+        }
+        finish('unknown', false, ms, r, val);
+      }
+      function skip() { if (revealed || !cur) return; finish('unknown', false, 0, null, '', true); }
+      function finish(st, ok, ms, r, val, skipped = false) {
+        clearTimeout(timer);
+        revealed = true; input.readOnly = true;
+        const tb = cardEl.querySelector('.tt-timer i'); if (tb) { const w = getComputedStyle(tb).width; tb.style.transition = 'none'; tb.style.width = w; }
+        const prev = DG.know(TEST_LANG, cur.id);
+        DG.setKnow(TEST_LANG, cur.id, { s: st, ok, ms, am });
+        const res = { item: cur, s: st, ok, ms, am, tries, val, skipped, r, prev };
+        results.push(res);
+        drawReveal(res);
+        if (st === 'known' && r?.exact && !r.others.length && !autoN) advance = setTimeout(() => { if (res === results[results.length - 1] && revealed) next(); }, 700);
+      }
+      function drawReveal(res) {
+        const it = res.item, r = res.r;
+        const why = res.s === 'known' ? null
+          : res.s === 'shaky' ? (r?.close ? 'Almost: one letter off.' : res.tries > 1 ? `Right on try ${res.tries}.` : `Right, but over ${secs} seconds.`)
+            : res.skipped ? 'Skipped.' : res.am ? 'Right word, wrong article.' : r?.caseMiss ? 'Check the capital letters.' : null;
+        const correct = r && (r.ok || r.close || r.articleMiss || r.caseMiss) ? r.fixed : it.answer;
+        const others = (r?.ok ? r.others : it.accepted.filter(a => a !== (r?.matched || it.accepted[0]) && a !== correct)).filter(a => a !== correct);
+        const knewIt = res.s === 'unknown' && !res.skipped ? h('button', { type: 'button', class: 'linkish small', onclick: e => {
+          DG.putKnow(TEST_LANG, it.id, res.prev);
+          DG.setKnow(TEST_LANG, it.id, { s: 'shaky', ok: true, ms: res.ms, am: res.am });
+          res.s = 'shaky'; res.knewIt = true;
+          e.currentTarget.replaceWith(h('span', { class: 'small muted' }, 'Marked shaky.'));
+          fb.querySelector('.tt-state').textContent = STATE_LABEL.shaky; fb.querySelector('.tt-state').className = 'tt-state s-shaky';
+          $('.tt-next')?.focus();
+        } }, 'I knew it (typo)') : null;
+        rep(fb,
+          h('div', { class: 'tt-verdict' }, h('b', { class: 'tt-state s-' + res.s }, STATE_LABEL[res.s]), why ? h('span', { class: 'muted' }, why) : null, knewIt),
+          h('div', { class: 'tt-answer' }, T(TEST_LANG, correct)),
+          res.val && !r?.ok && !res.skipped ? h('div', { class: 'small muted' }, 'You wrote: ', h('span', { lang: 'de' }, res.val)) : null,
+          r?.ok && !r.exact && res.val ? h('div', { class: 'small muted' }, 'Spelled: ', T(TEST_LANG, r.fixed)) : null,
+          others.length ? h('div', { class: 'small' }, h('span', { class: 'muted' }, 'Also correct: '), others.map((o, i) => [i ? ' · ' : '', T(TEST_LANG, o)])) : null,
+          (it.extra || []).length ? h('div', { class: 'small muted' }, it.extra.join(' · ')) : null,
+          it.ex ? h('div', { class: 'tt-ex' }, T(TEST_LANG, it.ex), it.exen ? h('div', { class: 'gl' }, it.exen) : null) : null,
+          it.note ? h('div', { class: 'ans-note' }, it.note) : null);
+        cardEl.classList.add('revealed');
+        rep(foot, h('div', { class: 'foot-row' }, h('button', { type: 'button', class: 'btn primary big tt-next', onclick: next }, 'Next', h('kbd', { class: 'keys-only' }, 'Enter'))));
+        input.focus({ preventScroll: true });
+        DG.announce(`${STATE_LABEL[res.s]}. ${correct}`);
+      }
+      function onKey(e) {
+        if (e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
+        if (e.key === 'Escape') { e.preventDefault(); end(); }
+        else if (e.key === 'Tab' && !e.shiftKey && !revealed && e.target === input) { e.preventDefault(); skip(); }
+        else if (e.key === 'Enter' && revealed && !e.target.matches?.('button,a')) { e.preventDefault(); if (!e.repeat) next(); }
+      }
+      document.addEventListener('keydown', onKey);
+      stage._cleanup = () => { document.removeEventListener('keydown', onKey); clearTimeout(timer); clearTimeout(advance); };
+      function end() { stage._cleanup?.(); summary(); }
+
+      function summary() {
+        stage._cleanup?.(); stage._cleanup = null;
+        document.body.classList.remove('focus'); renderPickers();
+        history.replaceState(null, '', '#test');
+        prog.firstChild.style.width = '100%'; endBtn.hidden = true; progN.hidden = true;
+        const out = src.finish(results);
+        const n = s => results.filter(r => r.s === s).length;
+        const misses = results.filter(r => r.s !== 'known');
+        const artMiss = results.filter(r => r.am);
+        const estLine = out.est ? h('p', { class: 'tt-est' }, `Estimated level: ${out.est} (`, LEVELS6.filter(L => L in out.pcts).map((L, i) => `${i ? ', ' : ''}${L} ${pct(out.pcts[L])}`).join(''), ')') : null;
+        cardEl.className = 'card sess-card summary';
+        rep(cardEl,
+          h('div', { class: 'eyebrow' }, src.kind === 'placement' ? 'Placement done' : 'Done'),
+          h('h2', { tabindex: -1 }, results.length ? `${n('known')} of ${results.length} known` : 'You stopped before answering'),
+          results.length ? h('div', { class: 'sum-grid' }, [['known', 'Known'], ['shaky', 'Shaky'], ['unknown', 'Not yet']].map(([k, label]) => h('div', { class: 'stat s-' + k }, h('b', {}, n(k)), h('span', {}, label)))) : null,
+          estLine,
+          artMiss.length ? h('div', { class: 'section' }, h('div', { class: 'eyebrow' }, 'Article misses'), h('div', { class: 'sum-list' }, artMiss.map(r => h('div', { class: 'sum-row' }, h('span', { class: 'lvl' }, r.item.level), h('span', {}, r.item.prompt), T(TEST_LANG, r.item.answer))))) : null,
+          misses.length ? h('div', { class: 'section' }, h('div', { class: 'eyebrow' }, 'Shaky and not yet'), h('div', { class: 'sum-list' }, misses.map(r => h('div', { class: 'sum-row' }, h('span', { class: 'lvl' }, STATE_LABEL[r.s]), h('span', {}, r.item.task ? `${r.item.task}: ${r.item.prompt}` : r.item.prompt), T(TEST_LANG, r.item.answer))))) : null);
+        const practice = misses.length ? h('button', { type: 'button', class: 'btn big', onclick: () => {
+          queueForDrill(misses.map(r => r.item.id)); location.hash = '#drill';
+        } }, 'Practice the ones I missed') : null;
+        const againFn = src.again?.();
+        const keep = src.kind === 'placement'
+          ? h('button', { type: 'button', class: 'btn primary big', onclick: () => { const o = sweepOpts(out.est || prefs.testLevel); const items = sweepItems(o); items.length ? runSweep(o, items) : setup(); } }, 'Keep going')
+          : againFn ? h('button', { type: 'button', class: 'btn primary big', onclick: againFn }, 'Keep going') : null;
+        rep(foot, h('div', { class: 'foot-row' }, practice, keep, h('button', { type: 'button', class: 'btn big', onclick: () => setup() }, 'Done')));
+        cardEl.querySelector('h2').focus({ preventScroll: true });
+        DG.announce('Test done');
+      }
+
+      // ?autotest=N answers N questions (mostly right, every 6th wrong) for screenshots; ?autotest=reveal stops on a wrong reveal
+      let autoCount = 0;
+      function autoplay() {
+        const k = autoCount++;
+        if (autoN > 0 && k >= autoN) { Promise.resolve().then(end); return; }
+        const wrong = autoN === -1 ? k === 1 : k % 6 === 5;
+        const later = fn => Promise.resolve().then(fn);   // microtasks: not throttled in a background tab
+        later(() => {
+          if (autoN === -1 && k > 1) return;
+          if (wrong) { input.value = 'weiss nicht'; submit(); if (!revealed) { input.value = 'keine Ahnung'; submit(); } if (autoN > 0) later(next); return; }
+          input.value = cur.kind === 'words' && k % 5 === 1 ? Match.fold(cur.answer) : cur.kind === 'chunks' ? cur.answer : cur.answer;
+          submit();
+          if (autoN > 0) later(() => { if (revealed) next(); });
+          else if (autoN === -1 && k === 0) later(() => { if (revealed) next(); });
+        });
+      }
+      next();
     }
   }
 

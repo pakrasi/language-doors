@@ -2,10 +2,10 @@
    data loading and the review counters the app's Today strip and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20260929d';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20260929e';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
-    days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1',
+    days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1', know: 'doors.know.v1',
   };
   const load = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
   const save = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch { /* private mode */ } };
@@ -40,6 +40,7 @@
 
   let prefs = load(KEYS.prefs, {});
   const srs = load(KEYS.srs, {});
+  const know = load(KEYS.know, {});
   const listeners = [];
   const emit = what => listeners.forEach(fn => { try { fn(what); } catch (e) { console.error(e); } });
   const savePrefs = () => save(KEYS.prefs, prefs);
@@ -102,6 +103,60 @@
     return out;
   }
   const hasHistory = () => Object.keys(srs).length > 0;
+
+  // ---------- knowledge store: what the Test view (and Drill grades) say is known ----------
+  // doors.know.v1: {"<lang>|<id>": {s: 'unknown'|'shaky'|'known', n, ok, ms, last, am, hist: [[day, ok0/1, ms], ...last 20]}}
+  // ids: W:<word id>, K:<chunk id>, G:<grammar item id>. "solid" is not stored: it is an SRS interval of 21+ days.
+  const KNOW_RANK = { unknown: 0, shaky: 1, known: 2 };
+  const testSecs = () => (Number.isFinite(prefs.testSecs) ? prefs.testSecs : 10);
+  const testTries = () => (Number.isFinite(prefs.testTries) ? prefs.testTries : 2);
+  function saveKnow() { save(KEYS.know, know); }
+  const knowGet = (lang, id) => know[`${lang}|${id}`] || null;
+  function knowState(lang, id) {
+    const s = srs[`${lang}|${id}`];
+    if (s && s.reps && s.ivl >= 21) return 'solid';
+    return know[`${lang}|${id}`]?.s || null;
+  }
+  // result: {s, ok, ms, am}. A known result starts the SRS schedule at 7 days; shaky or unknown queues the card for Drill.
+  function setKnow(lang, id, result) {
+    const key = `${lang}|${id}`, day = dayNow();
+    const r = know[key] ? { ...know[key], hist: (know[key].hist || []).slice() } : { s: 'unknown', n: 0, ok: 0, ms: 0, last: 0, am: 0, hist: [] };
+    const good = result.ok ? 1 : 0, ms = Math.round(result.ms || 0);
+    r.s = result.s in KNOW_RANK ? result.s : 'unknown';
+    r.n++; r.ok += good; r.last = day;
+    if (good && ms && (!r.ms || ms < r.ms)) r.ms = ms;
+    if (result.am) r.am = (r.am || 0) + 1;
+    r.hist.push([day, good, ms]); r.hist = r.hist.slice(-20);
+    know[key] = r; saveKnow();
+    if (r.s === 'known') {
+      if (!srs[key]?.reps) { srs[key] = { ease: 2.5, ivl: 7, due: day + 7, reps: 1, lapses: 0, last: day, hist: '3' }; saveSrs(); }
+    } else if (!srs[key]?.reps) {
+      const q = new Set(prefs.queueNext || []); q.add(id); prefs.queueNext = [...q]; savePrefs();
+    }
+    logDay();
+    return r;
+  }
+  // put back an earlier record (the Test view's "I knew it" replaces the last result)
+  function putKnow(lang, id, rec) { const key = `${lang}|${id}`; if (rec) know[key] = rec; else delete know[key]; saveKnow(); }
+  // Drill grades feed the store for word, phrase and grammar cards: Good/Easy -> at least shaky, interval 7+ -> known,
+  // Again -> a known item drops to shaky.
+  function knowFromGrade(lang, id, g, ivl) {
+    if (!/^[WKG]:/.test(id)) return;
+    const key = `${lang}|${id}`, day = dayNow();
+    const r = know[key] ? { ...know[key], hist: (know[key].hist || []).slice() } : { s: 'unknown', n: 0, ok: 0, ms: 0, last: 0, am: 0, hist: [] };
+    const good = g >= 3 ? 1 : 0;
+    let s = r.s;
+    if (good && KNOW_RANK[s] < 1) s = 'shaky';
+    if (ivl >= 7 && g >= 2) s = 'known';
+    if (g === 1 && s === 'known') s = 'shaky';
+    r.s = s; r.n++; r.ok += good; r.last = day; r.hist.push([day, good, 0]); r.hist = r.hist.slice(-20);
+    know[key] = r; saveKnow();
+  }
+  function knowStats(lang) {
+    const out = { known: 0, shaky: 0, unknown: 0, solid: 0 };
+    for (const k of Object.keys(know)) if (k.startsWith(lang + '|')) { const st = knowState(lang, k.slice(lang.length + 1)); if (st) out[st]++; }
+    return out;
+  }
 
   // ---------- live region ----------
   let live = null;
@@ -197,11 +252,12 @@
     const perDay = h('select', { class: 'field-sel', id: 'set-new', onchange: e => { prefs.newPerDay = +e.target.value; savePrefs(); emit('newPerDay'); } },
       [0, 5, 10, 15, 20, 30].map(n => h('option', { value: n, selected: n === newPerDay() }, String(n))));
     const confirmBox = h('div', { class: 'confirm', hidden: true },
-      h('p', {}, 'Delete every review and writing score in this browser? This can\'t be undone.'),
+      h('p', {}, 'Delete every review, test result and writing score in this browser? This can\'t be undone.'),
       h('div', { class: 'dlg-row' },
         h('button', { type: 'button', class: 'btn danger primary', onclick: () => {
           for (const k of Object.keys(srs)) delete srs[k];
-          saveSrs(); save(KEYS.progress, {}); save(KEYS.days, []); save(KEYS.today, null);
+          for (const k of Object.keys(know)) delete know[k];
+          saveSrs(); saveKnow(); save(KEYS.progress, {}); save(KEYS.days, []); save(KEYS.today, null);
           confirmBox.hidden = true; delBtn.hidden = false; emit('reset'); announce('All progress deleted');
         } }, 'Delete'),
         h('button', { type: 'button', class: 'btn', onclick: () => { confirmBox.hidden = true; delBtn.hidden = false; delBtn.focus(); } }, 'Cancel')));
@@ -218,6 +274,14 @@
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Drill'),
         h('label', { class: 'dlg-row' }, h('span', {}, 'New cards per day, per language'), perDay),
         h('label', { class: 'chk' }, h('input', { type: 'checkbox', checked: prefs.drillAudio !== false, onchange: e => { prefs.drillAudio = e.target.checked; savePrefs(); emit('audio'); } }), 'Read the answer aloud')),
+      h('div', { class: 'dlg-sec' }, h('h3', {}, 'Test'),
+        h('label', { class: 'dlg-row' }, h('span', {}, 'Seconds per answer'),
+          h('select', { class: 'field-sel', id: 'set-secs', onchange: e => { prefs.testSecs = +e.target.value; savePrefs(); emit('test'); } },
+            [5, 8, 10, 15, 20, 30].map(n => h('option', { value: n, selected: n === testSecs() }, String(n))))),
+        h('label', { class: 'dlg-row' }, h('span', {}, 'Tries per question'),
+          h('select', { class: 'field-sel', id: 'set-tries', onchange: e => { prefs.testTries = +e.target.value; savePrefs(); emit('test'); } },
+            [1, 2, 3].map(n => h('option', { value: n, selected: n === testTries() }, String(n))))),
+        h('p', { class: 'small muted' }, 'Known = right on the first try within the time. Slower or on a later try = shaky.')),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Display'),
         h('label', { class: 'chk' }, h('input', { type: 'checkbox', id: 'set-dark', checked: document.documentElement.dataset.theme === 'dark', onchange: e => setTheme(e.target.checked ? 'dark' : 'light') }), 'Dark mode')),
       h('div', { class: 'dlg-sec' },
@@ -230,7 +294,7 @@
     settings.showModal();
   }
   function exportProgress() {
-    const data = { exported: new Date().toISOString(), srs, progress: load(KEYS.progress, {}), days: load(KEYS.days, []), prefs };
+    const data = { exported: new Date().toISOString(), srs, know, progress: load(KEYS.progress, {}), days: load(KEYS.days, []), prefs };
     const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
     const a = h('a', { href: url, download: `doors-progress-${new Date().toISOString().slice(0, 10)}.json` });
     document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -240,7 +304,7 @@
     V, KEYS, ICON, CODES, DEFAULT_LANGS, load, save, h, $, dayNow, getJSON, framework,
     get prefs() { return prefs; }, savePrefs, langs, setLangs, hasChosenLangs,
     applyTheme, setTheme, initBar, openSettings, openLangSheet, langButton,
-    srs, saveSrs, logDay, streak, todayLog, countNew, newPerDay, newLeft, dueByLang, hasHistory,
+    srs, saveSrs, logDay, know: knowGet, knowState, setKnow, putKnow, knowFromGrade, knowStats, knowAll: () => know, testSecs, testTries, streak, todayLog, countNew, newPerDay, newLeft, dueByLang, hasHistory,
     announce, on: fn => listeners.push(fn),
   };
   applyTheme();
