@@ -14,7 +14,20 @@
    - Nouns: the right word with a wrong or missing article is ok:false, articleMiss:true.
    - close: not ok, but at least half of a pattern's fixed words are in the answer (patterns of 2+ fixed words, not nouns).
    - `fixed` is the accepted string with its slots filled from the answer; `others` the accepted strings not matched.
-   The pattern rules follow scripts/validate_accept.py (to_regex/matches); test_match.mjs checks that both agree. */
+   The pattern rules follow scripts/validate_accept.py (to_regex/matches); test_match.mjs checks that both agree.
+
+   B1 trainer options (opt-in; Igloo Test passes none of them, so its grading is unchanged):
+   - slotMax (default 6): words a slot may take. "([x])" in a pattern is an optional slot (0..slotMax words).
+   - endings: a typo is forgiven only on the stem: the word minus a final e/en/em/er/es/n/m/r/s, 5+ letters, 1 edit,
+     with identical suffixes (kleinem ≠ kleinen; Bahnhfo = Bahnhof).
+   - umlaut: a dropped umlaut is a slip (ok, listed in umlautMiss, the caller rates Hard), except in words where the
+     umlaut changes the meaning (könnten/konnten, müssten/mussten, würde/wurde, hätte/hatte, schön/schon …): a miss.
+   - strict: [words] that must be typed exactly, in the given case (not sentence-initially); a case slip → ok:false and
+     focusMiss.
+   - caseRef: Map(folded lowercase word → cased form), e.g. built from the model and a noun list. After a match, typed
+     words whose capitalisation differs from the reference are listed in capMiss (sentence-initial words are exempt);
+     ok stays true.
+   - When not ok: `nearest` = index of the accepted string with the most fixed words found (ties → list order). */
 (function (root) {
   'use strict';
   const FOLD = { 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', 'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue', 'ẞ': 'SS' };
@@ -76,16 +89,34 @@
 
   // one pattern word against one typed word: null, or {cost: 0|1, exact}
   // loose (optional Set of folded words): only these words may have typos; every other word must be exact
-  function wcost(w, tok, typos, loose) {
+  function wcost(w, tok, typos, loose, x) {
     let best = null;
     for (const a of w.alts) {
       if (tok.n === a.n) return { cost: 0, exact: tok.low === a.low, a };
+      if (x && x.umlaut && unUml(tok.low) === unUml(a.low) && /[äöü]/.test(a.low)) {
+        if (UML_PAIR.has(tok.low)) continue;                     // a different word: never a slip
+        if (!x.strict?.has(a.n)) { best = { cost: 1, exact: false, a, umlaut: true }; continue; }
+      }
       if (!typos || best || (loose && !loose.has(a.n))) continue;
+      if (x && x.strict?.has(a.n)) continue;
+      if (x && x.endings) {
+        if (CLOSED.has(a.n) || CLOSED.has(tok.n) || a.len < 5) continue;
+        const sa = suffix(a.n), st = suffix(tok.n);
+        if (sa === st && dl(tok.n.slice(0, tok.n.length - st.length), a.n.slice(0, a.n.length - sa.length), 1) <= 1) best = { cost: 1, exact: false, a };
+        continue;
+      }
       const max = CLOSED.has(a.n) || CLOSED.has(tok.n) ? 0 : allowedEdits(a.len);
       if (max && dl(tok.n, a.n, max) <= max) best = { cost: 1, exact: false, a };
     }
     return best;
   }
+  const SUFFIXES = ['en', 'em', 'er', 'es', 'e', 'n', 'm', 'r', 's'];
+  const suffix = n => SUFFIXES.find(f => n.length > f.length + 2 && n.endsWith(f)) || '';
+  const unUml = s => String(s).replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u');
+  // words that exist without the umlaut and mean something else: typing them is a miss, not a slip
+  const UML_PAIR = new Set(`konnte konnten konntest konntet musste mussten musstest wurde wurden wurdest hatte hatten hattest
+    ware waren war durfte durften durfe schon bruder mutter vater tochter apfel garten laden zahlen drucken kuchen fuhren
+    uben schwul suss`.split(/\s+/).filter(Boolean));
 
   // ---- patterns ----
   // elements: {t:'w', alts:[{n, low, len, word}], raw} | {t:'opt', words:[w...], raw} | {t:'slot', raw, prefix?}
@@ -100,6 +131,7 @@
       const tok = m[0], glued = prevReal && prevEnd === m.index;
       prevEnd = m.index + tok.length;
       if (useSlots && tok[0] === '[') { els.push({ t: 'slot', raw: '…', glued }); prevReal = true; continue; }
+      if (useSlots && /^\(\[[^\]]*\]\)$/.test(tok)) { els.push({ t: 'slot', raw: '…', opt: true, glued }); prevReal = true; continue; }
       if (useSlots && tok[0] === '(') {
         const ws = words(tok.slice(1, -1));
         if (ws.length) { els.push({ t: 'opt', words: ws.map(wd => lit(wd, wd.raw)), raw: tok.slice(1, -1).trim(), glued }); prevReal = true; }
@@ -138,14 +170,14 @@
   // Best alignment of pattern elements to typed words: fewest typos, then exact spelling, then earliest start.
   // Positions are (token, offset): like validate_accept's "\s*" between words, fixed words may be written together
   // ("schonmal" for "schon (ein)mal"). Such glued pieces must be spelled exactly; typos only count on whole words.
-  function align(pat, toks, { anywhere, typos, loose }) {
+  function align(pat, toks, { anywhere, typos, loose, x, slotMax = 6 }) {
     const els = pat.els, memo = new Map(), END = { n: 0, x: true, steps: null };
     const better = (a, b) => !b || a.n < b.n || (a.n === b.n && a.x && !b.x);
     // one pattern word at (ti, off): [{ti, off, c}] ways to match it
     function word(w, ti, off) {
       const t = toks[ti], out = [];
       if (!t) return out;
-      if (!off) { const c = wcost(w, t, typos, loose); if (c) out.push({ ti: ti + 1, off: 0, c: { ...c, ti } }); }
+      if (!off) { const c = wcost(w, t, typos, loose, x); if (c) out.push({ ti: ti + 1, off: 0, c: { ...c, ti } }); }
       const rest = t.n.slice(off);
       for (const a of w.alts) {
         if (!a.n || !rest.startsWith(a.n) || (!off && rest === a.n)) continue;
@@ -181,7 +213,8 @@
         if (t && t.n === p.n)                                         // written apart: "Lieblings Essen"
           for (let k = 1; k <= 6 && ti + 1 + k <= toks.length; k++) take(go(ei + 1, ti + 1 + k, 0), { ei, ti, len: 1 + k, n: 0, x: t.low === p.low, cut: -1 });
       } else {
-        for (let k = 1; k <= 6 && ti + k <= toks.length; k++) take(go(ei + 1, ti + k, 0), { ei, ti, len: k, n: 0, x: true });
+        if (e.opt) take(go(ei + 1, ti, 0), { ei, ti, len: 0, n: 0, x: true });
+        for (let k = 1; k <= slotMax && ti + k <= toks.length; k++) take(go(ei + 1, ti + k, 0), { ei, ti, len: k, n: 0, x: true });
       }
       memo.set(key, best);
       return best;
@@ -206,7 +239,9 @@
       const s = byEl.get(i); let txt;
       if (e.t === 'w') txt = e.raw;
       else if (e.t === 'opt') txt = m && !s?.present ? '' : e.raw;
+      else if (e.opt && !m) txt = '';
       else if (!m || !s) txt = e.raw;
+      else if (!s.len) txt = '';
       else {
         const tk = m.toks.slice(s.ti, s.ti + s.len);
         const typed = input.slice(tk[0].start, tk[tk.length - 1].end);
@@ -261,16 +296,57 @@
     return m;
   }
 
+  // B1: strict words in their exact case (focusMiss) and capitals against a reference (capMiss); sentence starts exempt
+  function caseChecks(res, m, inp, x, caseRef) {
+    const initial = t => t.start === 0 || /[.!?:]\s*["„“]?\s*$/.test(inp.slice(0, t.start));
+    const used = new Set();
+    for (const s of m.steps) (s.cs || []).forEach(c => {
+      if (c.glued) return;
+      const t = m.toks[c.ti]; used.add(c.ti);
+      if (initial(t)) return;
+      const want = x && x.strict && x.strict.get(c.a.n);
+      if (want && /\p{Lu}/u.test(want[0]) !== /\p{Lu}/u.test(t.raw[0])) { res.focusMiss.push({ typed: t.raw, expected: want, start: t.start, end: t.end }); return; }
+      const ref = caseRef && caseRef.get(t.n);
+      if (!want && ref && /\p{Lu}/u.test(ref[0]) !== /\p{Lu}/u.test(t.raw[0])) res.capMiss.push({ typed: t.raw, expected: ref, start: t.start, end: t.end });
+    });
+    if (!caseRef) return;
+    m.toks.forEach((t, i) => {   // words in slots and around the pattern: only nouns written in lowercase
+      if (used.has(i) || initial(t)) return;
+      const ref = caseRef.get(t.n);
+      if (ref && /\p{Lu}/u.test(ref[0]) && !/\p{Lu}/u.test(t.raw[0])) res.capMiss.push({ typed: t.raw, expected: ref, start: t.start, end: t.end });
+    });
+    res.capMiss.sort((a, b) => a.start - b.start);
+  }
+  // Word-level diff of an answer against a right sentence (LCS on folded words): which typed words are not in the
+  // right one (`wrong`, offsets into a), and which words of b are not in a (`missing`, indexes into words(b)).
+  function diffWords(a, b) {
+    const A = words(a), B = words(b), n = A.length, m = B.length;
+    const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = A[i].n === B[j].n ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    const wrong = [], keepB = new Set();
+    let i = 0, j = 0;
+    while (i < n && j < m) {
+      if (A[i].n === B[j].n) { keepB.add(j); i++; j++; }
+      else if (L[i + 1][j] >= L[i][j + 1]) { wrong.push({ start: A[i].start, end: A[i].end, word: A[i].raw }); i++; }
+      else j++;
+    }
+    for (; i < n; i++) wrong.push({ start: A[i].start, end: A[i].end, word: A[i].raw });
+    return { wrong, missing: B.map((w, k) => keepB.has(k) ? null : k).filter(k => k != null), right: B };
+  }
+
   function check(input, accepted, opts = {}) {
     const strictCase = !!opts.strictCase, useSlots = opts.slots !== false, anywhere = !!opts.anywhere, typos = opts.typos !== false;
     const loose = opts.loose ? new Set([...opts.loose].map(w => fold(String(w).toLowerCase()))) : null;
     const list = (Array.isArray(accepted) ? accepted : [accepted]).filter(a => a != null && String(a).trim() !== '');
     const inp = nfc(input).replace(/\s+/g, ' ').trim();
     const res = { ok: false, exact: false, close: false, articleMiss: false, caseMiss: false, matched: null, others: list.slice(), fixed: list[0] ? tidy(list[0]) : '', typos: [], input: inp };
+    const b1 = opts.endings || opts.umlaut || opts.strict || opts.caseRef || opts.slotMax;
+    if (b1) Object.assign(res, { umlautMiss: [], capMiss: [], focusMiss: [], nearest: null });
     const toks = words(inp);
     if (!toks.length || !list.length) return res;
     const pats = list.map(a => compile(a, useSlots, !anywhere));
-    const aopts = { anywhere, typos, loose };
+    const x = b1 ? { endings: !!opts.endings, umlaut: !!opts.umlaut, strict: opts.strict ? new Map(opts.strict.map(w => [fold(String(w).toLowerCase()), String(w)])) : null } : null;
+    const aopts = { anywhere, typos, loose, x, slotMax: opts.slotMax || 6 };
 
     // 1. best match over all accepted strings: fewest typos, then exact spelling, then list order
     let hit = -1, best = null;
@@ -284,10 +360,14 @@
       res.matched = list[hit]; res.others = list.filter((_, k) => k !== hit); res.fixed = display(p, inp, best);
       res.typos = [];
       for (const s of best.steps) (s.cs || []).forEach((c, j) => {
-        if (c.cost) { const t = toks[c.ti]; res.typos.push({ typed: t.raw, expected: c.a.word, start: t.start, end: t.end }); }
+        if (!c.cost) return;
+        const t = toks[c.ti], miss = { typed: t.raw, expected: c.a.word, start: t.start, end: t.end };
+        (c.umlaut ? res.umlautMiss : res.typos).push(miss);
       });
       if (strictCase && caseDiffers(p, best)) { res.caseMiss = true; return res; }
-      res.ok = true; res.exact = best.exact && !res.typos.length;
+      res.ok = true; res.exact = best.exact && !res.typos.length && !(res.umlautMiss || []).length;
+      if (b1) caseChecks(res, best, inp, x, opts.caseRef);
+      if (res.focusMiss && res.focusMiss.length) { res.ok = false; res.exact = false; }
       return res;
     }
 
@@ -311,6 +391,15 @@
       if (fixedWords.length < 2) continue;
       const found = fixedWords.filter(w => toks.some(t => wcost(w, t, typos, loose))).length;
       if (found * 2 >= fixedWords.length) { res.close = true; break; }
+    }
+    if (b1) {   // the accepted string closest to the answer: the most fixed words found (ties: list order)
+      let bestK = 0, bestF = -1;
+      pats.forEach((p, k) => {
+        const fw = p.els.flatMap(e => e.t === 'w' ? [e] : e.t === 'opt' ? e.words : []);
+        const f = fw.filter(w => toks.some(t => wcost(w, t, typos, loose, x))).length - 0.01 * Math.max(0, fw.length - toks.length);
+        if (f > bestF) { bestF = f; bestK = k; }
+      });
+      res.nearest = bestK;
     }
     return res;
   }
@@ -375,7 +464,7 @@
   }
   const gapLoose = prompt => words(gapBase(prompt).split(GAP).join(' ')).map(w => w.n);
 
-  const api = { check, matches, renderPattern, acceptedForWord, acceptedForChunk, acceptedForGap, gapFill, gapLoose, nounForm, nounPrompt, toIndef, clean, fold, dl, dl1, words, CLOSED };
+  const api = { check, matches, diffWords, renderPattern, acceptedForWord, acceptedForChunk, acceptedForGap, gapFill, gapLoose, nounForm, nounPrompt, toIndef, clean, fold, dl, dl1, words, CLOSED };
   root.Match = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

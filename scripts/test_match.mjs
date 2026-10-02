@@ -237,4 +237,74 @@ assert.equal(gapFill('___ kommst du? (wann)', 'wann').text, 'Wann kommst du?', '
   } else console.log('accept: no files yet');
 }
 
+// ---- B1 trainer options (opt-in; Test passes none of them) ----
+{
+  const B = { anywhere: true, slotMax: 10, endings: true, umlaut: true };
+  // optional slot ([x]) and slots up to 10 words
+  const vor = ['ich schlage vor dass wir uns ([x]) treffen'];
+  assert.ok(check('Ich schlage vor, dass wir uns treffen.', vor, B).ok, '([x]) may be empty');
+  assert.ok(check('Ich schlage vor, dass wir uns am Samstag um sechs am Bahnhof treffen.', vor, B).ok);
+  assert.equal(check('Ich schlage vor, dass wir treffen uns am Samstag.', vor, B).ok, false, 'verb-final stays strict');
+  assert.ok(check('das ist eine sehr sehr sehr sehr sehr sehr sehr gute idee', ['das ist [x] idee'], B).ok, '8-word slot with slotMax 10');
+  assert.equal(check('das ist eine sehr sehr sehr sehr sehr sehr sehr gute idee', ['das ist [x] idee'], { anywhere: true }).ok, false, 'Test keeps 6');
+  assert.equal(renderPattern(vor[0]), 'Ich schlage vor dass wir uns treffen', 'an optional slot is left out of the model');
+  // endings: stem typos only
+  assert.ok(check('Bahnhfo', ['Bahnhof'], { endings: true }).ok, 'stem typo');
+  assert.equal(check('kleinem', ['kleinen'], { endings: true }).ok, false, 'ending swap is a miss');
+  assert.equal(check('mit dem Zug', ['mit den Zug'], { endings: true }).ok, false);
+  assert.ok(check('Ich freue mich auf die Praesentaton', ['ich freue mich auf die präsentation'], { endings: true }).ok);
+  // umlauts: a slip is Hard (umlautMiss), a minimal pair is a miss
+  let u = check('Wir mussen gehen', ['wir müssen gehen'], B); assert.ok(u.ok); assert.deepEqual(u.umlautMiss.map(t => t.expected), ['müssen']);
+  assert.equal(check('Konnten Sie mir helfen?', ['könnten sie mir helfen'], B).ok, false, 'konnten ≠ könnten');
+  assert.equal(check('Ich wurde gern kommen', ['ich würde gern kommen'], B).ok, false, 'wurde ≠ würde');
+  assert.equal(check('Das ist schon', ['das ist schön'], B).ok, false, 'schon ≠ schön');
+  assert.ok(check('Konnten Sie mir helfen?', ['könnten sie mir helfen'], { anywhere: true }).ok, 'Test still forgives it as a typo');
+  u = check('die Prufung', ['die prüfung'], B); assert.ok(u.ok && u.umlautMiss.length === 1);
+  assert.ok(check('Koennten Sie mir helfen', ['könnten sie mir helfen'], B).ok, 'oe spelling is fine');
+  // strict words: exact word, exact case
+  assert.equal(check('Angst für der Prüfung', ['angst vor der prüfung'], { ...B, strict: ['vor', 'der'] }).ok, false);
+  u = check('das thema', ['das thema'], { ...B, anywhere: false, strict: ['Thema'] }); assert.equal(u.ok, false); assert.deepEqual(u.focusMiss.map(t => t.expected), ['Thema']);
+  assert.ok(check('das Thema', ['das thema'], { ...B, anywhere: false, strict: ['Thema'] }).ok);
+  assert.ok(check('Thema', ['thema'], { ...B, anywhere: false, strict: ['Thema'] }).ok, 'sentence-initial');
+  assert.equal(check('Das Tehma', ['das thema'], { ...B, anywhere: false, strict: ['Thema'] }).ok, false, 'no typo on a strict word');
+  // capitals against a cased reference
+  const ref = new Map([['pruefung', 'Prüfung'], ['ich', 'ich'], ['habe', 'habe'], ['angst', 'Angst'], ['party', 'Party']]);
+  u = check('Ich habe Angst vor der prüfung.', ['ich habe angst vor der prüfung'], { ...B, caseRef: ref });
+  assert.ok(u.ok); assert.deepEqual(u.capMiss.map(t => t.expected), ['Prüfung']);
+  u = check('Prüfung habe ich keine.', ['prüfung'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss, [], 'first word exempt');
+  u = check('Ich Habe Angst', ['ich habe angst'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['Habe'], 'a capital on a verb');
+  u = check('Wir machen eine party am Freitag', ['wir machen eine [x] am freitag'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['party'], 'nouns in slots');
+  // nearest accepted string and the word diff
+  u = check('Ich glaube, dass das ist eine gute Idee', ['ich glaube dass das eine gute idee ist', 'ich glaube das ist eine gute idee', 'keine ahnung'], { ...B, anywhere: false });
+  assert.equal(u.ok, false); assert.equal(u.nearest, 0);
+  const d = M.diffWords('Ich glaube, dass das ist eine gute Idee', 'Ich glaube, dass das eine gute Idee ist.');
+  assert.deepEqual(d.wrong.map(w => w.word), ['ist']); assert.deepEqual(d.missing.map(k => d.right[k].raw), ['ist']);
+  // JS = Python for ([x]) and slotMax 10
+  const cases = [['ich schlage vor dass wir uns treffen', vor[0]], ['ich schlage vor dass wir uns am samstag treffen', vor[0]], ['ich schlage vor dass wir treffen uns', vor[0]],
+    ['das ist eins zwei drei vier fünf sechs sieben acht idee', 'das ist [x] idee'], ['das ist eins zwei drei vier fünf sechs sieben acht neun zehn elf idee', 'das ist [x] idee'],
+    ['wir könnten am samstag grillen', 'wir könnten (doch) ([x]) grillen'], ['wir könnten doch grillen', 'wir könnten (doch) ([x]) grillen'], ['wir könnten grillen', 'wir könnten (doch) ([x]) grillen']];
+  const py = `import json,sys\nsys.path.insert(0, ${JSON.stringify(path.join(ROOT, 'scripts'))})\nfrom validate_accept import matches\nprint(json.dumps([matches(a, p, 10) for a, p in json.load(sys.stdin)]))`;
+  const out = spawnSync('python3', ['-c', py], { input: JSON.stringify(cases), encoding: 'utf8' });
+  assert.equal(out.status, 0, out.stderr);
+  const want = JSON.parse(out.stdout);
+  cases.forEach(([a, p], i) => assert.equal(check(a, [p], { anywhere: true, typos: false, slotMax: 10 }).ok, want[i], `JS ≠ Python: ${a} ~ ${p}`));
+  // B1 data: every model matches with B1 options, and no wrong answer does (except detector-caught topic tails and cap slips)
+  const itemsFile = path.join(ROOT, 'data/b1/items.json');
+  if (existsSync(itemsFile)) {
+    const items = JSON.parse(readFileSync(itemsFile, 'utf8'));
+    const gapB = it => String(it.prompt).includes('___');
+    let n = 0;
+    for (const it of items) {
+      if (it.kind === 'reply') continue;
+      const acc = gapB(it) ? acceptedForGap(it.prompt, it.accept) : it.accept;
+      const o = { ...B, anywhere: it.anywhere, strict: it.strict, ...(gapB(it) ? { loose: gapLoose(it.prompt) } : {}) };
+      const typed = it.prefill ? it.model : it.model;
+      assert.ok(check(typed, acc, o).ok, `${it.id}: model fails in JS: ${it.model}`);
+      if (it.kind !== 'topic' && !(it.focus || []).includes('cap')) for (const w of it.wrong || []) assert.equal(check(w, acc, o).ok, false, `${it.id}: wrong passes in JS: ${w}`);
+      n++;
+    }
+    console.log(`B1 data: ${n} items, models match and wrongs fail in JS`);
+  }
+}
+
 console.log('ok');
