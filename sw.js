@@ -4,11 +4,11 @@
    - versioned files (?v=…, which includes data/b1/*): cache first;
    - fonts: stale-while-revalidate; everything else cross-origin (GitHub, Anthropic): not touched.
    The page switches versions only from the B1 hub (version.json check), never mid-round. */
-const V = '20261002b';
+const V = '20261002c';
 const CACHE = 'igloo-' + V;
 const SHELL = ['app.html'];
 const VERSIONED = ['tokens.css', 'app.css', 'b1.css', 'site.js', 'match.js', 'readiness.js', 'b1day.js', 'fsrs.js', 'timer.js', 'detect.js', 'b1ready.js',
-  'b1round.js', 'b1.js', 'data/framework.json', 'data/b1/items.json', 'data/b1/grammar.json', 'data/b1/bank.json', 'data/b1/plan.json', 'data/b1/nouns.json'];
+  'speech.js', 'b1round.js', 'b1.js', 'b1more.js', 'data/framework.json', 'data/b1/items.json', 'data/b1/grammar.json', 'data/b1/bank.json', 'data/b1/plan.json', 'data/b1/nouns.json'];
 const PLAIN = ['assets/logo.svg', 'assets/favicon-32.png'];
 
 self.addEventListener('install', e => {

@@ -67,7 +67,7 @@ body.b1-in-round .site-bar,body.b1-in-round .pick-row{display:none}
 .b1-prompt{display:flex;flex-direction:column;gap:6px;cursor:default}
 .b1-task{font-size:14px;color:var(--ink-2)}
 .b1-ptext{font-size:20px;line-height:1.35;font-weight:500}
-.b1-ptext mark.hl{background:var(--door-soft);color:var(--ink);border-bottom:2px solid var(--door);padding:0 2px;border-radius:2px}
+.b1-ptext mark.hl,.b1-speak mark.hl{background:var(--door-soft);color:var(--ink);border-bottom:2px solid var(--door);padding:0 2px;border-radius:2px}
 .b1-partner{font-size:17px;font-style:italic;font-family:var(--serif)}
 .b1-gap{display:inline-block;min-width:3em;border-bottom:2px solid var(--ink-3);margin:0 3px}
 .b1-sess.fb-on .b1-prompt:not(.open) .b1-ptext,.b1-sess.fb-on .b1-prompt:not(.open) .b1-partner{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;font-size:16px}
@@ -112,3 +112,37 @@ body.b1-in-round .site-bar,body.b1-in-round .pick-row{display:none}
 .b1-claude{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
 /* headings focused by script (route changes): keep focus for screen readers, no box */
 .b1-wrap [tabindex="-1"]:focus,.b1-wrap [tabindex="-1"]:focus-visible{outline:none}   /* WebKit counts focus after typing as focus-visible */
+/* exam words: the card after an answer */
+.b1-wcard{display:flex;flex-direction:column;gap:4px;margin-top:6px;padding:10px 12px;border:1px solid var(--line-soft);border-radius:var(--r-tile);background:var(--surface)}
+.b1-wcard .b1-play{min-height:28px;padding:2px 8px;vertical-align:middle}
+/* Say it aloud */
+.b1-speak .b1-strip{justify-content:space-between}
+.b1-big{font-size:20px;line-height:1.35}
+.b1-heard{font-size:17px;min-height:1.4em}
+.b1-list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:2px}
+.b1-micbox{display:flex;flex-direction:column;align-items:center;gap:8px;margin:18px 0 8px}
+.b1-micbox[hidden]{display:none}
+.b1-mic{width:72px;height:72px;border-radius:50%;border:2px solid var(--door);background:var(--surface);color:var(--door);display:grid;place-items:center;cursor:pointer}
+.b1-mic[data-state=listening]{background:var(--door);color:var(--on-accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--door) 45%,transparent);animation:b1-pulse 1.6s ease-out infinite}
+.b1-mic[data-state=checking]{opacity:.7}
+.b1-mic[data-state=error]{border-color:var(--line);color:var(--ink-3)}
+.b1-mic:focus-visible{outline:2px solid var(--door);outline-offset:3px}
+@keyframes b1-pulse{to{box-shadow:0 0 0 16px transparent}}
+@media (prefers-reduced-motion: reduce){.b1-mic[data-state=listening]{animation:none;box-shadow:0 0 0 6px color-mix(in srgb,var(--door) 30%,transparent)}}
+.b1-mic-l{text-align:center;max-width:32em}
+.b1-typein{display:flex;gap:8px}
+.b1-typein[hidden]{display:none}
+.b1-typein input{flex:1;min-width:0;font-size:18px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r-ctl);background:var(--surface);color:var(--ink)}
+.b1-checks{border-collapse:collapse;width:100%;font-size:14px}
+.b1-checks td{padding:5px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.b1-checks td:not(:first-child){text-align:right;padding-left:10px}
+.b1-checks td.ok{color:var(--ok);font-weight:600} .b1-checks td.bad{color:var(--bad);font-weight:600} .b1-checks td.muted{color:var(--ink-3)}
+/* Teil 2 talk */
+.b1-folien{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.b1-folien li{display:flex;flex-direction:column;gap:2px}
+.b1-folien li > b{font-weight:600}
+.b1-run{align-items:stretch}
+.b1-clock{font-size:64px;line-height:1;text-align:center;margin:18px 0 6px;font-variant-numeric:tabular-nums}
+.b1-folie{font-size:20px;font-weight:600;text-align:center}
+.b1-run .small{text-align:center}
+.b1-audio{width:100%}

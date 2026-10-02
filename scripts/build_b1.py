@@ -11,6 +11,7 @@ Writes:
   bank.json     Igloo bank phrases for the Sprechen/Forum functions: {id: {en, hl, ex, accept, fn, part, prio, level, n}}
   nouns.json    capitalised nouns for the capitals check ({folded lowercase: Cased}), minus words that also occur lowercase
   frames.json   ★ Sprechen frame models, for the exam-day read-through
+  wordmap.json  {lemma: [Igloo word id, level]} for exam words (b1more.js)
 Prints the sizes. Gate: the files the app loads (items, grammar, bank, plan, frames, nouns) are ≤ 200 KB gzipped
 (Pages serves them gzipped; the raw total is larger because items carry every accepted pattern).
 """
@@ -102,11 +103,17 @@ def main():
     frames = [{"teil": i["teil"], "fn": i["fn"], "de": i["model"], "id": i["id"]} for i in items
               if i.get("kind") == "phrase" and i.get("group") in ("S1", "S2", "S3") and i.get("star")]
 
-    sizes = {n: dump(n, d) for n, d in [("grammar.json", grammar), ("bank.json", bank), ("nouns.json", nouns), ("frames.json", frames)]}
+    # wordmap.json: lemma → [Igloo word id, level], for exam words (W:<id> when Igloo has the word; the B1-list filter)
+    wordmap = {}
+    for w in json.loads((ROOT / "data/words/de.json").read_text()):
+        if w.get("w") and w["w"] not in wordmap:
+            wordmap[w["w"]] = [w["id"], w.get("level") or ""]
+
+    sizes = {n: dump(n, d) for n, d in [("grammar.json", grammar), ("bank.json", bank), ("nouns.json", nouns), ("frames.json", frames), ("wordmap.json", wordmap)]}
     for n in ("items.json", "annot.json", "plan.json"):
         sizes[n] = (OUT / n).stat().st_size
     import gzip
-    loaded = [k for k in sizes if k != "annot.json"]
+    loaded = [k for k in sizes if k not in ("annot.json", "wordmap.json")]   # wordmap: only fetched with a b1-exam token
     gz = sum(len(gzip.compress((OUT / k).read_bytes())) for k in loaded)
     print(f"grammar.json {len(grammar)} items ({skipped} skipped) · bank.json {len(bank)} phrases · nouns.json {len(nouns)} · frames.json {len(frames)}")
     print("sizes: " + ", ".join(f"{k} {v // 1024} KB" for k, v in sizes.items()) + f" · loaded by the app: {gz // 1024} KB gzipped (gate 200 KB)")

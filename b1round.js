@@ -139,13 +139,13 @@
       rep(dots, src.dots().map(d => h('i', { class: d.s })));
       count.textContent = '';
       // meta
-      const where = /^W/.test(it.teil || '') ? `Schreiben · ${TEIL[it.teil].replace('Schreiben ', '')}` : [AREA[it.area] || '', it.teil && it.area !== 'grammar' ? TEIL[it.teil] : null].filter(Boolean).join(' · ');
+      const where = it.area === 'words' ? `Exam words${it.group && it.group !== 'words' ? ' · ' + it.group : ''}` : /^W/.test(it.teil || '') ? `Schreiben · ${TEIL[it.teil].replace('Schreiben ', '')}` : [AREA[it.area] || '', it.teil && it.area !== 'grammar' ? TEIL[it.teil] : null].filter(Boolean).join(' · ');
       rep(meta, entry.isNew ? h('span', { class: 'b1-new' }, 'New') : null, entry.isNew ? ' · ' : null, it.kind === 'topic' || it.kind === 'reply' ? `Situation · ${TEIL[it.teil] || ''}` : where);
       // prompt
       const kids = [];
       if (it.task) kids.push(h('p', { class: 'b1-task' }, it.task));
       if (it.partner) kids.push(h('p', { class: 'b1-partner-l muted small' }, 'Your partner says:'), h('p', { class: 'b1-partner', lang: 'de' }, `„${it.partner}“`));
-      if (it.gap) kids.push(h('p', { class: 'b1-ptext', lang: 'de' }, gapPrompt(it.prompt)));
+      if (it.gap || it.showGap) kids.push(h('p', { class: 'b1-ptext', lang: 'de' }, gapPrompt(it.prompt)));
       else kids.push(h('p', { class: 'b1-ptext', lang: it.promptLang === 'de' ? 'de' : 'en' }, it.hl ? highlight(it.prompt, it.hl) : it.prompt));
       if (it.gloss) kids.push(h('p', { class: 'b1-gloss muted' }, it.gloss));
       if (it.source) kids.push(h('p', { class: 'b1-source mono' }, it.source));
@@ -235,6 +235,16 @@
       entry._recorded = true;
       src.answer(entry, { ...o, limit: entry.limit, revealed, move: move?.key });
     }
+    // exam words: the word with article and plural, an example (▶ from the b1-exam audio), the confusion note
+    function wordCard(it) {
+      const c = it && it.card; if (!c) return null;
+      const url = c.ex && window.B1More?.audioFor?.(c.ex);
+      const play = url ? h('button', { type: 'button', class: 'btn small-btn b1-play', 'aria-label': 'Play the example', onpointerdown: e => e.preventDefault(),
+        onclick: () => { try { new Audio(url).play(); } catch {} } }, '▶') : null;
+      return h('div', { class: 'b1-wcard' }, h('p', { lang: 'de' }, h('b', {}, c.head)),
+        c.ex ? h('p', { class: 'small' }, play, play ? ' ' : null, h('span', { lang: 'de' }, c.ex), c.exEn ? h('span', { class: 'muted' }, ` · ${c.exEn}`) : null) : null,
+        c.conf ? h('p', { class: 'muted small' }, c.conf) : null);
+    }
     function hintNodes(t) { return String(t).split(/\*([^*]+)\*/).map((x, i) => i % 2 ? h('i', {}, x) : x); }
 
     // A–E: right
@@ -263,7 +273,7 @@
             h('span', { lang: 'de' }, others.slice(0, 2).join(' · ')), others.length > 2 ? alsoMore(others.slice(2)) : null));
         } else kids.push(h('p', { class: 'b1-also' }, alsoMore(others, 'Also correct: ')));
       }
-      rep(fb, kids);
+      rep(fb, kids, wordCard(entry.item));
       clearField(); setPlaceholder('Return for next'); rep(below);
       if (primary && !o.isNew && it.kind !== 'topic') auto = setTimeout(next, 700);
     }
@@ -292,7 +302,7 @@
       const rule = (o.det && g.detRule) || it.rule;
       if (rule) kids.push(h('p', { class: 'b1-rule' }, rule));
       if (src.claude && src.claude.available() && !o.det && !g.det) kids.push(claudeBtn(typed));
-      rep(fb, kids);
+      rep(fb, kids, wordCard(entry.item));
       toRetype(right);
     }
     // "My answer is right": Claude checks it; never for an answer a trap detector flagged
@@ -324,7 +334,7 @@
       if (typed) kids.push(h('p', { class: 'muted small' }, 'You had: ', h('span', { lang: 'de' }, full(typed))));
       kids.push(h('p', { class: 'b1-res muted-ink' }, "Here's one way to say it"), h('p', { class: 'b1-right', lang: 'de' }, g.right));
       if (g.alsoCorrect?.length) kids.push(h('p', { class: 'b1-also' }, alsoMore(g.alsoCorrect)));
-      rep(fb, kids);
+      rep(fb, kids, wordCard(entry.item));
       toRetype(g.right);
     }
     // I: new item → study card → type it once
@@ -337,7 +347,7 @@
       kids.push(h('p', { class: 'b1-study', lang: 'de' }, g.right));
       if (g.alsoCorrect?.length) kids.push(h('p', { class: 'b1-also' }, h('span', { class: 'muted' }, 'Also correct: '), h('span', { lang: 'de' }, g.alsoCorrect.slice(0, 2).join(' · ')), g.alsoCorrect.length > 2 ? alsoMore(g.alsoCorrect.slice(2)) : null));
       if (entry.item.rule) kids.push(h('p', { class: 'b1-rule' }, entry.item.rule));
-      rep(fb, kids);
+      rep(fb, kids, wordCard(entry.item));
       toRetype(g.right);
     }
     function toRetype(right) {

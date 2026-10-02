@@ -164,6 +164,27 @@ assert.equal(FS.rate({ ok: true, ms: 90000, limit: null }), 3, 'untimed new item
   console.log(`detectors: ${cases.length} sentences, JS = Python; 0 fires on ${nRight} right sentences`);
 }
 
+// ---- speech: clean, grade, the mic check ----
+{
+  globalThis.Detect = Det;
+  const Sp = require('../speech.js');
+  assert.equal(Sp.clean('äh ich glaube ich glaube dass das gut ist'), 'ich glaube dass das gut ist');
+  assert.equal(Sp.clean('dass das dass das ist gut'), 'dass das ist gut');
+  const it = { model: 'Ich glaube, dass das eine gute Idee ist.' };
+  let g = Sp.grade('äh ich glaube dass das ist gut', it, null, { match: () => true });
+  assert.equal(g.verbFinal, false); assert.equal(g.ok, false);
+  g = Sp.grade('Ich glaube, dass das eine gute Idee ist', it, null, { match: () => true }); assert.equal(g.verbFinal, true); assert.equal(g.ok, true);
+  g = Sp.grade('Ich habe Angst für der Prüfung', { model: 'Ich habe Angst vor der Prüfung.' }); assert.equal(g.fuerVor, false);
+  g = Sp.grade('Wir sollen eine Party für den Kurs planen', { model: 'Wir sollen eine Party für den Kurs planen.' }); assert.equal(g.fuerVor, 'not-in', 'für that is not a für/vor item');
+  g = Sp.grade('ich glaube dass das ist gut', it, { asr: { verbFinal: false } }); assert.equal(g.verbFinal, 'off', 'the phone fixes it: not checked');
+  assert.equal(Sp.CANARY.length, 12);
+  const all = Sp.calibrate(Sp.CANARY.map((c, i) => ({ i, said: c.de })));
+  assert.ok(Object.values(all).every(x => x.checked && x.kept === 3), 'every mistake kept → every class checked');
+  const fixed = Sp.calibrate(Sp.CANARY.map((c, i) => ({ i, said: c.de.replace('dass das ist eine gute Idee', 'dass das eine gute Idee ist').replace(/^Der Thema/, 'Das Thema') })));
+  assert.equal(fixed.verbFinal.kept, 2); assert.equal(fixed.verbFinal.checked, false); assert.equal(fixed.articles.checked, false);
+  console.log('speech: clean, grade and mic check ok');
+}
+
 // ---- readiness ----
 {
   const pool = [

@@ -74,6 +74,7 @@
         strictCase: !!g.strict_case, rank: t.rank });
     }
     for (const it of pool) if (it.area === 'grammar' && it.rank == null) it.rank = topics.get(it.group)?.rank ?? 99;
+    for (const w of (window.B1More?.wordItems?.() || [])) add(w);   // exam words from the cached b1-exam list (b1more.js)
     const traps = new Map(plan.traps.map(t => [t.id, t]));
     const fnInfo = new Map(plan.functions.map(f => [f.id, f]));
     return { pool, byId, plan, topics, traps, fnInfo };
@@ -96,7 +97,8 @@
     if (it.loose || it.gap) o.loose = Match.gapLoose(it.prompt);
     const r = Match.check(input, accepted, o);
     const det = Detect.run(input, it, r);
-    const render = p => it.gap ? (Match.gapFill(it.prompt, p)?.text || p) : it.literal ? p : Match.renderPattern(p, it.model);
+    const own = new Set(it.accept || []);   // gap answers; acceptedForGap adds the filled sentences, which render as they are
+    const render = p => it.gap ? (own.has(p) ? (Match.gapFill(it.prompt, p)?.text || p) : p) : it.literal ? p : Match.renderPattern(p, it.model);
     let right = it.model;
     if (!r.ok && r.nearest != null && r.nearest > 0) right = render(accepted[r.nearest]);
     const shown = new Set([norm(r.ok ? r.input : right)]);
@@ -382,6 +384,26 @@
     if (DEV) autoplay(view);
   }
   function forecast(day) { return RD.forecast(store, D8.today(), 8).find(x => x.day === day)?.n || 0; }
+  // new exam words after a fetch (b1more.js): into the pool without a reload
+  function addItems(list) {
+    if (!DATA) return 0;
+    let n = 0;
+    for (const it of list) if (!DATA.byId.has(it.id)) { DATA.byId.set(it.id, it); DATA.pool.push(it); n++; }
+    return n;
+  }
+  // Say it aloud: a spoken answer. Right = Good (Hard when slow); trap items (verb at the end, für/vor) get at most Hard from
+  // speech alone; items not met yet are log-only (speech never starts a schedule)
+  function recordSpoken(item, o) {
+    getStore();
+    const c = ctxNow(), id = item.id, rec = store[id];
+    const trap = ['verb-final', 'fuer-vor'].some(x => item.trap === x || (item.focus || []).includes(x));
+    let g = o.ok ? (o.limit && o.ms > o.limit * 1000 ? 2 : 3) : 1;
+    if (o.ok && trap) g = Math.min(g, 2);
+    const res = FS.schedule(rec, { g, ms: o.ms || 0, onTime: g >= 3, flags: 's', mode: 's', logOnly: !rec || !rec.reps }, { ...c, forecast }, Date.now());
+    if (res.rec) store[id] = res.rec;
+    saveStore(); backupSoon();
+    return g;
+  }
 
   // ---------- Claude: "My answer is right" ----------
   function claudeKey() {
@@ -533,6 +555,7 @@
       : startCap ? h('a', { class: 'btn primary big b1-start', href: '#b1/round' }, c.phase === 'day' ? 'Start warm-up' : 'Start round')
         : h('p', { class: 'muted' }, `That's everything for today. Tomorrow: ${forecast(D8.add(c.today, 1))} due.`);
     const mock = h('p', { class: 'small b1-mock', hidden: true });
+    if (window.B1More && ghToken()) B1More.refresh(api, (n, res) => { if (location.hash === '#b1' || location.hash === '') { toast(res.added?.length ? `${res.added.length} new exam words from Tag ${Math.max(...res.added.map(w => w.day || 0))}` : `${n} exam words loaded`); drawHub(el); } });
     rep(el, h('section', { class: 'b1-wrap b1-hub' },
       h('header', { class: 'section' }, h('p', { class: 'eyebrow' }, 'B1 · German'), h('h1', { tabindex: -1 }, h1), c.phase !== 'after' ? strip : null),
       notices, today,
@@ -787,6 +810,6 @@
   }
   function src_end(view) { view.querySelector('.b1-end')?.click(); }
 
-  const api = { view, ensureData, readiness, compose, gradeAnswer, getStore, settings, load, save, K, bar, AREA_NAME, plural, pct, backupNow, backupBody, b1State, toast, ctxNow, dayStore, store: () => getStore(), data: () => DATA, rep, ghToken };
+  const api = { addItems, recordSpoken, view, ensureData, readiness, compose, gradeAnswer, getStore, settings, load, save, K, bar, AREA_NAME, plural, pct, backupNow, backupBody, b1State, toast, ctxNow, dayStore, store: () => getStore(), data: () => DATA, rep, ghToken };
   window.B1 = api;
 })();
