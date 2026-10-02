@@ -4,7 +4,7 @@
    - versioned files (?v=…, which includes data/b1/*): cache first;
    - fonts: stale-while-revalidate; everything else cross-origin (GitHub, Anthropic): not touched.
    The page switches versions only from the B1 hub (version.json check), never mid-round. */
-const V = '20261002d';
+const V = '20261002e';
 const CACHE = 'igloo-' + V;
 const SHELL = ['app.html'];
 const VERSIONED = ['tokens.css', 'app.css', 'b1.css', 'site.js', 'match.js', 'readiness.js', 'b1day.js', 'fsrs.js', 'timer.js', 'detect.js', 'b1ready.js',

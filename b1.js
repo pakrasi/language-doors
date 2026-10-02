@@ -300,11 +300,10 @@
   function startRound(spec) {
     const ids = compose(spec);
     if (!ids.length) return null;
-    const r = { id: Date.now(), ...spec, day: D8.today(), startedAt: Date.now(), queue: ids.map(id => ({ id })), i: 0, results: [], planned: ids.length, before: overallNow() };
+    const r = { id: Date.now(), ...spec, day: D8.today(), startedAt: Date.now(), queue: ids.map(id => ({ id })), i: 0, results: [], planned: ids.length, prev: {} };
     save(K.round, r);
     return r;
   }
-  function overallNow() { const rd = readiness(); return { recall: rd.overall.recall, areas: Object.fromEntries(Object.entries(rd.areas).map(([a, x]) => [a, x.recall])) }; }
 
   function runRound(view, round) {
     const s = settings();
@@ -334,6 +333,8 @@
           saveStore(); save(K.round, round); return;
         }
         const rec = store[id];
+        // the record before this round's first answer: the done screen rolls back only these to show what the round did
+        round.prev = round.prev || {}; if (!(id in round.prev)) round.prev[id] = e._before;
         const g = FS.rate({ ok: o.ok, revealed: o.revealed, ms: o.ms, limit: e.limit, selfRepair: o.selfRepair, capSlip: o.capSlip, umlaut: o.umlaut,
           prevRating: rec?.hist?.length ? rec.hist[rec.hist.length - 1][1] : 0, stage: e.stage });
         const flags = [o.selfRepair && 'r', o.capSlip && 'c', o.typo && 'y', o.umlaut && 'u', e.limit && o.ms > e.limit * 1000 && 'o', o.det && 'd' + o.det, o.g?.det && !o.det && 'd' + o.g.det.cls].filter(Boolean).join('');
@@ -674,8 +675,18 @@
     const right = firsts.filter(r => r.ok).length, late = firsts.filter(r => r.ok && r.g === 2).length;
     const last = round.results[round.results.length - 1];
     const fixedLast = last && !last.first && last.ok;
-    const after = readiness(), before = round.before || { recall: 0, areas: {} };
-    const moved = Object.entries(after.areas).map(([a, x]) => [a, Math.round(100 * x.recall) - Math.round(100 * (before.areas[a] || 0))]).filter(([, d]) => d !== 0);
+    // before = the same store and exam set with only this round's items rolled back, so seeding, words loaded
+    // mid-round or a new day never show up as progress
+    const c0 = ctxNow(), set = examSet();
+    const rd = st => RD.compute({ pool: DATA.pool, store: st, today: c0.today, exam: c0.exam, phase: c0.phase, examSet: set });
+    const st0 = { ...store };
+    for (const [id, r] of Object.entries(round.prev || {})) { if (r) st0[id] = r; else delete st0[id]; }
+    const after = rd(store), b0 = rd(st0);
+    const before = { recall: b0.overall.recall, areas: Object.fromEntries(Object.entries(b0.areas).map(([a, x]) => [a, x.recall])) };
+    const nIn = a => new Set(round.results.filter(r => DATA.byId.get(r.id)?.area === a).map(r => r.id)).size;
+    const moved = Object.entries(after.areas).map(([a, x]) => [a, 100 * (x.recall - (before.areas[a] || 0)), nIn(a)]).filter(([, d, n]) => n && Math.abs(d) >= 0.05);
+    const pts = d => `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1)} points`;
+    const p1 = x => (100 * (x || 0)).toFixed(1);
     const missed = new Set(round.results.filter(r => r.first && !r.ok).map(r => r.id));   // a new item's second showing is not a fix
     const fixed = [...new Set(round.results.filter(r => !r.first && r.ok && missed.has(r.id)).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
     const news = [...new Set(round.results.filter(r => r.isNew).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
@@ -689,9 +700,9 @@
       late ? h('p', { class: 'muted' }, `${plural(late, 'was', 'were')} late.`.replace(/^(\d+) was/, '$1 was')) : null,
       fixedLast ? h('p', { class: 'muted' }, 'Last one: right this time.') : null,
       h('div', { class: 'card b1-card' },
-        h('span', { class: 'b1-area-top' }, h('span', {}, ctxNow().phase === 'after' ? 'Would recall now' : `Ready for ${D8.label(D8.exam()).replace(/^\w+ /, '')}`), h('b', { class: 'mono' }, `${Math.round(100 * before.recall)} → ${pct(after.overall.recall)}`)),
+        h('span', { class: 'b1-area-top' }, h('span', {}, ctxNow().phase === 'after' ? 'Would recall now' : `Ready for ${D8.label(D8.exam()).replace(/^\w+ /, '')}`), h('b', { class: 'mono' }, `${p1(before.recall)} → ${p1(after.overall.recall)} %`)),
         bar(after.overall.recall, after.overall.coverage, 'big', [Math.min(before.recall, after.overall.recall), after.overall.recall]),
-        moved.length ? h('p', { class: 'small' }, moved.map(([a, dd]) => `${AREA_NAME[a]} ${dd > 0 ? '+' : ''}${dd}`).join(' · '))
+        moved.length ? h('ul', { class: 'b1-items small' }, moved.map(([a, dd, n]) => h('li', {}, `${AREA_NAME[a]}: ${plural(n, 'item')}, ${pts(dd)}`)))
           : h('p', { class: 'muted small' }, "Repeats don't change the bars. First tries tomorrow will.")),
       fixed.length ? [h('h2', { class: 'b1-h2' }, 'Fixed this round'), h('ul', { class: 'b1-items' }, fixed.map(i => h('li', { lang: 'de' }, short(i))))] : null,
       news.length ? [h('h2', { class: 'b1-h2' }, 'New today'), h('ul', { class: 'b1-items' }, news.map(i => h('li', { lang: 'de' }, short(i))))] : null,
