@@ -170,11 +170,15 @@ def clause_end_error(p):
 FINITE = set(norm("""bin bist ist sind seid war warst waren habe hab hast hat haben habt hatte hatten kann kannst können
     könnt muss musst müssen will willst wollen soll sollst sollen darf darfst dürfen möchte möchtest möchten werde wirst
     wird werden würde würdest würden könnte könntest könnten hätte hättest hätten wäre wärst wären mag gibt geht kommt
-    macht regnet passt klappt""").split())
+    macht regnet passt klappt sollte sollten solltest wollte wollten konnte konnten musste mussten durfte durften
+    mochte mochten wurde wurden gab ging kam""").split())
 PRON = set(norm("ich du er sie es wir ihr man das dies jemand niemand").split())
 DET = set(norm("der die das den dem des ein eine einen einem einer mein meine meinen dein deine sein seine ihr ihre unser unsere euer eure kein keine dieser diese dieses jede jeder jedes jeden alle viele manche einige beide meisten wenige").split())
 SUB_DETECT = SUBORD - {"als", "bis", "seit", "wer"}
 FRONTED = None
+
+
+PARTICLES = set(norm("ab an auf aus ein mit vor zu zurück weg los fest teil statt vorbei hin her nach").split())
 
 
 def clause_verbs(model):
@@ -184,6 +188,10 @@ def clause_verbs(model):
         toks = norm(clause).split()
         if any(t in SUB_DETECT for t in toks[:-1]) and toks:
             out.add(toks[-1])
+            for pre in sorted(PARTICLES, key=len, reverse=True):   # abhängt -> hängt (the verb without its particle)
+                if toks[-1].startswith(pre) and len(toks[-1]) > len(pre) + 2:
+                    out.add(toks[-1][len(pre):])
+                    break
     return out
 
 
@@ -209,8 +217,20 @@ def detect(text, model=None):
         for i, t in enumerate(toks):
             if t not in SUB_DETECT:
                 continue
-            j = subject_end(toks, i + 1)
-            if j is not None and j < len(toks) - 1 and toks[j] in fin and toks[j + 1] not in ("oder", "und", "aber"):
+            # a finite verb 1-4 words after the subordinator (after a subject or a phrase like "bei dir") that is not
+            # the clause's last word: "weil ich muss arbeiten", "dass bei dir ist alles gut"
+            if i + 1 < len(toks) and toks[i + 1] in FINITE:
+                continue  # "Damit bin ich …": an adverb, not a clause
+            for j in range(i + 1, min(i + 5, len(toks) - 1)):
+                if toks[j] in SUB_DETECT:
+                    break
+                rest = toks[j + 1:]
+                if toks[j] in fin and rest[0] not in ("oder", "und", "aber") and any(r not in fin for r in rest):
+                    out.add("verb-final")
+                    break
+            # separable verb split in the clause: "dass es hängt von der Firma ab"
+            cl = toks[i + 1:]
+            if len(cl) >= 3 and cl[-1] in PARTICLES and any(c in fin or FINITE_ANY(c) for c in cl[1:-1]):
                 out.add("verb-final")
     for sent in re.split(r"(?<=[.!?])\s+", text.strip()):
         parts = sent.split(",", 1)
@@ -788,6 +808,19 @@ def selftest(ctx):
     assert matches("ich schlage vor dass wir uns am samstag treffen", "ich schlage vor dass wir uns ([x]) treffen", 10)
     assert matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 10)
     assert not matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 6)
+    for w, cls in [("Ich hoffe, dass bei dir ist alles gut.", "verb-final"), ("Ich denke, dass es hängt von der Firma ab.", "verb-final"), ("Das geht nicht, weil ich muss arbeiten.", "verb-final"),
+                   ("Ich glaube, dass das ist gut.", "verb-final"), ("Am Ende, wir machen eine Party.", "v2"),
+                   ("Wenn ich Zeit habe, ich lerne.", "inversion")]:
+        if cls not in detect(w):
+            print(f"FAIL detector misses {cls}: {w}")
+            bad += 1
+    for ok in ["Ich hoffe, dass bei dir alles gut ist.", "Das geht nicht, weil ich arbeiten muss.", "Am Ende machen wir eine Party.",
+               "Wenn ich Zeit habe, lerne ich.", "Wir fahren an den Strand, egal ob es regnet oder nicht.",
+               "Ich denke, dass es von der Firma abhängt.", "Damit bin ich am Ende meiner Präsentation.",
+               "Ich bin der Meinung, dass Rauchen verboten werden sollte."]:
+        if detect(ok, ok):
+            print(f"FAIL detector fires on a right sentence: {ok} {detect(ok, ok)}")
+            bad += 1
     print("selftest:", "ok" if not bad else f"{bad} failure(s)")
     return bad
 
