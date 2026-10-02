@@ -162,7 +162,7 @@
   const stream = it => it.area === 'grammar' ? 'g' : 'p';
   const SPLIT = { p: 40 / 55, g: 15 / 55 };
   // P14 order for new items (+ review B1: his own mistakes first)
-  function newOrder(pool) {
+  function newOrder(pool, anyTopic = false) {   // anyTopic: the Situations round practises every situation
     const tier = it => {
       if (it.area === 'speaking' && it.group === 'S2' && it.star && it.kind === 'phrase') return 1;
       if (it.area === 'grammar' && DATA.topics.get(it.group)?.trap) return 2;
@@ -177,7 +177,7 @@
       return 11;
     };
     const eligible = it => it.rank !== 21 && !(it.group === 'praeteritum' && it.kind !== 'grammar');
-    const list = pool.filter(it => unseen(it) && eligible(it) && topicReady(it));
+    const list = pool.filter(it => unseen(it) && eligible(it) && (anyTopic || topicReady(it)));
     const base = list.filter(it => !it.mine).map((it, i) => [tier(it), it.area === 'grammar' ? it.rank : 0, it.star ? 0 : 1, it.bank ? 1 : 0, i, it])
       .sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2] || a[3] - b[3] || a[4] - b[4]).map(x => x[5]);
     // his own mistakes (src mine) are spread through the front of the order: one in every three
@@ -197,8 +197,8 @@
   function newLeftOf(st) { const d = dayStore(); return Math.max(0, quota(st) - ((d.newBy || {})[st] || 0)); }
   function newLeft() { return newLeftOf('p') + newLeftOf('g'); }
   // the first n new items, taking each stream's quota in turn
-  function nextNew(pool, n, left = { p: newLeftOf('p'), g: newLeftOf('g') }) {
-    const order = newOrder(pool), out = [], q = { ...left };
+  function nextNew(pool, n, left = { p: newLeftOf('p'), g: newLeftOf('g') }, anyTopic = false) {
+    const order = newOrder(pool, anyTopic), out = [], q = { ...left };
     const byS = { p: order.filter(it => stream(it) === 'p'), g: order.filter(it => stream(it) === 'g') };
     while (out.length < n && (q.p > 0 && byS.p.length || q.g > 0 && byS.g.length)) {
       // keep the mix close to the split: pick the stream that is furthest behind its share
@@ -256,7 +256,7 @@
     due.sort((a, b) => (starFirst ? ((b.star || b.trap ? 1 : 0) - (a.star || a.trap ? 1 : 0)) : 0) || R(a, today) - R(b, today));
     const firstEver = !Object.values(store).some(r => r && r.hist && r.hist.length);
     const nNew = Math.min(newLeft(), firstEver ? 8 : 4);
-    const fresh = nextNew(pool, nNew + 2);
+    const fresh = nextNew(pool, nNew + 2, undefined, kind === 'situation');
     const shownToday = new Set(dayStore().shown);
     const traps = (!area || area !== 'words') && !kind ? trapSet().map(id => DATA.byId.get(id)).filter(it => it && pool.includes(it) && !shownToday.has(it.id) && !(store[it.id]?.last === today && !isDue(it))) : [];
     const chosen = [], add = it => { if (it && !chosen.includes(it) && chosen.length < size) chosen.push(it); };
@@ -274,7 +274,7 @@
     for (const it of trapPick) { if (unseen(it)) { if (newUsed >= nNew) continue; newUsed++; } mid.push(it); }
     for (const it of fresh) { if (newUsed >= nNew || mid.includes(it)) continue; mid.push(it); newUsed++; }
     for (const it of rest.slice(Math.max(0, dueCap))) { if (warm.length + mid.length + (fix ? 1 : 0) >= size) break; if (!mid.includes(it)) mid.push(it); }
-    for (const it of nextNew(pool, size)) { if (warm.length + mid.length + (fix ? 1 : 0) >= size || newUsed >= nNew) break; if (!mid.includes(it)) { mid.push(it); newUsed++; } }
+    for (const it of nextNew(pool, size, undefined, kind === 'situation')) { if (warm.length + mid.length + (fix ? 1 : 0) >= size || newUsed >= nNew) break; if (!mid.includes(it)) { mid.push(it); newUsed++; } }
     // interleave: keep look-alike grammar topics next to each other, spread new items
     mid.sort((a, b) => (unseen(a) ? 1 : 0) - (unseen(b) ? 1 : 0));
     const out = [...warm, ...spread(mid)];
