@@ -4043,7 +4043,7 @@
   "answer": [
    "das"
   ],
-  "note": "Nouns in -ma are neuter.",
+  "note": "Thema is neuter, like Klima and Problem: das Thema (but die Firma).",
   "strict_case": false
  },
  {
@@ -4095,7 +4095,7 @@
   "answer": [
    "das"
   ],
-  "note": "Nouns in -ma are neuter.",
+  "note": "Klima is neuter, like Thema and Problem: das Klima (but die Firma).",
   "strict_case": false
  },
  {

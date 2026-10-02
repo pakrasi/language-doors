@@ -1,0 +1,1514 @@
+[
+ {
+  "id": "BP:mine-lieber-anrede",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W1",
+  "fn": "inf_open",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "ending"
+  ],
+  "strict": [
+   "Lieber"
+  ],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Dear Max, (opening an email to a male friend)",
+  "prompt_lang": "en",
+  "hl": "Dear Max",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "lieber max",
+   "mein lieber max"
+  ],
+  "anywhere": true,
+  "model": "Lieber Max,",
+  "wrong": [
+   "Liebe Max!",
+   "Liebe Max,"
+  ],
+  "rule": "For a man the greeting is Lieber, for a woman Liebe: Lieber Max, Liebe Anna.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-hoffe-alles-gut",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W1",
+  "fn": "inf_open",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I hope everything is fine with your family. (to a friend)",
+  "prompt_lang": "en",
+  "hl": "I hope everything is fine with your family",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich hoffe bei deiner familie ist alles gut",
+   "ich hoffe dass bei deiner familie alles gut ist",
+   "ich hoffe deiner familie geht es gut",
+   "ich hoffe dass es deiner familie gut geht",
+   "ich hoffe bei deiner familie ist alles in ordnung",
+   "ich hoffe dass bei deiner familie alles in ordnung ist"
+  ],
+  "anywhere": true,
+  "model": "Ich hoffe, bei deiner Familie ist alles gut.",
+  "wrong": [
+   "Ich hoffe, alles gut bei deiner Familie.",
+   "Ich hoffe, dass bei deiner Familie alles gut."
+  ],
+  "rule": "Every German clause needs a verb: Ich hoffe, bei dir ist alles gut.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-wie-du-weisst",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "umlauts",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "word-choice"
+  ],
+  "strict": [
+   "weißt"
+  ],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "As you know, I've moved to a new flat.",
+  "prompt_lang": "en",
+  "hl": "As you know",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "wie du weißt"
+  ],
+  "anywhere": true,
+  "model": "Wie du weißt, bin ich in eine neue Wohnung umgezogen.",
+  "wrong": [
+   "Wie du weist, bin ich in eine neue Wohnung umgezogen.",
+   "Wie du wisst, bin ich in eine neue Wohnung umgezogen."
+  ],
+  "rule": "With du, wissen becomes weißt, with ß: Wie du weißt, …",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-eine-neue-stelle",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "adj-endings",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "article",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I'm looking for a new job.",
+  "prompt_lang": "en",
+  "hl": "a new job",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich suche eine neue stelle",
+   "ich suche gerade eine neue stelle",
+   "ich suche eine neue arbeitsstelle",
+   "ich suche einen neuen job"
+  ],
+  "anywhere": true,
+  "model": "Ich suche eine neue Stelle.",
+  "wrong": [
+   "Ich suche ein neue Stelle.",
+   "Ich suche ein neuen Stelle."
+  ],
+  "rule": "Stelle is feminine, so it is eine neue Stelle.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-erster-tag-lang",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "gender-caps",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "cap",
+  "focus": [
+   "cap",
+   "ending"
+  ],
+  "strict": [
+   "Tag",
+   "lang"
+  ],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "My first day at the course was very long.",
+  "prompt_lang": "en",
+  "hl": "My first day at the course was very long",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "mein erster tag im kurs war sehr lang",
+   "der erste tag im kurs war sehr lang",
+   "mein erster kurstag war sehr lang"
+  ],
+  "anywhere": true,
+  "model": "Mein erster Tag im Kurs war sehr lang.",
+  "wrong": [
+   "Mein erster tag im Kurs war sehr Lang.",
+   "Mein erster Tag im Kurs war sehr lange."
+  ],
+  "rule": "Nouns take a capital, adjectives stay small: der Tag, lang.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-aber-ich-mag",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "connectors",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "connector-order"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "The work is hard, but I like my colleagues.",
+  "prompt_lang": "en",
+  "hl": "but I like my colleagues",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "aber ich mag meine kollegen",
+   "aber ich mag meine kollegen sehr",
+   "aber meine kollegen mag ich",
+   "aber ich finde meine kollegen nett"
+  ],
+  "anywhere": true,
+  "model": "Die Arbeit ist schwer, aber ich mag meine Kollegen.",
+  "wrong": [
+   "Die Arbeit ist schwer, aber mag ich meine Kollegen."
+  ],
+  "rule": "After aber the normal order stays: aber ich mag …",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-aber-ich-habe-viel",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "connectors",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "connector-order",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "It's fun, but I still have a lot to do.",
+  "prompt_lang": "en",
+  "hl": "but I still have a lot to do",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "aber ich habe noch viel zu tun",
+   "aber ich muss noch viel tun",
+   "aber ich habe noch viel arbeit"
+  ],
+  "anywhere": true,
+  "model": "Es macht Spaß, aber ich habe noch viel zu tun.",
+  "wrong": [
+   "Es macht Spaß, aber habe ich noch viel zu tun.",
+   "Es macht Spaß, aber ich habe noch viele zu tun."
+  ],
+  "rule": "After aber the subject comes first, then the verb: aber ich habe noch viel zu tun.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-zwar-kompliziert",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "gender-caps",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "cap",
+  "focus": [
+   "cap"
+  ],
+  "strict": [
+   "Kurs",
+   "kompliziert"
+  ],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "The course is interesting, but very complicated.",
+  "prompt_lang": "en",
+  "hl": "The course is interesting, but very complicated",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "der kurs ist zwar interessant aber sehr kompliziert",
+   "der kurs ist interessant aber sehr kompliziert",
+   "der kurs ist zwar interessant aber auch sehr kompliziert"
+  ],
+  "anywhere": true,
+  "model": "Der Kurs ist zwar interessant, aber sehr kompliziert.",
+  "wrong": [
+   "Der kurs ist zwar interessant, aber sehr Kompliziert."
+  ],
+  "rule": "Nouns take a capital, adjectives stay small: der Kurs, kompliziert.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-weil-nicht-wegen",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "connectors",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "verb-final",
+  "focus": [
+   "verb-final",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Because the topic is new, I need a lot of time.",
+  "prompt_lang": "en",
+  "hl": "Because the topic is new",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "weil das thema neu ist",
+   "da das thema neu ist"
+  ],
+  "anywhere": true,
+  "model": "Weil das Thema neu ist, brauche ich viel Zeit.",
+  "wrong": [
+   "Wegen das Thema neu ist, brauche ich viel Zeit.",
+   "Weil das Thema ist neu, ich brauche viel Zeit."
+  ],
+  "rule": "Use weil before a whole clause and wegen only before a noun: weil das Thema neu ist, wegen des Themas.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-viel-zeit",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "adj-endings",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I need a lot of time for the homework.",
+  "prompt_lang": "en",
+  "hl": "a lot of time",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich brauche viel zeit für die hausaufgaben",
+   "für die hausaufgaben brauche ich viel zeit"
+  ],
+  "anywhere": true,
+  "model": "Ich brauche viel Zeit für die Hausaufgaben.",
+  "wrong": [
+   "Ich brauche viele Zeit für die Hausaufgaben."
+  ],
+  "rule": "With things you can't count, it is viel without an ending: viel Zeit, viel Arbeit.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-um-zu-verstehen",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "inf-zu",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "participle"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I read the text twice to understand the rules better.",
+  "prompt_lang": "en",
+  "hl": "to understand the rules better",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "um die regeln besser zu verstehen"
+  ],
+  "anywhere": true,
+  "model": "Ich lese den Text zweimal, um die Regeln besser zu verstehen.",
+  "wrong": [
+   "Ich lese den Text zweimal, um die Regeln besser zu verstanden.",
+   "Ich lese den Text zweimal, um besser die Regeln verstehen."
+  ],
+  "rule": "After um … zu the plain infinitive comes last: um alles besser zu verstehen.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-dieses-wochenende-zeit",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W1",
+  "fn": "inf_close",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "article",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Are you free this weekend? (to a friend)",
+  "prompt_lang": "en",
+  "hl": "Are you free this weekend",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "hast du dieses wochenende zeit",
+   "hast du am wochenende zeit",
+   "hast du an diesem wochenende zeit",
+   "hast du dieses wochenende schon was vor"
+  ],
+  "anywhere": true,
+  "model": "Hast du dieses Wochenende Zeit?",
+  "wrong": [
+   "Hast du diese Wochenende Zeit?",
+   "Hast du diese Wochenende schon was vor?"
+  ],
+  "rule": "Wochenende is neuter, so it is dieses Wochenende.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-um-uhr",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "time",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Can we meet on Friday, maybe at 7 pm?",
+  "prompt_lang": "en",
+  "hl": "maybe at 7 pm",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "vielleicht um 19 uhr",
+   "vielleicht um sieben uhr",
+   "vielleicht um sieben",
+   "vielleicht um 7 uhr"
+  ],
+  "anywhere": true,
+  "model": "Können wir uns am Freitag treffen, vielleicht um 19 Uhr?",
+  "wrong": [
+   "Können wir uns am Freitag treffen, vielleicht am 19 Uhr?"
+  ],
+  "rule": "Clock times take um, days take am: am Freitag um 19 Uhr.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-koennen-wir",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "umlauts",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "umlaut"
+  ],
+  "strict": [
+   "Können"
+  ],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Can we go to the cinema on Sunday?",
+  "prompt_lang": "en",
+  "hl": "Can we go to the cinema on Sunday",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "können wir am sonntag ins kino gehen",
+   "wollen wir am sonntag ins kino gehen",
+   "sollen wir am sonntag ins kino gehen",
+   "gehen wir am sonntag ins kino"
+  ],
+  "anywhere": true,
+  "model": "Können wir am Sonntag ins Kino gehen?",
+  "wrong": [
+   "Konnen wir am Sonntag ins Kino gehen?",
+   "Konnten wir am Sonntag ins Kino gehen?"
+  ],
+  "rule": "Können needs its umlaut; konnten means could in the past: Können wir …?",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-zu-abend-essen",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W1",
+  "fn": "inf_close",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Shall we have dinner together on Saturday? (to a friend)",
+  "prompt_lang": "en",
+  "hl": "Shall we have dinner together",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "sollen wir am samstag zusammen zu abend essen",
+   "wollen wir am samstag zusammen zu abend essen",
+   "können wir am samstag zusammen zu abend essen",
+   "sollen wir zusammen zu abend essen",
+   "wollen wir zusammen zu abend essen",
+   "können wir zusammen zu abend essen",
+   "sollen wir zusammen essen gehen",
+   "wollen wir zusammen essen gehen"
+  ],
+  "anywhere": true,
+  "model": "Sollen wir am Samstag zusammen zu Abend essen?",
+  "wrong": [
+   "Sollen wir am Samstag zusammen Abendessen?",
+   "Sollen wir am Samstag zusammen Abendsessen machen?"
+  ],
+  "rule": "Das Abendessen is the meal; to have dinner is zu Abend essen.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-viele-gruesse",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W1",
+  "fn": "inf_close",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "umlaut"
+  ],
+  "strict": [
+   "Grüße"
+  ],
+  "plan": "recall",
+  "task": null,
+  "prompt": "See you soon! Best wishes, (end of an email to a friend)",
+  "prompt_lang": "en",
+  "hl": "Best wishes",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "viele grüße",
+   "liebe grüße",
+   "herzliche grüße"
+  ],
+  "anywhere": true,
+  "model": "Bis bald! Viele Grüße",
+  "wrong": [
+   "Bis bald!",
+   "Bis bald! Viele Gruse"
+  ],
+  "rule": "An email always ends with a closing line: Viele Grüße or Liebe Grüße.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-spass-gemacht",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "gender-caps",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "cap",
+  "focus": [
+   "cap",
+   "word-choice"
+  ],
+  "strict": [
+   "Spaß"
+  ],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "That was really fun.",
+  "prompt_lang": "en",
+  "hl": "That was really fun",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "das hat wirklich spaß gemacht",
+   "das hat mir wirklich spaß gemacht",
+   "das hat echt spaß gemacht",
+   "es hat wirklich spaß gemacht"
+  ],
+  "anywhere": true,
+  "model": "Das hat wirklich Spaß gemacht.",
+  "wrong": [
+   "Das war wirklich spaß.",
+   "Das hat wirklich spaß gemacht."
+  ],
+  "rule": "Spaß is a noun and goes with machen: Das hat Spaß gemacht.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-das-sehe-ich-anders",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "opinion",
+  "teil": "W2",
+  "fn": "forum_disagree",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I see it differently.",
+  "prompt_lang": "en",
+  "hl": "I see it differently",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "das sehe ich anders",
+   "ich sehe das anders",
+   "das sehe ich etwas anders",
+   "ich sehe das etwas anders",
+   "das sehe ich ganz anders"
+  ],
+  "anywhere": true,
+  "model": "Das sehe ich anders.",
+  "wrong": [
+   "Ich sehe das andere.",
+   "Das sehe ich ganz andere."
+  ],
+  "rule": "The fixed phrase is Das sehe ich anders, with anders.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-dass-abhaengt",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "verb-final",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "verb-final",
+  "focus": [
+   "verb-final",
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I think it depends on the company whether that works.",
+  "prompt_lang": "en",
+  "hl": "I think it depends on the company",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich denke dass es von der firma abhängt",
+   "ich denke es hängt von der firma ab",
+   "ich glaube dass es von der firma abhängt",
+   "ich glaube es hängt von der firma ab",
+   "ich finde dass es von der firma abhängt",
+   "ich finde es hängt von der firma ab"
+  ],
+  "anywhere": true,
+  "model": "Ich denke, dass es von der Firma abhängt, ob das funktioniert.",
+  "wrong": [
+   "Ich denke, dass es hängt von der Firma ab, ob das funktioniert.",
+   "Ich denke, dass es abhängig über die Firma, ob das funktioniert."
+  ],
+  "rule": "After dass, the verb goes to the end: …, dass es von der Firma abhängt.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-es-haengt-davon-ab-ob",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "opinion",
+  "teil": "S3",
+  "fn": "forum_weigh",
+  "star": true,
+  "trap": "verb-final",
+  "focus": [
+   "chunk",
+   "verb-final",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "It depends on whether you live in the city.",
+  "prompt_lang": "en",
+  "hl": "It depends on whether you live in the city",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "es hängt davon ab ob man [x] wohnt",
+   "das hängt davon ab ob man [x] wohnt",
+   "es kommt darauf an ob man [x] wohnt",
+   "das kommt darauf an ob man [x] wohnt"
+  ],
+  "anywhere": true,
+  "model": "Es hängt davon ab, ob man in der Stadt wohnt.",
+  "wrong": [
+   "Es ist abhängig, ob man in der Stadt wohnt.",
+   "Es hängt davon ab, ob man wohnt in der Stadt."
+  ],
+  "rule": "The phrase is es hängt davon ab, and after ob the verb goes to the end: ob man in der Stadt wohnt.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-beruf-wie",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "misc",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "For a job like teacher, that is difficult.",
+  "prompt_lang": "en",
+  "hl": "For a job like teacher",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "für einen beruf wie lehrer",
+   "bei einem beruf wie lehrer",
+   "in einem beruf wie lehrer"
+  ],
+  "anywhere": true,
+  "model": "Für einen Beruf wie Lehrer ist das schwierig.",
+  "wrong": [
+   "Für einen Beruf gleich Lehrer ist das schwierig."
+  ],
+  "rule": "Like in an example is wie, not gleich: ein Beruf wie Lehrer.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-natuerlich-ist-es",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "v2",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "v2",
+  "focus": [
+   "v2"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Of course it isn't possible for a teacher to work from home.",
+  "prompt_lang": "en",
+  "hl": "Of course it isn't possible",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "natürlich ist es ([x]) nicht möglich",
+   "natürlich ist das ([x]) nicht möglich",
+   "natürlich kann ein lehrer nicht",
+   "es ist natürlich ([x]) nicht möglich",
+   "das ist natürlich ([x]) nicht möglich",
+   "ein lehrer kann natürlich nicht"
+  ],
+  "anywhere": true,
+  "model": "Natürlich ist es für einen Lehrer nicht möglich, von zu Hause zu arbeiten.",
+  "wrong": [
+   "Natürlich, es ist für einen Lehrer nicht möglich, von zu Hause zu arbeiten.",
+   "Natürlich es ist für einen Lehrer nicht möglich, von zu Hause zu arbeiten."
+  ],
+  "rule": "After Natürlich, the verb comes next, then the subject: Natürlich ist es …",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-man-seinen",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "misc",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "word-choice",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "At home you can plan your day better.",
+  "prompt_lang": "en",
+  "hl": "you can plan your day better",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "kann man seinen tag besser planen",
+   "man kann seinen tag besser planen"
+  ],
+  "anywhere": true,
+  "model": "Zu Hause kann man seinen Tag besser planen.",
+  "wrong": [
+   "Zu Hause kann man ihren Tag besser planen.",
+   "Zu Hause kann man deinen Tag besser planen."
+  ],
+  "rule": "With man the possessive is sein: man plant seinen Tag.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-in-drei-tagen",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "wo-wohin",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "prep-case",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "You can finish the work in three days.",
+  "prompt_lang": "en",
+  "hl": "in three days",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "man kann die arbeit in drei tagen schaffen",
+   "man kann die arbeit in drei tagen machen",
+   "in drei tagen kann man die arbeit schaffen"
+  ],
+  "anywhere": true,
+  "model": "Man kann die Arbeit in drei Tagen schaffen.",
+  "wrong": [
+   "Man kann die Arbeit in drei Tage schaffen."
+  ],
+  "rule": "In with a time span takes the dative, and dative plurals add -n: in drei Tagen.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-am-ende-muss-jedes-team",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "v2",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "v2",
+  "focus": [
+   "v2"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "In the end every team has to decide for itself.",
+  "prompt_lang": "en",
+  "hl": "In the end every team has to decide for itself",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "am ende muss jedes team selbst entscheiden",
+   "am ende muss jedes team selbst eine entscheidung treffen",
+   "am ende muss jedes team selbst die entscheidung treffen",
+   "am ende muss jedes team für sich entscheiden",
+   "jedes team muss am ende [x] entscheiden"
+  ],
+  "anywhere": true,
+  "model": "Am Ende muss jedes Team selbst entscheiden.",
+  "wrong": [
+   "Am Ende, jedes Team muss selbst entscheiden.",
+   "Am Ende, alle Team müssen selbst entscheiden."
+  ],
+  "rule": "After Am Ende, the verb comes next, then the subject: Am Ende muss jedes Team …",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-sehr-geehrte",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "register",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "register"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Dear Ms Wagner, (formal email to your manager)",
+  "prompt_lang": "en",
+  "hl": "Dear Ms Wagner",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "sehr geehrte frau wagner",
+   "liebe frau wagner"
+  ],
+  "anywhere": true,
+  "model": "Sehr geehrte Frau Wagner,",
+  "wrong": [
+   "Frau Wagner,"
+  ],
+  "rule": "A formal email opens with Sehr geehrte Frau … or Sehr geehrter Herr ….",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-dank-fuer-ihre-einladung",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W3",
+  "fn": "f_reference",
+  "star": true,
+  "trap": "cap",
+  "focus": [
+   "chunk",
+   "register",
+   "cap"
+  ],
+  "strict": [
+   "Ihre"
+  ],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Thank you very much for your invitation to the meeting on Thursday. (formal)",
+  "prompt_lang": "en",
+  "hl": "Thank you very much for your invitation to the meeting on Thursday",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "vielen dank für ihre einladung zum treffen am donnerstag",
+   "herzlichen dank für ihre einladung zum treffen am donnerstag",
+   "danke für ihre einladung zum treffen am donnerstag",
+   "vielen dank für die einladung zum treffen am donnerstag"
+  ],
+  "anywhere": true,
+  "model": "Vielen Dank für Ihre Einladung zum Treffen am Donnerstag.",
+  "wrong": [
+   "Vielen Dank für ihre Einladung zum Treffen am Donnerstag.",
+   "Ich bekomme Ihre Einladung zum Treffen am Donnerstag."
+  ],
+  "rule": "To open a formal email, thank them for the invitation, with a capital Ihre: Vielen Dank für Ihre Einladung.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-leider-kann-ich",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "v2",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "v2",
+  "focus": [
+   "v2"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Unfortunately I can't come.",
+  "prompt_lang": "en",
+  "hl": "Unfortunately I can't come",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "leider kann ich nicht kommen",
+   "leider kann ich nicht teilnehmen",
+   "leider kann ich da nicht kommen",
+   "ich kann leider nicht kommen",
+   "ich kann leider nicht teilnehmen"
+  ],
+  "anywhere": true,
+  "model": "Leider kann ich nicht kommen.",
+  "wrong": [
+   "Leider, ich kann nicht kommen.",
+   "Leider ich kann nicht kommen."
+  ],
+  "rule": "After Leider, the verb comes next, then the subject: Leider kann ich nicht kommen.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-weil-termin-habe",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "verb-final",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "verb-final",
+  "focus": [
+   "verb-final",
+   "article"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I can't come because I have an appointment at the dentist.",
+  "prompt_lang": "en",
+  "hl": "because I have an appointment at the dentist",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "weil ich einen termin beim zahnarzt habe",
+   "weil ich beim zahnarzt einen termin habe",
+   "da ich einen termin beim zahnarzt habe",
+   "weil ich einen zahnarzttermin habe",
+   "denn ich habe einen termin beim zahnarzt"
+  ],
+  "anywhere": true,
+  "model": "Ich kann nicht kommen, weil ich einen Termin beim Zahnarzt habe.",
+  "wrong": [
+   "Ich kann nicht kommen, weil ich habe einen Termin beim Zahnarzt.",
+   "Ich kann nicht kommen, weil ich ein Termin beim Zahnarzt habe."
+  ],
+  "rule": "After weil, the verb goes to the end, and Termin is masculine: weil ich einen Termin habe.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-das-tut-mir-leid",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W3",
+  "fn": "f_apologise",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I'm very sorry about that. (formal email)",
+  "prompt_lang": "en",
+  "hl": "I'm very sorry about that",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "das tut mir (sehr) leid",
+   "es tut mir (sehr) leid",
+   "das tut mir wirklich leid",
+   "ich bitte um entschuldigung",
+   "ich möchte mich (dafür) entschuldigen"
+  ],
+  "anywhere": true,
+  "model": "Das tut mir sehr leid.",
+  "wrong": [
+   "Das tut mich sehr leid.",
+   "Es tut mich leid."
+  ],
+  "rule": "When you cancel, always say sorry, and it is mir: Das tut mir sehr leid.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-an-keinem-anderen-tag",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "adj-endings",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "prep-case",
+   "ending"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "I don't have time on any other day this week.",
+  "prompt_lang": "en",
+  "hl": "on any other day",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "an keinem anderen tag",
+   "an einem anderen tag nicht"
+  ],
+  "anywhere": true,
+  "model": "Ich habe diese Woche an keinem anderen Tag Zeit.",
+  "wrong": [
+   "Ich habe diese Woche an keine andere Tag Zeit.",
+   "Ich habe diese Woche an keinen anderen Tag Zeit."
+  ],
+  "rule": "An with a day takes the dative: an keinem anderen Tag.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-koennten-wir-verschieben",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "write",
+  "teil": "W3",
+  "fn": "f_cancel",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "umlaut",
+   "konj2"
+  ],
+  "strict": [
+   "Könnten"
+  ],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Could we move the meeting to Wednesday at 2 pm? (formal)",
+  "prompt_lang": "en",
+  "hl": "Could we move the meeting to Wednesday at 2 pm",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "könnten wir das treffen auf mittwoch um 14 uhr verschieben",
+   "könnten wir das treffen auf mittwoch um zwei uhr verschieben",
+   "könnten wir den termin auf mittwoch um 14 uhr verschieben",
+   "wäre es möglich das treffen auf mittwoch um 14 uhr zu verschieben",
+   "können wir das treffen auf mittwoch um 14 uhr verschieben",
+   "könnten wir das treffen auf mittwoch 14 uhr verschieben"
+  ],
+  "anywhere": true,
+  "model": "Könnten wir das Treffen auf Mittwoch um 14 Uhr verschieben?",
+  "wrong": [
+   "Konnten wir das Treffen auf Mittwoch um 14 Uhr verschieben?",
+   "Könnten wir das Treffen später haben?"
+  ],
+  "rule": "Könnten with ö is the polite could; konnten means could in the past: Könnten wir das Treffen verschieben?",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-mit-freundlichen-gruessen",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "register",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "register"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Kind regards, (end of a formal email)",
+  "prompt_lang": "en",
+  "hl": "Kind regards",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "mit freundlichen grüßen",
+   "freundliche grüße",
+   "mit besten grüßen"
+  ],
+  "anywhere": true,
+  "model": "Mit freundlichen Grüßen",
+  "wrong": [
+   "Danke dir,",
+   "Liebe Grüße"
+  ],
+  "rule": "A formal email ends with Mit freundlichen Grüßen, never with du.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-kuemmere-mich-um",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "S1",
+  "teil": "S1",
+  "fn": "t1_tasks",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I'll take care of the food.",
+  "prompt_lang": "en",
+  "hl": "I'll take care of the food",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich kümmere mich um das essen",
+   "ich kümmere mich ums essen",
+   "um das essen kümmere ich mich",
+   "ich übernehme das essen",
+   "ich mache das essen"
+  ],
+  "anywhere": true,
+  "model": "Ich kümmere mich um das Essen.",
+  "wrong": [
+   "Ich kümmere das Essen.",
+   "Ich würde mein Essen kümmern."
+  ],
+  "rule": "It is sich kümmern um + accusative: Ich kümmere mich um das Essen.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-wer-kuemmert-sich",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "verb-prep",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "Who's taking care of the music?",
+  "prompt_lang": "en",
+  "hl": "Who's taking care of the music",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "wer kümmert sich um die musik",
+   "wer kümmert sich um musik"
+  ],
+  "anywhere": true,
+  "model": "Wer kümmert sich um die Musik?",
+  "wrong": [
+   "Wer kümmert die Musik?",
+   "Wer kümmert sich für die Musik?"
+  ],
+  "rule": "It is sich kümmern um: Wer kümmert sich um die Musik?",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-am-ende-essen-wir",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "v2",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": "v2",
+  "focus": [
+   "v2"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "In the end we'll all eat cake together.",
+  "prompt_lang": "en",
+  "hl": "In the end we'll all eat cake together",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "am ende essen wir alle zusammen kuchen",
+   "am ende essen wir zusammen kuchen",
+   "zum schluss essen wir alle zusammen kuchen",
+   "wir essen am ende ([x]) zusammen kuchen"
+  ],
+  "anywhere": true,
+  "model": "Am Ende essen wir alle zusammen Kuchen.",
+  "wrong": [
+   "Am Ende, wir essen alle zusammen Kuchen.",
+   "Am Ende wir essen alle zusammen Kuchen."
+  ],
+  "rule": "After Am Ende, the verb comes next, then the subject: Am Ende essen wir …",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BG:mine-eine-party",
+  "kind": "grammar",
+  "area": "grammar",
+  "group": "gender-caps",
+  "teil": null,
+  "fn": null,
+  "star": true,
+  "trap": null,
+  "focus": [
+   "article",
+   "prep-case"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": "Say it in German.",
+  "prompt": "We're having a party on Friday.",
+  "prompt_lang": "en",
+  "hl": "We're having a party on Friday",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "wir machen am freitag eine party",
+   "am freitag machen wir eine party",
+   "wir feiern am freitag eine party",
+   "wir machen eine party am freitag"
+  ],
+  "anywhere": true,
+  "model": "Wir machen am Freitag eine Party.",
+  "wrong": [
+   "Wir machen am Freitag ein Party.",
+   "Wir machen ein Freitag ein Party."
+  ],
+  "rule": "Party is feminine, so it is eine Party, and days take am: am Freitag.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-schicke-allen",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "S1",
+  "teil": "S1",
+  "fn": "t1_tasks",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I'll send everyone the list by Friday.",
+  "prompt_lang": "en",
+  "hl": "I'll send everyone the list by Friday",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "ich schicke allen die liste bis freitag",
+   "ich schicke allen bis freitag die liste",
+   "ich schicke die liste bis freitag an alle",
+   "ich schicke euch allen die liste bis freitag",
+   "ich schicke allen die liste bis spätestens freitag"
+  ],
+  "anywhere": true,
+  "model": "Ich schicke allen die Liste bis Freitag.",
+  "wrong": [
+   "Ich sende die Liste jedes bis Freitag.",
+   "Ich schicke jedes die Liste bis Freitag."
+  ],
+  "rule": "Everyone as a receiver is allen: Ich schicke allen die Liste.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-kosten-teilen",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "S1",
+  "teil": "S1",
+  "fn": "t1_suggest",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "Shall we split the cost of the cake?",
+  "prompt_lang": "en",
+  "hl": "Shall we split the cost of the cake",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "sollen wir die kosten für den kuchen teilen",
+   "wollen wir die kosten für den kuchen teilen",
+   "sollen wir uns die kosten für den kuchen teilen",
+   "wir können die kosten für den kuchen teilen"
+  ],
+  "anywhere": true,
+  "model": "Sollen wir die Kosten für den Kuchen teilen?",
+  "wrong": [
+   "Sollen wir split machen für den Kuchen?"
+  ],
+  "rule": "To split costs is die Kosten teilen: Sollen wir die Kosten teilen?",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ },
+ {
+  "id": "BP:mine-sehe-das-etwas-anders",
+  "kind": "phrase",
+  "area": "speaking",
+  "group": "opinion",
+  "teil": "S3",
+  "fn": "forum_disagree",
+  "star": true,
+  "trap": null,
+  "focus": [
+   "chunk",
+   "word-choice"
+  ],
+  "strict": [],
+  "plan": "recall",
+  "task": null,
+  "prompt": "I see that a bit differently. (to your partner)",
+  "prompt_lang": "en",
+  "hl": "I see that a bit differently",
+  "partner": null,
+  "prefill": null,
+  "accept": [
+   "das sehe ich etwas anders",
+   "ich sehe das etwas anders",
+   "das sehe ich ein bisschen anders",
+   "ich sehe das ein bisschen anders"
+  ],
+  "anywhere": true,
+  "model": "Das sehe ich etwas anders.",
+  "wrong": [
+   "Ich sehe das mit etwas anderes.",
+   "Das verstehe ich, und sehe ich das etwas anders."
+  ],
+  "rule": "Keep it short and fixed: Das sehe ich etwas anders.",
+  "src": "mine: Fritz day 1",
+  "chunk": null,
+  "level": "B1"
+ }
+]
