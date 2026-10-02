@@ -215,6 +215,11 @@ def detect(text, model=None):
     for clause in re.split(r"[,.;:!?]", text):
         toks = norm(clause).split()
         for i, t in enumerate(toks):
+            if t == "als":   # only "als + subject + finite verb + more": "als ich habe die Nachricht bekommen"
+                j = subject_end(toks, i + 1)
+                if j is not None and j < len(toks) - 1 and toks[j] in fin and any(r not in fin for r in toks[j + 1:]):
+                    out.add("verb-final")
+                continue
             if t not in SUB_DETECT:
                 continue
             # a finite verb 1-4 words after the subordinator (after a subject or a phrase like "bei dir") that is not
@@ -233,6 +238,11 @@ def detect(text, model=None):
             if len(cl) >= 3 and cl[-1] in PARTICLES and any(c in fin or FINITE_ANY(c) for c in cl[1:-1]):
                 out.add("verb-final")
     for sent in re.split(r"(?<=[.!?])\s+", text.strip()):
+        # "Wer hat Fragen, kann …" (a wer-clause before a comma, not a question): the verb goes to the end
+        head = norm(sent.split(",", 1)[0]).split()
+        if "," in sent and not sent.rstrip().endswith("?") and len(head) >= 3 and head[0] == "wer" \
+                and head[1] in fin and any(r not in fin for r in head[2:]):
+            out.add("verb-final")
         parts = sent.split(",", 1)
         if len(parts) == 2 and norm(parts[0]).split()[:1] and norm(parts[0]).split()[0] in SUB_DETECT \
                 and "oder nicht" not in norm(parts[0]):
@@ -808,7 +818,8 @@ def selftest(ctx):
     assert matches("ich schlage vor dass wir uns am samstag treffen", "ich schlage vor dass wir uns ([x]) treffen", 10)
     assert matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 10)
     assert not matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 6)
-    for w, cls in [("Ich hoffe, dass bei dir ist alles gut.", "verb-final"), ("Ich denke, dass es hängt von der Firma ab.", "verb-final"), ("Das geht nicht, weil ich muss arbeiten.", "verb-final"),
+    for w, cls in [("Ich hoffe, dass bei dir ist alles gut.", "verb-final"), ("Ich war froh, als ich habe die Nachricht bekommen.", "verb-final"),
+                   ("Wer hat Fragen, kann mich anrufen.", "verb-final"), ("Ich denke, dass es hängt von der Firma ab.", "verb-final"), ("Das geht nicht, weil ich muss arbeiten.", "verb-final"),
                    ("Ich glaube, dass das ist gut.", "verb-final"), ("Am Ende, wir machen eine Party.", "v2"),
                    ("Wenn ich Zeit habe, ich lerne.", "inversion")]:
         if cls not in detect(w):
@@ -817,7 +828,8 @@ def selftest(ctx):
     for ok in ["Ich hoffe, dass bei dir alles gut ist.", "Das geht nicht, weil ich arbeiten muss.", "Am Ende machen wir eine Party.",
                "Wenn ich Zeit habe, lerne ich.", "Wir fahren an den Strand, egal ob es regnet oder nicht.",
                "Ich denke, dass es von der Firma abhängt.", "Damit bin ich am Ende meiner Präsentation.",
-               "Ich bin der Meinung, dass Rauchen verboten werden sollte."]:
+               "Ich bin der Meinung, dass Rauchen verboten werden sollte.", "Er ist größer als ich.", "Als Lehrer arbeite ich viel.",
+               "Wer hat Fragen?", "Wer Fragen hat, kann mich anrufen.", "Ich war froh, als ich die Nachricht bekommen habe."]:
         if detect(ok, ok):
             print(f"FAIL detector fires on a right sentence: {ok} {detect(ok, ok)}")
             bad += 1
