@@ -522,7 +522,7 @@
     const newDays = Math.max(1, D8.diff(c.today, D8.add(c.exam, -2)) + 1);
     const rounds = Math.ceil(Math.min(starLeft / newDays, settings().newPerDay) / 4 + dueN / ROUND);   // never more new than the daily budget
     const pace = c.phase === 'after' || c.phase === 'day' ? null : starLeft === 0 ? "You've seen every ★ item. Rounds now are mostly reviews."
-      : `About ${rounds} rounds today (about ${rounds * 4} min) keeps you on pace to see every ★ item by ${D8.label(D8.add(c.exam, -2))}.`;
+      : `About ${rounds} rounds today (about ${rounds * 4} min) keeps you on pace with the new items until ${D8.label(D8.add(c.exam, -2))}.`;
     const today = firstTime
       ? h('div', { class: 'card b1-card' }, h('h2', {}, 'Your first round'),
           h('p', {}, 'Rounds are 12 questions, about 4 minutes. Type the German. The timer is a guide: late answers still count, just a little less. New items have no timer: type it if you know it, or tap Show me.'),
