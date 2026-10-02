@@ -212,14 +212,34 @@
     return out;
   }
   // the exam set for readiness: everything seen + the next items he'd meet by exam−2 at the daily quota
+  // The learnable exam set (review M10): seen items + what the daily new-item budget can still introduce by exam−2 in the
+  // composer's order (★ and traps first), with a floor per area of its share of that budget (so Exam words, the last tier,
+  // isn't just "what's seen"). Every
+  // area gets a fixed denominator, so one new item moves its bar by about 1/n. All ★/trap items would not fit the budget
+  // (about 615 vs 280 at 40 a day) and would cap the bar near 45 %. Frozen for the day (recomputed when the pool changes).
+  let examFrozen = null;
   function examSet() {
     const c = ctxNow();
     if (c.phase === 'after') return null;
-    const daysLeft = Math.max(0, D8.diff(c.today, D8.add(c.exam, -2)));
-    const open = c.phase === 'week' || c.phase === 'lastNew';
-    const left = open ? { p: newLeftOf('p') + quota('p') * daysLeft, g: newLeftOf('g') + quota('g') * daysLeft } : { p: 0, g: 0 };
-    const set = new Set(DATA.pool.filter(it => !unseen(it)).map(it => it.id));
-    for (const it of nextNew(DATA.pool, left.p + left.g, left)) set.add(it.id);
+    const key = `${c.today}|${DATA.pool.length}`;
+    if (!examFrozen || examFrozen.key !== key) {
+      const daysLeft = Math.max(0, D8.diff(c.today, D8.add(c.exam, -2)));
+      const open = c.phase === 'week' || c.phase === 'lastNew';
+      const d = dayStore(), shown = d.newBy || {};
+      const dayQ = st => open ? quota(st) * (daysLeft + 1) - (shown[st] || 0) : 0;   // today's remaining budget + the days to exam−2
+      const left = { p: Math.max(0, dayQ('p')), g: Math.max(0, dayQ('g')) };
+      // the composer's own next items under the budget, plus a floor per area (its share of the budget by unseen items)
+      const ids = new Set(nextNew(DATA.pool, left.p + left.g, left).map(it => it.id));
+      const fresh = newOrder(DATA.pool), total = left.p + left.g;
+      for (const a of ['speaking', 'reading', 'grammar', 'words']) {
+        const un = fresh.filter(it => it.area === a), floor = fresh.length ? Math.round(total * un.length / fresh.length) : 0;
+        let have = un.filter(it => ids.has(it.id)).length;
+        for (const it of un) { if (have >= floor) break; if (!ids.has(it.id)) { ids.add(it.id); have++; } }
+      }
+      examFrozen = { key, ids };
+    }
+    const set = new Set(examFrozen.ids);
+    for (const it of DATA.pool) if (!unseen(it)) set.add(it.id);
     return set;
   }
   // the day's trap set: 2 per class (verb-final, v2, fuer-vor, cap, neuter), 2 of them from his own mistakes
@@ -500,7 +520,7 @@
     const set = examSet();
     const starLeft = DATA.pool.filter(it => (it.star || it.trap) && unseen(it) && (!set || set.has(it.id))).length;
     const newDays = Math.max(1, D8.diff(c.today, D8.add(c.exam, -2)) + 1);
-    const rounds = Math.ceil((starLeft / newDays) / 4 + dueN / ROUND);
+    const rounds = Math.ceil(Math.min(starLeft / newDays, settings().newPerDay) / 4 + dueN / ROUND);   // never more new than the daily budget
     const pace = c.phase === 'after' || c.phase === 'day' ? null : starLeft === 0 ? "You've seen every ★ item. Rounds now are mostly reviews."
       : `About ${rounds} rounds today (about ${rounds * 4} min) keeps you on pace to see every ★ item by ${D8.label(D8.add(c.exam, -2))}.`;
     const today = firstTime

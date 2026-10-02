@@ -95,6 +95,55 @@ Scheduling is SM-2 style per language per card, stored in localStorage under `do
 
 Scenario writing with a built-in key-word check and an optional "Check with Claude" button, which needs an Anthropic API key in Settings. The key is stored in this browser (`doors.apikey`) and sent only to api.anthropic.com. A rating in Write also updates the Drill schedule for that situation.
 
+## B1 trainer (`app.html#b1`)
+
+Goethe B1 exam practice in German: typed rounds with a soft timer, FSRS scheduling capped at the exam date, sticky-error hints, Situations (topic match), Exam words, Say it aloud and the Teil 2 talk.
+
+**Files**
+
+- `b1.js`: data, pools, round composer, grading glue, hub, area pages, done screen, settings section.
+- `b1round.js`: the round screen (docked input, feedback states, retype, reinsertion).
+- `b1more.js`: Exam words, Say it aloud with the mic check, and the Teil 2 talk.
+- Pure modules (no DOM), tested in node:
+  - `match.js`: matching.
+  - `detect.js`: trap detectors.
+  - `speech.js`: transcript cleanup and spoken grading.
+  - `fsrs.js`: scheduling.
+  - `b1day.js`: local day with a 04:00 cutoff, exam phases.
+  - `timer.js`: time limits.
+  - `b1ready.js`: readiness.
+- `b1.css`: styles. `sw.js`: offline service worker.
+- `data/b1/src/*.json`: authored items. Edit these, never the built files.
+- `data/b1/`: built runtime data: `items.json`, `annot.json`, `grammar.json`, `bank.json`, `nouns.json`, `frames.json`, `wordmap.json`. `plan.json` is the hand-edited plan (topics, traps, functions, scenarios).
+
+Exam words are not in this repo. They are read at runtime from the private `pakrasi/b1-exam` repo with the GitHub token that the b1-exam app stores in this browser (`gh:token`).
+
+**Build and validate**
+
+```
+python3 scripts/validate_b1.py data/b1/src/<file>.json   # one content file
+python3 scripts/validate_b1.py --all                     # every src file + coverage report
+python3 scripts/build_b1.py                              # src → data/b1/*.json (stops on any error)
+```
+
+**Gates** (all must pass before a deploy; the server runs on :8430 with `python3 -m http.server 8430`)
+
+```
+node scripts/test_match.mjs      # matcher; every B1 model matches and every wrong answer fails
+node scripts/test_b1.mjs         # day, FSRS, timer, detectors (JS = Python, 0 fires on right sentences), speech, readiness
+bash scripts/b1_regress.sh       # Igloo Test and Drill unchanged (headless WebKit, baseline in scripts/baselines/ui.json)
+```
+
+Then do a full round on `http://localhost:8430/app.html?b1auto=40#b1/round` (localhost only: it answers 40 items, every fifth one wrong) and check that there are no console errors.
+
+**Deploy**
+
+Run `bash scripts/bump_v.sh` before every deploy. It sets one version everywhere: `V` in `site.js`, every `?v=` in `app.html`/`index.html`, `sw.js` and `version.json`. Phones then pick up the new files from the B1 hub. Without the bump they keep the cached data.
+
+**Stored**
+
+`doors.b1.*`: `fsrs.v1`, `round.v1`, `day.v1`, `days.v1`, `settings.v1`, `words.v1` (exam-word cache), `cal.v1` (mic check), `teil2.v1`, `variants.v1`, `backup.v1`. B1 reads Igloo's `doors.srs.v1`/`doors.know.v1` once to seed itself and never writes them.
+
 ## Saved in the browser
 
 `doors.srs.v1` (reviews), `doors.know.v1` (Test results), `doors.progress.v1` (writing), `doors.prefs.v2` (languages, level, theme, view settings), `doors.apikey`, `doors.days.v1`, `doors.today.v1`, `doors.prismSeen`. Settings has Export progress (JSON) and Delete all progress, which asks first.
