@@ -10,7 +10,8 @@ Entry: {"ENG_CHUNK_0301": {"core_en": "how do you know", "accept": ["woher kenns
 Pattern rules (match.js implements the same):
   - case and punctuation are ignored; ae/oe/ue/ss == ä/ö/ü/ß
   - "(word word)" = optional words
-  - "[anything]" = a slot: 1 to 6 words
+  - "[anything]" = a slot: 1 to 6 words (slot_max; the B1 trainer uses 10)
+  - "([x])" = an optional slot: 0 to slot_max words (B1 items only; no accept_<lang>.json pattern uses it)
   - a pattern matches if it appears anywhere in the answer (the answer may add context around it)
 """
 import json, re, sys, unicodedata
@@ -26,31 +27,54 @@ def norm(s):
     return " ".join(s.replace("’", "'").split())
 
 
-def to_regex(pattern):
+SLOT_OPT = "\x00"
+
+
+def to_regex(pattern, slot_max=6, anchored=False, groups=False):
+    """Compile an accept pattern. anchored: the whole answer must match. groups: slots become named groups s0, s1, ..."""
     p = norm(pattern)
     out = []
-    toks = re.findall(r"\[[^\]]*\]|\([^)]*\)|[^\s\[\]()]+", p)
+    toks = re.findall(r"\(\[[^\]]*\]\)|\[[^\]]*\]|\([^)]*\)|[^\s\[\]()]+", p)
+    slot = r"\S+(?: \S+){0,%d}" % (slot_max - 1)
+    kinds = []
     for tok in toks:
-        if tok.startswith("["):
-            out.append(r"(?:\S+(?: \S+){0,5})")
+        g = f"?P<s{len([k for k in kinds if k != 'w'])}>" if groups else "?:"
+        if tok.startswith("(["):
+            out.append(f"({g}{slot})"); kinds.append("o")
+        elif tok.startswith("["):
+            out.append(f"({g}{slot})"); kinds.append("s")
         elif tok.startswith("("):
             inner = " ".join(re.escape(w) for w in tok[1:-1].split())
-            out.append(f"(?:{inner})?" if inner else "")
+            out.append(f"(?:{inner})?" if inner else ""); kinds.append("w")
         else:
-            out.append(re.escape(tok))
+            out.append(re.escape(tok)); kinds.append("w")
     # optional groups may be absent, so spacing between fixed parts is flexible;
-    # a slot must be separated from its neighbours by whitespace (no half-word slots)
-    parts = [(x, tok.startswith("[")) for x, tok in zip(out, toks) if x]
-    body = ""
-    for i, (x, is_slot) in enumerate(parts):
-        if i:
-            body += r"\s+" if (is_slot or parts[i - 1][1]) else r"\s*"
+    # a slot must be separated from its neighbours by whitespace (no half-word slots).
+    # An optional slot "([x])" is folded into the separator around it: " words " or the plain separator.
+    parts = [(x, k) for x, k in zip(out, kinds) if x]
+    body, pending = "", None
+    for i, (x, k) in enumerate(parts):
+        if k == "o":
+            pending = x if pending is None else pending[:-1] + r"(?:\s+" + x + "))"  # two optional slots in a row
+            continue
+        if body:
+            prev_slot = parts_kind_last == "s"
+            sep = r"\s+" if (k == "s" or prev_slot) else r"\s*"
+            body += sep if pending is None else r"(?:\s+" + pending + r"\s+|" + sep + ")"
+        elif pending is not None:
+            body += r"(?:" + pending + r"\s+)?"
         body += x
+        parts_kind_last, pending = k, None
+    if pending is not None:
+        body += r"(?:\s+" + pending + ")?"
+    if anchored:
+        return re.compile(r"^\s*" + body + r"\s*$")
     return re.compile(r"(?:^|\s)" + body + r"(?:\s|$)")
 
 
-def matches(answer, pattern):
-    return bool(to_regex(pattern).search(" " + norm(answer) + " "))
+def matches(answer, pattern, slot_max=6, anchored=False):
+    a = norm(answer)
+    return bool(to_regex(pattern, slot_max, anchored).search(a if anchored else " " + a + " "))
 
 
 def load(lang):
