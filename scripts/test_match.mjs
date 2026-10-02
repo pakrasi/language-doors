@@ -274,6 +274,10 @@ assert.equal(gapFill('___ kommst du? (wann)', 'wann').text, 'Wann kommst du?', '
   u = check('Prüfung habe ich keine.', ['prüfung'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss, [], 'first word exempt');
   u = check('Ich Habe Angst', ['ich habe angst'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['Habe'], 'a capital on a verb');
   u = check('Wir machen eine party am Freitag', ['wir machen eine [x] am freitag'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['party'], 'nouns in slots');
+  // typo / umlaut fixes are shown in the reference's case
+  u = check('Meine Prasentation besteht aus vier Teilen.', ['meine präsentation besteht aus vier teilen'], { ...B, caseRef: new Map([['praesentation', 'Präsentation']]) });
+  assert.deepEqual(u.umlautMiss.map(t => t.expected), ['Präsentation']);
+  u = check('Konnen wir das machen?', ['können wir das machen'], { ...B, caseRef: new Map() }); assert.deepEqual(u.umlautMiss.map(t => t.expected), ['Können'], 'capital where he typed one');
   // recht/Recht haben, recht/Recht geben: both spellings are right; das Recht auf … still needs the capital
   const rref = new Map([['recht', 'recht'], ['da', 'da'], ['hast', 'hast'], ['du', 'du']]);
   for (const s of ['Da hast du Recht.', 'Da hast du recht.', 'Da gebe ich dir Recht.', 'Da gebe ich dir recht.', 'Ich habe ja Recht.'])

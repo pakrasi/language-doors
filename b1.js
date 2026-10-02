@@ -640,7 +640,8 @@
     const fixedLast = last && !last.first && last.ok;
     const after = readiness(), before = round.before || { recall: 0, areas: {} };
     const moved = Object.entries(after.areas).map(([a, x]) => [a, Math.round(100 * x.recall) - Math.round(100 * (before.areas[a] || 0))]).filter(([, d]) => d !== 0);
-    const fixed = [...new Set(round.results.filter(r => !r.first && r.ok).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
+    const missed = new Set(round.results.filter(r => r.first && !r.ok).map(r => r.id));   // a new item's second showing is not a fix
+    const fixed = [...new Set(round.results.filter(r => !r.first && r.ok && missed.has(r.id)).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
     const news = [...new Set(round.results.filter(r => r.isNew).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
     const back = [...new Set(round.results.filter(r => r.first && !r.ok).map(r => r.id))].map(id => DATA.byId.get(id)).filter(Boolean);
     const short = it => it.model || it.prompt;

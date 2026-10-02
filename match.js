@@ -366,7 +366,12 @@
       res.typos = [];
       for (const s of best.steps) (s.cs || []).forEach((c, j) => {
         if (!c.cost) return;
-        const t = toks[c.ti], miss = { typed: t.raw, expected: c.a.word, start: t.start, end: t.end };
+        // the fix in its written case: the reference's capital (Präsentation), or a capital where he typed one
+        const t = toks[c.ti];
+        const ref = opts.caseRef && typeof opts.caseRef.get === 'function' ? opts.caseRef.get(c.a.n) : null;
+        let expected = ref || c.a.word;
+        if (/^\p{Lu}/u.test(t.raw)) expected = expected.charAt(0).toUpperCase() + expected.slice(1);
+        const miss = { typed: t.raw, expected, start: t.start, end: t.end };
         (c.umlaut ? res.umlautMiss : res.typos).push(miss);
       });
       if (strictCase && caseDiffers(p, best)) { res.caseMiss = true; return res; }
