@@ -13,7 +13,7 @@
   const plural = (n, one, many = one + 's') => `${n} ${n === 1 ? one : many}`;
   const K = { fsrs: 'doors.b1.fsrs.v1', round: 'doors.b1.round.v1', day: 'doors.b1.day.v1', days: 'doors.b1.days.v1', settings: 'doors.b1.settings.v1',
     words: 'doors.b1.words.v1', variants: 'doors.b1.variants.v1', backup: 'doors.b1.backup.v1', seeded: 'doors.b1.seeded', firstRun: 'doors.b1.firstRun' };
-  const AREA_NAME = { speaking: 'Sprechen phrases', reading: 'Lesen phrases', grammar: 'Grammar', words: 'Words from your mock exams' };
+  const AREA_NAME = { speaking: 'Sprechen phrases', reading: 'Lesen phrases', grammar: 'Grammar', words: 'Exam words' };
   const AREA_ROUTE = { speaking: 'sprechen', reading: 'lesen', grammar: 'grammar', words: 'words' };
   const ROUTE_AREA = Object.fromEntries(Object.entries(AREA_ROUTE).map(([a, r]) => [r, a]));
   const ROUND = 12;
@@ -489,7 +489,7 @@
           h('p', { class: 'muted small', id: 'b1-offline-ready', hidden: !navigator.serviceWorker?.controller }, 'Saved for offline use.'))
       : h('div', { class: 'card b1-card' },
           h('button', { type: 'button', class: 'b1-bar-head', 'aria-expanded': 'false', onclick: e => { explain.hidden = !explain.hidden; e.currentTarget.setAttribute('aria-expanded', String(!explain.hidden)); } },
-            h('span', {}, label), h('b', { class: 'mono' }, firstAnswers < 30 ? '–' : pct(rd.overall.recall))),
+            h('span', {}, label), h('b', { class: 'mono' }, pct(rd.overall.recall))),
           bar(rd.overall.recall, rd.overall.coverage, 'big'), explain,
           h('p', { class: 'b1-counts' }, h('b', {}, `${dueN} due`), h('span', { class: 'muted' }, ` · ${newN} new left today`)),
           firstAnswers < 30 ? h('p', { class: 'muted small' }, 'The estimate settles after about 30 answers.') : null,
@@ -503,11 +503,16 @@
     // areas
     const areaRows = ['speaking', 'grammar', 'reading', 'words'].map(a => {
       const x = rd.areas[a];
-      if (a === 'words' && !x) return window.B1More?.wordsRow?.(api) || null;
-      if (!x) return null;
+      if (a === 'words' && !x) {
+        const row = window.B1More?.wordsRow?.(api);
+        if (row) return row;
+        return h('a', { class: 'b1-area', href: '#b1/words' },
+          h('span', { class: 'b1-area-top' }, h('span', {}, AREA_NAME.words), h('span', { class: 'mono small' }, 'not on this device yet')),
+          h('span', { class: 'muted small' }, 'Open the B1 exam app on this device once.'), bar(0, 0));
+      }
       return h('a', { class: 'b1-area', href: '#b1/' + AREA_ROUTE[a] },
-        h('span', { class: 'b1-area-top' }, h('span', {}, AREA_NAME[a]), h('span', { class: 'mono small' }, x.seen ? `${pct(x.recall)} · ${x.due} due` : 'not started')),
-        bar(x.recall, x.coverage));
+        h('span', { class: 'b1-area-top' }, h('span', {}, AREA_NAME[a]), h('span', { class: 'mono small' }, x && x.seen ? `${pct(x.recall)} · ${x.due} due` : '0 % · not started')),
+        bar(x ? x.recall : 0, x ? x.coverage : 0));
     });
     const missedN = compose({ missed: true, size: 99 }).length;
     const fc = RD.forecast(store, c.today, 8);
@@ -571,6 +576,14 @@
       grammar: 'Ranked by how much each topic counts in Sprechen and Schreiben. "Trap" marks your five sticky errors.' }[area] || '';
     if (area === 'grammar') return drawGrammar(el, rd);
     if (area === 'words' && window.B1More?.drawWords) return B1More.drawWords(el, api);
+    if (area === 'words') {   // until the words module loads: how to get them onto this device
+      rep(el, h('section', { class: 'b1-wrap' }, h('a', { class: 'b1-back', href: '#b1' }, '← B1'),
+        h('header', { class: 'section' }, h('h1', { tabindex: -1 }, AREA_NAME.words),
+          h('p', { class: 'muted' }, 'Exam words come from your B1 exam app. Open it in this browser once and connect GitHub there (Settings → Remote). Then come back here.')),
+        h('a', { class: 'btn', href: '../b1-exam/app/' }, 'Open the B1 exam app')));
+      el.querySelector('h1')?.focus({ preventScroll: true });
+      return;
+    }
     const groups = (DATA.plan.groups[area] || []).map(g => {
       const gx = rd.groups[area + '/' + g.id]; if (!gx) return null;
       return h('div', { class: 'b1-sub' }, h('span', { class: 'b1-area-top' }, h('span', {}, g.name), h('span', { class: 'mono small' }, `${pct(gx.recall)} · ${gx.due} due`)), bar(gx.recall, gx.coverage));

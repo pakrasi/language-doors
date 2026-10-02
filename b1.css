@@ -110,3 +110,5 @@ body.b1-in-round .site-bar,body.b1-in-round .pick-row{display:none}
 @keyframes b1shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 @media (prefers-reduced-motion:reduce){.b1-input.shake{animation:none;outline:2px solid var(--bad)}}
 .b1-claude{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+/* headings focused by script (route changes): keep focus for screen readers, no box */
+.b1-wrap [tabindex="-1"]:focus,.b1-wrap [tabindex="-1"]:focus-visible{outline:none}   /* WebKit counts focus after typing as focus-visible */
