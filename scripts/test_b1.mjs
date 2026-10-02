@@ -125,7 +125,14 @@ assert.equal(FS.rate({ ok: true, ms: 90000, limit: null }), 3, 'untimed new item
     ['Das geht leider nicht, weil ich muss arbeiten.', ''], ['Ich hoffe, dass bei dir ist alles gut.', ''], ['Ich denke, dass es hängt von der Firma ab.', ''],
     ['Am Ende, wir machen eine Party.', ''], ['Leider, ich habe einen Termin.', ''], ['Wenn ich Zeit habe, ich lerne.', ''],
     ['Ich war froh, als ich habe die Nachricht bekommen.', ''], ['Wer hat Fragen, kann mich anrufen.', ''], ['Wer hat Fragen?', ''], ['Er ist größer als ich.', ''],
+    ['Wenn ich Sie richtig verstehe, meinen Sie die Kosten?', ''], ['Wir könnten grillen, was meinst du?', ''], ['Natürlich, das stimmt.', ''],
+    ['Mich würde interessieren, wie sieht deine Familie das?', ''], ['Mich würde interessieren, wie deine Familie das sieht.', ''], ['Tatsächlich ich habe keine Zeit.', ''],
+    ['Einerseits Online-Lernen ist praktisch.', ''], ['Am Ende der Woche war es schön.', ''], ['Heute Abend gehe ich ins Kino.', ''], ['Ich weiß nicht, wie lange du arbeitest.', ''],
   ];
+  const mustNot = ['Wenn ich Sie richtig verstehe, meinen Sie die Kosten?', 'Wir könnten grillen, was meinst du?', 'Natürlich, das stimmt.', 'Mich würde interessieren, wie deine Familie das sieht.',
+    'Am Ende der Woche war es schön.', 'Heute Abend gehe ich ins Kino.', 'Ich weiß nicht, wie lange du arbeitest.', 'Was meinst du damit?', 'Wer hat Fragen?'];
+  for (const m of mustNot) assert.deepEqual(Det.classes(m, null), [], `must not fire: ${m}`);
+  const nModels = cases.length;
   cases.push(...fixed);
   const py = `import json,sys\nsys.path.insert(0, ${JSON.stringify(path.join(ROOT, 'scripts'))})\nfrom validate_b1 import detect\nprint(json.dumps([sorted(detect(a, m or None)) for a, m in json.load(sys.stdin)]))`;
   const out = spawnSync('python3', ['-c', py], { input: JSON.stringify(cases), encoding: 'utf8', maxBuffer: 1 << 26 });
@@ -135,6 +142,9 @@ assert.equal(FS.rate({ ok: true, ms: 90000, limit: null }), 3, 'untimed new item
   assert.deepEqual(bad.slice(0, 5), [], 'detect.js and validate_b1.detect disagree');
   const fires = cases.slice(0, nRight).filter(([a, m]) => Det.classes(a, m).length);
   assert.deepEqual(fires.slice(0, 5), [], 'detectors fire on right Igloo sentences');
+  const modelFires = items.flatMap(it => (it.kind === 'reply' ? it.moves.map(m => m.model) : [it.model]).filter(m => Det.classes(m, m).length).map(m => `${it.id}: ${m}`));
+  assert.deepEqual(modelFires.slice(0, 5), [], 'detectors fire on B1 models');
+  void nModels;
   // run(): hints and the item-level classes
   let d = Det.run('Das geht leider nicht, weil ich muss arbeiten.', { model: 'Das geht leider nicht, weil ich arbeiten muss.' });
   assert.equal(d.cls, 'verb-final'); assert.equal(d.hint, 'Check where the verb goes after *weil*.');

@@ -20,10 +20,19 @@
   const PARTICLES = set('ab an auf aus ein mit vor zu zurück weg los fest teil statt vorbei hin her nach');
   const PARTS_BY_LEN = [...PARTICLES].sort((a, b) => b.length - a.length);
   // plan.json traps[v2].fronted, longest first (test_b1.mjs checks the two lists are the same)
-  let FRONTED = `auf der anderen seite|in meinem heimatland|meiner meinung nach|auf der einen seite|aus diesem grund|vor zwei jahren|am wochenende|schließlich|am anfang|am samstag|außerdem|im sommer|inzwischen|natürlich|vielleicht|zum schluss|am ende|danach|deshalb|deswegen|seitdem|trotzdem|bei uns|gestern|zuerst|zuletzt|früher|leider|morgen|darum|heute|jetzt|dann`
+  let FRONTED = `auf der anderen seite|in meinem heimatland|meiner meinung nach|auf der einen seite|aus diesem grund|vor zwei jahren|am wochenende|normalerweise|nächste woche|letztes jahr|letzte woche|andererseits|schließlich|zum schluss|tatsächlich|vielleicht|inzwischen|am samstag|am sonntag|am freitag|eigentlich|einerseits|allerdings|am anfang|natürlich|am montag|im sommer|im winter|zum glück|im moment|deswegen|trotzdem|außerdem|manchmal|meistens|am ende|deshalb|zuletzt|gestern|bei uns|seitdem|zurzeit|dagegen|leider|danach|zuerst|morgen|früher|darum|heute|jetzt|dafür|sonst|dann|oft`
     .split('|').map(norm).sort((a, b) => b.length - a.length);
-  const RAW_FRONT = new Map();
-  const finiteAny = w => /^[a-z]{2,}(e|st|t|en|n)$/.test(w) && !/(ung|heit|keit|lein)$/.test(w);
+  const COMMA_OK = new Set(['natuerlich', 'vielleicht', 'allerdings']);   // plan.json traps[v2].comma_ok
+  const NONVERB = set(`der die das den dem des ein eine einen einem einer eines mein meine meinen meinem dein deine sein seine
+    ihr ihre unser unsere euer eure kein keine keinen dieser diese dieses diesen jede jeder jedes jeden alle viele manche
+    einige beide ich du er sie es wir man mich dich sich uns euch ihnen ihm ihn mir dir an auf aus bei mit nach von vor zu
+    in um über unter für gegen ohne durch nicht auch noch schon sehr gern gerne ganz mehr wieder immer oben unten heute
+    morgen gestern hier dort dann denn aber oder und sondern`);
+  const TIME_NOUNS = set('abend morgen nachmittag mittag vormittag nacht wochenende anfang ende jahr woche monat');
+  const WH = set('wie warum wo wann was wer wohin woher womit wofür worüber worauf wovon welche welcher welches');
+  const WH_FRAME = /\b(interessier\w*|wissen|weiss|weisst|frage|fragen|fragt|sag|sagen|sagt|erklaer\w*|verstehe|verstehen|ahnung|unklar|sicher|ueberlegen|zeig\w*)\b/;
+  const finiteAny = w => !NONVERB.has(w) && /^[a-z]{2,}(e|st|t|en|n)$/.test(w) && !/(ung|heit|keit|lein)$/.test(w);
+  const isFin = (w, fin) => fin.has(w) || finiteAny(w);
 
   function clauseVerbs(model) {
     const out = new Set();
@@ -39,6 +48,7 @@
   }
   function subjectEnd(toks, j, fin) {
     if (j >= toks.length) return null;
+    if (DET.has(toks[j]) && j + 1 < toks.length && PRON.has(toks[j + 1])) return null;   // "meinen Sie …": a verb
     if (DET.has(toks[j]) && j + 1 < toks.length && !fin.has(toks[j + 1])) return j + 2;
     if (PRON.has(toks[j]) || DET.has(toks[j])) return j + 1;
     return null;
@@ -47,8 +57,13 @@
   function order(text, model) {
     const out = [];
     const fin = new Set([...FINITE, ...clauseVerbs(model)]);
-    for (const clause of String(text).split(/[,.;:!?]/)) {
-      const toks = norm(clause).split(' ').filter(Boolean);
+    const pieces = String(text).split(/([,.;:!?])/);
+    for (let k = 0; k < pieces.length; k += 2) {
+      const toks = norm(pieces[k]).split(' ').filter(Boolean);
+      if (k && pieces[k - 1] === ',' && toks.length >= 3 && WH.has(toks[0]) && WH_FRAME.test(norm(k >= 2 ? pieces[k - 2] : ''))) {
+        // "…, wie sieht deine Familie das": the verb right after the question word, then a subject, verb not last
+        if (isFin(toks[1], fin) && (PRON.has(toks[2]) || DET.has(toks[2])) && !isFin(toks[toks.length - 1], fin)) out.push({ cls: 'verb-final', word: toks[0] });
+      }
       toks.forEach((t, i) => {
         if (t === 'als') {   // only "als + subject + finite verb + more": "als ich habe die Nachricht bekommen"
           const j = subjectEnd(toks, i + 1, fin);
@@ -63,7 +78,7 @@
           if (fin.has(toks[j]) && !['oder', 'und', 'aber'].includes(rest[0]) && rest.some(r => !fin.has(r))) { out.push({ cls: 'verb-final', word: t }); return; }
         }
         const cl = toks.slice(i + 1);
-        if (cl.length >= 3 && PARTICLES.has(cl[cl.length - 1]) && cl.slice(1, -1).some(c => fin.has(c) || finiteAny(c))) out.push({ cls: 'verb-final', word: t });
+        if (cl.length >= 3 && PARTICLES.has(cl[cl.length - 1]) && cl.slice(1, -1).some(c => isFin(c, fin))) out.push({ cls: 'verb-final', word: t });
       });
     }
     for (const sent of String(text).trim().split(/(?<=[.!?])\s+/)) {
@@ -71,19 +86,23 @@
       if (k < 0) continue;
       const hd = norm(sent.slice(0, k)).split(' ').filter(Boolean);   // "Wer hat Fragen, kann …" (not a question)
       if (!/\?\s*$/.test(sent) && hd.length >= 3 && hd[0] === 'wer' && fin.has(hd[1]) && hd.slice(2).some(r => !fin.has(r))) out.push({ cls: 'verb-final', word: 'wer' });
-      const head = norm(sent.slice(0, k)).split(' ');
-      if (!SUB.has(head[0]) || norm(sent.slice(0, k)).includes('oder nicht')) continue;
+      if (!SUB.has(hd[0]) || norm(sent.slice(0, k)).includes('oder nicht')) continue;
       const rest = norm(sent.slice(k + 1)).split(' ').filter(Boolean);
       const j = subjectEnd(rest, 0, fin);
-      if (j != null && j < rest.length && (fin.has(rest[j]) || finiteAny(rest[j]))) out.push({ cls: 'inversion', word: head[0] });
+      if (j != null && j < rest.length && isFin(rest[j], fin)) out.push({ cls: 'inversion', word: hd[0] });
     }
     for (const sent of String(text).trim().split(/(?<=[.!?])\s+/)) {
       const n = norm(sent);
       const f = FRONTED.find(f => n.startsWith(f + ' '));
       if (!f) continue;
+      const nf = f.split(' ').length;
+      if (COMMA_OK.has(f) && new RegExp(`^\\s*\\S+(\\s+\\S+){${nf - 1}}\\s*,`).test(sent)) continue;   // "Natürlich, das stimmt."
       const rest = n.slice(f.length).split(' ').filter(Boolean);
-      const j = subjectEnd(rest, 0, fin);
-      if (j != null && j < rest.length && (fin.has(rest[j]) || finiteAny(rest[j]))) out.push({ cls: 'v2', word: sent.trim().split(/[\s,]+/).slice(0, f.split(' ').length).join(' ') });
+      const raw = (sent.match(/[\p{L}\p{N}_'-]+/gu) || []).slice(nf);
+      let j = subjectEnd(rest, 0, fin);
+      if (j == null && raw.length && /^\p{Lu}/u.test(raw[0]) && rest.length && !TIME_NOUNS.has(rest[0])) j = 1;   // "Einerseits Online-Lernen ist …"
+      if (j != null && j < rest.length && isFin(rest[j], fin) && (PRON.has(rest[0]) || !(j + 1 < rest.length && PRON.has(rest[j + 1]))))
+        out.push({ cls: 'v2', word: sent.trim().split(/[\s,]+/).slice(0, nf).join(' ') });
     }
     return out;
   }
@@ -134,7 +153,6 @@
     return null;
   }
   const api = { run, classes, norm, setFronted(list) { FRONTED = list.map(norm).sort((a, b) => b.length - a.length); }, get FRONTED() { return FRONTED; } };
-  void RAW_FRONT;
   root.Detect = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

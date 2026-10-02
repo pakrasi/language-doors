@@ -150,6 +150,9 @@ def clause_end_error(p):
     toks = pat_tokens(p)
     sub_at = [i for i, t in enumerate(toks) if (t if not t.startswith("(") else t[1:-1]).split() and
               any(w in SUBORD for w in (t if not t.startswith("(") else t[1:-1]).split())]
+    # "Was meinst du damit": damit at the end or before a finite verb is an adverb; "wer lädt …": a question word
+    sub_at = [i for i in sub_at if not (toks[i] == "damit" and (i == len(toks) - 1 or toks[i + 1] in FINITE))
+              and not (toks[i] == "wer" and i == 0 and len(toks) > 1 and not toks[1].startswith(("(", "[")))]
     if not sub_at:
         return None
     last = toks[-1]
@@ -161,7 +164,7 @@ def clause_end_error(p):
         return "ends with an optional group; end with the clause verb as a fixed word"
     if sub_at[-1] == len(toks) - 1:
         return f"stops at {last!r}"
-    if last in NOT_VERB_END:
+    if last in NOT_VERB_END and last not in PARTICLES:
         return f"ends with {last!r}, which is not the clause verb"
     return None
 
@@ -176,6 +179,17 @@ PRON = set(norm("ich du er sie es wir ihr man das dies jemand niemand").split())
 DET = set(norm("der die das den dem des ein eine einen einem einer mein meine meinen dein deine sein seine ihr ihre unser unsere euer eure kein keine dieser diese dieses jede jeder jedes jeden alle viele manche einige beide meisten wenige").split())
 SUB_DETECT = SUBORD - {"als", "bis", "seit", "wer"}
 FRONTED = None
+COMMA_OK = None
+TIME_NOUNS = set(norm("abend morgen nachmittag mittag vormittag nacht wochenende anfang ende jahr woche monat").split())
+WH = set(norm("wie warum wo wann was wer wohin woher womit wofür worüber worauf wovon welche welcher welches").split())
+# a main clause that introduces an indirect question: "Mich würde interessieren, wie …", "Ich weiß nicht, wo …"
+WH_FRAME = re.compile(r"\b(interessier\w*|wissen|weiss|weisst|weiß|weißt|frage|fragen|fragt|sag|sagen|sagt|erklaer\w*|erklär\w*|"
+                      r"verstehe|verstehen|ahnung|unklar|sicher|ueberlegen|überlegen|zeig\w*)\b")
+NONVERB = set(norm("""der die das den dem des ein eine einen einem einer eines mein meine meinen meinem dein deine sein seine
+    ihr ihre unser unsere euer eure kein keine keinen dieser diese dieses diesen jede jeder jedes jeden alle viele manche
+    einige beide ich du er sie es wir man mich dich sich uns euch ihnen ihm ihn mir dir an auf aus bei mit nach von vor zu
+    in um über unter für gegen ohne durch nicht auch noch schon sehr gern gerne ganz mehr wieder immer oben unten heute
+    morgen gestern hier dort dann denn aber oder und sondern""").split())
 
 
 PARTICLES = set(norm("ab an auf aus ein mit vor zu zurück weg los fest teil statt vorbei hin her nach").split())
@@ -206,14 +220,24 @@ def detect(text, model=None):
         """index after the subject that starts at j, or None"""
         if j >= len(toks):
             return None
+        if toks[j] in DET and j + 1 < len(toks) and toks[j + 1] in PRON:
+            return None  # "meinen Sie …": a verb, not a determiner
         if toks[j] in DET and j + 1 < len(toks) and toks[j + 1] not in fin:
             return j + 2
         if toks[j] in PRON or toks[j] in DET:
             return j + 1
         return None
 
-    for clause in re.split(r"[,.;:!?]", text):
+    pieces = re.split(r"([,.;:!?])", text)
+    for k in range(0, len(pieces), 2):
+        clause = pieces[k]
         toks = norm(clause).split()
+        before = pieces[k - 1] if k else ""
+        if before == "," and len(toks) >= 3 and toks[0] in WH and WH_FRAME.search(norm(pieces[k - 2] if k >= 2 else "")):
+            # "…, wie sieht deine Familie das": verb right after the question word, then a subject, verb not last
+            v = toks[1]
+            if (v in fin or FINITE_ANY(v)) and (toks[2] in PRON or toks[2] in DET) and not (toks[-1] in fin or FINITE_ANY(toks[-1])):
+                out.add("verb-final")
         for i, t in enumerate(toks):
             if t == "als":   # only "als + subject + finite verb + more": "als ich habe die Nachricht bekommen"
                 j = subject_end(toks, i + 1)
@@ -250,24 +274,36 @@ def detect(text, model=None):
             j = subject_end(rest, 0)
             if j is not None and j < len(rest) and rest[j] in fin | FINITE_ANY(rest[j]):
                 out.add("inversion")
+    global COMMA_OK
     if FRONTED is None:
         plan = load_json(ROOT / "data/b1/plan.json")
-        FRONTED = sorted((norm(f) for t in plan["traps"] if t["id"] == "v2" for f in t["fronted"]), key=len, reverse=True)
+        v2 = next(t for t in plan["traps"] if t["id"] == "v2")
+        FRONTED = sorted({norm(f) for f in v2["fronted"]}, key=len, reverse=True)
+        COMMA_OK = {norm(f) for f in v2.get("comma_ok", [])}
     for sent in re.split(r"(?<=[.!?])\s+", text.strip()):
         n = norm(sent)
         for f in FRONTED:
             if n.startswith(f + " "):
+                if f in COMMA_OK and re.match(r"\s*\S+(\s+\S+){%d}\s*," % (len(f.split()) - 1), sent):
+                    break  # "Natürlich, das stimmt.": a comma starts a new clause
                 rest = n[len(f):].split()
+                raw = re.findall(r"[\w'-]+", sent)[len(f.split()):]
                 j = subject_end(rest, 0)
-                if j is not None and j < len(rest) and (rest[j] in fin or FINITE_ANY(rest[j])):
+                if j is None and raw and raw[0][:1].isupper() and rest and rest[0] not in TIME_NOUNS:
+                    j = 1  # a bare noun or name as the subject: "Einerseits Online-Lernen ist …"
+                # a pronoun subject then a verb is always wrong; after "der Woche" or a noun, a pronoun after the verb
+                # means the verb was second after all ("Am Ende der Woche war es …", "Heute Abend gehe ich …")
+                if j is not None and j < len(rest) and (rest[j] in fin or FINITE_ANY(rest[j])) and \
+                        (rest[0] in PRON or not (j + 1 < len(rest) and rest[j + 1] in PRON)):
                     out.add("v2")
                 break
     return out
 
 
 def FINITE_ANY(w):
-    """A loose finite-verb guess for main clauses after a subject: lerne, machen, arbeitet (not -ung, -heit ...)."""
-    return {w} if re.fullmatch(r"[a-z]{2,}(e|st|t|en|n)", w) and not re.search(r"(ung|heit|keit|lein)$", w) else set()
+    """A loose finite-verb guess for main clauses after a subject: lerne, machen, arbeitet (never an article,
+    pronoun or preposition, never -ung, -heit ...)."""
+    return {w} if w not in NONVERB and re.fullmatch(r"[a-z]{2,}(e|st|t|en|n)", w) and not re.search(r"(ung|heit|keit|lein)$", w) else set()
 
 
 # ---------- model case ----------
@@ -684,12 +720,26 @@ def check_file(path, ctx, seen):
         e, w = check_item(it, ctx, f"{path.name}[{i}]")
         E += e
         W += w
+    E += js_check(data, path.name)
+    for i, it in enumerate(data):
         iid = it.get("id") if isinstance(it, dict) else None
         if iid in seen:
             E.append(f"{path.name}[{i}] {iid}: duplicate id (also in {seen[iid]})")
         elif iid:
             seen[iid] = path.name
     return data, E, W
+
+
+def js_check(data, name):
+    """The app grades with match.js (typo tolerance, umlauts, strict words): run every model and wrong through it."""
+    import subprocess, shutil
+    if not shutil.which("node"):
+        return []
+    r = subprocess.run(["node", str(Path(__file__).resolve().parent / "b1_jscheck.mjs")], input=json.dumps(data),
+                       capture_output=True, text=True)
+    if r.returncode:
+        return [f"{name}: the app-matcher check failed: {r.stderr.strip()[:300]}"]
+    return [f"{name}[{i}] {data[i].get('id', '?')}: {msg}" for i, msg in json.loads(r.stdout or "[]")]
 
 
 def coverage(items, ctx):
@@ -819,7 +869,8 @@ def selftest(ctx):
     assert matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 10)
     assert not matches("das ist eine sehr sehr sehr sehr sehr sehr gute idee", "das ist [x] idee", 6)
     for w, cls in [("Ich hoffe, dass bei dir ist alles gut.", "verb-final"), ("Ich war froh, als ich habe die Nachricht bekommen.", "verb-final"),
-                   ("Wer hat Fragen, kann mich anrufen.", "verb-final"), ("Ich denke, dass es hängt von der Firma ab.", "verb-final"), ("Das geht nicht, weil ich muss arbeiten.", "verb-final"),
+                   ("Wer hat Fragen, kann mich anrufen.", "verb-final"), ("Mich würde interessieren, wie sieht deine Familie das?", "verb-final"),
+                   ("Tatsächlich ich habe keine Zeit.", "v2"), ("Einerseits Online-Lernen ist praktisch.", "v2"), ("Ich denke, dass es hängt von der Firma ab.", "verb-final"), ("Das geht nicht, weil ich muss arbeiten.", "verb-final"),
                    ("Ich glaube, dass das ist gut.", "verb-final"), ("Am Ende, wir machen eine Party.", "v2"),
                    ("Wenn ich Zeit habe, ich lerne.", "inversion")]:
         if cls not in detect(w):
@@ -829,7 +880,10 @@ def selftest(ctx):
                "Wenn ich Zeit habe, lerne ich.", "Wir fahren an den Strand, egal ob es regnet oder nicht.",
                "Ich denke, dass es von der Firma abhängt.", "Damit bin ich am Ende meiner Präsentation.",
                "Ich bin der Meinung, dass Rauchen verboten werden sollte.", "Er ist größer als ich.", "Als Lehrer arbeite ich viel.",
-               "Wer hat Fragen?", "Wer Fragen hat, kann mich anrufen.", "Ich war froh, als ich die Nachricht bekommen habe."]:
+               "Wer hat Fragen?", "Wer Fragen hat, kann mich anrufen.", "Ich war froh, als ich die Nachricht bekommen habe.",
+               "Wenn ich Sie richtig verstehe, meinen Sie die Kosten?", "Wir könnten grillen, was meinst du?",
+               "Natürlich, das stimmt.", "Mich würde interessieren, wie deine Familie das sieht.", "Was meinst du damit?",
+               "Am Ende der Woche war es schön.", "Heute Abend gehe ich ins Kino.", "Ich weiß nicht, wie lange du arbeitest."]:
         if detect(ok, ok):
             print(f"FAIL detector fires on a right sentence: {ok} {detect(ok, ok)}")
             bad += 1
