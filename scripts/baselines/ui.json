@@ -1,0 +1,88 @@
+{
+ "console_errors": 0,
+ "drill": {
+  "after_space_3": 1,
+  "after_u": 0,
+  "hash": "#drill"
+ },
+ "drill_card": {
+  "card": true,
+  "show": true
+ },
+ "test": {
+  "grid": "10\nKnown\n0\nShaky\n2\nNot yet",
+  "h2": "10 of 12 known",
+  "srs": {
+   "german|G:akkusativ.01": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|G:noun-capitalization.01": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|K:ENG_CHUNK_0277": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|K:ENG_CHUNK_1301": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|K:ENG_CHUNK_1441": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|W:danke.interj": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|W:die_Zeit": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|W:sein.verb": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|W:um.prep": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ],
+   "german|W:werden.verb": [
+    7,
+    1,
+    0,
+    "3",
+    2.5
+   ]
+  }
+ }
+}
