@@ -146,3 +146,15 @@ body.b1-in-round .site-bar,body.b1-in-round .pick-row{display:none}
 .b1-folie{font-size:20px;font-weight:600;text-align:center}
 .b1-run .small{text-align:center}
 .b1-audio{width:100%}
+/* gap prompts: never clamped (the gap must stay visible); the window shows only while feedback is up */
+.b1-ptext.b1-gapped .b1-pwin{display:none}
+.b1-sess.fb-on .b1-prompt:not(.open) .b1-ptext.b1-gapped{display:block;-webkit-line-clamp:unset;overflow:visible}
+.b1-sess.fb-on .b1-prompt:not(.open) .b1-ptext.b1-gapped .b1-pfull{display:none}
+.b1-sess.fb-on .b1-prompt:not(.open) .b1-ptext.b1-gapped .b1-pwin{display:inline}
+/* feedback up: the (collapsed) prompt keeps its lines, the feedback block scrolls */
+.b1-sess.fb-on .b1-pz{flex:0 0 auto;max-height:45%}
+.b1-sess.fb-on .b1-fb{flex:1 1 auto;min-height:0}
+.b1-study.long{font-size:17px;line-height:1.4}
+/* the dock never pushes ⏎ off-screen: the field and the textarea may shrink */
+.b1-field,.b1-input{min-width:0}
+.b1-secs{white-space:nowrap}

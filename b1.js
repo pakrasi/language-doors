@@ -103,7 +103,7 @@
     if (!r.ok && r.nearest != null && r.nearest > 0) right = render(accepted[r.nearest]);
     const shown = new Set([norm(r.ok ? r.input : right)]);
     const also = [];
-    for (const p of accepted) {
+    for (const p of (it.gap ? it.accept : accepted)) {   // gap items: the listed answers, not their filled-in sentences again
       const s = render(p); const k = norm(s);
       if (shown.has(k) || /…/.test(s) && it.kind !== 'topic' && it.kind !== 'reply' && it.anywhere === false) continue;
       shown.add(k); also.push(s);

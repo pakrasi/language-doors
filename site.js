@@ -2,7 +2,7 @@
    data loading and the review counters the app's Today strip and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20261002c';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20261002d';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1', know: 'doors.know.v1',

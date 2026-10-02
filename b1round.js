@@ -29,6 +29,12 @@
     if (i < 0) return s;
     return [s.slice(0, i), h('mark', { class: 'hl' }, s.slice(i, i + part.length)), s.slice(i + part.length)];
   }
+  function gapWindow(text, n = 12) {
+    const w = String(text).split(/\s+/), gi = w.findIndex(x => x.includes('___'));
+    if (w.length <= n + 2 || gi < 0) return String(text);
+    let a = Math.max(0, gi - Math.floor(n / 2)), b = Math.min(w.length, a + n); a = Math.max(0, b - n);
+    return (a > 0 ? '… ' : '') + w.slice(a, b).join(' ') + (b < w.length ? ' …' : '');
+  }
   function gapPrompt(text) {
     const s = String(text).replace(/\s*\(([^()]*)\)\s*$/, (m, cue) => ` (${cue})`);
     const i = s.indexOf('___');
@@ -145,7 +151,11 @@
       const kids = [];
       if (it.task) kids.push(h('p', { class: 'b1-task' }, it.task));
       if (it.partner) kids.push(h('p', { class: 'b1-partner-l muted small' }, 'Your partner says:'), h('p', { class: 'b1-partner', lang: 'de' }, `„${it.partner}“`));
-      if (it.gap || it.showGap) kids.push(h('p', { class: 'b1-ptext', lang: 'de' }, gapPrompt(it.prompt)));
+      if (it.gap || it.showGap) {   // the full sentence while answering; ~12 words around the gap while feedback shows (never the gap cut off)
+        // long exam sentences (Lesen texts run to 40+ words): ~20 words around the gap while answering, so the gap is never below the fold
+        kids.push(h('p', { class: 'b1-ptext b1-gapped', lang: 'de' }, h('span', { class: 'b1-pfull' }, gapPrompt(gapWindow(it.prompt, 20))),
+          h('span', { class: 'b1-pwin', 'aria-hidden': 'true' }, gapPrompt(gapWindow(it.prompt, 12)))));
+      }
       else kids.push(h('p', { class: 'b1-ptext', lang: it.promptLang === 'de' ? 'de' : 'en' }, it.hl ? highlight(it.prompt, it.hl) : it.prompt));
       if (it.gloss) kids.push(h('p', { class: 'b1-gloss muted' }, it.gloss));
       if (it.source) kids.push(h('p', { class: 'b1-source mono' }, it.source));
@@ -153,7 +163,8 @@
       else if (it.hl && opts.hlHelper) kids.push(h('p', { class: 'b1-help muted small' }, 'Type the German for the highlighted part.'));
       rep(promptEl, kids);
       // dock
-      prefill.hidden = !it.prefill; prefill.textContent = it.prefill || '';
+      prefill.hidden = !it.prefill;   // only the lead-in after the last sentence break ("… Deshalb"): the first sentence is in the prompt
+      { const pf = String(it.prefill || ''), k = pf.search(/[.!?]\s+\S[^.!?]*$/); prefill.textContent = k >= 0 ? '… ' + pf.slice(k + 1).trim() : pf; prefill.title = pf; }
       clearField(); setPlaceholder(it.gap ? 'Type the missing words' : 'Type the German');
       input.classList.remove('shake');
       tbar.hidden = true; tRun.style.width = '100%'; tOver.style.width = '0%';
@@ -344,7 +355,7 @@
       record({ ok: false, ms: elapsed(), revealed: true, g });
       const kids = [];
       if (typed) kids.push(h('p', { class: 'muted small' }, 'You had: ', h('span', { lang: 'de' }, full(typed))));
-      kids.push(h('p', { class: 'b1-study', lang: 'de' }, g.right));
+      kids.push(h('p', { class: 'b1-study' + (String(g.right).length > 90 ? ' long' : ''), lang: 'de' }, g.right));
       if (g.alsoCorrect?.length) kids.push(h('p', { class: 'b1-also' }, h('span', { class: 'muted' }, 'Also correct: '), h('span', { lang: 'de' }, g.alsoCorrect.slice(0, 2).join(' · ')), g.alsoCorrect.length > 2 ? alsoMore(g.alsoCorrect.slice(2)) : null));
       if (entry.item.rule) kids.push(h('p', { class: 'b1-rule' }, entry.item.rule));
       rep(fb, kids, wordCard(entry.item));
