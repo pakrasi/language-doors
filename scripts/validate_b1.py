@@ -268,12 +268,19 @@ def detect(text, model=None):
                 and head[1] in fin and any(r not in fin for r in head[2:]):
             out.add("verb-final")
         parts = sent.split(",", 1)
+        # "Wer Fragen hat, er kann …": the second clause picks up wer with der, not er/sie
+        if len(parts) == 2 and not sent.rstrip().endswith("?") and len(head) >= 2 and head[0] == "wer":
+            r2 = norm(parts[1]).split()
+            if len(r2) >= 2 and r2[0] in ("er", "sie"):
+                out.add("wer-der")
         if len(parts) == 2 and norm(parts[0]).split()[:1] and norm(parts[0]).split()[0] in SUB_DETECT \
                 and "oder nicht" not in norm(parts[0]):
             rest = norm(parts[1]).split()
             j = subject_end(rest, 0)
             if j is not None and j < len(rest) and rest[j] in fin | FINITE_ANY(rest[j]):
                 out.add("inversion")
+            elif len(rest) >= 2 and rest[0] in PRON and rest[0] != "das" and rest[1] in ("meine", "meinst", "meint", "meinen"):
+                out.add("inversion")  # "Wenn …, Sie meinen"
     global COMMA_OK
     if FRONTED is None:
         plan = load_json(ROOT / "data/b1/plan.json")
@@ -285,6 +292,9 @@ def detect(text, model=None):
         for f in FRONTED:
             if n.startswith(f + " "):
                 if f in COMMA_OK and re.match(r"\s*\S+(\s+\S+){%d}\s*," % (len(f.split()) - 1), sent):
+                    after = norm(sent.split(",", 1)[1]).split()
+                    if len(after) >= 3 and after[0] == "es" and after[1] in fin:
+                        out.add("v2")  # "Natürlich, es ist …"
                     break  # "Natürlich, das stimmt.": a comma starts a new clause
                 rest = n[len(f):].split()
                 raw = re.findall(r"[\w'-]+", sent)[len(f.split()):]

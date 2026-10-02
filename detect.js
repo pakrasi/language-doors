@@ -29,6 +29,8 @@
     in um über unter für gegen ohne durch nicht auch noch schon sehr gern gerne ganz mehr wieder immer oben unten heute
     morgen gestern hier dort dann denn aber oder und sondern`);
   const TIME_NOUNS = set('abend morgen nachmittag mittag vormittag nacht wochenende anfang ende jahr woche monat');
+  const WER_PRON = set('er sie');
+  const MEINEN = set('meine meinst meint meinen');
   const WH = set('wie warum wo wann was wer wohin woher womit wofür worüber worauf wovon welche welcher welches');
   const WH_FRAME = /\b(interessier\w*|wissen|weiss|weisst|frage|fragen|fragt|sag|sagen|sagt|erklaer\w*|verstehe|verstehen|ahnung|unklar|sicher|ueberlegen|zeig\w*)\b/;
   const finiteAny = w => !NONVERB.has(w) && /^[a-z]{2,}(e|st|t|en|n)$/.test(w) && !/(ung|heit|keit|lein)$/.test(w);
@@ -86,17 +88,24 @@
       if (k < 0) continue;
       const hd = norm(sent.slice(0, k)).split(' ').filter(Boolean);   // "Wer hat Fragen, kann …" (not a question)
       if (!/\?\s*$/.test(sent) && hd.length >= 3 && hd[0] === 'wer' && fin.has(hd[1]) && hd.slice(2).some(r => !fin.has(r))) out.push({ cls: 'verb-final', word: 'wer' });
-      if (!SUB.has(hd[0]) || norm(sent.slice(0, k)).includes('oder nicht')) continue;
       const rest = norm(sent.slice(k + 1)).split(' ').filter(Boolean);
+      // "Wer Fragen hat, er kann …": the second clause picks up wer with der, not er/sie
+      if (!/\?\s*$/.test(sent) && hd.length >= 2 && hd[0] === 'wer' && rest.length >= 2 && WER_PRON.has(rest[0])) out.push({ cls: 'wer-der', word: 'wer' });
+      if (!SUB.has(hd[0]) || norm(sent.slice(0, k)).includes('oder nicht')) continue;
       const j = subjectEnd(rest, 0, fin);
       if (j != null && j < rest.length && isFin(rest[j], fin)) out.push({ cls: 'inversion', word: hd[0] });
+      else if (rest.length >= 2 && PRON.has(rest[0]) && rest[0] !== 'das' && MEINEN.has(rest[1])) out.push({ cls: 'inversion', word: hd[0] });   // "Wenn …, Sie meinen"
     }
     for (const sent of String(text).trim().split(/(?<=[.!?])\s+/)) {
       const n = norm(sent);
       const f = FRONTED.find(f => n.startsWith(f + ' '));
       if (!f) continue;
       const nf = f.split(' ').length;
-      if (COMMA_OK.has(f) && new RegExp(`^\\s*\\S+(\\s+\\S+){${nf - 1}}\\s*,`).test(sent)) continue;   // "Natürlich, das stimmt."
+      if (COMMA_OK.has(f) && new RegExp(`^\\s*\\S+(\\s+\\S+){${nf - 1}}\\s*,`).test(sent)) {   // "Natürlich, das stimmt."
+        const after = norm(sent.slice(sent.indexOf(',') + 1)).split(' ').filter(Boolean);
+        if (after.length >= 3 && after[0] === 'es' && fin.has(after[1])) out.push({ cls: 'v2', word: sent.trim().split(/[\s,]+/).slice(0, nf).join(' ') });   // "Natürlich, es ist …"
+        continue;
+      }
       const rest = n.slice(f.length).split(' ').filter(Boolean);
       const raw = (sent.match(/[\p{L}\p{N}_'-]+/gu) || []).slice(nf);
       let j = subjectEnd(rest, 0, fin);
@@ -126,6 +135,7 @@
     if ((x = pick('verb-final'))) return { cls: 'verb-final', word: x.word, hint: `Check where the verb goes after ${it(x.word)}.` };
     if ((x = pick('inversion'))) return { cls: 'inversion', word: x.word, hint: 'Check the word order after the comma.' };
     if ((x = pick('v2'))) return { cls: 'v2', word: x.word, hint: `Check the word order after ${it(x.word)}.` };
+    if ((x = pick('wer-der'))) return { cls: 'wer-der', word: 'wer', hint: 'Check the word after the comma.' };
     // für / vor where the model has the other one (fear and warning take vor)
     const mw = words(model).map(w => w.toLowerCase()), iw = words(text).map(w => w.toLowerCase());
     if (focusHas(item, 'fuer-vor') || /\b(angst|warnen|warnt|schämen|schäme|fürchten)\b.*\bvor\b/i.test(model)) {

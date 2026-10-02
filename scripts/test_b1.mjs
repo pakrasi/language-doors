@@ -128,9 +128,13 @@ assert.equal(FS.rate({ ok: true, ms: 90000, limit: null }), 3, 'untimed new item
     ['Wenn ich Sie richtig verstehe, meinen Sie die Kosten?', ''], ['Wir könnten grillen, was meinst du?', ''], ['Natürlich, das stimmt.', ''],
     ['Mich würde interessieren, wie sieht deine Familie das?', ''], ['Mich würde interessieren, wie deine Familie das sieht.', ''], ['Tatsächlich ich habe keine Zeit.', ''],
     ['Einerseits Online-Lernen ist praktisch.', ''], ['Am Ende der Woche war es schön.', ''], ['Heute Abend gehe ich ins Kino.', ''], ['Ich weiß nicht, wie lange du arbeitest.', ''],
+    ['Wer Fragen hat, er kann mich anrufen.', ''], ['Wer Fragen hat, der kann mich anrufen.', ''], ['Wer Zeit hat, kann kommen.', ''],
+    ['Natürlich, es ist wichtig.', ''], ['Natürlich ist es wichtig.', ''], ['Wenn ich Sie richtig verstehe, Sie meinen die Kosten.', ''],
+    ['Wenn ich dich richtig verstehe, meinst du die Kosten.', ''], ['Wer ist er, fragt sie.', ''],
   ];
   const mustNot = ['Wenn ich Sie richtig verstehe, meinen Sie die Kosten?', 'Wir könnten grillen, was meinst du?', 'Natürlich, das stimmt.', 'Mich würde interessieren, wie deine Familie das sieht.',
-    'Am Ende der Woche war es schön.', 'Heute Abend gehe ich ins Kino.', 'Ich weiß nicht, wie lange du arbeitest.', 'Was meinst du damit?', 'Wer hat Fragen?'];
+    'Am Ende der Woche war es schön.', 'Heute Abend gehe ich ins Kino.', 'Ich weiß nicht, wie lange du arbeitest.', 'Was meinst du damit?', 'Wer hat Fragen?',
+    'Wer Fragen hat, der kann mich anrufen.', 'Natürlich ist es wichtig.', 'Natürlich, das ist wichtig.', 'Wenn ich dich richtig verstehe, meinst du die Kosten.', 'Wer kommt, sie oder er?'];
   for (const m of mustNot) assert.deepEqual(Det.classes(m, null), [], `must not fire: ${m}`);
   const nModels = cases.length;
   cases.push(...fixed);
@@ -150,6 +154,10 @@ assert.equal(FS.rate({ ok: true, ms: 90000, limit: null }), 3, 'untimed new item
   assert.equal(d.cls, 'verb-final'); assert.equal(d.hint, 'Check where the verb goes after *weil*.');
   d = Det.run('Am Ende, wir machen eine Party.', {}); assert.equal(d.cls, 'v2'); assert.equal(d.hint, 'Check the word order after *Am Ende*.');
   d = Det.run('Ich habe Angst für der Prüfung.', { model: 'Ich habe Angst vor der Prüfung.', focus: ['fuer-vor'] }); assert.equal(d.cls, 'fuer-vor'); assert.equal(d.word, 'Angst');
+  assert.deepEqual(Det.classes('Wer Fragen hat, er kann mich anrufen.', null), ['wer-der']);
+  assert.deepEqual(Det.classes('Natürlich, es ist wichtig.', null), ['v2']);
+  assert.deepEqual(Det.classes('Wenn ich Sie richtig verstehe, Sie meinen die Kosten.', null), ['inversion']);
+  d = Det.run('Wer Fragen hat, er kann mich anrufen.', {}); assert.equal(d.cls, 'wer-der'); assert.equal(d.hint, 'Check the word after the comma.');
   d = Det.run('Der Thema ist interessant.', { model: 'Das Thema ist interessant.' }); assert.equal(d.cls, 'neuter'); assert.equal(d.word, 'Thema');
   assert.equal(Det.run('Das Thema ist interessant.', { model: 'Das Thema ist interessant.' }), null);
   d = Det.run('das thema', { model: 'Das Thema', focus: ['cap'] }, { focusMiss: [{ expected: 'Thema' }], capMiss: [] }); assert.equal(d.cls, 'cap');

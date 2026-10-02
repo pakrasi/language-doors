@@ -274,6 +274,12 @@ assert.equal(gapFill('___ kommst du? (wann)', 'wann').text, 'Wann kommst du?', '
   u = check('Prüfung habe ich keine.', ['prüfung'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss, [], 'first word exempt');
   u = check('Ich Habe Angst', ['ich habe angst'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['Habe'], 'a capital on a verb');
   u = check('Wir machen eine party am Freitag', ['wir machen eine [x] am freitag'], { ...B, caseRef: ref }); assert.deepEqual(u.capMiss.map(t => t.typed), ['party'], 'nouns in slots');
+  // recht/Recht haben, recht/Recht geben: both spellings are right; das Recht auf … still needs the capital
+  const rref = new Map([['recht', 'recht'], ['da', 'da'], ['hast', 'hast'], ['du', 'du']]);
+  for (const s of ['Da hast du Recht.', 'Da hast du recht.', 'Da gebe ich dir Recht.', 'Da gebe ich dir recht.', 'Ich habe ja Recht.'])
+    assert.deepEqual(check(s, ['da hast du recht', 'da gebe ich [x] recht', 'ich habe ja recht'], { ...B, caseRef: rref }).capMiss, [], s);
+  u = check('Jeder hat das recht auf Bildung.', ['jeder hat das [x] auf bildung'], { ...B, caseRef: new Map([['recht', 'Recht']]) });
+  assert.deepEqual(u.capMiss.map(t => t.typed), ['recht'], 'das Recht (noun after an article) still needs the capital');
   // nearest accepted string and the word diff
   u = check('Ich glaube, dass das ist eine gute Idee', ['ich glaube dass das eine gute idee ist', 'ich glaube das ist eine gute idee', 'keine ahnung'], { ...B, anywhere: false });
   assert.equal(u.ok, false); assert.equal(u.nearest, 0);

@@ -297,13 +297,18 @@
   }
 
   // B1: strict words in their exact case (focusMiss) and capitals against a reference (capMiss); sentence starts exempt
+  // "recht/Recht haben", "recht/Recht geben": Duden allows both spellings, so neither case is a slip
+  const HABEN_GEBEN = /^(hab|habe|hast|hat|haben|habt|hatte|hattest|hatten|hattet|haette|haettest|haetten|haettet|gehabt|geb|gebe|gibst|gibt|geben|gebt|gab|gabst|gaben|gabt|gegeben|gib)$/;
+  const RECHT_DET = /^(das|des|dem|ein|eines|einem|kein|keines|keinem|mein|dein|sein|ihr|unser|euer|jedes|jedem|gleiche|gleiches|volle|volles|vollem|gutes|gutem)$/;
+  const eitherCase = (toks, i) => toks[i].n === 'recht' && !(i > 0 && RECHT_DET.test(toks[i - 1].n)) &&
+    toks.slice(Math.max(0, i - 5), i + 6).some(t => HABEN_GEBEN.test(t.n));
   function caseChecks(res, m, inp, x, caseRef) {
     const initial = t => t.start === 0 || /[.!?:]\s*["„“]?\s*$/.test(inp.slice(0, t.start));
     const used = new Set();
     for (const s of m.steps) (s.cs || []).forEach(c => {
       if (c.glued) return;
       const t = m.toks[c.ti]; used.add(c.ti);
-      if (initial(t)) return;
+      if (initial(t) || eitherCase(m.toks, c.ti)) return;
       const want = x && x.strict && x.strict.get(c.a.n);
       if (want && /\p{Lu}/u.test(want[0]) !== /\p{Lu}/u.test(t.raw[0])) { res.focusMiss.push({ typed: t.raw, expected: want, start: t.start, end: t.end }); return; }
       const ref = caseRef && caseRef.get(t.n);
@@ -311,7 +316,7 @@
     });
     if (!caseRef) return;
     m.toks.forEach((t, i) => {   // words in slots and around the pattern: only nouns written in lowercase
-      if (used.has(i) || initial(t)) return;
+      if (used.has(i) || initial(t) || eitherCase(m.toks, i)) return;
       const ref = caseRef.get(t.n);
       if (ref && /\p{Lu}/u.test(ref[0]) && !/\p{Lu}/u.test(t.raw[0])) res.capMiss.push({ typed: t.raw, expected: ref, start: t.start, end: t.end });
     });
