@@ -15,7 +15,7 @@
   const prefs = DG.prefs;
   let progress = load(KEYS.progress, {});
   const srs = DG.srs;
-  const VIEWS = ['drill', 'test', 'lookup', 'write'];
+  const VIEWS = ['b1', 'drill', 'test', 'lookup', 'write'];
   const TABS = ['phrases', 'frames', 'linking', 'grammar', 'notes'];
   const OLD_VIEW = { reference: 'lookup', chunks: 'lookup', practice: 'write' };
   const OLD_LAYER_TAB = { door: 'frames', glue: 'linking' };
@@ -42,6 +42,7 @@
       if (p[0] === 'reference') { const layer = p[3] || 'door'; if (OLD_LAYER_TAB[layer]) next.tab = OLD_LAYER_TAB[layer]; else { next.tab = 'grammar'; if (GRAMMAR.some(g => g[0] === layer)) next.gl = layer; } }
       if (p[0] === 'practice' && /^SC-/.test(p[3] || '')) next.scenario = p[3];
     } else {
+      if (next.view === 'b1') next.sub = p.slice(1).join('/') || null;
       if (next.view === 'lookup' && TABS.includes(p[1])) next.tab = p[1];
       if (next.view === 'write' && /^SC-/.test(p[1] || '')) next.scenario = p[1];
       if (next.view === 'drill' && ['start', 'try'].includes(p[1])) next.sub = p[1];
@@ -51,6 +52,7 @@
     return next;
   }
   function hashFor(s) {
+    if (s.view === 'b1') return '#b1' + (s.sub ? '/' + s.sub : '');
     if (s.view === 'lookup') return '#lookup/' + s.tab;
     if (s.view === 'write') return '#write' + (s.scenario ? '/' + s.scenario : '');
     if (s.view === 'test') return '#test';
@@ -120,7 +122,7 @@
     const bar = $('#bar-pick'), row = $('#pick-row');
     bar.replaceChildren(); row.replaceChildren();
     const inSession = document.body.classList.contains('focus');
-    if (inSession) return;
+    if (inSession || state.view === 'b1') return;
     const showLevel = !(state.view === 'lookup' && state.tab === 'notes') && state.view !== 'test';
     const target = narrow.matches ? row : bar;
     const kids = [DG.langButton()];
@@ -182,13 +184,14 @@
   async function render(opts = {}) {
     if (!FW) return;
     if (window.__cleanup) { window.__cleanup(); window.__cleanup = null; }
-    document.body.classList.remove('focus');
+    document.body.classList.remove('focus', 'b1', 'b1-in-round');
     document.body.dataset.view = state.view;
     DG.initBar(state.view);
     renderPickers();
     todayStrip();
     const view = $('#view');
     const y = scrollY;
+    if (state.view === 'b1') { view.replaceChildren(skeleton()); await B1.view(view, state.sub); firstRender = false; return; }
     view.replaceChildren(skeleton());
     const langs = DG.langs();
     await ensureLangs(langs);
@@ -215,7 +218,7 @@
   function todayStrip() {
     const box = $('#today-strip');
     const hide = () => { box.hidden = true; box.replaceChildren(); };
-    if (state.view === 'drill' || load(KEYS.todayStrip, null) === dayNow()) return hide();
+    if (state.view === 'drill' || state.view === 'b1' || load(KEYS.todayStrip, null) === dayNow()) return hide();
     const list = DG.langs();
     const due = DG.dueByLang(list);
     const dueLangs = list.filter(l => due[l]);

@@ -2,7 +2,7 @@
    data loading and the review counters the app's Today strip and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20260929f';   // bump when data files change; replaces cache:'no-cache'
+  const V = '20261002a';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1', know: 'doors.know.v1',
@@ -259,10 +259,19 @@
           for (const k of Object.keys(srs)) delete srs[k];
           for (const k of Object.keys(know)) delete know[k];
           saveSrs(); saveKnow(); save(KEYS.progress, {}); save(KEYS.days, []); save(KEYS.today, null);
+          b1Keys().forEach(k => { try { localStorage.removeItem(k); } catch {} });
           confirmBox.hidden = true; delBtn.hidden = false; emit('reset'); announce('All progress deleted');
         } }, 'Delete'),
         h('button', { type: 'button', class: 'btn', onclick: () => { confirmBox.hidden = true; delBtn.hidden = false; delBtn.focus(); } }, 'Cancel')));
     const delBtn = h('button', { type: 'button', class: 'btn danger', onclick: () => { confirmBox.hidden = false; delBtn.hidden = true; confirmBox.querySelector('.btn:last-child').focus(); } }, 'Delete all progress…');
+    const importNote = h('p', { class: 'small muted', hidden: true });
+    const importFile = h('input', { type: 'file', accept: 'application/json,.json', hidden: true, onchange: async e => {
+      const f = e.target.files[0]; if (!f) return;
+      try { const n = importB1(JSON.parse(await f.text())); importNote.textContent = n ? `Imported B1 progress: ${n} items merged.` : 'No B1 progress in that file.'; emit('reset'); }
+      catch (err) { importNote.textContent = `Couldn't read that file (${err.message}).`; }
+      importNote.hidden = false; e.target.value = '';
+    } });
+    const importBtn = h('button', { type: 'button', class: 'btn', onclick: () => importFile.click() }, 'Import B1 progress', importFile);
     const langLine = h('span', { class: 'muted small' });
     const refreshLangs = () => framework().then(FW => { langLine.textContent = langs().map(id => FW.languages.find(l => l.id === id)?.name || id).join(', '); }).catch(() => {});
     refreshLangs();
@@ -270,6 +279,7 @@
       h('div', { class: 'dlg-head' }, h('h2', { id: 'settings-title', style: 'font-size:22px' }, 'Settings'),
         h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Close', html: ICON.close, onclick: () => settings.close() })),
       h('p', { class: 'small muted' }, 'Saved in this browser only.'),
+      ...(DG.settingsSections || []).map(fn => { try { return fn(); } catch (e) { console.error(e); return null; } }),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'My languages'),
         h('div', { class: 'dlg-row' }, langLine, h('button', { type: 'button', class: 'btn small-btn', onclick: () => { openLangSheet(); const once = w => { if (w === 'langs-closed') { refreshLangs(); listeners.splice(listeners.indexOf(once), 1); } }; listeners.push(once); } }, 'Change'))),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Drill'),
@@ -290,16 +300,52 @@
         h('label', { class: 'field' }, h('span', {}, 'Anthropic API key (optional, for AI feedback in Write and Test)'), key),
         h('p', { class: 'small muted' }, 'Sent only to api.anthropic.com. Without a key, Write uses the built-in word check and Test uses its own checker.')),
       h('div', { class: 'dlg-sec' }, h('h3', {}, 'Progress'),
-        h('div', { class: 'dlg-row' }, h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress (JSON)'), delBtn),
+        h('div', { class: 'dlg-row' }, h('button', { type: 'button', class: 'btn', onclick: exportProgress }, 'Export progress (JSON)'), importBtn, delBtn),
+        importNote,
         confirmBox),
       h('div', { class: 'dlg-row' }, h('button', { type: 'button', class: 'btn primary', onclick: () => { saveKey(); settings.close(); } }, 'Done'))));
     settings.showModal();
   }
+  // B1 trainer stores (doors.b1.*), without the cached word list; never the GitHub token or the API keys
+  const b1Keys = () => { const out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('doors.b1.')) out.push(k); } } catch {} return out; };
+  function importB1(data) {
+    const b1 = data && data.b1; if (!b1 || typeof b1 !== 'object') return 0;
+    let n = 0;
+    for (const [k, v] of Object.entries(b1)) {
+      if (!k.startsWith('doors.b1.')) continue;
+      if (k === 'doors.b1.fsrs.v1') {   // merge per item: the newer record (u) wins
+        const cur = load(k, {});
+        for (const [id, rec] of Object.entries(v || {})) if (!cur[id] || (rec && (rec.u || 0) > (cur[id].u || 0))) { cur[id] = rec; n++; }
+        save(k, cur);
+      } else if (load(k, null) == null) save(k, v);
+    }
+    return n;
+  }
   function exportProgress() {
-    const data = { exported: new Date().toISOString(), srs, know, progress: load(KEYS.progress, {}), days: load(KEYS.days, []), prefs };
+    const b1 = Object.fromEntries(b1Keys().filter(k => k !== 'doors.b1.words.v1').map(k => [k, load(k, null)]));
+    const data = { exported: new Date().toISOString(), srs, know, progress: load(KEYS.progress, {}), days: load(KEYS.days, []), prefs, b1 };
     const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
     const a = h('a', { href: url, download: `doors-progress-${new Date().toISOString().slice(0, 10)}.json` });
     document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // One Messages API call from the browser (the key is the user's own); returns the reply text.
+  async function claudeText(key, body) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify(body) });
+    let j = null; try { j = await r.json(); } catch {}
+    if (!r.ok) throw new Error(j?.error?.message || r.status);
+    return (j?.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+  }
+  // ---------- offline: service worker (app.html only); version.json can switch it off ----------
+  async function swKill() {
+    try { for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister(); } catch {}
+    try { for (const k of await caches.keys()) if (k.startsWith('igloo-')) await caches.delete(k); } catch {}
+  }
+  if ('serviceWorker' in navigator && /app\.html$/.test(location.pathname) && !/[?&]nosw\b/.test(location.search)) {
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {});
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (reloading || document.body.classList.contains('b1-in-round')) return; reloading = true; });
+    navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.type === 'cached') { const el = document.getElementById('b1-offline-ready'); if (el) el.hidden = false; } });
   }
 
   window.DG = {
@@ -307,7 +353,7 @@
     get prefs() { return prefs; }, savePrefs, langs, setLangs, hasChosenLangs,
     applyTheme, setTheme, initBar, openSettings, openLangSheet, langButton,
     srs, saveSrs, logDay, know: knowGet, knowState, setKnow, putKnow, knowFromGrade, knowStats, knowAll: () => know, testSecs, testTries, streak, todayLog, countNew, newPerDay, newLeft, dueByLang, hasHistory,
-    announce, on: fn => listeners.push(fn),
+    announce, on: fn => listeners.push(fn), claudeText, exportProgress, swKill, settingsSections: [],
   };
   applyTheme();
 })();
