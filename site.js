@@ -2,7 +2,8 @@
    data loading and the review counters the app's Today strip and Drill both read. No build step. */
 (() => {
   'use strict';
-  const V = '20261002g';   // bump when data files change; replaces cache:'no-cache'
+  if (window.B1_MOVED) return;   // app.html#b1… is on its way to Fluentish: touch nothing
+  const V = '20261004a';   // bump when data files change; replaces cache:'no-cache'
   const KEYS = {
     prefs: 'doors.prefs.v2', srs: 'doors.srs.v1', progress: 'doors.progress.v1', apikey: 'doors.apikey',
     days: 'doors.days.v1', today: 'doors.today.v1', prismSeen: 'doors.prismSeen', todayStrip: 'doors.todayStrip.v1', know: 'doors.know.v1',
@@ -337,8 +338,11 @@
     return (j?.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
   }
   // ---------- offline: service worker (app.html only); version.json can switch it off ----------
+  // Only this site's registration: every Pages project on pakrasi.github.io shares the origin, and Fluentish's own
+  // service worker must survive (getRegistrations() returns all of them).
   async function swKill() {
-    try { for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister(); } catch {}
+    const mine = new URL('./', location.href).href;
+    try { for (const r of await navigator.serviceWorker.getRegistrations()) if (r.scope === mine) await r.unregister(); } catch {}
     try { for (const k of await caches.keys()) if (k.startsWith('igloo-')) await caches.delete(k); } catch {}
   }
   if ('serviceWorker' in navigator && /app\.html$/.test(location.pathname) && !/[?&]nosw\b/.test(location.search)) {

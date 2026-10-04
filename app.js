@@ -1,6 +1,7 @@
 /* Igloo app: Drill, Test, Look up, Write. Static, no build step. Shared helpers come from site.js (window.DG). */
 (() => {
   'use strict';
+  if (window.B1_MOVED) return;
   const { h, $, getJSON, framework, load, save, KEYS, dayNow } = DG;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const narrow = matchMedia('(max-width: 640px)');
@@ -15,7 +16,7 @@
   const prefs = DG.prefs;
   let progress = load(KEYS.progress, {});
   const srs = DG.srs;
-  const VIEWS = ['b1', 'drill', 'test', 'lookup', 'write'];
+  const VIEWS = ['drill', 'test', 'lookup', 'write'];   // B1 moved to Fluentish (app.html sends #b1… there)
   const TABS = ['phrases', 'frames', 'linking', 'grammar', 'notes'];
   const OLD_VIEW = { reference: 'lookup', chunks: 'lookup', practice: 'write' };
   const OLD_LAYER_TAB = { door: 'frames', glue: 'linking' };

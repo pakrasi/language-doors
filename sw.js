@@ -1,14 +1,15 @@
-/* Igloo service worker: offline for app.html (B1 rounds on the subway). Registered by site.js as a fixed URL with
+/* Igloo service worker: offline for app.html (Drill on the subway). Registered by site.js as a fixed URL with
    updateViaCache:'none', so every deploy (a new V below) is picked up.
    - navigations (app.html): network first with a 3 s timeout, cache fallback;
-   - versioned files (?v=…, which includes data/b1/*): cache first;
+   - versioned files (?v=…): cache first;
    - fonts: stale-while-revalidate; everything else cross-origin (GitHub, Anthropic): not touched.
-   The page switches versions only from the B1 hub (version.json check), never mid-round. */
-const V = '20261002g';
+   Since the B1 trainer moved to Fluentish there is no version.json check in the page: a new sw.js installs on the
+   next navigation and takes over when the old tabs close. Scope is /language-doors/ only. */
+const V = '20261004a';
 const CACHE = 'igloo-' + V;
 const SHELL = ['app.html'];
-const VERSIONED = ['tokens.css', 'app.css', 'b1.css', 'site.js', 'match.js', 'readiness.js', 'b1day.js', 'fsrs.js', 'timer.js', 'detect.js', 'b1ready.js',
-  'speech.js', 'b1round.js', 'b1.js', 'b1more.js', 'data/framework.json', 'data/b1/items.json', 'data/b1/grammar.json', 'data/b1/bank.json', 'data/b1/plan.json', 'data/b1/nouns.json'];
+// The B1 trainer moved to Fluentish, so its files are no longer precached (app.html sends #b1… to /fluentish/).
+const VERSIONED = ['tokens.css', 'app.css', 'site.js', 'match.js', 'readiness.js', 'data/framework.json'];
 const PLAIN = ['assets/logo.svg', 'assets/favicon-32.png'];
 
 self.addEventListener('install', e => {

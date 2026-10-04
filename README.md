@@ -97,6 +97,8 @@ Scenario writing with a built-in key-word check and an optional "Check with Clau
 
 ## B1 trainer (`app.html#b1`)
 
+**Moved to Fluentish** (https://pakrasi.github.io/fluentish/). `app.html` sends every `#b1…` link there with the hash unchanged, and Fluentish's router maps it (`#b1/round` → `#/practice/round`, and so on). The B1 nav link and scripts are no longer loaded here. The files below stay in the repo until Fluentish has Drill, Test, Look up and Write too, and they no longer run on the site. Progress moved once per device into Fluentish; the `doors.b1.*` keys are left in place, unread by Igloo.
+
 Goethe B1 exam practice in German: typed rounds with a soft timer, FSRS scheduling capped at the exam date, sticky-error hints, Situations (topic match), Exam words, Say it aloud and the Teil 2 talk.
 
 **Files**

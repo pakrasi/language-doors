@@ -3,6 +3,20 @@
 <head>
 <meta charset="utf-8">
 <script>
+/* The B1 trainer moved to Fluentish. Any #b1… link (bookmarks, the Home Screen icon, an old tab after its update)
+   goes to /fluentish/ with the hash unchanged; Fluentish's router maps the old Igloo hash to its own route.
+   Drill, Test, Look up and Write stay here until Fluentish has them. Nothing in localStorage is read or written,
+   and the service worker stays registered (it keeps Drill offline). */
+(function () {
+  var B1 = /^#\/?b1(?![\w-])/;
+  function moved() {
+    if (!B1.test(location.hash)) return false;
+    location.replace('/fluentish/#' + location.hash.replace(/^#\/?/, ''));
+    return true;
+  }
+  if (moved()) { window.B1_MOVED = true; return; }
+  addEventListener('hashchange', function (e) { if (moved()) e.stopImmediatePropagation(); }, true);
+})();
 /* Apply the saved theme before first paint. */
 (function () { try { var p = JSON.parse(localStorage.getItem('doors.prefs.v2')) || {}; document.documentElement.dataset.theme = p.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
 /* The old Framework page is now "How it works" on the homepage. */
@@ -14,9 +28,8 @@ if (/^#\/?(framework|how)\b/.test(location.hash)) location.replace('index.html#h
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap">
-<link rel="stylesheet" href="tokens.css?v=20261002g">
-<link rel="stylesheet" href="app.css?v=20261002g">
-<link rel="stylesheet" href="b1.css?v=20261002g">
+<link rel="stylesheet" href="tokens.css?v=20261004a">
+<link rel="stylesheet" href="app.css?v=20261004a">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -44,7 +57,6 @@ if (/^#\/?(framework|how)\b/.test(location.hash)) location.replace('index.html#h
       <span class="brand-name">Igloo</span>
     </a>
     <nav class="views" aria-label="Sections">
-      <a href="app.html#b1" data-view="b1">B1</a>
       <a href="app.html#drill" data-view="drill">Drill</a>
       <a href="app.html#test" data-view="test">Test</a>
       <a href="app.html#lookup" data-view="lookup">Look up</a>
@@ -67,18 +79,9 @@ if (/^#\/?(framework|how)\b/.test(location.hash)) location.replace('index.html#h
 </main>
 
 
-<script src="site.js?v=20261002g"></script>
-<script src="match.js?v=20261002g"></script>
-<script src="readiness.js?v=20261002g"></script>
-<script src="b1day.js?v=20261002g"></script>
-<script src="fsrs.js?v=20261002g"></script>
-<script src="timer.js?v=20261002g"></script>
-<script src="detect.js?v=20261002g"></script>
-<script src="b1ready.js?v=20261002g"></script>
-<script src="speech.js?v=20261002g"></script>
-<script src="b1round.js?v=20261002g"></script>
-<script src="b1.js?v=20261002g"></script>
-<script src="b1more.js?v=20261002g"></script>
-<script src="app.js?v=20261002g"></script>
+<script src="site.js?v=20261004a"></script>
+<script src="match.js?v=20261004a"></script>
+<script src="readiness.js?v=20261004a"></script>
+<script src="app.js?v=20261004a"></script>
 </body>
 </html>
