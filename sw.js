@@ -5,7 +5,7 @@
    - fonts: stale-while-revalidate; everything else cross-origin (GitHub, Anthropic): not touched.
    Since the B1 trainer moved to Fluentish there is no version.json check in the page: a new sw.js installs on the
    next navigation and takes over when the old tabs close. Scope is /language-doors/ only. */
-const V = '20261004a';
+const V = '20261004b';
 const CACHE = 'igloo-' + V;
 const SHELL = ['app.html'];
 // The B1 trainer moved to Fluentish, so its files are no longer precached (app.html sends #b1… to /fluentish/).
